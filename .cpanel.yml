@@ -2,6 +2,7 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/hauserlab/public_html/
-    - ./process-all
-    - /bin/mv public_html/* $DEPLOYPATH
+    - /bin/ln -s $DEPLOYPATH
+    - /bin/rsync -avu --delete "/home/hauser/iml-webpage-github/static_html/" $DEPLOYPATH
+    #- /bin/mv -r public_html/* $DEPLOYPATH
     
