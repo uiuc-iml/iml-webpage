@@ -2,5 +2,6 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/hauserlab/public_html/
+    - ./process-all
     - /bin/cp -r public_html/* $DEPLOYPATH
     
