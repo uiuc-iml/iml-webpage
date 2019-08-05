@@ -4,5 +4,5 @@ deployment:
     - export DEPLOYPATH=/home/hauserlab/public_html/
     - /bin/ln -s $DEPLOYPATH
     - /bin/rsync -avu --delete "/home/hauser/iml-webpage-github/static_html/" $DEPLOYPATH
-    #- /bin/cp -r public_html/* $DEPLOYPATH
+    #- /bin/mv -r public_html/* $DEPLOYPATH
     
