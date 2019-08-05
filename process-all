@@ -1,8 +1,6 @@
 #!/bin/bash
 
-mkdir public_html
-/bin/cp -r static_html/* public_html/
-./process home contact people software research publications
+./process index contact people software research publications
 ./process-subdir benchmark/index
 ./process-subdir cooperativemotion/index
 ./process-subdir decisionsupport/index

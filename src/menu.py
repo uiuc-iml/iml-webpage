@@ -55,7 +55,7 @@ def makemenuitem(link,title):
 
 def makemenu():
     res='<ul id="mainmenu">\n'
-    menufiles = [('Home','home.html'),
+    menufiles = [('Home','index.html'),
                  ('People','people.html'),
                  ('Research','research.html'),
                  ('Publications','publications.html'),
@@ -96,6 +96,9 @@ def makesubmenu_recurse(name,menuname,depth=0):
 
 def makesubmenus():
 	tgt = sys.argv[-1]
+	parts = os.path.split(tgt)
+	if len(parts) > 1 and parts[0] == 'public_html':
+		tgt = os.path.join(*parts[1:])
 	if tgt not in file_to_name:
                 print "Warning: target",tgt,"doesn't have a menu"
 		return ''

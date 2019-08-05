@@ -1,5 +1,5 @@
 #!/bin/bash
 for file in "$@"
 do
-  python src/pycgi.py src/frame_subdir.htm src/$file.htm public_html/$file.html
+  python src/pycgi.py src/frame_subdir.htm $file.htm public_html/$file.html
 done
