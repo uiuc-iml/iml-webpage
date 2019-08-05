@@ -1,0 +1,27 @@
+#!/bin/bash
+
+mkdir public_html
+/bin/cp -r static_html/* public_html/
+./process home contact people software research publications
+./process-subdir benchmark/index
+./process-subdir cooperativemotion/index
+./process-subdir decisionsupport/index
+./process-subdir drc/index
+./process-subdir dynamics/index dynamics/statecost
+./process-subdir ikdb/index
+./process-subdir iv2013/index
+./process-subdir klampt/index
+./process-subdir knowledge/index
+./process-subdir locomotion/capturepoint locomotion/tactile
+./process-subdir mintos/index
+./process-subdir nursing/index nursing/doffing
+./process-subdir pvtp/index
+./process-subdir realtime/index
+./process-subdir redundancyresolution/index
+./process-subdir simulation/index
+./process-subdir slikmc/index slikmc/contact slikmc/download slikmc/tutorial slikmc/publications
+./process-subdir taskandmotion/index
+./process-subdir sketchmimicking/index
+./process-subdir throwing/index
+./process-subdir vehicles/index
+python src/to-js.py src/news.htm > public_html/news.js

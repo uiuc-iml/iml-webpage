@@ -1,0 +1,77 @@
+
+<h2>DRC-Hubo: a ladder-climbing humanoid robot for the DARPA Robotics Challenge</h2>
+<h3>Jingru Luo, Yajia Zhang, Kris Hauser</h3>
+<h3>Collaborators: Paul Oh (Drexel U.), C.S. George Lee (Purdue U.), Jun Ho Oh (KAIST)</h3>
+
+<h4>Summary</h4>
+<p class="summary">
+As part of the 2013 DARPA Robotics Challenge, we are developing ladder- and stair- climbing skills for humanoid robots that may be used in disaster relief and industrial maintenance scenarios.  Such tasks are challenging because they require upper-body strength, multi-limbed balance coordination, and fine motions for obstacle avoidance.  We developed planners that can carefully deliberate about the robot's physical capabilities, and applied them planner-aided design to establish specifications for a new robot, DRC-Hubo.  Using our software, DRC-Hubo is able to autonomously mount, climb, and dismount stairs and ladders. This project is conducted as part of <a href="http://dasl.mem.drexel.edu/DRC/">Team HUBO</a>, a multi-university team led by Drexel University.
+</p>
+<p class="summary"><b>Post-DRC Trials Update</b>: The results are in: on Dec. 21, 2013 during the DRC Trials, DRC-Hubo successfully climbed 8/9 ladder rungs (ending in a spectacular fall, see below).  The next day, Team KAIST used the same strategy, and successfully climbed the entire ladder.  These were the 2nd and 3rd best showings at the ladder event, and Hubo was the only robot able to climb a ladder with handrails.  In a shorter amount of time, Team Schaft's robot climbed a specially modified ladder with the rails removed.
+</p>
+<p class="summary">Unfortunately, our team's overall performance across the 8 events did not pass the cutoff, and DARPA will not be continuing to fund this project.  Nevertheless, it was a valuable experience: we learned an incredible amount about humanoid robots, team communications, and complex hardware integration. And despite the engineering emphasis of this project, we were able to get some solid research done on planning and trajectory optimization.  We released open source software for humanoid locomotion (Mintos, Klamp't), which we hope will aid other teams in their ongoing quest to develop disaster response robots.
+</p>
+<p class="summary"><i>Note to other labs: please contact us if you are interested in using our software for locomotion planning. We would enthusiastically support your efforts. To beat Schaft, you'll need all the help you can get!</i>
+</p>
+
+<div class="pubs">
+<ul class="publications">
+	<li>A. Eilering, V. Yap, J. Johnson, and K. Hauser. <i>Identifying Support Surfaces of Climbable Structures from 3D Point Clouds</i>. To appear in IEEE Int'l. Conf. on Robotics and Automation, May 2014.
+	<span class="nw"><a href="../papers/ICRA2014-Eilering-support.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a> </span></li>
+
+	<li>K. Hauser. <i>Fast Dynamic Optimization of Robot Paths under Actuator Limits and Frictional Contact</i>. To appear in IEEE Int'l. Conf. on Robotics and Automation, May 2014.
+	<span class="nw"><a href="../papers/ICRA2014-Hauser-optimization.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a> </span></li>
+
+	<li>J. Luo, Y. Zhang, K. Hauser, H.A. Park, M. Paldhe, C.S.G. Lee, M. Grey, M. Stilman, J.H. Oh, J. Lee, I. Kim, and P. Oh. <i>Robust Ladder-Climbing with a Humanoid Robot with Application to the DARPA Robotics Challenge.</i> To appear in IEEE Int'l. Conf. on Robotics and Automation, May 2014.
+	<span class="nw"><a href="../papers/ICRA2014-Luo-ladderclimbing.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a> </span></li>
+
+	<li>K. Hauser. <i>Fast Interpolation and Time-Optimization on Implicit Contact Submanifolds.</i> In proceedings of Robotics: Science and Systems (RSS), Berlin, Germany, June 2013. 
+ <span class="nw"><a href="../papers/RSS2013_InterpolationOptimizationManifolds.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a> <a href="http://motion.pratt.duke.edu/mintos/"><img class="link"  src="../images/link_icon_tiny.gif" alt="link"></a> </span></li>
+	<li>
+	Y. Zhang, J. Luo, K. Hauser, R. Ellenberg, P. Oh, H.A. Park, M. Paldhe, and C.S.G. Lee. <i>Motion Planning of Ladder Climbing for Humanoid Robots</i>.  In proceedings of IEEE Conf. on Technologies for Practical Robot Applications (TePRA), April 2013.
+	<span class="nw"><a href="../papers/TePRA2013-Zhang-ladder.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a></span>
+</li>
+</ul>
+</div>
+
+<div class="media">
+
+<div style="text-align:center">
+<img src="drchubo-schematic.jpg">
+<img src="drchubo-climb.jpg">
+</div>
+
+<div style="text-align:center">
+<img src="team-hubo-corrected-resized.jpg">
+</div>
+
+
+<p>Autonomous ladder climbing with the DRC-Hubo robot.</p>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/ZEUVQRrKfjo" frameborder="0" allowfullscreen></iframe>
+
+<p>Successful dry run in preparation for DRC trials (an execution error was detected and corrected by human operators from 0:26-0.40).</p>
+<iframe width="560" height="315" src="//www.youtube.com/embed/2ft83Cs7k6M" frameborder="0" allowfullscreen></iframe>
+
+
+<p>The dramatic last step of the DRC Trials. With video bandwidth limited by DARPA, the remote human operators were unable to see that the robot had missed a handhold when they chose to proceed to the next step.</p>
+<iframe width="560" height="315" src="//www.youtube.com/embed/VwfR6OVrnNg?rel=0" frameborder="0" allowfullscreen></iframe>
+
+
+
+</div>
+
+
+<div class="downloads">
+<ul class="downloads">
+<li><a href="../mintos/">Manifold Interpolation and Time-Optimal Smoothing</a> (Mintos) library</li>
+<li><a href="../klampt/">Kris' Locomotion and Manipulation Planning Toolbox (Klamp't)</a></li>
+</ul>
+</div>
+
+<div class="sponsors">
+<div>
+<div class="sponsor">
+<img src="../images/logos/darpa.gif">
+DARPA Robotics Challenge</div>
+</div>
+</div>

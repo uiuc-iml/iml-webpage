@@ -1,0 +1,69 @@
+<style type="text/css">
+  <!--
+  p.category { font-size:medium; font-weight:bold; }
+  div.media { padding-top:0em; padding-left:1em; display:table-cell; width:40%; }
+  img.media { border:0px; }
+
+  div.mediaitem { display: table; padding-bottom:0.5em; }
+  div.mediaimg { width:65px; padding-bottom:4px; display:table-cell; }
+  div.mediatext { display:table-cell; vertical-align:top; margin:2px; }
+  div.mediatext p { margin:0em; font-size:70%; }
+  -->
+</style>
+
+
+<h2>Optimal Longitudinal Control Planning with Moving Obstacles.</h2>
+<h3>Jeff Johnson and Kris Hauser. Appearing In Intelligent Vehicles Symposium 2013</h3>
+
+<p> <b> Abstract. </b>
+At intersections and in merging traffic, intelligent road vehicles must solve challenging optimal control problems in real-time to navigate reliably around moving obstacles.  We present a complete planner that computes collision-free, optimal longitudinal control sequences (acceleration and braking) using a novel visibility graph approach that analytically computes the reachable subset of path-velocity-time space.  We demonstrate that our method plans over an order of magnitude faster than previous approaches, which makes it scalable and fast enough (tenths of a second on a PC) to be called repeatedly on-line.  We demonstrate applications to autonomous driving and vehicle collision warning systems with up to 20 moving obstacles.
+</p>
+
+<p> <b> Download PDF </b>  <a href="../papers/ICRA2012-Johnson-optimal.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a> </p>
+
+<p> <b> Download Supplemental Video (MP4, 4.7MB):</b>  <a href="videos/IV_2013.mp4"><img class="pdf"  src="../images/mov_icon_tiny.gif" alt="MP4"></a> </p>
+
+<!-- p> <b> Download Powerpoint (pptx, 2.8MB)</b> <a href="ICRA_2012.pptx"><img class="pdf" src="../images/pp_icon_tiny.gif" alt="pptx"></a> </p -->
+
+<p> <b> Download Planner (C++, 671KB):</b> <a href="PVTPlanner_beta.zip">PVTPlanner (beta)</a>
+<br>
+<a href="http://motion.pratt.duke.edu/pvtp/">(original version available here)</a></p>
+
+<h3> Other Media </h3>
+
+<p class="category">Planner-generated Trajectories in Simulated Scenarios
+<div class="media">
+	<div class="mediaitem">
+    <div class="mediaimg"><a href="videos/kirkwood.mp4"><img class="media" src="images/kirkwood_screen.jpg" style="border:1px solid #888;" /></a></div>
+    <div class="mediatext"><p>We model a car traveling along on Kirkwood Avenue in Bloomington, Indiana on stretch of road with many restaurants and pubs. Bicyclists often share the road lane and pedestrian traffic is heavy, both at and away from crosswalks. The problem is decomposed into two stages: 1) reaching the first stop sign, then 2) reaching a second stop sign. Acceleration bounds are [-10, 8]m/s2 and velocity bounds are [0, 13.4]m/s. </p>
+    <p>MP4, 338KB</p></div>
+	</div>
+	<div class="mediaitem">
+    <div class="mediaimg"><a href="videos/complex.mp4"><img class="media" src="images/complex_screen.jpg" style="border:1px solid #888;" /></a></div>
+    <div class="mediatext"><p>A complex scenario with 20 vehicles merging onto/off of the driver's path. The planner find the globally time-optimal control sequence that allows the car to traverse the path collision free.</p>
+    <p>MP4, 287KB</p></div>
+	</div>
+</div>
+
+<p class="category">Visibility Graph Construction</p>
+<div class="media">
+	<div class="mediaitem">
+    <div class="mediaimg"><a href="videos/vgraph.mp4"><img class="media" src="images/vgraph_screen.jpg" style="border:1px solid #888;" /></a></div>
+    <div class="mediatext"><p>Visibility graph construction for the complex scenario above. Here the vehicles also share portions of the driver's path, leading to diagonal PT Obstacles.</p>
+    <p>MP4, 78KB</p></div>
+	</div>
+</div>
+
+<p class="category">Simulated PT Obstacle Construction</p>
+<div class="media">
+	<div class="mediaitem">
+    <div class="mediaimg"><a href="square_obs.html"><img class="media" src="images/square_pt_obs_screen.jpg" style="border:1px solid #888;" /></a></div>
+    <div class="mediatext"><p>Example of PT obstacle construction for a square driver model and square world obstacle moving diagonally over the driver's path. The forbidden regions are computed as the world obstacle moves over the driver's path, and are then collected into the PT obstacle.</p>
+    <p>MP4, 1MB</p></div>
+	</div>
+	<div class="mediaitem">
+    <div class="mediaimg"><a href="backwards_triangle_obs.html"><img class="media" src="images/backward_triangle_pt_obs_screen.jpg" style="border:1px solid #888;" /></a></div>
+    <div class="mediatext"><p>Example of PT obstacle construction for a triangular driver model and square world obstacle moving diagonally over the driver's path. The forbidden regions are computed as the world obstacle moves over the driver's path, and are then collected into the PT obstacle.</p>
+    <p>MP4, 1MB</p></div>
+	</div>
+</div>

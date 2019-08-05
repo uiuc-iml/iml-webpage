@@ -1,0 +1,22 @@
+
+<h2>Inverse Kinematics Database Library</h2>
+<h3>Kris Hauser</h3>
+
+<h4>Summary</h4>
+<p class="summary">
+The Inverse Kinematics Database (IKDB) package is a learning-based approach for building large databases of global, collision-free, optimal solutions of redundant IK problems. It addresses the problem that existing numerical solutions for IK use local optimization, which tends to fall into local minima due to joint limits, and they do not properly take collision avoidance into account. The approach taken by IKDB is to pre-train a (usually large) database of globally-optimized solutions offline, and then adapt them online using local optimization. With a properly trained database, the resulting IK solver is orders of magnitude faster than standard global optimization techniques.
+</p>
+<p class="summary">
+It accompanies the paper:
+</p>
+<ul>
+	<li>Kris Hauser, Learning the Problem-Optimum Map: Analysis and Application to Global Optimization in Robotics. arXiv:1605.04636, http://arxiv.org/abs/1605.04636 [Also to appear in IEEE Transactions on Robotics] <span class="nw"><a href="../papers/TRO2017-LearningOptima.pdf">TRO Preprint <img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a></span></li>
+</ul>
+<p class="summary">IKDB is written in a Python front end for customizability, while the solvers used by its dependencies use C++ and Fortran back ends for speed.</p>
+
+<div class="downloads">
+<ul class="downloads">
+<li><a href="http://github.com/krishauser/ikdb">Download Inverse Kinematics Database (IKDB) software from Github</a></li>
+</ul>
+</div>
+

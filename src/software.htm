@@ -1,0 +1,220 @@
+<style type="text/css">
+  <!--
+  div.proj { border: solid 1px #C2C2C2; margin:0em 0em 1em 0em; padding:0.5em; background-color:#fff0f0; }
+  img.proj {  }
+  div.clear { clear:right; }
+  div.projimg { text-align:center; display: table-cell; float:right; margin-left:0.5em;}
+  p.projtitle { font-size:100%; font-weight:bold; text-align:left; margin:0px; padding-bottom:0.5em; padding-top:0px; color:#996667; }
+  p.projtext { font-size:80%; padding:0; margin:0; }
+  -->
+</style>
+
+
+<p>This software is free for academic use; contact us if you intend to use it for commercial purposes.  Please cite the associated paper if our software is used in a scientific publication.</p>
+
+<div class="proj">
+<a name="Klampt"></a>
+<div class="projimg"><a href="klampt/index.html"><img class="proj" src="klampt/klampt-small-icon.jpg" border="1px"></a></div>
+<p class="projtitle">Klamp't: Kris' Locomotion and Manipulation Planning Toolkit</p>
+<p class="projtext">Klamp't is a cross-platform software package for modeling, simulating, and planning for complex robots, particularly for manipulation and locomotion tasks.</p>
+<p>Click <a href="klampt/index.html">here</a> or on the picture at right to be taken to the project webpage.</p> 
+<h4>Features</h4>
+<ul>
+  <li>Supports legged and fixed-based robots.</li>
+  <li>Robust rigid body simulation with triangle mesh / triangle mesh collisions.</li>
+  <li>Collision checking with triangle meshes, point clouds, and signed distance fields.</li>
+  <li>Fast motion planning and trajectory optimization routines.</li>
+  <li>Forward and inverse kinematics.</li>
+  <li>Forward and inverse dynamics.</li>
+  <li>C++ and Python bindings</li>
+</ul>
+<div class="clear"></div>
+</div>
+
+<div class="proj">
+<a name="InHandManipulation"></a>
+<div class="projimg"><a href="http://rgbdinhandmanipulation.com"><img class="proj" src="images/icons/rgbd_in_hand.jpg" border="1px"></a></div>
+<p class="projtitle">RGB-D In-hand Manipulation Dataset and 3D Reconstruction</p>
+<p class="projtext">RGB-D in-hand object manipulation is potentially the fastest, easiest way for novices to construct 3D models of household objects.
+However, it remains challenging to accurately segment the target object from the user’s hands and background. 
+To help the computer vision research community benchmark new algorithms on this challenging problem,
+we have released a dataset that provides dense pixel level annotations for in-hand scanning of 13 objects from the YCB dataset.
+Source code is also available for our Backflow algorithm, from the paper <em>In-hand Object Scanning via RGB-D Video Segmentation</em> appearing in ICRA 2019.
+On this dataset, Backflow achieves 6&percnt; increase in segmentation accuracy compared to top performing video tracking algorithms.</p>
+<p>Click <a href="http://rgbdinhandmanipulation.com">here</a> or on the picture at right to be taken to the project webpage.</p> 
+<div class="clear"></div>
+</div>
+
+<div class="proj">
+<a name="SemiInifniteOptimization"></a>
+<div class="projimg"><a href="https://github.com/krishauser/SemiInfiniteOptimization"><img class="proj" src="videos/wafr2018/trajectory_tree.gif" border="1px"></a></div>
+<p class="projtitle">Semi-Infinite Optimization with Nonconvex Geometries</p>
+<p class="projtext">A package for optimizing robot poses and trajectories in the presence of non-convex obstacle constraints using semi-infinite programming. It accompanies the paper <em>Semi-Infinite Programming for Trajectory Optimization with Nonconvex Obstacles</em> by K. Hauser, appearning in WAFR 2018.</p>
+<h4>Features</h4>
+<ul>
+<li>Fast: pose optimization can be done in real-time, trajectory optimization in seconds.</li>
+<li>Handles highly non-convex geometries, including point clouds!</li>
+<li>No need to define resolution of collocation points for optimization.</li>
+<li>Lightweight Python API.</li>
+</ul>
+<p><a href="https://github.com/krishauser/SemiInifniteOptimization">Download from Github here</a></p>
+<div class="clear"></div>
+</div>
+
+<div class="proj">
+<a name="GlobalRedundancyResolution"></a>
+<div class="projimg"><a href="http://motion.pratt.duke.edu/redundancyresolution"><img class="proj" src="images/icons/globalredundancyresolution.png" border="1px"></a></div>
+<p class="projtitle">Global Redundancy Resolution</p>
+<p class="projtext">A package for calculating as-continuous-as-possible inverse kinematic maps for redundant robots. It accompanies the paper <em>Global Redundancy Resolution via Continuous Pseudoinversion of the Forward Kinematic Map</em> by K. Hauser and S. Emmons, appearning in IEEE TASE 2017.</p>
+<h4>Features</h4>
+<ul>
+<li>Handles arbitrary ND robot manipulators and Cartesian constraints up to 6D (position, position + orientation).</li>
+<li>Precomputed maps are used to solve IK very quickly, and ensure robot is within joint limits, self-collision free, and has minimal discontinuous jumps.</li>
+<li>Optimized maps minimize number of discontinuities as first priority, and minimize joint angle change as second priority.</li>
+<li>Parallel computation to reduce precomputation time for high-resolution maps.</li>
+<li>Vivid visualization of the discontinuity map.</li>
+</ul>
+<p><a href="https://github.com/krishauser/GlobalRedundancyResolution">Download from Github here</a></p>
+<p><a href="http://motion.pratt.duke.edu/redundancyresolution">Project page</a></p>
+<div class="clear"></div>
+</div>
+
+<div class="proj">
+<a name="ikdb"></a>
+<p class="projtitle">Inverse Kinematics Database (ikdb)</p>
+<p class="projtext">A fast, machine learning-based library for solving IK problems with collision-free, globally near-optimal solutions.  It accompanies the paper <em>Learning the Problem-Optimum Map: Analysis and
+Application to Global Optimization in Robotics</em> by K. Hauser in IEEE Transactions on Robotics 2017.</p>
+<h4>Features</h4>
+<ul>
+<li>Handles arbitrary robot manipulators and IK constraints.</li>
+<li>Results are self-collision free and globally near-optimal, with a user-defined objective function.</li>
+<li>Training can be done either in precomputation or as a background process.</li>
+<li>Can operate as a drop-in replacement for the Klamp't IK solver.</li>
+</ul>
+<p><a href="https://github.com/krishauser/ikdb/">Download from Github here</a></p>
+<p><a href="http://motion.pratt.duke.edu/ikdb/">Project page</a></p>
+<div class="clear"></div>
+</div>
+
+
+<div class="proj">
+<a name="Mintos"></a>
+<div class="projimg"><a href="mintos/html"><img class="proj" src="images/icons/mintos.jpg" border="1px"></a></div>
+<p class="projtitle">MInTOS: Manifold Interpolation and Time Optimized Smoothing</p>
+<p class="projtext">Mintos is a package for 1) generating smooth interpolating paths on implicit manifolds and 2) optimizing time-scaling of such paths under velocity and acceleration bounds.  This software accompanies the paper: <em>Fast Interpolation and Time-Optimization on Implicit
+  Contact Submanifolds</em> by K. Hauser, appearing in RSS 2013.  </p> 
+<p>Click <a href="mintos/index.html">here</a> or on the picture at right to be taken to the project webpage.</p> 
+<h4>Features</h4>
+<ul>
+  <li>Computes a smooth, time optimized interpolating trajectory that lies on the manifold up to the user-defined threshold. </li>
+  <li>Also applicable to time-scaling of free-space Bezier curves.</li>
+  <li>Supports smooth interpolation through multiple configurations.</li>
+  <li>Supports constraint submanifolds in non-Cartesian spaces, e.g. SO(3).</li>
+  <li>Very fast: interpolation and time-optimization typically takes only fractions of a second even with dozens of DOFs.</li>
+  <li>Numerically stable: time scaling achieved via provably convergent convex optimization.</li>
+  <li>Variety of constraints: velocity, acceleration, torque, point contact with Coulomb friction constraints.</li>
+  <li>Distributed under the LGPL license.</li>
+</ul>
+<h4>Downloads</h4>
+<ul>
+  <li><a href="software/mintos-1.1.1.zip">Latest version (1.1.1), last updated 5/21/2017.</a>.</li>
+  <li><a href="http://www.gnu.org/software/glpk/">GLPK</a> must be installed before building Mintos.</li>
+</ul>
+<div class="clear"></div>
+</div>
+
+
+<div class="proj">
+<a name="SLIKMC"></a>
+<div class="projimg"><a href="slikmc/index.html"><img class="proj" src="slikmc/1B8C.jpg" width="300" border="1"></a></div>
+<p class="projtitle">Sub-Loop Inverse Kinematics Monte Carlo (SLIKMC)</p>
+<p class="projtext">Implements a new Monte Carlo technique for sampling configurations of a kinematic chain according to a specified probability density while accounting for loop closure constraints. A key contribution is a method for sampling subloops in unbiased fashion using analytical inverse kinematics techniques. The method scales well to high-dimensional chains (>200DOFs). </p>
+<p>This software accompanies the paper: <em>Unbiased, scalable sampling of protein loop conformations from probabilistic priors</em> by Y. Zhang and K. Hauser, appearing in BMC Structural Biology, 2013.</p>
+<p>Click <a href="slikmc/index.html">here</a> or on the image at right to be taken to the project page.</p>
+<div class="clear"></div>
+</div>
+
+<div class="proj">
+<a name="AssistedTeleop"></a>
+<div class="projimg"><img class="proj" src="images/icons/assisted-teleoperation-gui.jpg"></div>
+<p class="projtitle">Assisted Teleoperation GUI</p>
+<p class="projtext">This package provides a hands-on GUI for demonstrating robot arm teleoperation strategies that accompany the paper: <em>Assisted Teleoperation Strategies for Aggressively Controlling a Robot Arm with 2D Input</em> by E. You and K. Hauser, appearing in RSS 2011.  </p>
+<h4>Downloads</h4>
+<ul><li><a href="software/AssistedTeleoperationTrial_dist.zip">Windows binaries</a> (26Mb).</li></ul>
+<div class="clear"></div>
+</div>
+
+<div class="proj">
+<a name="LMPL"></a>
+<div class="projimg"><img class="proj" src="images/icons/LMPL.jpg"></div>
+<p class="projtitle">Lightweight Motion Planning Library (LMPL)</p>
+<p class="projtext">LMPL is a lightweight module that implements a core set of motion planning algorithms.</p>
+<h4>Key Features</h4>
+<ul>
+<li>An implementation of multi-modal planning algorithms from the paper <em>Multi-Modal Motion Planning in Non-Expansive Spaces</em> by K. Hauser and J.-C. Latombe, appearing in IJRR 2009.</li>
+<li>An implementation of the minimum constraint removal algorithm from the paper <em>The Minimum Constraint Removal Problem with Three Robotics Applications</em> by K. Hauser and J.-C. Latombe, appearing in WAFR 2012.</li>
+</ul>
+<h4>Other Features</h4>
+<ul>
+<li>Does not impose a specific problem structure (e.g., an articulated robot) on the user.  Rather, it takes an abstract object-oriented approach where the user defines basic callbacks (collision checking, sampling, etc) for the configuration space under consideration.</li>
+<li>Supports a variety of classic motion planning algorithms, including PRM, SBL, and RRT.</li>
+<li>Supports the multi-modal planning algorithms Multi-Modal-PRM and Incremental-MMPRM.</li>
+<li>Written in C++ and includes both Visual Studio project files and GNU-style Makefiles.</li>
+<li>Distributed under the LGPL license.</li>
+</ul>
+
+<h4>Downloads</h4>
+<ul>
+<li><a href="software/LMPL.zip">Latest Version (1.1)</a>, released 5/9/2012.</li>
+</ul>
+<div class="clear"></div>
+</div>
+
+
+
+<div class="proj">
+<a name="ParabolicSmoother"></a>
+<div class="projimg"><img class="proj" src="images/icons/parabolic-path-smoother.jpg" border="1px"></div>
+<p class="projtitle">Parabolic Path Smoother</p>
+<p class="projtext">This code contains a fast smoothing algorithm for robot manipulator trajectories under geometric constraints and bounded acceleration.  It accompanies the paper <em>Fast Smoothing of Manipulator Trajectories using Optimal Bounded-Acceleration Shortcuts</em> by K. Hauser and V. Ng-Thow-Hing, appearing in ICRA 2010.</p>
+
+<h4>Features</h4>
+<ul>
+<li>Written in C++.</li>
+<li>Applicable to systems in R<sup>n</sup> under velocity and acceleration bounds, and general kinematic constraints, e.g., a manipulator arm under collision constraints.  You supply a collision checking subroutine to the algorithm.</li>
+<li>Well documented, lightweight (only two source files).</li>
+<li>Distributed under the BSD license.</li>
+<li>Users: ROS library, default path smoother for OpenRAVE v0.5.0.</li>
+</ul>
+
+<h4>Downloads</h4>
+<ul>
+<li><a href="software/ParabolicPathSmooth_1.3.zip">Latest Version (1.3)</a>, released 10/18/2011.
+</ul>
+<div class="clear"></div>
+</div>
+
+
+<div class="proj">
+<a name="PVTP"></a>
+<div class="projimg"><img class="proj" src="images/icons/PVTP.jpg" border="1px"></div>
+<p class="projtitle">Path-Velocity-Time Visibility Graph Planner</p>
+<p class="projtext">This package implements a velocity planner for velocity- and acceleration-bounded systems moving along a fixed path in the presence of dynamic obstacles.  It implements algorithms presented in the papers <em><a href="http://motion.pratt.duke.edu/pvtp/">Optimal Acceleration-Bounded Trajectory Planning in Dynamic Environments Along a Specified Path</a></em> by J. Johnson and K. Hauser, in <a href="http://icra2012.org">ICRA 2012</a>, and <em><a href="http://motion.pratt.duke.edu/iv2013/">Optimal Longitudinal Control Planning with Moving Obstacles</a></em> by J. Johnson and K. Hauser, in <a href="http://iv2013.org">IV 2013</a>.
+<h4>Features</h4>
+<ul>
+<li>Exact and complete.</li>
+<li>Computes a visibility graph of reachable path positions as well as the time-optimal trajectory.</li>
+<li>Polynomial time in the number of obstacle vertices.</li>
+<li>Written in C++</li>
+<li>Distributed under the LGPL license.</li>
+</ul>
+
+<h4>Downloads</h4>
+<ul>
+<li><a href="http://motion.pratt.duke.edu/iv2013/PVTPlanner_beta.zip">Latest version</a> (673kb).</li>
+</ul>
+<div class="clear"></div>
+</div>
+
+
+

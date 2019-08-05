@@ -1,0 +1,66 @@
+<h2>Avoiding many moving obstacles in intelligent vehicles</h2>
+<h3>Jeff Johnson, Kris Hauser</h3>
+<h3>Collaborators: Sarah Koskie (IUPUI), Michael Justiss (IUPUI)</h3>
+
+<h4>Summary</h4>
+<p class="summary">
+Vehicles that cross lanes of traffic encounter the problem of navigating around dynamic obstacles under actuation constraints. This paper presents an optimal, exact, polynomial-time planner for optimal bounded-acceleration trajectories along a fixed, given path with dynamic obstacles. The planner constructs reachable sets in the path-velocity-time (PVT) space by propagating reachable velocity sets between obstacle tangent points in the path-time (PT) space. The terminal velocities attainable by endpoint-constrained trajectories in the same homotopic class are proven to span a convex interval, so the planner merges contributions from individual homotopic classes to find the exact range of reachable velocities and times at the goal. A reachability analysis proves that running time is polynomial given reasonable assumptions, and empirical tests demonstrate that it scales well in practice and can handle hundreds of dynamic obstacles in a fraction of a second on a standard PC.
+</p>
+
+<div class="pubs">
+<ul class="publications">
+	<li>
+J. Johnson and K. Hauser. <i>Optimal Longitudinal Control Planning with Moving Obstacles</i>. In proceedings of  IEEE Int'l Intelligent Vehicles Symposium, May 2013. (oral presentation)
+	<span class="nw"><a href="../papers/IVS2013-Johnson-optimal.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a> <a href="http://motion.pratt.duke.edu/iv2013/"><img class="link"  src="../images/link_icon_tiny.gif" alt="link"></a></span></li>
+
+      <li>J. Johnson and K. Hauser. <i>Optimal Longitudinal Control Planning with Moving Obstacles</i>. In ICRA 2013 Workshop on Vehicle Autonomy for Urban Transportation Systems.  Karlsruhe, Germany, May 2013.
+</li>
+
+	<li>
+J. Johnson and K. Hauser. <i>Optimal Acceleration-Bounded Trajectory Planning in Dynamic Environments Along a Specified Path</i>. In IEEE Int'l Conference on Robotics and Automation (ICRA), Minneapolis, May 2012. 
+	<span class="nw"><a href="../papers/ICRA2012-Johnson-optimal.pdf"><img class="link"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a> <a href="http://motion.pratt.duke.edu/pvtp/"><img class="link"  src="../images/link_icon_tiny.gif" alt="link"></a></span></li>
+
+    <li>J. Johnson, Y. Zhang, and K. Hauser. <i>Semiautonomous Longitudinal Collision Avoidance Using a Probabilistic
+Decision Threshold</i>.   In IROS 2011 Workshop on Perception and Navigation for Autonomous Vehicles in Human Environments, September, 2011.	<span class="nw"><a href="../papers/IROS2011-Johnson-MinimumIntervention.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a></span></li>
+
+</ul>
+</div>
+
+
+<div class="paperpages">
+<ul class="paperpages">
+<li> <a href="http://motion.pratt.duke.edu/iv2013/">Optimal Longitudinal Control Planning with Moving Obstacles</a> (IV 2013)</li>
+<li> <a href="http://motion.pratt.duke.edu/pvtp/">Optimal Acceleration-Bounded Trajectory Planning in Dynamic Environments Along a Specified Path</a> (ICRA 2012)</li>
+</ul>
+</div>
+
+<div class="media">
+
+<div class="mediaitem">
+    <div class="mediaimg"><a href="../pvtp/movie_many_lanes.mp4"><img class="media" src="13-lanes.jpg" style="border:1px solid #888;" /></a></div>
+    <div class="mediatext"><p>Our planner is used to plan a safe, time-optimal trajectory across a fixed path (yellow) under dynamic constraints and in the presence of dynamic obstacles.  Similar to above, here the agent traverses a 13-lane roadway.</p>
+    <p>MP4, 523KB</p></div>
+</div>
+
+<div class="mediaitem">
+    <div class="mediaimg"><a href="../iv2013/videos/kirkwood.mp4"><img class="media" src="kirkwood-sim.jpg" style="border:1px solid #888;" /></a></div>
+    <div class="mediatext"><p>A simulated car (red) traveling westward along on Kirkwood Avenue in Bloomington, Indiana on a stretch of road with many restaurants and pubs. Bicyclists often share the road lane and pedestrian traffic is heavy, both at and away from crosswalks.  </p>
+    <p>MP4, 338KB</p></div>
+</div>
+
+<div class="mediaitem">
+    <div class="mediaimg"><img class="media" src="visibility-graph2.gif"  /></div>
+    <div class="mediatext"><p>The visibility graph method represents all safe trajectories that respect velocity and acceleration bounds.  Moving obstacles become diagonal forbidden regions in path-time (PT) space.  The planner incrementally calculates reachable velocities at each PT obstacle vertex and diagonal edge.  The solution is the minimum-time trajectory that reaches the goal (right edge).</p></div>
+</div>
+
+
+</div>
+
+
+<div class="sponsors">
+<div>
+<div class="sponsor">
+<img src="../images/logos/indiana-university.jpg">
+IU Collaborative Research Grants (IUCRG) Program</div>
+</div>
+</div>

@@ -1,0 +1,55 @@
+
+<h2>Fast Interpolation and Time-Optimization on Implicit Contact Submanifolds</h2>
+<h3>Kris Hauser, Robotics: Science and Systems, 2013</h3>
+
+<p> <b> Abstract. </b>
+This paper presents a method for generating smooth,
+efficiently-executable trajectories for robots under contact constraints,
+such as those encountered in legged locomotion and object
+manipulation. It consists of two parts. The first is an efficient,
+robust method for constructing C1 interpolating paths between
+configuration/velocity states on implicit manifolds. The second
+is a robust time-scaling method that solves for a minimum-time
+parameterization using a novel convex programming formulation.
+Simulation experiments demonstrate that the method is fast,
+scalable to high-dimensional robots, and numerically stable on
+humanoid robot locomotion and object manipulation examples.
+</p>
+
+<p> <b> Download PDF </b>  <a href="../papers/RSS2013_InterpolationOptimizationManifold.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a> </p>
+
+<p> <b> Media</b> </p>
+<div class="mediaitem">
+<video width="400" height="300" controls>
+  <source src="example-video.mp4" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="example-video.mp4"><img src="example-video.jpg" alt="example video picture"></a></div>
+  <div class="mediatext">
+  <p>Example video (5.7mb, mp4)</p>
+  </div>
+</video>
+</div>
+
+<br>
+<h2>Manifold Interpolation and Time-Optimal Smoothing (Mintos) library</h2>
+
+<p>The Mintos library implements the algorithm in the above paper.  It supports 1) generating smooth interpolating paths on implicit manifolds and 2) optimizing time-scaling of such paths under velocity, acceleration, torque, and frictional force bounds. It is lightweight, fast, written in C++, and has only one external dependency (GLPK). </p>
+
+<h4>Features</h4>
+<ul>
+  <li>Computes a smooth, time optimized interpolating trajectory that lies on the manifold up to the user-defined threshold. </li>
+  <li>Also applicable to time-scaling of free-space Bezier curves.</li>
+  <li>Supports smooth interpolation through multiple configurations.</li>
+  <li>Supports constraint submanifolds in non-Cartesian spaces, e.g. SO(3).</li>
+  <li>Very fast: interpolation and time-optimization typically takes only fractions of a second even with dozens of DOFs.</li>
+  <li>Numerically stable: time scaling achieved via provably convergent convex optimization.</li>
+  <li>Variety of constraints: velocity, acceleration, torque, point contact with Coulomb friction constraints.</li>
+  <li>Distributed under the LGPL license.</li>
+</ul>
+<h4>Downloads</h4>
+<ul>
+  <li><a href="../software/mintos-1.1.zip">Latest version (1.1)</a>.</li>
+  <li><a href="../software/mintos-examples.zip">Time optimization test examples</a>.</li>
+  <li><a href="http://www.gnu.org/software/glpk/">GLPK</a> must be installed before building Mintos.</li>
+</ul>

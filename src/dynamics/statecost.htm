@@ -1,0 +1,170 @@
+
+<h2>Asymptotically Optimal Planning by Feasible
+Kinodynamic Planning in State-Cost Space</h2>
+<h3>Kris Hauser, Yilun Zhou</h3>
+
+<h4>Summary</h4>
+<p class="summary">
+This paper presents an equivalence between feasible
+kinodynamic planning and optimal kinodynamic planning, in
+that any optimal planning problem can be transformed into a
+series of feasible planning problems in a state-cost space whose
+solutions approach the optimum. This transformation yields a
+meta-algorithm that produces an asymptotically optimal planner,
+given any feasible kinodynamic planner as a subroutine. The
+meta-algorithm is proven to be asymptotically optimal, and a
+formula is derived relating expected running time and solution
+suboptimality. It is directly applicable to a wide range of optimal
+planning problems because it does not resort to the use of steering
+functions or numerical boundary-value problem solvers. On a
+set of benchmark problems, it is demonstrated to perform, using
+the EST and RRT algorithms as subroutines, at a superior or
+comparable level to related planners.</p>
+
+<div class="pubs">
+<ul class="publications">
+
+	<li>K. Hauser and Y. Zhou. <i>Asymptotically Optimal Planning by Feasible Kinodynamic Planning in State-Cost Space.</i> IEEE Transactions of Robotics, 32(6): 1431-1443, 2016.  Also in  	arXiv:1505.04098 [cs.RO], 2015. <span class="nw"><a href="http://arxiv.org/pdf/1505.04098v1"><img class="pdf" src="images/pdf_icon_tiny.gif" alt="pdf"></a><a href="http://arxiv.org/abs/1505.04098"><img class="link" src="images/link_icon_tiny.gif" alt="link"></a><a href="dynamics/statecost.html"><img class="link" src="images/link_icon_tiny.gif" alt="link"></a></span></li>
+
+</ul>
+</div>
+
+<div class="downloads">
+<ul class="downloads">
+<li><a href="https://github.com/krishauser/pyOptimalMotionPlanning">Python Optimal Motion Planning</a> software library used for all examples (v0.1).</li>
+</ul>
+</div>
+
+<div class="media">
+
+<div class="mediaitem">
+  <div class="mediatext">
+  <img src="statecost-benchmarks.gif" alt="Benchmarking results">
+  <p>Benchmarking results for a variety of planners.  The AO-EST and AO-RRT planners use the proposed state-cost space planning technique.</p>
+  </div>
+</div>
+
+<div class="mediaitem">
+<video width="320" height="320" controls>
+  <source src="Dubins2-ao-est.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="Dubins2-ao-est.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Dubins car example, new AO-EST algorithm.  Tree of motions is drawn in workspace, with best solution depicted in green. One frame taken per 100 iterations.  The planner slowly converges to the optimal homotopy class (right pathway).</p>
+  </div>
+</div>
+
+<div class="mediaitem">
+<video width="320" height="320" controls>
+  <source src="Dubins2-ao-rrt.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="Dubins2-ao-rrt.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Dubins car example, new AO-RRT algorithm.  The planner rapidly converges to the optimal homotopy class (right pathway).</p>
+  </div>
+</div>
+
+<div class="mediaitem">
+<video width="320" height="320" controls>
+  <source src="Dubins2-ssrrt.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="Dubins2-ssrrt.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Dubins car example, prior Stable-Sparse-RRT algorithm (Dobson and Bekris 2015).  Paths are found in the optimal homotopy class but they are quite suboptimal, leading it to find better paths in the suboptimal homotopy class.</p>
+  </div>
+</div>
+
+<div class="mediaitem">
+<video width="320" height="320" controls>
+  <source src="Doubleintegrator-ao-est.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="Doubleintegrator-ao-est.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Double integrator example, new AO-EST algorithm.  Tree of motions is drawn in workspace, with best solution depicted in green. One frame taken per 100 iterations.  The planner slowly converges to a near-optimal straight line path.</p>
+  </div>
+</div>
+
+<div class="mediaitem">
+<video width="320" height="320" controls>
+  <source src="Doubleintegrator-ao-rrt.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="Doubleintegrator-ao-rrt.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Double integrator example, new AO-RRT algorithm.  The planner improves the optimal path slowly.</p>
+  </div>
+</div>
+
+<div class="mediaitem">
+<video width="320" height="320" controls>
+  <source src="Doubleintegrator-ssrrt.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="Doubleintegrator-ssrrt.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Double integrator example, prior Stable-Sparse-RRT algorithm (Dobson and Bekris 2015).  Due to a poor choice of a two key sparseness parameters, roadmap growth stops after some amount of time.  Choosing these parameters appropriately is a challenging issue, requiring a balance between time-to-first solution and convergence rate. To address this issue, the authors propose an adaptive variant called SST*, shown below.</p>
+  </div>
+</div>
+
+<div class="mediaitem">
+<video width="320" height="320" controls>
+  <source src="Doubleintegrator-sststar.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="Doubleintegrator-sststar.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Double integrator example, prior SST* algorithm (Dobson and Bekris 2015).  This performs better than Sparse-Stable-RRT (above).</p>
+  </div>
+</div>
+
+<div class="mediaitem">
+<video width="320" height="320" controls>
+  <source src="Pendulum-ao-est.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="Pendulum-ao-est.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Pendulum example, new AO-EST algorithm.  Tree of motions is drawn in state space, with best solution depicted in green. One frame taken per 100 iterations.  The planner makes progressive improvement, with the path taking fewer spirals as more planning is performed.</p>
+  </div>
+</div>
+
+<div class="mediaitem">
+<video width="320" height="320" controls>
+  <source src="Pendulum-ao-rrt.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="Pendulum-ao-rrt.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Pendulum example, new AO-RRT algorithm.  Progress appears to "stall out".</p>
+  </div>
+</div>
+
+<div class="mediaitem">
+<video width="320" height="320" controls>
+  <source src="Pendulum-ssrrt.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="Pendulum-ssrrt.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Pendulum example, prior Stable-Sparse-RRT algorithm (Dobson and Bekris 2015).  Progress appears to "stall out".</p>
+  </div>
+</div>
+
+
+</div>
+
+

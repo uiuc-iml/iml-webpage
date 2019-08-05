@@ -1,0 +1,173 @@
+
+<h2>Continuous Pseudoinversion of a Multivariate Function: Application to Global Redundancy Resolution</h2>
+<h3>Kris Hauser</h3>
+<h3>Workshop on the Algorithmic Foundations of Robotics (WAFR), San Francisco, December 2016</h3>
+<p> <b>Best Paper Award Nominee</b> </p>
+
+<p> <b> Abstract. </b>
+This paper seeks to generate a continuous pseudoinverse of a function that maps a higher dimensional compact set to a lower dimensional one. 
+Continuity and smoothness should be attained if possible, but otherwise the volume of the discontinuity boundary should be minimized.  A sampling-based approximation technique is presented that uses discretized roadmaps of both the domain and image, and minimizes discontinuities of the inverse function.  The method is applied to kinematic redundancy resolution for redundant robots, which have more degrees of freedom than workspace dimensions.  The output is a global redundancy resolution, which has the convenient property that whenever the robot returns to the same workspace point, it uses the same joint-space pose.  If a global resolution cannot be found, then the method minimizes discontinuities and maps them in workspace.  Results are demonstrated on toy problems with up to 20 DOF, and on several robot arms. 
+</p>
+
+<p> <b> In plain English. </b> In many areas of science and engineering we are faced with <em>inverse problems</em> in which certain simple formulas <i>y</i>=<i>f</i>(<i>x</i>), do not have simple inverse formulas  <i>x</i>=<i>f</i><sup>-1</sup>(<i>y</i>).  This research is attempting to find general-purpose algorithms to approximately solve inversion problems in which <i>x</i> and <i>y</i> are in spaces of dimension greater than 1. An application of this is in robot motion control, in which the movements of a robot's joints do not directly correspond to our natural notions of up/down, left/right, and forward/backward in Cartesian space.  It is not hard to calculate the Cartesian coordinates of a robot's end effector (i.e., its hand) for a given set of joint positions, and this process is called forward kinematics.  However, the inverse problem, called <em>inverse kinematics</em> (IK), can be quite challenging.  The IK problem does not usually have a unique solution, and in fact the number of solutions changes from point to point.  One one hand, when the robot has more joints than target coordinates, there may be an infinite number of solutions. On the other hand, when the desired target point is not reachable, there may be no solution at all. For decades, mathematicians in the field of topology have intensely studied when and where a certain robot mechanism switches between these different cases.</p>
+<p>All this might sound fairly academic, but it indeed has many practical implications for robot control.  First, consider trying to move a robot's arm to follow a simple path in Cartesian space: say, moving forward to grab a cup from a shelf.  If the robot starts at the correct joint configuration, this may be easy to do using incremental (also known as local) adjustments: figure out how the joints should move to produce a small motion in the forward direction, and repeat.  However, if that starting joint configuration was chosen "badly", then the robot could get stuck when it hits joint limits.  Or, it might end up even colliding with itself!  It is mathematically challenging to determine what configurations tend to cause problems, so roboticists have invented many heuristics to try to avoid problematic starting configurations.  However, none of these heuristics is perfect. </p>
+<p>A second implication is that if we are able to successfully produce the path, cycles do not always return your robot to the same position. Let's suppose our robot successfully grabbed the cup by moving forward, and now would like to move its hand backward to retrieve it. If we used the previous incremental approach to move the hand to precisely reverse that prior motion, then you might think that the robot should return to the same joint configuration that it started from, right?  Surprisingly, the robot could end up in an entirely different configuration from where it started, with its elbow bent strangely, or its shoulder in a contorted posture.  What's worse is that if you were controlling the robot using Cartesian commands (say with a motion tracker following your own hand, or a disabled person with a joystick), then you have <em> no control</em> over the robot's pose at the end of the motion.  And frankly, this makes controlling robots fundamentally complex and weird.  Incidentally, this is not just a problem for laypeople controlling robots.  Many roboticists with years of experience (and frankly should know better) fall into the same trap.  It is so convenient to work with our familiar Cartesian notions of up/down/left/right that many people simply program their robots to make decisions directly in Cartesian space, assuming that the robot will locally figure out how to move its joints.  This leads to a whole host of problems.</p>
+<p>What we propose is a method for calculating inverse kinematics in a global manner.  This means that the output inverse function assigns a single robot configuration to each target point.  Discontinuities in these functions are inevitable for most robots, and correspond to those regions in space in which the robot gets stuck.  Importantly, our algorithm minimizes the amount of discontinuities, and moreover maps out precisely <em>where</em> those discontinuities occur.  The movies and images below depict those boundaries for several robots. </p>
+<p>The ability to reliable calculate and visualize these boundaries has already proven useful in several projects in our lab.  We used the Baxter robot in the 2015 and 2016 Amazon Picking Challenge, which is a competition to build a robot system that can autonomously identify, grasp, and pack objects from a shelf.  The shelf had several deep horizontal bins in which items were located.  Strangely, our team found that it was difficult for the robot to reach straight into these bins like a human would typically do, and would need to make unnatural contortions to move from bin to bin.  Using the tools we developed, we analyzed the reachability of the Baxter's arm in the forward-facing orientation.  Surprisingly, we found that the redundancy resolution has numerous discontinuities in front of the robot.  Compare this to the downward-facing orientation, in which the entire area in front of the robot is discontinuity-free.  We have used this knowledge to design an appropriate workcell for the robot for our 2017 Amazon Picking Challenge entry.  We are also using this to design end effector orientations and climbing motions for a rock-climbing robot project based on the JPL Robosimian platform.  We have found that having authoritative, quantitative measures and visualization of robot reachability has been invaluable for making principled design decisions.</p>
+<p> The way it works is that we define a grid-like network of interconnected paths through the Cartesian space, and essentially attempt to plan the robot's motions along all Cartesian paths <em>simultaneously</em>.  In essence, this algorithm extends the family of probabilistic roadmap (PRM) algorithms, which are approximate randomized techniques for solving the path planning problem, into the generalized setting of solving multi-dimensional "sheets" rather than 1-dimensional paths.  Like PRMs, the provided method can handle joint limits, self-collisions, and other geometrically complex constraints.  We expect that these results could also be used for robots to more efficiently and reliably plan their motions in Cartesian space.   They could also help robot operators visualize what Cartesian motions to avoid, and help engineers design robots that have improved continuity in important regions of space.  </p>
+
+<p> <b> Download PDF </b>  <a href="../papers/wafr2016-pseudoinverse.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a> </p>
+
+<p> <b> Software </b> is available at the <a href="http://github.com/krishauser/GlobalRedundancyResolution">Global Redundancy Resolution</a> project on Github</p>
+
+
+<div class="media">
+
+<div class="mediaitem">
+<video width="1024" height="768" controls>
+  <source src="planar_5R_walk.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="planar_5R_walk.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Randomly moving between different points in the Cartesian workspace of a planar 5-link robot with joint limits.  The naive approach of applying local inverse kinematics (IK) to a linear interpolation between target points (red configuration) frequently gets "stuck."  The new method optimizes a global redundancy resolution, which assigns a single configuration for each target point.  Purple lines illustrates discontinuous boundaries in the resolved map, showing that the entire workspace cannot be covered by a continuous redundancy resolution. By avoiding these boundaries during interpolation (red curves), the robot can navigate between all points in the workspace in a continuous and fully repeatable fashion (grey configuration).</p>
+  </div>
+</div>
+
+<div class="mediaitem">
+<video width="1024" height="768" controls>
+  <source src="planar_20R_walk.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="planar_20R_walk.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Randomly moving between different points in the Cartesian workspace of an "elephant trunk" planar 20-link robot with joint limits.  The naive approach of applying local inverse kinematics (IK) to a linear interpolation between target points (red configuration) frequently gets "stuck."  The new method optimizes a global redundancy resolution, which assigns a single configuration for each target point.  Purple lines illustrates discontinuous boundaries in the resolved map, showing that the entire workspace cannot be covered by a continuous redundancy resolution. By avoiding these boundaries during interpolation (red curves), the robot can navigate between all points in the workspace in a continuous and fully repeatable fashion (grey configuration).  Compared to the 5-link case, the increased flexibility of the 20-link robot allows it to cover a larger contiguous area.</p>
+  </div>
+</div>
+
+<div class="mediaitem">
+<video width="1024" height="768" controls>
+  <source src="baxter.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="baxter.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Optimized discontinuity boundary for  an arm of the Rethink Robotics Baxter robot and a 3D Cartesian workspace with no rotation constraint.  Due to joint limits in the shoulder, the area above the shoulder cannot be traversed without rotating down and around.</p>
+  </div>
+</div>
+
+<div class="mediaitem">
+<video width="1024" height="768" controls>
+  <source src="baxter_ori_fwd.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="baxter_ori_fwd.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Optimized discontinuity boundary for  an arm of the Rethink Robotics Baxter robot and a 3D Cartesian workspace with a forward-facing rotation constraint.  The robot cannot freely move its gripper in front of the robot in this "unnatural" orientation.  We observed similar strange behavior when using Baxter during the Amazon Picking Challenge.</p>
+  </div>
+</div>
+
+<div class="mediaitem">
+<video width="1024" height="768" controls>
+  <source src="baxter_ori_down.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="baxter_ori_down.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Optimized discontinuity boundary for an arm of the Rethink Robotics Baxter robot and a 3D Cartesian workspace with a downward-facing rotation constraint. The robot can freely move its gripper around its front and side, in the most "natural" orientation of the gripper.</p>
+  </div>
+</div>
+
+<div class="mediaitem">
+<video width="1024" height="768" controls>
+  <source src="robonaut2.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="robonaut2.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Optimized discontinuity boundary for an arm of the NASA Robonaut 2 robot and a 3D Cartesian workspace with no rotation constraint.  Due to joint limits in the shoulder, the area below the shoulder cannot be traversed without rotating up and around.  Fluid movement is also difficult in regions between the shoulder and head and around the body.</p>
+  </div>
+</div>
+
+
+<div class="mediaitem">
+<video width="1024" height="768" controls>
+  <source src="atlas.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="atlas.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Optimized discontinuity boundary for an arm of the Boston Dynamics Atlas robot and a 3D Cartesian workspace with no rotation constraint.  The robot has a continuous inverse kinematics solution almost everywhere except for above the shoulder and head.</p>
+  </div>
+</div>
+
+<div class="mediaitem">
+<video width="1024" height="768" controls>
+  <source src="jaco.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="jaco.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Optimized discontinuity boundary for the Kinova Jaco robot and a 3D Cartesian workspace with no rotation constraint.   Unlike the Baxter, Robonaut2, and Atlas, the Jaco has a continuous inverse essentially everywhere, due to its use of three continuous rotation joints.</p>
+  </div>
+</div>
+
+<div class="mediaitem">
+<video width="1024" height="768" controls>
+  <source src="robosimian.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="robosimian.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Optimized discontinuity boundary for a limb of the JPL Robosimian robot and a 3D Cartesian workspace with no rotation constraint.  Each joint has +/-180 degree range of motion and the limb has a large reachable workspace.  However, severe discontinuities are caused by the odd joint axis arrangement and self-collisions with the body.</p>
+  </div>
+</div>
+
+<div class="mediaitem">
+<video width="1024" height="768" controls>
+  <source src="robosimian_ori_down.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="robosimian_ori_down.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Optimized discontinuity boundary for limb of the JPL Robosimian robot and a 3D Cartesian workspace with a downward-facing rotation constraint.  The reachable region is more compact than the free-rotation problem.</p>
+  </div>
+</div>
+
+<div class="mediaitem">
+<video width="1024" height="768" controls>
+  <source src="robosimian_walk.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="robosimian_walk.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Randomly moving between different points in the Cartesian workspace of the JPL Robosimian robot.  The naive approach of applying local inverse kinematics (IK) to a linear interpolation between target points (red configuration) frequently gets "stuck" or encounters self-collision.  The new method avoids resolution discontinuities during interpolation, so that the robot can navigate between all points in the workspace in a continuous, collision-free, and fully repeatable fashion (grey configuration). </p>
+  </div>
+</div>
+
+
+<div class="mediaitem">
+<video width="1024" height="768" controls>
+  <source src="robosimian_ori_walk.m4v" type="video/mp4">
+  <!-- fallback, no HTML5 -->
+  <div class="mediaimg">
+  <a href="robosimian_ori_walk.m4v"><img src="example-video.jpg" alt="example video picture"></a></div>
+</video>
+  <div class="mediatext">
+  <p>Randomly moving between different points in the Cartesian workspace of the JPL Robosimian robot, with a downward-facing orientation constraint.  The naive approach of applying local inverse kinematics (IK) to a linear interpolation between target points (red configuration) frequently gets "stuck" or encounters self-collision.  The new method avoids resolution discontinuities during interpolation, so that the robot can navigate between all points in the workspace in a continuous, collision-free, and fully repeatable fashion (grey configuration). </p>
+  </div>
+</div>
+
+
+</div>

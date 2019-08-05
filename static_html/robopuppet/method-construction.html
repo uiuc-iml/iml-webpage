@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0035)http://www.cs.indiana.edu/~hauserk/ -->
+<html><!-- InstanceBegin template="/Templates/index.dwt" codeOutsideHTMLIsLocked="false" --><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="Author" content="Anna Eilering">
+  <meta name="KeyWords" content="ROBOPuppet, robotics, Computer Science, Robot control, teleoperation, 3D printing, pocket geometries, joint encoder assemblies">
+  <meta name="Description" content="ROBOPuppet">
+  <!-- InstanceBeginEditable name="doctitle" -->
+  <title>ROBOPuppet - controllers for robots</title>
+  <!-- InstanceEndEditable -->
+  <link rel="stylesheet" type="text/css" href="index_files/pagestyle.css">
+  <!-- InstanceBeginEditable name="head" -->
+  <!-- InstanceEndEditable -->
+</head>
+<body>
+<div class="main">
+	<table id="Table_01" width="788" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td>
+			<img src="index_files/Banner.png" width="729" height="146" border="0" alt="" usemap="#Banner_Map"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="index_files/Divider.png" width="788" height="17" alt=""></td>
+	</tr>
+</tbody></table>
+<map name="Banner_Map">
+<area shape="rect" alt="" coords="644,121,724,144" href="contact.html">
+<area shape="rect" alt="" coords="582,121,640,143" href="about.html">
+<area shape="rect" alt="" coords="500,121,577,145" href="method.html">
+<area shape="rect" alt="" coords="429,121,495,144" href="videos.html">
+<area shape="rect" alt="" coords="336,122,425,142" href="examples.html">
+<area shape="rect" alt="" coords="275,121,330,143" href="index.html">
+</map>
+<!-- InstanceBeginEditable name="content" -->
+<div class="body">
+  <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr style="vertical-align: top;">
+        <td width="54%" align="top"><p class="sectionTitle"><b>METHOD - Construction</b></p>
+          <p class="sectionTitle"><b>Download the CAD model of the target robot</b></p>
+          <p class="sectionText">Many robots have CAD files available for download. Any file format that can be opened in FreeCAD can be used. Additional file formats may require a different software choice. For the TX90L robotic arm, we downloaded the *.stp files. </p>
+          <p class="sectionTitle"><b>Inspect each joint surface</b> to be articulated - use these observations to determine the size of the puppet</p>
+          <p class="sectionText">The joint axes of most robotic joints are centered on the joint surface. This was the case for all but one joint in the TX90L robotic arm. These joints are perfect candidates for the <em>Joint Encoder Assemblies</em> and <em>Pocket Geometries</em>. In order to use the pocket geometries, simply center the encoder void(the portion of the pocket geometry that contains the encoder's base) on the joint surface. A size for the final puppet can be determined by looking at the smallest joint that is to contain a standard <em>joint encoder assembly</em> and scaling that joint surface to fit the <em>pocket geometries. </em>The robot should be scalled around this value.</p>
+          <p class="sectionText">Joints that do not have the joint surface to fit the generic joint fixture will require the fixture for that joint to be modified. In our puppet this includes the joint between link 4 and link 5 and the joint between link 5 and link 6. In order to accommodate the potentiometer in the smaller joint surface area on link 4 for the joint between link 4 and link 5 the generic joint fixture was move deeper into the link and an access tunnel was added to allow access. The joint between link 5 and link 6 is very different from other joints in the robot, for this joint a custom pocket geometry was made that was just large enough to accommodate the potentiometer base in the side of the link.</p>
+          <p class="sectionText">We found that the puppet for the TX90L should be scaled to 30% of the target robot's size.</p>
+          <table width="98%" border="0">
+            <tr>
+              <td width="31%"><img src="images/methods/special_pocket1.PNG" width="263" height="168" alt="Joint 5 / 6 - too small for a standard joint encoder assembly, a custom pocket geometry was created" /></td>
+              <td width="69%"><p>The joint surface between joint 5 and joint 6 was too small for a standard joint encoder assembly. A custom pocket geometry, shown in pink, was created and used instead. </p>
+                <p>&nbsp;</p></td>
+            </tr>
+            <tr>
+              <td><img src="images/methods/IMG_0233.JPG" width="263" height="196" alt="Link 4 - joint 4 /5 was too small to support the encoder assembly, the encoder assembly was moved further into the link." /></td>
+              <td><p>The joint surface between link 4 and link 5  was too small to support the encoder assembly. However the link was deep and had space further away from the joint surface that was suitable fore the encoder assembly. The pocket geometry was combined with an access tunnel in the size of a large cylinder, the encoder assembly was moved further into the link (as can be seen here in the green bracket).</p>
+                <p>&nbsp;</p></td>
+            </tr>
+          </table>
+          <p class="sectionText">&nbsp;</p>
+          <p class="sectionTitle"><b>Create a watertight mesh from the CAD files, scaled to the appropriate size</b></p>
+          <p class="sectionText">Many CAD files are not watertight, this makes them unsuitable for printing. We used FreeCAD to joint all link surfaces and create a water tight mesh of each articulated link.</p>
+          <table width="100%" border="0">
+            <tr>
+              <td width="34%"><p><a href="images/methods/freeCAD_1.PNG"><img src="images/methods/freeCAD_1.PNG" width="263" height="299" alt="Open the CAD file in FreeCAD" /></a></p></td>
+              <td width="66%"><p><em><strong>Open the CAD file in FreeCAD and make it watertight.</strong></em></p>
+                <p>Select a link, or if the link is in several distinct pieces several parts, from the list in the 'Labels and Attributes' menu.(Multiple pieces can be selected by pressing the ctrl key while clicking on the label. On the left you can see that link 2, the lower shoulder link, is made of 11 pieces. We have selected all of those pieces to be combined into one.</p>
+                <p>With the pieces selected click on the Join button. This is circled in red on the left. This joins all the pieces into one and converts any open wires into solid faces. </p>
+                <p>NOTE - Even if the link is already in one piece, you must complete this step in order to close any open faces and render the link watertight so that it will print properly.</p>
+                <p>NOTE - If the join button is not visible go to VIEW &gt; WORKBENCH &gt; ALL</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p></td>
+            </tr>
+            <tr>
+              <td><p>&nbsp;</p>
+                <p><a href="images/methods/freeCAD_2.PNG"><img src="images/methods/freeCAD_2.PNG" width="263" height="299" alt="Open the CAD file in FreeCAD" /></a></p></td>
+              <td><p>&nbsp;</p>
+                <p><em><strong>Create and export the mesh</strong></em></p>
+                <p>Once the link has been joined, select it and go to MESHES &gt; CREATE MESH FROM GEOMETRY. Accept the default mesh tolerance of 0.10.</p>
+                <p>Select the newly created mesh in the Labels and Attributes menu(this is typically named &quot;mesh##&quot; where ## is the order of the meshes you have created). Go to MESHES &gt; EXPORT MESH.</p>
+                <p>Save the mesh as an *.stl file to the desired location with an appropriate name.</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p></td>
+            </tr>
+            <tr>
+              <td><p><a href="images/methods/tinkercad_1.PNG"><img src="images/methods/tinkercad_1.PNG" width="263" height="238" alt="Importing a file into TinkerCAD" /></a></p></td>
+              <td><p><em><strong>Import the mesh into TinkerCAD and resize it </strong></em></p>
+                <p>Log into <a href="https://tinkercad.com/">TinkerCAD</a></p>
+                <p>Create a new file and name it appropriately. (Files can be renamed by going to the DESIGN &gt; PROPERTIES menu.)</p>
+                <p>Go to the Import menu on the left hand side of the screen, select FILE and click on 'CHOOSE FILE'</p>
+                <p>Navigate to the mesh created in the last step and click 'OPEN'</p>
+                <p>This will populate the file name and allow you to chose a size for your imported file. Enter the amount you would like to scale the file. (For the TX90L we scaled the puppet to 30% of the target robot).</p>
+                <p>Click IMPORT</p>
+                <p>&nbsp;</p></td>
+            </tr>
+            <tr>
+              <td><p><a href="images/methods/tinkercad_2.PNG"><img src="images/methods/tinkercad_2.PNG" width="263" height="239" alt="Using the Joint Encoder Pocket Geometry" /></a></p></td>
+              <td><p><em><strong>Using pocket geometries, modify the robot's mesh to allow the installation of the joint encoder assemblies as well as access for any additional hardware.</strong></em></p>
+                <p>In TinkerCAD, copy or import the <em>joint encoder pocke</em>t shape into the link file you are working with. </p>
+                <p>Center the encoder void of the joint encoder pocket shape around the axis of rotation for the joint you are workin on. It is important to ensure that the pocket geometry is properly centered on the axis of rotation or the resulting puppet will not properly mimic the target robot's motion. Using the RULER tool will greatly assist in this process.</p>
+                <p>Select the pocket geometry and, in the Inspector, set the color of the piece to 'HOLE' (circled in green on the image to the left). This will cause the shape to create a hole in the surface in which it intersects</p></td>
+            </tr>
+            <tr>
+              <td><a href="images/methods/tinkercad_3.PNG"><img src="images/methods/tinkercad_3.PNG" width="263" height="238" alt="Pocket Geometries and access tunnels installed" /></a></td>
+              <td><p>Select both the link and the pocket geometry and click on 'GROUP (circled in red on the image to the left)'. This will join the two pieces together and create a pocket geometry shaped hole in the joint surface.</p>
+                <p> Follow the same process for the <em>joint axis pocket</em>.</p>
+                <p>Using the shapes provided in TinkerCAD add any additional cable management or access points required. In the image to the left you can see the link as a shadowed shape, the <em>joint encoder pocket</em> in pink, the<em> joint axis pocket</em> in orange(with attached frinction bolt access) and a cable management tunnel in green to allow the cables from the joint encoder assembly to be run to the outside of the link. </p></td>
+            </tr>
+            <tr>
+              <td><a href="images/methods/tinkercad_4.PNG"><img src="images/methods/tinkercad_4.PNG" width="263" height="238" alt="Completed modified mesh" /></a></td>
+              <td><p>Eventually you should have a completed, modified mesh that includes all neccesary access tunnels and pocket geometries. It should look something like the model to the left.</p>
+                <p>Export your mesh for printing by going to DESIGN &gt; DOWNLOAD FOR 3D PRINTING</p>
+                <p>Select '.STL' and your download will begin shortly.</p>
+                <p>&nbsp;</p></td>
+            </tr>
+            <tr>
+              <td><p>&nbsp;</p>
+                <p><img src="images/methods/makerware_1.PNG" width="263" height="202" alt="Import the mesh into Makerware desktop" /></p>
+                <p><img src="images/methods/makerware_2.PNG" width="263" height="202" alt="The shoulder linked appropriate posisioned on the build platform" /></p>
+                <p><img src="images/methods/IMG_0234.JPG" width="263" height="196" alt="Printing the link" /></p></td>
+              <td><p>&nbsp;</p>
+                <p><em><strong>Print the puppet</strong></em></p>
+                <p>Open Makerware Desktop.</p>
+                <p>Click on 'ADD FILE'</p>
+                <p>Navigate to downloaded STL file of the modified mesh and click 'OPEN'</p>
+                <p>Move your obect to the plaftform and rotate it until it is appropriate positioned on the platform</p>
+                <p>NOTE - In order to minimize support structures and potential printing issues it is benefitial to ensure that the model is placed/oriented on the printing platform in such a way that there is a flat surface on the printing platform and overhangs are minimized as much as possible.</p>
+                <p>NOTE -  It is worthwhile to print any pieces that are completely round or curved in two pieces so that there is at least one flat suface to place on the printer platform. It may be neccesary to add additional access tunnels or mounting holes in order to achieve this goal. An example of this can be seen <a href="images/methods/split_example.PNG">here</a>, where link 3, the 'upper arm' of the robotic arm was split in two legnth wise and additional mounting holes were added to allow the installion of bolts to keep the two pieces together. </p>
+                <p>Print the piece using the settings appropriate to your printer. We used the following settings:</p>
+                <blockquote>
+                  <p>Infill - 10%<br />
+                    'Standard Quality' - 2 shells, 0.20 mm height <br />
+                    Rafts - on<br />
+                    Supports - on<br />
+                    Material - ABS</p>
+                </blockquote>
+                <p>Print the link and monitor for any issues</p>
+                <p>Print any associated brackets for this link. (each link with a <em>joint assembly pocket</em> should have a matching mounting bracket.</p></td>
+            </tr>
+            <tr>
+              <td><p>&nbsp;</p>
+                <p><img src="images/methods/IMG_0243.JPG" width="263" height="196" alt="Cleaning the printed model" /></p>
+                <p><img src="images/methods/IMG_0226.JPG" width="263" height="197" alt="Affixing open cell foam to joint contact surfaces" /></p></td>
+              <td><p>&nbsp;</p>
+                <p><em><strong>Clean the printed model and trim any overhand, rafts or support structures.</strong></em></p>
+                <p>Trim any excess material from the model including raft and support structures. Drill out any access or wiring tunnels that were inadvertantly filled during the printing process.</p>
+                <p>With the clean model in hand affix any additional surface adjustments. We installed a thin layer of open-cell foam(craft form) to the joint contact surfaces in order to allow for a smoother action and finer friction control tuning. This foam can be seen in white against the yellow link in the image to the left.</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p></td>
+            </tr>
+            <tr>
+              <td><p>&nbsp;</p>
+                <p><a href="images/methods/IMG_0209.JPG"><img src="images/methods/IMG_0209.JPG" width="263" height="311" alt="Assembled Joint encoder assembly" /></a></p></td>
+              <td><p>&nbsp;</p>
+                <p><strong><em>Install joint controller assemblies.</em></strong></p>
+                <p>In the image to the left is an example of an installed joint encoder assembly. The potentiometer shaft should be passed through the central hole in the bracket. Two bolts should be used in the two outside holes in the bracket to attach the assembly to the printed link. Wires should be run through the created wiring tunnels. </p></td>
+            </tr>
+            <tr>
+              <td><p>&nbsp;</p>
+                <p><img src="images/methods/IMG_0172.JPG" width="263" height="245" alt="Assemble the puppet" /></p></td>
+              <td><p>&nbsp;</p>
+                <p><em><strong>Assemble puppet</strong></em></p>
+                <p>Using the joint encoder shafts as connectors, assemble the puppet.</p>
+                <p><strong><em>Install friction control bolts</em></strong></p>
+                <p>While assembling the puppet install the friction control bolts for each joint</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p></td>
+            </tr>
+            <tr>
+              <td><a href="images/methods/wiring.PNG"><img src="images/methods/wiring.PNG" width="263" height="97" alt="Wiring schematic for ROBOPuppet" /></a></td>
+              <td><p><strong>Run wiring and hook everything up</strong></p>
+                <p>Wiring should be run following the schematic to the left. The number of articulated joints will determine the board used. The TX90L Puppet has 5 articulated joints, we used the Arduino UNO to read the values from the potentiometers.</p>
+                <p>Wires should be run through the wiring and access tunnels in each link and enough slack should be given so that the robot's motion is not inhibited.</p></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+          </table>
+          <p class="sectionText"></p></td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+<!-- InstanceEndEditable --></div>
+<p>Copyright © 2014 Anna Eilering | <a href="mailto:annaeile@indiana.edu">Copyright Complaints</a></p>
+
+
+</body><!-- InstanceEnd --></html>

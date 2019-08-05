@@ -1,0 +1,52 @@
+
+<h2>Bayesian Tactile Exploration for Compliant
+Docking With Uncertain Shapes</h2>
+<h3>Kris Hauser</h3>
+<h3>Robotics: Science and Systems Conference, June 2018</h3>
+
+<p> <b> Abstract. </b>
+This paper presents a Bayesian approach for active tactile  exploration  of  a  planar  shape  in  the  presence  of  both localization and shape uncertainty. The goal is to dock the robot's end-effector against the shape -- reaching a point of contact that resists  a  desired  load  --  with  as  few  probing  actions  as  possible. The  proposed  method  repeatedly  performs  inference,  planning, and  execution  steps.  Given  a  prior  probability  distribution  over object   shape   and   sensor   readings   from   previously   executed motions, the posterior distribution is inferred using a novel and efficient Hamiltonian Monte Carlo method. The optimal docking site  is  chosen  to  maximize  docking  probability,  using  a  closed-
+form  probabilistic  simulation  that  accepts  rigid  and  compliant motion  models  under  Coulomb  friction.  Numerical  experiments demonstrate that this method requires fewer exploration actions
+to  dock  than  heuristics  and  information-gain  strategies.</p>
+
+<p> <b> Download PDF </b>  <a href="../papers/RSS2018-Hauser-BayesianTactileExploration.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a> </p>
+
+<div class="media">
+
+  <div class ="mediaitem">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/PExPBMNk9GE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <div class="mediatext"> Experiments on the physical RoboSimian. </div>
+  </div>
+
+  <div class="mediaitem">
+  <video width="540" height="320" controls>
+    <source src="reach-success.m4v" type="video/mp4">
+    <!-- fallback, no HTML5 -->
+    <div class="mediaimg">
+    <a href="reach-success.m4v"><img src="example-video.jpg"   alt="example video picture"></a></div>
+  </video>
+  <div class="mediatext"> Using the proposed tactile exploration controller, the RoboSimian robot attempts docking.  Even with noise and occlusion, the first attempted site was successful.  Purple: the sensed terrain shape as measured by an emulated laser sensor, with noise and localization error.  Orange: the emulated force sensor output.  Blue: the planned docking path.  </div>
+  </div>
+
+  <div class="mediaitem">
+  <video width="540" height="368" controls>
+    <source src="try_and_retry.m4v" type="video/mp4">
+    <!-- fallback, no HTML5 -->
+    <div class="mediaimg">
+    <a href="try_and_retry.m4v"><img src="example-video.jpg"   alt="example video picture"></a></div>
+  </video>
+  <div class="mediatext"> In this example, the first attempted docking site was unsuccessful due to localization error and sensor noise, and slips.  The second attempt is successful. </div>
+  </div>
+
+  <div class="mediaitem">
+  <video width="540" height="354" controls>
+    <source src="try_and_retry2.m4v" type="video/mp4">
+    <!-- fallback, no HTML5 -->
+    <div class="mediaimg">
+    <a href="try_and_retry2.m4v"><img src="example-video.jpg"   alt="example video picture"></a></div>
+  </video>
+  <div class="mediatext"> In this example, the first attempted docking site was unsuccessful by hitting underneath the hold.  The second attempt is successful at choosing another hold. </div>
+  </div>
+
+  
+</div>

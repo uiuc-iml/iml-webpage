@@ -1,0 +1,38 @@
+  div.proj { border: solid 0px #C2C2C2; padding:0.5em; margin:0em; position:relative; overflow:hidden; }
+  div.proj:hover { background-color:#fff0f0; }
+  /* on touch screens highlight the touchability of each project div*/
+  .touch div.proj { border: solid 1px #C2C2C2; padding:0.2em; margin:0.3em; position:relative; overflow:hidden; background-color:#fff7f7; }
+
+
+  div.projtext { }
+  img.proj {  }
+  div.projimg { text-align:left; width:80px; display: table-cell; float:left; }
+  div.projcontent { display: table-cell; padding:0em; margin:0em; }
+  p.projtitle { font-size:100%; font-weight:bold; text-align:left; margin:0px; color:#996667; }
+  p.projtext { font-size:80%; padding:0; margin:0; }
+
+  div.keywords { font-size:80%; font-style:italic; }
+  div.keywords:before { font-weight:bold; color:#4d3c43; font-style:normal; content:"Keywords: "; }
+  div.sponsors { font-size:80%; margin:0; padding:0; }
+  div.sponsors:before { font-weight:bold; color:#4d3c43; content:"Sponsors: "; }
+
+  a.project-link {
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	text-decoration:none; /* Makes sure the link   doesn't get underlined */
+	z-index:10; /* raises anchor tag above everything else in div */
+	background-color:white; /*workaround to make clickable in IE */
+	opacity: 0; /*workaround to make clickable in IE */
+	filter: alpha(opacity=1); /*workaround to make clickable in IE */
+  }
+ * html div a { width: 1%; }
+
+   .more { display:none;  }
+   div.abstract { font-size:80%; padding-bottom:0.5em;}
+   a.abstract-show { font-size:80%; font-weight:bold; color:#4d3c43; font-style:normal; position:relative; z-index:11; }
+   a.abstract-show:hover { color:#996667; }
+
+   .touch a.abstract-show { font-size:80%; font-weight:bold; color:#4d3c43; font-style:normal; position:relative; z-index:11; border:solid 1px #C2C2C2; background-color:#fff0f0; }

@@ -1,0 +1,139 @@
+<h1>Robot Personal Protective Equpment (PPE) Design, Donning, and Self-Doffing </h1>
+<h3>Tracy Lu,  Hayden Bader,  Kris Hauser</h3>
+<p class="bottom-space"> 
+
+<br\>
+</p>
+<h2>Summary</h2>
+ In order to ensure proper protection and sanitation of TRINA when moving between patients or transportion out of a quarantined environment, the Personal Protective Equipment (PPE) must be donned (applied) by a human and doffed (removed) with minimized human assitance and risk of self-contamination.
+
+</p >
+Human caregivers and first responders use PPE to operate relatively safely around potential contaminants, but PPE failure and doffing technique are the greatest risks health care workers face when working with highly contagious patients. Similarly, proper protection and cleaning is a challenge faced in the adoption of healthcare robots. PPE for robots should be designed appropriately for the operational environment and include a donning (application) and doffing (removal) procedure.  This study details PPE design methods, testing methods, final designs, and donning and doffing protocols for the Tele-Robotic Intelligent Nursing Assistant (TRINA) robot, a remote-controlled mobile manipulator robot originally designed for tele-nursing in Ebola quarantine rooms. The methods proposed for TRINA could be applied to other robots with multiple degrees-of-freedom that need protection while working in hazardous environments. 
+ </p>
+
+<p class="bottom-small"> 
+</p>
+
+<center>
+ <iframe width="560" height="315" src="https://www.youtube.com/embed/mWBN3uU7qL8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+ </center>
+
+
+<p class="bottom-space"> 
+<br\>
+</p>
+
+<h2> Background </h2>
+The methods in this study address PPE prototype design and PPE doffing procedure, both of which are informed by the <a href= "https://www.cdc.gov/vhf/ebola/healthcare-us/ppe/guidance.html">U.S. Center for Disease Control (CDC) Guidance on PPE for Ebola </a> and the robotic constraints of TRINA. The PPE design goals include impermeability to fluid contamination and compatibility with the TRINA robot&#39;s dimensions, ranges of motion, and sensors. 
+
+More details about TRINA can be found <a href= "http://motion.pratt.duke.edu/nursing/index.html"> here </a>. 
+
+<p class="bottom-space"> 
+<br />
+</p>
+
+<h2> Methods </h2>
+<h3>PPE Design </h3>
+The PPE was designed iteratively to determine dimensions and sewing patterns for the fabric. In between design iterations, robot movements were issued to ensure that PPE designs cooperated with the robot&#39;s mobility and remained in-place. Initial designs were prototyped without regard to sensors, and as the designs progressed, adjustments and additions were made to account for sensors. The material is constructed with <a href= "http://www.dupont.com/content/dam/dupont/products-and-services/personal-protective-equipment/personal-protective-equipment-landing/documents/DuPont_Ebola_Tech_Bulletin_NA_111014.pdf"> Dupont Tychem </a>, a material that satisfies the CDC fluid resistant and impermeable test specifications and is an industry standard for human doctors handling Ebola. Removal points include velcro and snap fits sewn into the fabric components. </p>
+ <p class="bottom-small"> 
+<br\>
+</p>
+
+<center>
+  <div class="mediaimg"><img class="media" width=640 height=400 src="arms.PNG" alt="Sleeve prototyping"></div> 
+  <div> Sleeve prototyping </div>
+ </center>
+
+ <p class="bottom-small"> 
+<br\>
+</p>
+<center>
+  <div class="mediaimg"><img class="media" width=640 height=380 src="30arms.jpg" alt="Sleeve testing"></div> 
+  <div> Sleeve testing</div>
+ </center>
+
+ <p class="bottom-small"> 
+<br />
+</p>
+<h3>PPE Doffing </h3>
+A robot self-doffing procedure was designed and tested by tele-operation. Doffing runs a significant risk of robot contamination, so the procedure is tested at each design iteration by applying a simulated liquid contaminant (Glo Germ) that glows under ultraviolet light. Early test iterations indicated that the robot was more likely to be contaminated at seams that would be unfolded or folded during doffing, and extra layers should be considered in these areas. Based on the compatibility of the fabric shape, dexterity of the hands, and configurations required to doff each component, adjustments to the designs were made by sectioning off components into smaller, more easily removed components. Extra material was also applied to the gloves to allow for more friction when grasping.</p>
+<p class="bottom-small"> 
+</p>
+<center>
+  <div class="mediaimg"><img class="media" width=770 height=456 src="allPPE.jpg" alt="PPEpatterns"></div> 
+  <div> PPE Pattern Markups</div>
+ </center>
+<p class="bottom-space"> 
+<br\>
+</p>
+
+<h2> Results </h2>
+<br />
+<h3>Pull Apart Methods </h3>
+Various pull apart methods were used to prevent enclosed components from being pulled over robot body parts, which could get stuck or contaminate itself. Some methods used were velcro, zippers, snap fits, and large overlapping surface area. An important note when designing separable components of the PPE is to make sure they collectively cover all of the robot and still overlap even when the robotic limbs are in very twisted configurations. 
+<p class="bottom-small"> 
+<br\>
+</p>
+
+<center>
+  <div class="mediaimg"><img class="media" width=780 height=300 src="pullApart.jpg" alt="velcro examples"></div> 
+  <div> Two examples of velcro pull apart methods with overlapping surface area covering the lines of sepearation </div>
+ </center>
+
+<p class="bottom-small"> 
+<br />
+</p>
+<h3>Manipulation Point Design: Handles </h3>
+The key manipulation points used in the PPE design are flexible handles, made with basic origami techniques. The size and gap are appropriate for the hands of TRINA and allow the PPE to be removed via pull apart methods. Even if defeormed or bent due to temporary external forces from actions, the handle will return to the original shape and spacing to allow for robotic hand grasping. When attaching the handles onto PPE, the orientation is best suited to be parallel to the direction of motion if the motion is expected to be non linear, such as when doffing the sleeves. This helps prevent twisting and snagging during removal. The manipulation points should also be attatched to places that would not hinder the functions or mobility of the robot.
+<p class="bottom-small"> 
+<br\>
+</p>
+
+<center>
+  <div class="mediaimg"><img class="media" width=384 height=228 src="handle.JPG" alt="handle of PPE on TRINA"> </div> 
+  <div> Flexible and shape retaining PPE manipulation point</div>
+  
+ </center>
+
+
+<p class="bottom-small"> 
+<br />
+    
+</p>
+<h3>Control Aids for Medical Service </h3>
+Path trajectory recording with forward kinematics allows for the automation of steps, which would allow the nurses and doctors controlling TRINA to operate the doffing procedure in a less technical, more efficient, and safer way. The use of computer vision on grasping the handles would also aid the path recording, since the intial grabbing involves more variablity in placement and requires more precision. 
+
+
+<p class="bottom-small"> 
+<br />
+<br />
+</p>
+<h3>Final PPE </h3>
+The final PPE design meets OSHA level D standards and some components of level C standards, except for air purification. The PPE components cover every surface of the robot down to a skirt no more than 2 inches above the floor. Handles are attached to key areas of the PPE to assist the doffing procedure, and PPE sections are designed to minimize snagging on the robot structure during robot movement and doffing. The robot is still able to perform its common nursing tasks, and the PPE remains undamaged even when TRINA is in unusual, highly twisted configurations.
+
+The proposed procedure for doffing consists of an order of manipulation actions to remove the components of the PPE such that the robot does not contaminate itself, and direct human assistance is minimized. The doffing order is designed to minimize accidental self-contamination, and is analogous to the CDC recommendation for human procedures, but with slight adjustments for robot differences. The procedure is automatable, but the final step of removing the inner robot glove may require external assistance.
+
+<p class="bottom-small"> 
+<br />
+</p>
+
+<center>
+  <div class="mediaimg"><img class="media" width=640 height=380 src="donned.jpg" alt="donned PPE on TRINA"></div> 
+  <div> TRINA in fulled donned PPE</div>
+ </center>
+
+<br> 
+
+
+
+
+
+<p class="bottom-small"> 
+</p>
+<center>
+  <div class="mediaimg"><img class="media" width=932 height=480 src="guide.jpg" alt="guide for donning and doffing TRINA"></div> 
+  <div> Safety Guide for TRINA</div>
+ </center>
+<p class="bottom-space"> 
+<br\>
+</p>

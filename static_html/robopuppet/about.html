@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0035)http://www.cs.indiana.edu/~hauserk/ -->
+<html><!-- InstanceBegin template="/Templates/index.dwt" codeOutsideHTMLIsLocked="false" --><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="Author" content="Anna Eilering">
+  <meta name="KeyWords" content="ROBOPuppet, robotics, Computer Science, Robot control, teleoperation, 3D printing, pocket geometries, joint encoder assemblies">
+  <meta name="Description" content="ROBOPuppet">
+  <!-- InstanceBeginEditable name="doctitle" -->
+  <title>ROBOPuppet - about</title>
+  <!-- InstanceEndEditable -->
+  <link rel="stylesheet" type="text/css" href="index_files/pagestyle.css">
+  <!-- InstanceBeginEditable name="head" -->
+  <!-- InstanceEndEditable -->
+</head>
+<body>
+<div class="main">
+	<table id="Table_01" width="788" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td>
+			<img src="index_files/Banner.png" width="729" height="146" border="0" alt="" usemap="#Banner_Map"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="index_files/Divider.png" width="788" height="17" alt=""></td>
+	</tr>
+</tbody></table>
+<map name="Banner_Map">
+<area shape="rect" alt="" coords="644,121,724,144" href="contact.html">
+<area shape="rect" alt="" coords="582,121,640,143" href="about.html">
+<area shape="rect" alt="" coords="500,121,577,145" href="method.html">
+<area shape="rect" alt="" coords="429,121,495,144" href="videos.html">
+<area shape="rect" alt="" coords="336,122,425,142" href="examples.html">
+<area shape="rect" alt="" coords="275,121,330,143" href="index.html">
+</map>
+<!-- InstanceBeginEditable name="content" -->
+<div class="body">
+  <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr style="vertical-align: top;">
+        <td width="46%"><p class="myTitle"><b>ABOUT</b></p>
+          <p class="sectionText"> Robots are hard to drive and it takes a long time to learn how to operate them.  The goal of ROBOPuppet is to make driving robots blissfully easy and inexpensive enough to be accessible to everyone (not just those with an engineering degree!)</p>
+          <p class="sectionTitle"><b>Our motivation</b></p>
+          <p class="sectionText"> One day while working in the lab, some researchers were driving a camera on the end of a robotic arm to capture 3D data. Part of the data to be collected was a shot of the underside of a table. The researchers could see how the robot should be positioned to capture that data but, no matter how hard they tried to move the robot with the buttons on its control pendant, they could not get it to safely enter that configuration.  It needed to move multiple joints simultaneously in a fluid and complex fashion. They could imagine how it could be done in 3D space, but the controller was counter-intuitive, because it required figuring out how to move each of the joints to accomplish that motion. From that frustration, ROBOPuppet was first conceived. </p>
+          <p class="sectionText">As children we play with action figures and dolls, we quickly build a repertoire of motions and movements and relate those motions to actions in the real world. ROBOPuppet is intended to hook into those previous experience and allow a kinesthetic mode of operation that allows users to control complex motions in a more intuitive way that using traditional joysticks or joint level control.</p>
+          <p class="sectionTitle"><b>Our press</b></p>
+          <p class="sectionText">The ROBOPuppet project was first presented in a paper at the 2014 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS).  The paper citation is:</p>
+	<p class="sectionText">A. Eilering, G. Franchi, and K. Hauser. <i>RoboPuppet: Low-Cost, 3D Printed Miniatures for Teleoperating Full-Size Robots</i>. IEEE/RSJ Intl. Conference on Intelligent Robots and Systems (IROS), September 2014. <span class="nw"><a href="http://motion.pratt.duke.edu/papers/IROS2014-RoboPuppet.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a> </span> </p>
+	<p class="sectionText">Since then, it has since made appearances at the AAAI 2015 Conference and has been covered in several Maker blogs.</p>
+          <p class="sectionTitle"><b>What can ROBOPuppet do?</b></p>
+          <p class="sectionText">ROBOPuppet can be an intuitive controller for robot teleoperation, but it can also do much more.  It can be used to teach a robot new motions, to prototype new robot designs, and to play around with robots that are too expensive to buy.  It's also a great way to learn about 3D printing, CAD, and Maker movement. </p>
+          <p class="sectionText">&nbsp;</p>
+          <p class="sectionTitle"><b>What does ROBOPuppet entail?</b></p>
+          <p class="sectionText">The ROBOPuppet method entails 5 primary tools:</p>
+          <ul>
+            <li>Low cost joint encoder assemblies</li>
+            <li>Pocket Geometries - prebuilt shapes that allow for easy installation of hardware into the printed puppet</li>
+            <li>Step-by-step build process</li>
+            <li>Calibration tool for mapping encoder values on the puppet to desired joint angles on the target robot</li>
+            <li>Real-time planning method for translating puppet movements into robot movements that are safe and respect the dynamic limits of the target robot</li>
+            </ul>
+          <p class="sectionTitle"><b>How much does a ROBOPuppet cost?</b></p>
+          <p class="sectionText">There are two measures of cost that should be considered when building a ROBOPuppet. </p>
+          <p class="sectionText"><em>PRICE</em> - A ROBOPuppet can be made for a 6DOF robot for approximately $85 using name brand components. The major expense lies within an Arduino microcontroller (for robots with less than 6DOF the Arduino UNO is appropriate). Puppets that articulate more that 6 joints will require a microcontroller with additional analog ports. ROBOPuppet controllers are dramatically less expensive than most other controller types available.</p>
+          <p class="sectionText"><em>TIME</em> - ROBOPuppet is a 3D printed object and, as such, the major investment in building a ROBOPuppet is in the printing time for each link.  Prosumer-grade 3D printers can require near-constant supervision, but rarely require intervention. As a result, most of the CAD processing and hardware installation tasks can be completed while waiting for the model to complete printing. For example, a Staubli TX90L 6DOF puppet took approximately 35 hours to contruct with 29 of those hours spent on printing.</p>
+          <p class="sectionTitle"><b>What equipment is needed to construct a ROBOPuppet?</b> What specialized knowledge is required?</p>
+          <p class="sectionText">ROBOPuppet builders should have access to a 3D printer, basic soldering and wiring tools and some basic work tools(box knife, screwdriver, glue, etc). One of the primary goals of ROBOPuppet is to create a method that anyone with access to those tools can use to create their own puppet. In following this goal, all parts of the ROBOPuppet method are designed with a minimal learning curve for all tools. Builders should know how to solder, 3D print an object and follow basic wiring schematics. </p>
+          <p class="sectionText">&nbsp;</p>
+          <p class="sectionText">&nbsp;</p>
+          <p>&nbsp;</p>
+          <p class="sectionText">&nbsp;</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- InstanceEndEditable --></div>
+<p>Copyright © 2014 Anna Eilering | <a href="mailto:annaeile@indiana.edu">Copyright Complaints</a></p>
+
+
+</body><!-- InstanceEnd --></html>

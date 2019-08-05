@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0035)http://www.cs.indiana.edu/~hauserk/ -->
+<html><!-- InstanceBegin template="/Templates/index.dwt" codeOutsideHTMLIsLocked="false" --><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="Author" content="Anna Eilering">
+  <meta name="KeyWords" content="ROBOPuppet, robotics, Computer Science, Robot control, teleoperation, 3D printing, pocket geometries, joint encoder assemblies">
+  <meta name="Description" content="ROBOPuppet">
+  <!-- InstanceBeginEditable name="doctitle" -->
+  <title>ROBOPuppet - controllers for robots</title>
+  <!-- InstanceEndEditable -->
+  <link rel="stylesheet" type="text/css" href="index_files/pagestyle.css">
+  <!-- InstanceBeginEditable name="head" -->
+  <!-- InstanceEndEditable -->
+</head>
+<body>
+<div class="main">
+	<table id="Table_01" width="788" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td>
+			<img src="index_files/Banner.png" width="729" height="146" border="0" alt="" usemap="#Banner_Map"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="index_files/Divider.png" width="788" height="17" alt=""></td>
+	</tr>
+</tbody></table>
+<map name="Banner_Map">
+<area shape="rect" alt="" coords="644,121,724,144" href="contact.html">
+<area shape="rect" alt="" coords="582,121,640,143" href="about.html">
+<area shape="rect" alt="" coords="500,121,577,145" href="method.html">
+<area shape="rect" alt="" coords="429,121,495,144" href="videos.html">
+<area shape="rect" alt="" coords="336,122,425,142" href="examples.html">
+<area shape="rect" alt="" coords="275,121,330,143" href="index.html">
+</map>
+<!-- InstanceBeginEditable name="content" -->
+<div class="body">
+  <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr style="vertical-align: top;">
+        <td width="100%" align="top">
+		<p class="sectionTitle"><b>Software Architecture</b></p>
+		<p class="sectionText">A ROBOPuppet software system consists of three components: 1) <b>Arduino code</b> for sending encoder values to the serial port of the host computer, 2) a <b>Python script</b> for reading from the serial port, processing it, and sending joint commands to the robot's controller and 3) the robot's <b>safety filter</b> which produces safe motion at the motors by combining joint commands with the robot's dynamic model and model of the environment (if available).</p>
+		<p class="sectionText">The example code here must be adapted to your own system</p>
+		<p class="sectionTitle"><b>Supported Systems</b></p>
+		<p class="sectionText">Windows and Linux systems are supported. Mac support may be possible with some effort.</p>
+		<p class="sectionTitle"><b>Installation Instructions</b></p>
+		<p class="sectionText">Step 0. Install Python 2.7 and the Arduino software.  Follow the <a href="http://motion.pratt.duke.edu/klampt/tutorial_install.html">Klamp't installation tutorial</a> for your system to install the Klamp't Python API (on Windows, the binaries are fine).</p>
+		<p class="sectionText">Step 1. Clone the <a href="https://github.com/krishauser/RoboPuppet">RoboPuppet git repository</a> from Github.</p>
+		<p class="sectionText">Step 2.  Set up your Arduino to run the script in RoboPuppet/Arduino/read_5_pins.ino.   This file should be edited to reflect your Arduino's configuration.</p>
+		<p class="sectionText">Step 3.  Edit the RoboPuppet/settings.py file to reflect your system's configuration.  In particular, make note of the serial port that your Arduino is connected to.</p>
+		<p class="sectionText">Step 4. Test your connection by running the arduinoSimControl.py Python script from the RoboPuppet/ folder.</p>
+		<p class="sectionText">Step 5. To do safety-filtered control you must compile some C++ binaries.  On Windows you may download the <a href="https://drive.google.com/folderview?id=0B4F9TfMP4Um1RER3RVJXRmZLQ1E&usp=sharing">binaries</a>.  On Linux you must use the CMake system to compile the binaries, as described in RoboPuppet/README.md. Follow the instructions in the readme to do so (you will need to set the KLAMPT_ROOT environment variable when you call cmake).</p>
+        </td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+<!-- InstanceEndEditable --></div>
+<p>Copyright © 2014 Anna Eilering | <a href="mailto:annaeile@indiana.edu">Copyright Complaints</a></p>
+
+
+</body><!-- InstanceEnd --></html>

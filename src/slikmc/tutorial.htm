@@ -1,0 +1,77 @@
+<python>include("header.htm")</python>
+
+<p>Here is a quick tutorial of SLIKMC package. Some example code can be found at LoopTK_SLIKMC/slikmc/main.cc.</p>
+
+<h4><a href="#example1">Example 1. Set up SLIKMC for sampling </a> </h4><h4><a href="#example2">Example 2. Define custom energy functions</a></h4>
+
+<h3 id="example1"><B>Example 1. Given one protein chain 1B8C, how to sample possible conformations of a subloop from residue with index 0 to residue with index 10? </B></h3>
+
+<p><B>1. Create an instance of PProtein for protein 1B8C by providing the PDB file.</B></p>
+
+<p>PProtein* chain = PDBIO::readFromFile("1B8C.pdb");</p>
+
+<p><B>2. Create an instance of class SLIKMCSampler with </B>chain<B> as parameter: </B></p>
+
+<p>SLIKMCSampler sampler(chain);</p>
+
+<p><B>3. Set up the sampler. </B>
+Several settings, such as using B-factors as prior, enable side-chain sampling, enable logging output conformation files, etc., can be defined according to user's preference.</p>
+<p>By default, these settings are all disabled. To enable these settings, user can call functions like:</p>
+
+<p><B>Enable collision checking.</B> The sampler will check the steric-clash of the conformation with itself and rest of the chain.</p>
+
+<p>sampler.enableCollisionChecking();</p>
+
+<p><B>Enable using B-factors as prior.</B> User can provide a protein file with desired distribution of atom positions.
+By default, the distributions of atom positions are defined according to chain p.</p>
+
+<p>sampler.enableBFactors();</p>
+
+<p><B>Enable recording the generated conformations.</B> User can provide the number of skipped samples. By default, skip length equals to 1.
+All the generated files will be put in the pdbfiles_out folder with name slikmc_i.pdb which i is a index starting from 0.</p>
+
+<p>sampler.enableLog(10);</p>
+
+<p><B> Display settings. </B> Once finishing the settings, the user can call function display() to print the current setting status of the sampler.</p>
+
+<p>sampler.display();</p>
+
+<p><B>4. Call the sampler </B>
+User can call function sample() to sample conformations of the chain/subchain for 60 seconds.</p>
+
+<p>sampler.sample( 60.0, 0, 10);</p>
+
+
+<h3 id="example2">Example 2. How to define a custom energy function and incorporate into sampling? </h3>
+
+<p><B>1. Define a custom energy class by inheriting the interface class <I>Prior</I> </B> </p>
+<p>class SamplePrior:public Prior {
+...
+}</p>
+
+<p><B>2. Override the function <I>evaluate</I>. Note: the density value MUST be returned in logarithm.</B> </p>
+<p>double SamplePrior::evaluate( PChain* chain){</p>
+<p>&nbsp&nbsp //The following is a toy example: the probability of the distance d between two C-alpha atoms is proportional to exp(-d). Use your custom code to replace it.</p>
+
+<p>&nbsp&nbsp Vector3 p1 = chain->getResidue(3)->getAtomPosition( PID::C_ALPHA);</p>
+<p>&nbsp&nbsp Vector3 p2 = chain->getResidue(6)->getAtomPosition( PID::C_ALPHA);</p>
+<p>&nbsp&nbsp return -p1.distance(p2);</p>
+<p>}</p>
+
+<p><B>3. Enable the setting of using custom energy function for a SLIKMCSampler instance sampler.</B></p>
+<p>sampler.enableCustomPriors();</p>
+
+<p><B>4. Add the custom prior into the sampler. There is no limitation for the number of custom priors.</B></p>
+<p>SamplePrior prior;</p>
+<p>sampler.addCustomPrior( prior);</p>
+
+<div class="media">
+<div class="mediaitem">
+		<img src="self-define-factor.png" alt="custom_factor" width="300" height="200"/>
+		<div class="mediatext"><p> Left: samples of a protein loop. Right: A custom prior is added as an extra prior. This prior pushes samples away from the original distribution. </p> 
+		</div>
+    </div>
+</div>
+
+<br><br>
+

@@ -1,0 +1,168 @@
+<style type="text/css">
+  <!--
+  div.proj { border: solid 0px #C2C2C2; padding:0.5em; margin:0em; position:relative; overflow:hidden; width:47%; display:inline-block; vertical-align:top; min-width:250px;}
+  div.proj:hover { background-color:#fff0f0; }
+  /* on touch screens highlight the touchability of each project div*/
+  .touch div.proj { border: solid 1px #C2C2C2; padding:0.2em; margin:0.3em; position:relative; overflow:hidden; background-color:#fff7f7; }
+
+  div.projtext { }
+  img.proj {  }
+  div.projimg { text-align:left; width:80px; display: table-cell; float:left; }
+  div.projcontent { display: table-cell; padding:0em; margin:0em; }
+  p.projtitle { font-size:90%; font-weight:bold; text-align:left; margin:0px; color:#996667; }
+  p.projtext { font-size:80%; padding:0; margin:0; }
+
+  div.keywords { font-size:80%; font-style:italic; }
+  div.keywords:before { font-weight:bold; color:#4d3c43; font-style:normal; content:"Keywords: "; }
+  div.sponsors { font-size:80%; margin:0; padding:0; }
+  div.sponsors:before { font-weight:bold; color:#4d3c43; content:"Sponsors: "; }
+
+
+  a.project-link {
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	text-decoration:none; /* Makes sure the link   doesn't get underlined */
+	z-index:10; /* raises anchor tag above everything else in div */
+       /*workaround for IE 7/8*/
+        background-image:url("images/empty.gif");
+  }
+
+  /*other suggestions for workarounds to make clickable in IE */
+  /*
+	background-color:white; 
+	opacity: 0;
+	filter: alpha(opacity=1); 
+  */
+ * html div a { width: 1%; }
+
+   .more { display:none;  }
+   div.abstract { font-size:80%; padding-bottom:0.5em;}
+   a.abstract-show { font-size:80%; font-weight:bold; color:#4d3c43; font-style:normal; position:relative; z-index:11; }
+   a.abstract-show:hover { color:#996667; }
+   a.about-show { font-size:100%; font-weight:bold; color:#4d3c43; font-style:normal;  }
+
+   .touch a.abstract-show { font-size:80%; font-weight:bold; color:#4d3c43; font-style:normal; position:relative; z-index:11; border:solid 1px #C2C2C2; background-color:#fff0f0; }
+  -->
+</style>
+
+<script language="javascript" type="text/javascript">
+var curEntity = -1;
+
+function addEntity() {
+}
+
+function setCurEntity(id) {
+}
+
+function setEntityName(name) {
+}
+
+function setEntityType(type) {
+}
+
+function setEntityOrder(order) {
+}
+
+function setEntityController(order) {
+}
+
+function showHide(shID) {
+   if (document.getElementById(shID)) {
+      if (document.getElementById(shID).style.display != 'block') {
+         document.getElementById(shID).style.display = 'block';
+      }
+      else {
+         document.getElementById(shID).style.display = 'none';
+      }
+   }
+}
+</script>
+
+<div style="position:relative; display:table-cell; vertical-align:top;padding-right:2em;">
+<h3>About</h3>
+<p>The Intelligent Motion Lab studies planning and control for dynamic, high-dimensional systems in complex environments.  Applications include intelligent vehicles, robot manipulation, legged locomotion, human-robot interaction, robot- and computer-assisted medicine.</p>
+<p>IML is directed by Prof. <a href="http://people.duke.edu/~kh269/">Kris Hauser</a> and is part of
+the Duke University <a href="http://pratt.duke.edu/">Pratt School of Engineering</a>.</p>
+<div class="separator"></div>
+<h3>Moving to Illinois</h3>
+<p>IML will be <b>moving to University of Illinois at Urbana-Champaign</b> starting in Fall 2019.  We are excited be a part of new UIUC initiatives  in autonomy and robotics!</p>
+<h3>Openings</h3>
+<p>IML is currently accepting applications for new PhD students.  Candidates should apply to the UIUC CS or ECE departments for consideration.</p>
+</div>
+
+<div style="position:relative; display:table-cell; vertical-align:top;">
+<h3>Research Spotlight</h3>
+<!-- 
+<p>Autonomous ladder climbing with the DRC-Hubo robot.</p>
+<iframe width="400" height="230" src="http://www.youtube.com/embed/ZEUVQRrKfjo" frameborder="0" allowfullscreen></iframe>
+-->
+<!--
+<p>First tele-nursing experiments with TRINA 1.0</p>
+<iframe width="360" height="260" src="https://www.youtube.com/embed/Ms0iTdDAL20?rel=0" frameborder="0" allowfullscreen></iframe>
+-->
+<p>TRINA personnel protective equipment (PPE) and self-doffing</p>
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/mWBN3uU7qL8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+
+<div class="separator"></div>
+<h3>Selected Projects</h3>
+
+
+<div class="proj">
+<a class="project-link" href="nursing/index.html"> </a>
+<div class="projimg"><img class="proj" src="images/icons/telenursing-icon-small.jpg"></div>
+<div class="projcontent">
+<p class="projtitle">Tele-nursing robots</p>
+<a class="abstract-show" href="#" onclick="showHide('telenursing');return false;">Summary (click to show)</a>
+<div class="abstract more" id="telenursing">
+Our lab is developing the Tele-Robotic Intelligent Nursing Assistant (TRINA), a remote-controlled robot to perform common nursing duties inside hazardous clinical
+areas, which could reduce infection risk to healthcare workers by minimizing exposure to contagions and other biohazards.  They could also reduce infection risk to immunocompromise patients.  Apart from the engineering challenge, we are addressing scientific questions regarding human-robot interfaces, haptics, and semi-autonomous control and planning algorithms.
+</div>
+<div class="keywords">tele-nursing, assisted teleoperation, real-time planning, human-robot interaction</div>
+<div class="sponsors">NSF RAPID, NSF CAREER</div>
+</div>
+</div>
+
+<div class="proj">
+<a class="project-link" href="cooperativemotion/index.html"> </a>
+<div class="projimg"><img class="proj" src="images/icons/teleop-icon-small.jpg"></div>
+<div class="projcontent">
+<p class="projtitle">Cooperative motion planning for human-operated robots</p>
+<a class="abstract-show" href="#" onclick="showHide('cooperativemotion');return false;">Summary (click to show)</a>
+<div class="abstract more" id="cooperativemotion">
+This project explores the hypothesis that advances in robot motion planning algorithms will lead to improved intuitiveness, safety, and task performance of human-centered robots such as intelligent vehicles, tele-surgery systems, search-and-rescue robots, and household robots. Existing planning techniques lead to awkward and unintuitive interaction with humans. To bridge this gap, we are  developing cooperative motion planning algorithms that reason about users' intended goals and then take control of a robot's low level motion to achieve those goals.
+</div>
+<div class="sponsors">NSF CAREER, IU Faculty Research Support Program</div>
+</div>
+</div>
+
+<div class="proj">
+<a class="project-link" href="drc/index.html"></a>
+<div class="projimg"><img class="proj" src="images/icons/drc-icon-small.jpg"></div>
+<div class="projcontent">
+<p class="projtitle">DRC-Hubo: a ladder-climbing humanoid robot for the DARPA Robotics Challenge</p>
+<a class="abstract-show" href="#" onclick="showHide('drc');return false;">Summary (click to show)</a>
+<div class="abstract more" id="drc">
+As part of the 2013 DARPA Robotics Challenge, we are developing ladder- and stair- climbing skills for humanoid robots that may be used in disaster relief and industrial maintenance scenarios.  Such tasks are challenging because they require upper-body strength, multi-limbed balance coordination, and fine motions for obstacle avoidance.  We developed planners that can carefully deliberate about the robot's physical capabilities, and applied them planner-aided design to establish specifications for a new robot, DRC-Hubo.  Using our software, DRC-Hubo is able to autonomously mount, climb, and dismount stairs and ladders. This project is conducted as part of Team HUBO, a multi-university team led by Drexel University.
+</div>
+<div class="sponsors">DARPA Robotics Challenge (Track A)</div>
+</div>
+</div>
+
+<div class="proj">
+<a class="project-link" href="decisionsupport/index.html"></a>
+<div class="projimg"><img class="proj" src="images/icons/decision-support-small.jpg"></div>
+<div class="projcontent">
+<p class="projtitle">Intelligent clinical decision support using Markov decision processes</p>
+<a class="abstract-show" href="#" onclick="showHide('decisionsupport');return false;">Summary (click to show)</a>
+<div class="abstract more" id="decisionsupport">
+The explosion in the amount of medical data available in Electronic Health Records (EHRs) provides an opportunity for computers to aid clinicians in providing effective, affordable healthcare.  We are investigating Markov Decision Process techniques that are able to recommend patient-specific treatment plans in the presence of noisy and incomplete observations.  Like a real doctor, the system is able to reason in the space of belief states, integrating uncertainties and contingencies into its plans.  Results on a 5,807 patient dataset involving clinical depression as well as co-occuring conditions suggest that the decisions made by an AI system can improve patient outcomes from 30-35% while reducing costs by 50-55%.
+</div>
+<div class="sponsors">NSF Smart and Connected Health Program</div>
+</div>
+</div>
+
+<p>For a complete list, please see the <a href="research.html">research</a> page. </p>

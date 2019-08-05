@@ -1,0 +1,91 @@
+<style type="text/css">
+  <!--
+  p.category { font-size:medium; font-weight:bold; }
+  div.media { padding-top:0em; padding-left:1em; display:table-cell; width:40%; }
+  img.media { border:0px; }
+
+  div.mediaitem { display: table; padding-bottom:0.5em; }
+  div.mediaimg { width:65px; padding-bottom:4px; display:table-cell; }
+  div.mediatext { display:table-cell; vertical-align:top; margin:2px; }
+  div.mediatext p { margin:0em; font-size:70%; }
+  -->
+</style>
+
+
+<h2>Optimal Acceleration-Bounded Trajectory Planning in Dynamic Environments Along a Specified Path</h2>
+<h3>Jeff Johnson and Kris Hauser. In ICRA 2012</h3>
+
+<p> <b> Abstract. </b>
+Vehicles that cross lanes of traffic encounter the problem of navigating around dynamic obstacles under actuation constraints. This paper presents an optimal, exact, polynomial-time planner for optimal bounded-acceleration trajectories along a fixed, given path with dynamic obstacles. The planner constructs reachable sets in the path-velocity-time (PVT) space by propagating reachable velocity sets between obstacle tangent points in the path-time (PT) space. The terminal velocities attainable by endpoint-constrained trajectories in the same homotopic class are proven to span a convex interval, so the planner merges contributions from individual homotopic classes to find the exact range of reachable velocities and times at the goal. A reachability analysis proves that running time is polynomial given reasonable assumptions, and empirical tests demonstrate that it scales well in practice and can handle hundreds of dynamic obstacles in a fraction of a second on a standard PC.
+</p>
+
+<p> <b> Download PDF </b>  <a href="../papers/ICRA2012-Johnson-optimal.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a> </p>
+
+<p> <b> Download Accompanying Video (MP4, 1.3MB):</b>  <a href="ICRA_2012.mp4"><img class="pdf"  src="../images/mov_icon_tiny.gif" alt="MP4"></a> </p>
+
+<!-- p> <b> Download Powerpoint (pptx, 2.8MB)</b> <a href="ICRA_2012.pptx"><img class="pdf" src="../images/pp_icon_tiny.gif" alt="pptx"></a> </p -->
+
+<p> <b> Download Planner Library (C++, 331KB):</b>  <a href="PVTPlanner.zip">PVTPlanner</a> </p>
+
+<p><b>UPDATE:</b> We have extended the planning system to generalize construction of PT obstacles and to perform velocity propagation with polygonal PT obstacles. These extensions allow the planner to solve more general path conflicts such as merging and vehicle following. Further information and code here: <a href="http://motion.pratt.duke.edu/iv2013/">http://motion.pratt.duke.edu/iv2013/</a>
+</p>
+
+<h3> Other Media </h3>
+
+<p class="category">Planner-generated Trajectories in Lane Crossing Scenarios</p>
+<div class="media">
+<div class="mediaitem">
+    <div class="mediaimg"><a href="movie_4_lanes.mp4"><img class="media" src="4_lanes_screen.jpg" style="border:1px solid #888;" /></a></div>
+    <div class="mediatext"><p>Our planner is used to plan a safe, time-optimal trajectory across a fixed path (yellow) under dynamic constraints and in the presence of dynamic obstacles. Here the agent traverses 4 lanes of a divided roadway.</p>
+    <p>MP4, 92KB</p></div>
+</div>
+<div class="mediaitem">
+    <div class="mediaimg"><a href="movie_6_lanes.mp4"><img class="media" src="6_lanes_screen.jpg" style="border:1px solid #888;" /></a></div>
+    <div class="mediatext"><p>Similar to above, here the agent traverses 6 lanes of a divided roadway.</p>
+    <p>MP4, 251KB</p></div>
+</div>
+<div class="mediaitem">
+    <div class="mediaimg"><a href="movie_many_lanes.mp4"><img class="media" src="13_lanes_screen.jpg" style="border:1px solid #888;" /></a></div>
+    <div class="mediatext"><p>Similar to above, here the agent traverses a 13-lane roadway.</p>
+    <p>MP4, 523KB</p></div>
+</div>
+</div>
+
+<p class="category">Path-time Space Representations of Lane Crossing Scenarios</p>
+<div class="media">
+<div class="mediaitem">
+    <div class="mediaimg"><a href="movie_obs_4_lanes.mp4"><img class="media" src="obs_4_lanes_screen.jpg" style="border:1px solid #888;" /></a></div>
+    <div class="mediatext"><p>The vehicle-centered path-time space view of the 4-lane scenario. The  rectangles represent the computed path-time obstacles. The animation displays the contruction of the visibility graph, and the computation of the time-optimal trajectory.</p>
+    <p>MP4, 118KB</p></div>
+</div>
+<div class="mediaitem">
+    <div class="mediaimg"><a href="movie_obs_6_lanes.mp4"><img class="media" src="obs_6_lanes_screen.jpg" style="border:1px solid #888;" /></a></div>
+    <div class="mediatext"><p>The vehicle-centered path-time view of the 6-lane scenario. The  rectangles represent the computed path-time obstacles. The animation displays the contruction of the visibility graph, and the computation of the time-optimal trajectory.</p>
+    <p>MP4, 125KB</p></div>
+</div>
+<div class="mediaitem">
+    <div class="mediaimg"><a href="movie_obs_many_lanes.mp4"><img class="media" src="obs_13_lanes_screen.jpg" style="border:1px solid #888;" /></a></div>
+    <div class="mediatext"><p>The vehicle-centered path-time view of the 13-lane scenario. The  rectangles represent the computed path-time obstacles. The animation displays the contruction of the visibility graph, and the computation of the time-optimal trajectory.</p>
+    <p>MP4, 127KB</p></div>
+</div>
+</div>
+
+<p class="category">Assisted Collision Avoidance in Lane Crossing Scenario
+<div class="media">
+<div class="mediaitem">
+    <div class="mediaimg"><a href="No_CAS.m4v"><img class="media" src="No_CAS_screen.jpg" style="border:1px solid #888;" /></a></div>
+    <div class="mediatext"><p>In this simple scenario the control policy for the vehicle at each time step is full acceleration. Under this control policy collision occurs.</p>
+    <p>MP4, 26KB</p></div>
+</div>
+<div class="mediaitem">
+    <div class="mediaimg"><a href="CAS.m4v"><img class="media" src="CAS_screen.jpg" style="border:1px solid #888;" /></a></div>
+    <div class="mediatext"><p>Because our planner is guaranteed to find a safe trajectory if one exists, it can be used to judge whether a given control will result in a goal-reachable, or safe, state. This is the same scenario as above with the addition of a collision avoidance system that utilizes our planner to evaluate a control before it is applied. If the control will result in an unsafe state, the system utilizes information provided by the planner to adjust the control such that the resulting state is safe.</p>
+    <p>MP4, 47KB</p></div>
+</div>
+<div class="mediaitem">
+    <div class="mediaimg"><a href="CAS_many_lanes.mp4"><img class="media" src="CAS_many_lanes_screen.jpg" style="border:1px solid #888;" /></a></div>
+    <div class="mediatext"><p>Our planner is here used to provide collision-avoidance assistance to a human operator. In this scenario, a human operator attempts to navigate the fixed path across the lanes of traffic. At each time step, the user control is passed through a filter that utilizes the planner to determine whether the resulting state is safe. If the control is deemed safe, it is executed as-is. If the control is not deemed safe, it is adjusted such that the resulting state will be safe. When the vehicle is under human control, the control block on the GUI is green. When the vehicle is under planner control, the control block is red.</p>
+    <p>MP4, 766KB</p></div>
+</div>
+</div>
+

@@ -1,0 +1,55 @@
+<style type="text/css">
+  <!--
+  p.category { font-size:medium; font-weight:bold; }
+  div.media { padding-top:0em; padding-left:1em; display:table-cell; width:40%; }
+  img.media { border:0px; }
+
+  div.mediaitem { display: table; padding-bottom:0.5em; }
+  div.mediaimg { width:105px; padding-bottom:4px; display:table-cell; }
+  div.mediatext { display:table-cell; vertical-align:top; margin:2px; }
+  div.mediatext p { margin:0em; font-size:70%; }
+  -->
+</style>
+
+
+<h2>Sampling-based Motion Planning With Dynamic Intermediate State Objectives: Application to Throwing</h2>
+<h3>Yajia Zhang, Jingru Luo, and Kris Hauser.  To appear in ICRA 2012</h3>
+
+<p> <b> Abstract. </b>
+Dynamic manipulations require attaining high
+velocities at specified configurations, all the while obeying
+geometric and dynamic constraints. This paper presents a
+motion planner that constructs a trajectory that passes at
+an intermediate state through a dynamic objective region,
+which is comprised of a certain lower dimensional submanifold
+in the configuration/velocity state space, and then returns to
+rest. Planning speed and reliability is greatly improved using
+optimizations based on the fact that ramp-up and ramp-down
+subproblems are coupled by the choice of intermediate state,
+and that very few (often less than 1%) intermediate states yield
+feasible solution trajectories. Simulation experiments demonstrate
+that our method quickly generates trajectories for a 6-
+DOF industrial manipulator throwing a small object.
+</p>
+
+<p> <b> Download PDF </b>  <a href="../papers/ICRA2012-Zhang-throwing.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a> </p>
+
+<h3> Media </h3>
+
+<p class="category">Planning in Clusttred Environments for the Staubli TX90L Industrial Robot</p>
+<div class="media">
+<div class="mediaitem">
+    <div class="mediaimg"><a href="ICRA_2012_Cluttered.wmv"><img class="media" src="cluttered.jpg" style="border:1px solid #888;"/></a></div>
+    <div class="mediatext"><p>Our planner is used to command the robot to grasp a cube from ground and throw it into a box with target at its center.  Four scenarios are included: one which obstacle is near to the robot and the rest three which obstacles are placed between the robot and the target. A collision-free trajectory constructed by our sample-based planner satisfies both geometric and dynamic constraints.</p>
+    <p>WMV, 3.79mb</p></div>
+    </div>
+</div>
+
+<p class="category">Iterative Learning Process for Correcting Execution Errors</p>
+<div class="media">
+<div class="mediaitem">
+    <div class="mediaimg"><a href="ICRA_2012_ILP.wmv"><img class="media" src="ilp.jpg" style="border:1px solid #888;"/></a></div>
+    <div class="mediatext"><p> An iterative learning process is used to throw the target accurately in the face of modeling errors in the planner.
+	At high speeds, the landing position is sensitive to minor unmodeled gripper object interactions and errors in the feedback controller. We use observed feedback from past trials to adjust the trajectory in an iterative fashion.  Each adjustment is guaranteed to remain feasible. </p><p>WMV, 7.58mb</p></div>
+    </div>
+</div>

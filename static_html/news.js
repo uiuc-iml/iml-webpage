@@ -1,0 +1,7 @@
+document.write("<ul class='news'>")
+document.write("<li>1/6/2018 - <a href='http://klampt.org'>Klampt 0.8.1</a> is released!  New features include 1-step Python installation using pip and Jupyter Notebook integration.</li>")
+document.write("<li>12/15/2018 - The <a href='http://github.com/krishauser/SemiInfiniteOptimization'>source code and examples</a> for <a href='http://motion.pratt.duke.edu/papers/WAFR2018-Hauser-SemiInfinite.pdf'>Semi-Infinite Programming for Trajectory Optimization with Nonconvex Obstacles</a> is now available.</li>")
+document.write("<li>11/9/2018 - The paper <a href='http://motion.pratt.duke.edu/papers/Humanoids2018-Wang-ContactTransitionTree.pdf'>Unified Multi-Contact Fall Mitigation Planning for Humanoids via Contact Transition Tree Optimization</a> by S. Wang and K. Hauser was nominated for Best Paper at the Humanoids 2018 conference.</li>")
+document.write("<li>8/30/2018 - New grants received in the last 6 months include an Amazon Research Award on robotic packing, an NSF RI grant on the structure of robotic decision problems, and an NSF NRI Integrative grant to develop new semi-autonomous functionality on TRINA.</li>")
+document.write("<li>3/23/2018 - <a href='https://www.youtube.com/watch?v=s_4ou2tU938&list=PLWpZvdWm4qZxz4iuU1M-AdLjc0T-mxLEv'>Videos for ICRA 2018</a> papers are now available.</li>")
+document.write("</ul>")

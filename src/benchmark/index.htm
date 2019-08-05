@@ -1,0 +1,49 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<style type="text/css">
+  <!--
+  p.category { font-size:medium; font-weight:bold; }
+  div.media { padding-top:0em; padding-left:1em; display:table-cell; width:40%; }
+  img.media { border:0px; }
+
+  div.mediaitem { display: table; padding-bottom:0.5em; }
+  div.mediaimg { width:320px; padding-bottom:4px; display:table-cell; }
+  div.mediatext { display:table-cell; vertical-align:top; margin:2px; }
+  div.mediatext p { margin:0em; font-size:70%; }
+  -->
+</style>
+
+
+<h2>An Empirical Study of Optimal Motion Planning</h2>
+<h3>Jingru Luo and Kris Hauser. IROS 2014</h3>
+
+<p> <b> Abstract. </b>
+This paper presents a systematic benchmarking comparison between optimal motion planners. Six planners representing the categories of sampling-based, grid-based, and trajectory optimization methods are compared on synthetic problems of varying dimensionality, number of homotopy classes, and width and length of narrow passages. Performance statistics are gathered on success and convergence rates, and performance variations with respect to geometric characteristics are analyzed. Based on this analysis, we recommend planners that are likely to perform well for certain problem classes, and make recommendations for future planning research.
+</p>
+
+<p> <b> Download PDF </b>  <a href="../papers/IROS2014-OptimalBenchmarking.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a> </p>
+
+<p> <b> Planners compared </b> </p>
+<ol>
+<li> FMM*: a resolution complete version of the Fast Marching Method (Sethian, 1996)</li>
+<li>CE: the Cross Entropy trajectory optimization method (Kobilarov, 2011)</li>
+<li>RRT*: the asymptotically optimal Rapidly-exploring Random Tree algorithm (Karaman and Frazzoli, 2011)</li>
+<li>L-PRM*: the Lazy-PRM*, a lazy, asymptotically optimal version of the PRM* algorithm (Hauser 2015)</li>
+<li>M-RRT: multiple-restart Rapidly-exploring Random Tree (LaValle and Kuffner, 1999), keeping the best solution found so far.</li>
+<li>M-RRT-S: M-RRT interleaved with solution shortcutting (Luna, Sucan, Moll, and Kavraki, 2013).
+</ol>
+
+<p> <b> Detailed Results, sorted by problem parameter (click to view)</b> </p>
+<p>
+   <a href="ComputationTimeResult.png"><img src="ComputationTime.png"></a>
+   <a href="SpaceDimensionResult.png"><img src="SpaceDimension.png"></a>
+   <a href="WidthResult.png"><img src="Width.png"></a>
+   <a href="ThicknessResult.png"><img src="Thickness.png"></a>
+</p>
+<p> <b>Detailed Results, sorted by problem (click to view)</b> </p>
+<p>
+  <a href="kink-result-failure.png"><img src="Benchmark1.png"></a>
+   <a href="np-1class-result-failure.png"><img src="Benchmark2.png"></a>
+   <a href="np-2class-result.png"><img src="Benchmark3.png"></a>
+   <a href="planarlinkage-result
+.png"><img src="Benchmark4.png"></a>
+</p>

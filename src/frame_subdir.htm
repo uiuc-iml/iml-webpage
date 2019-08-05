@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="Author" content="Kris Hauser">
+  <meta name="KeyWords" content="Kris Hauser, Duke, Pratt, Indiana, Informatics, Computer Science, Squiresoft, Berkeley, Stanford, Latombe, locomotion, planning, motion planning, robot, robotics, Asimo, LEMUR, ATHLETE, HRP-2, HRP, LittleDog, multi-modal, multi-step, modal analysis, robotic surgery, steerable needles, PVK">
+  <meta name="Description" content="Intelligent Motion Laboratory">
+  <title>Intelligent Motion Laboratory at Duke University</title>
+  <link rel="stylesheet" type="text/css" href="../pagestyle.css">  
+</head>
+<body>
+
+<script>
+//test for touch events support and if not supported, attach .no-touch class to the HTML tag.
+ 
+if ("ontouchstart" in document.documentElement) {
+document.documentElement.className += " touch";
+}
+</script>
+
+<python>
+from menu import *
+</python>
+
+<div class="main">
+    <!-- the banner row-->
+	<div class="banner">
+		<div style="width:734px; height:100%;  float:left;">
+	     <img src="../images/banner2.gif" width="734" height="72" border="0" alt="">
+		</div>
+		<div id="fillHex"></div>
+		<div style="position:absolute;bottom:-1px;width:100%;text-align:center;">
+			<div style="display:inline-block;">
+			<python>makemenu()</python>
+			</div>
+		</div>
+	</div>
+      <div class="clear"></div>
+      <python>makesubmenus()</python>
+
+     <!-- the main area columns -->
+	<div style="width:100%;display:table;">
+
+		<div class="center">
+		   <python>include(sys.argv[2])</python>
+		</div>
+
+		<div class="sidebar">
+		  <div class="news">
+		  <div class="newsheading">News</div>		
+		  <div class="newscontent">
+		  <script type="text/javascript" src="../news.js">
+		  </script>
+		  </div>
+		  </div>
+		  <python>include("sidebar.htm")</python>
+	</div>
+</div>
+<div class="footer">
+	<div class="copyright">Part of the <a href="http://www.duke.edu/">Duke University</a> <a href="http://pratt.duke.edu/">Pratt School of Engineering</a></div>
+    	<div class="update">Last updated on <python>datetime.date.today().strftime("%b %d, %Y")</python></div>
+</div>
+
+
+</body>
+</html>

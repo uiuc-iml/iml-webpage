@@ -1,0 +1,376 @@
+
+<style>
+#nav {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none; 
+        text-align:center;
+	}
+#nav li { margin:0; margin-bottom:1em; }
+#nav li a {
+	display:block;
+	font-size:120%;
+	width:100%;
+	padding: 8px 15px;
+	text-decoration: none;
+	font-weight: bold;
+	color: #000;
+	background-color:#fbd5d6;
+	border:1px solid #7c2237;
+   -moz-box-sizing:    border-box;
+   -webkit-box-sizing: border-box;
+    box-sizing:        border-box;
+	box-shadow: 2px 2px 3px #ccc;
+}
+#nav li a:hover {
+	color:#996667;
+	background-color: #fff; }
+
+ul li p { font-size: 100%; }
+
+
+.subheading {
+   font-style:italic;
+}
+div.subheading {
+   font-size:80%;
+}
+div.video {
+   text-align:center;
+   margin-right:20px;
+   display:inline-block;
+   width:420px;
+}
+
+a.Q {
+	font-size:110%;
+	font-weight:bold;
+	font-style:normal; 
+}
+a.Q:hover {
+     color:#996667;
+}
+.touch a.Q {
+	font-weight:bold; color:#4d3c43; font-style:normal;  	border:solid 1px #C2C2C2; background-color:#fff0f0;
+}
+div.A {
+	font-size:120%;
+	font-weight:normal;
+	display:none;
+	margin-top:-0.6em;
+}
+</style>
+
+<script language="javascript" type="text/javascript">
+function showHide(shID) {
+   if (document.getElementById(shID)) {
+      if (document.getElementById(shID).style.display != 'block') {
+         document.getElementById(shID).style.display = 'block';
+      }
+      else {
+         document.getElementById(shID).style.display = 'none';
+      }
+   }
+}
+</script>
+
+
+<div style="display:table;">
+<div style="display:table-cell; vertical-align:top; padding-right:2em; width:600px;">
+<img src="klampt-image.jpg" alt="Kris' Locomotion and Manipulation Planning Toolbox (Klamp't)">
+</div>
+
+<div style="display:table-cell; vertical-align:top; position:relative; overflow:hidden; min-width:10em;">
+
+<p>Klamp't is a cross-platform software package for modeling, simulating, planning, and optimization for complex robots, particularly for manipulation and locomotion tasks. It has been developed at Indiana University since 2009 primarily as a research platform, and has been used in classrooms beginning in 2013.  It has been used in several real-world projects, including the Amazon Picking Challenge, TeamHubo in the DARPA Robotics Challenge, and was the platform for the IROS 2016 Robot Grasping and Manipulation Challenge simulation track.
+</p>
+
+<div style="padding:1em;">
+<ul id="nav">
+	<li><a href="#features">Features</a></li>
+	<li><a href="#media">Media</a></li>
+	<li><a href="#install">Installation</a></li>
+	<li><a href="#docs">Documentation</a></li>
+	<li><a href="#faq">FAQ</a></li>
+    <li><a href="https://github.com/krishauser/Klampt">Github Repo</a></li>
+    <li><a href="https://gitq.com/krishauser/Klampt">Forum</a></li>
+</ul>
+</div>
+
+
+</div>
+</div>
+
+<div class="separator"></div>
+
+<a name="features"></a>
+<h3>Features</h3>
+<div class="subheading">Modeling</div>
+<ul>
+  <li>Supports legged and fixed-based robots.</li>
+  <li>Built in models NASA ATHLETE, Rethink Robotics Baxter, AIST HRP-2, Willow Garage PR2, KAIST Hubo-II+, Robonaut 2, Staubli TX90, Puma 760, Robotiq Adaptive Gripper. </li>
+  <li>Forward and inverse kinematics, forward and inverse dynamics</li>
+  <li>Contact mechanics computations: force closure, support polygons, stability of rigid bodies and actuated robots</li>
+  <li>Keyframe poser and path editor</li>
+</ul>
+<div class="subheading">Simulation</div>
+<ul>
+	<li>Robust rigid body simulation with triangle mesh / triangle mesh collisions.</li>
+	<li>Simulation of PID controlled, torque controlled, and velocity controlled motors.</li>
+	<li>Simulation of various sensors including RGB+D cameras, laser sensors, gyroscopes, force/torque sensors, and accelerometers. </li>
+	<li>ROS bindings available for broadcasting simulation data and reading robot trajectory commands.</li>
+</ul>
+<div class="subheading">Planning</div>
+<ul>
+<li>Many sampling-based motion planners implemented.</li>
+<li>Motion planning on constrained manifolds.</li>
+<li>Fast trajectory optimization routines.</li>
+<li>Real-time motion planning routines.</li>
+<li>Planning models are fully decoupled from simulation models, which helps simulate uncertainty.</li>
+</ul>
+
+<p><span class="subheading">Current version</span>: 0.8.1</p>
+<p><span class="subheading">Languages</span>: C++ and Python</p>
+<p><span class="subheading">Supported platforms</span>: *nix environments, Windows, and Mac OSX.</p>
+
+<div class="subheading">What's new?</div>
+<p>Version 0.8.1 introduces:</p>
+<ul>
+<li>Integration with Jupyter Notebook.</li>
+<li>Improved build system for Python, allowing easy installation via pip install python.</li>
+<li>Cleaner file structure, with C++ files in the Cpp directory.</li>
+<li>Cleaned up documentation, separating C++ and Python docs.  Sphinx is now used for Python docs.</li>
+<li>Added Python utility programs (klampt_browse, klampt_sim, klampt_path, klampt_thumbnail).</li>
+<li>Improvements support Python visualization on Mac.</li>
+<li>Upgraded to PyQt5. PyQt4 is still supported for now.</li>
+<li>Geometry conversions exposed in Python via the convert function.</li>
+<li>Improved usage of some graphics card resources for streaming point clouds.</li>
+<li>Support for LOG4CXX logging.</li>
+<li>Removed dependencies on Boost and upgraded to C++11.</li>
+<li>Removed dependencies on GLUT and GLUI. (Some examples still need to be upgraded to Qt.)</li>
+<li>Cleaned up some cruft in KrisLibrary.</li>
+</ul>
+<div class="separator"></div>
+
+<a name="media"></a>
+<h3> Media </h3>
+
+<div class="video">
+<p>Klamp't uses a robust contact generation scheme for mesh-mesh contact</p>
+<iframe width="420" height="315" src="http://www.youtube.com/embed/WyqU56Pr5pg" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<div class="video">
+<p>Wheel turning on the PR2.  Motion courtesy of Dmitry Berenson at WPI. Compare with <a href="http://youtu.be/xRcUO2mXt3s">the real robot</a>.</p>
+<iframe width="420" height="315" src="http://www.youtube.com/embed/UEW9z7lQ3Xc" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<div class="video">
+<p>Staubli TX90 throwing a block</p>
+<iframe width="420" height="315" src="http://www.youtube.com/embed/AuvGMUg9P4U" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<div class="video">
+<p>Hubo-II+ walking on flat ground</p>
+<iframe width="420" height="315" src="http://www.youtube.com/embed/tPQK5nHpRnQ" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<div class="video">
+<p>Hubo-II+ being tipped over on uneven ground</p>
+<iframe width="420" height="315" src="http://www.youtube.com/embed/gpqm5K2P7uE" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<div class="video">
+<p>Hubo-II+ climbing a ladder</p>
+<iframe width="420" height="315" src="http://www.youtube.com/embed/Pou2NMeSZDc" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<div class="video" style="width:560px">
+<p>Hubo-II+ switching feet, demonstrating force-torque sensing capabilities. Motion courtesy of Andy Park at Purdue University</p>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/79gNUOtGXM0" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<div class="video">
+<p>Comparison of Klampt's contact generation method against the GIMPACT method used in ODE / Bullet</p>
+<iframe width="420" height="315" src="http://www.youtube.com/embed/tKAB1NRR8dY" frameborder="0" allowfullscreen></iframe>
+</div>
+
+
+<div class="separator"></div>
+
+<h3>Downloading and Installing Klamp't</h3>
+<a name="install"></a>
+<p><b>Building from source</b></p>
+  
+  <p>Quick start (Python API only)</p>
+    <ul>
+        <li>pip install klampt</li>
+        <li>(optional) git clone https://github.com/krishauser/Klampt-examples</li>
+    </ul>
+
+  <p>Complete-package installation tutorials are available for:</p>
+    <ul>
+    <li> <a href="https://github.com/krishauser/Klampt/blob/master/Cpp/docs/Tutorials/Install-Linux.md">Linux</a></li>
+    <li> <a href="https://github.com/krishauser/Klampt/blob/master/Cpp/docs/Tutorials/Install-Windows.md">Windows</a></li>
+    <li> <a href="https://github.com/krishauser/Klampt/blob/master/Cpp/docs/Tutorials/Install-Mac.md">Mac OSX</a></li>
+    <li> <a href="https://github.com/krishauser/Klampt/blob/master/Jupyter/README.md">Jupyter notebook</a></li>
+    <li> <a href="https://github.com/krishauser/Klampt/blob/master/Cpp/docs/Tutorials/Install-Docker.md">Docker</a></li>
+    </ul>
+
+<p><b>Precompiled binaries</b></p>
+<p>Windows (32 bit) (up to date as of 1/6/2018).  You must also install the x86 <a href="https://www.microsoft.com/en-us/download/details.aspx?id=48145">Visual Studio 2015 Runtime</a>.</p>
+<ul>
+<li><a href="http://motion.pratt.duke.edu/software/Klampt-0.8.1-win32.msi">Win32 Klamp't applications, static library (VS 2015 build) and C++ headers.</a> </li>
+</ul>
+<p>To compile your own C++ programs under Windows, you will need to 1) clone Klampt and KrisLibrary from git, then 3) unpack the correct precompiled dependency libraries to the Klampt/Library folder:</p>
+<ul>
+<li><a href="http://motion.pratt.duke.edu/software/Klampt-0.8.0.win32-deps-vs2015d.zip">Win32 dependency libraries, Visual Studio 2015, Debug build</a> </li>
+<li><a href="http://motion.pratt.duke.edu/software/Klampt-0.8.0.win32-deps-vs2015.zip">Win32 dependency libraries, Visual Studio 2015, Release build</a> </li>
+<li><a href="http://motion.pratt.duke.edu/software/Klampt-0.8.0.win64-deps-vs2015d.zip">x64 dependency libraries, Visual Studio 2015, Debug build</a> </li>
+<li><a href="http://motion.pratt.duke.edu/software/Klampt-0.8.0.win64-deps-vs2015.zip">x64 dependency libraries, Visual Studio 2015, Release build</a> </li>
+</ul>
+
+<div class="separator"></div>
+
+<h3>Documentation</h3>
+<a name="docs"></a>
+<ul>
+  <li> <a href="pyklampt_docs">Klamp't Python Manual and API Documentation</a> </li>
+  <li> <a href="https://github.com/krishauser/Klampt/blob/master/Cpp/docs/Manual.md">Klamp't C++ Manual</a> </li>
+  <li> <a href="klampt_docs">Klamp't C++ API</a> </li>
+  <li> <a href="krislibrary_docs">KrisLibrary C++ API</a> </li>
+</ul>
+
+<div class="separator"></div>
+
+<h3>Frequently Asked Questions</h3>
+<a name="faq"></a>
+<ol>
+  <li>
+	<a class="Q" href="#" onclick="showHide('A_compare'); return false;">
+	How does Klamp't compare to other simulators / programming environments (like ROS, RAVE, Webots, etc)?
+	</a>
+     <div class="A" id="A_compare">
+	<p>The short answer: Klamp't is an all-in-one toolbox that specializes in robots with contact.</p>
+      <p>Unlike ROS, Klamp't is not an architecture for sensing and control on distributed hardware.  Klamp't provides tools for modeling, planning, and simulation of robots with contact that are intended primarily for research and rapid prototyping. Klamp't comes with ROS bindings for its simulator and for reading point clouds.  Klamp't is more cross-platform and lighter weight.</p>
+      <p>OpenRAVE is a similar library developed at CMU concurrently with Klamp't, but with a stronger focus on manipulation problems.  OpenRAVE does not support legged robots.  Moreover, simulation in OpenRAVE is often conflated with modeling and planning, whereas in Klamp't they are fully decoupled. </p>
+      <p>Klamp't differs from other robot simulators (e.g., Gazebo, Webots, V-REP) because it has better collision handling that lets it handle complex contact phenomena between unstructured meshes and even point clouds.  Other simulators typically require a robot and its environment to be composed of simple geometric primitives or convex polyhedra, while Klamp't works well with polygon soup or point clouds directly from a CAD program or a depth scanner.  Other simulators typically have better visualizations and sensor simulation capabilities.  Klamp't ignores the bells and whistles and focuses on stable, robust contact.</p>
+	</div>
+  </li>
+  <li>
+	<a class="Q" href="#" onclick="showHide('A_start'); return false;">
+	I'm a robotics newbie, where should I start?
+	</a>
+	<div class="A" id="A_start">
+	<p>Most beginners should start learning the Python API and going through the examples in the manual.  Exercises from <a href="http://people.duke.edu/~kh269/teaching/b659/schedule.htm">an introductory graduate course on robotics</a> are provided in the Klampt-examples/Python/exercises folder. An open-source textbook, <a href="http://motion.pratt.duke.edu/RoboticSystems/">Robotic Systems</a> is being prepared, which will help you become more familiar with 3D transformations, configuration spaces, feedback control, and motion planning.</p>
+	</div>
+  </li>
+  <li>
+	<a class="Q" href="#" onclick="showHide('A_migrate0.6'); return false;">
+	I was using version 0.6.x, how do I migrate my code to 0.8.x?
+	</a>
+     <div class="A" id="A_migrate0.6">
+	<p>If you are using C++, the main changes that you will need to make is that everything is upgraded to use C++11, and you should prepend "Klampt/" to all of your Klampt includes.  Item 1 means that the KrisLibrary SmartPointer class is being deprecated in favor of shared_ptr, and all Klampt classes have switched to using shared_ptr.</p>
+    <p>If you are using Python, the main changes that most users will need to make are 1) to import math, IK, and planning routines from the appropriate submodules, and 2) account for the new visualization framework.</p>
+	<p>The vectorops, so3, and se3 modules should no longer be imported from the klampt module, but from klampt.math.  The ik module should be imported from klampt.model.  And the cspace module should be imported from klampt.plan.</p>
+	<p>For visualization, for backwards compatibility's sake you can import the desired GL[X]Program base class from klampt.vis.glprogram and use it essentially unchanged. But the preferred method is no longer to subclass "programs" that run alone, but rather to subclass <i>plugins</i> that get sent to the visualization module. In order to use this new structure, your visualization classes should inherit from the GLPluginInterface class, which is found in klampt.vis.glinterface.  Or, you can inherit from GLWidgetPlugin, found in klampt.vis.glcommon.</p> 
+<p>There are two major changes in visualization plugins/programs: 1) the specialfunc callback is no longer used to handle non-keyboard input. Instead, keyboardfunc is called with a descriptive string (e.g., "left" for the left arrow key, "f1" for F1). 2) the motionfunc callback now takes four arguments (x,y,dx,dy), in addition to self.  Note that in order to take advantage of the new action system you can replace your keyboard dispatch function with a set of calls to self.add_action(func,description,key). </p>
+<p>If you wish to use the new plugin interface, your main function will no longer call program.run().  In lieu of this, you will call vis.setWindowTitle("my program title") and vis.run(program).  You may need to add "from klampt import vis" at the top of your file.</p>
+	</div>
+  </li>
+  <li>
+    <a class="Q" href="#" onclick="showHide('A_migrate0.7'); return false;">
+    I was using version 0.7, how do I migrate my code to 0.8.x?
+    </a>
+     <div class="A" id="A_migrate0.7">
+    <p>If you are using C++, the main changes that you will need to make is that everything is upgraded to use C++11, and you should prepend "Klampt/" to all of your Klampt includes.  Item 1 means that the KrisLibrary SmartPointer class is being deprecated in favor of shared_ptr, and all Klampt classes have switched to using shared_ptr.</p>
+    <p>If you are using Python, you will probably not need to change anything, as the API is 99% compatible between versions.</p>
+    </div>
+  </li>
+  <li>
+	<a class="Q" href="#" onclick="showHide('A_import'); return false;">
+	How do I import my robot?
+	</a>
+	<div class="A" id="A_import">
+	<p>Klamp't uses a proprietary, simple ASCII format for defining robots (.rob files) and can also read from the <a href="http://wiki.ros.org/urdf">URDF</a> file format.</p>
+	<p>However, for simulation, Klamp't will need some special motor parameters (servoP, servoI, servoD, dryFriction, viscousFriction) that are not present in the URDF format.  There are two ways of accomplishing this: 1) use the URDFtoRob program and then edit the generated parameters in the .rob file, or 2) add the special klampt XML tag in the URDF.  More details on this procedure can be found in the <a href="https://github.com/krishauser/Klampt/blob/master/Cpp/docs/Manual-FileTypes.md#urdf-files-urdf-with-klampt-specific-elements">Klampt manual</a> and the <a href="https://github.com/krishauser/Klampt/blob/master/Cpp/docs/Tutorials/Import-and-calibrate-urdf.md">robot import tutorial</a>.</p>
+	<p>Some tips for successful URDFtoRob importing:</p>
+	<ul>
+		<li>URDF contains separate visualization / collision geometry per link while Klamp't only uses a single geometry.  To switch, toggle the useVisGeom setting in urdftorob.settings, or use_vis_geom attribute in the &lt;klampt&gt; URDF element.</li>
+		<li>If imported meshes looks strange, try setting the flipYZ flag to true in urdftorob.settings, or the flip_yz attribute in the &lt;klampt&gt; URDF element.</li>
+		<li>The mesh import/export paths can be set using urdftorob.settings or the package_root element in the &lt;klampt&gt; URDF element. </li>
+		<li> To avoid converting geometry to the native .tri format, set outputGeometryExtension to the empty string ("") in urdftorob.settings.</li>
+		<li>Dummy URDF links can safely be set to have 0 mass and inertia in the exported robot file.  Zero-mass dummy links will not affect the simulation as long as they are fixed to a link with mass.  You may also add the &lt;link name="[link name]" physical="0"/&gt; tag under the &lt;klampt&gt; element in the URDF file.</li>
+		<li>For trajectory optimization (including point-to-point motions via the manual posing widget in SimTest), it is important to set reasonable velocity and acceleration limits in the exported robot file.</li>
+		<li>Editing large .rob files is easiest in a spreadsheet program.</li>
+	</ul>
+	</div>
+  </li>
+  <li>
+	<a class="Q" href="#" onclick="showHide('A_motor_constants'); return false;">
+	How do I choose good motor constants for my robot simulation?
+	</a>
+      <div class="A" id="A_motor_constants"><p>This can be done by hand by tuning and "exercising" the robot in simulation.  An automatic solution is given by the MotorCalibrate program, which will optimize the constants to match a dataset of sensed and commanded joint angles that you record while exercising the physical robot.  Please consult its documentation for more details, and you may run ./MotorCalibrate Examples/motorcalibrate_baxter.settings as an example..</p></div>
+  </li>
+  <li>
+	<a class="Q" href="#" onclick="showHide('A_sim_faster'); return false;">
+	How can I make the simulator faster?
+	</a>
+     <div class="A" id="A_sim_faster"><p> Simulation speed depends on several factors, including the number of rigid bodies, the complexity of the mesh geometry, and the complexity of contacting regions.  Small robots with simple meshes may be simulated in super-real-time, while complex robots with very complex meshes might be 100x slower than real-time.</p>
+      <p>Usually, the bottleneck is contact generation and reponse, and its cost can be reduced by simplifying the mesh geometry using a 3D modeling program (e.g., Blender), or by reducing the value of the contact clustering parameter, maxContacts.<p>
+     </div>
+  </li>
+  <li>
+	<a class="Q" href="#" onclick="showHide('A_test_robot_controller'); return false;">
+	How can I test my robot's controller using the simulation tools in Klamp't?
+	</a>
+     <div class="A" id="A_test_robot_controller">
+	<p>Klamp't can be used for simulation testing of robot behaviors in a variety of ways.</p>
+	<p>Testing open-loop paths is straightforward: simply run the SimTest program with the starting robot state and the path as described in the <a href="https://github.com/krishauser/Klampt/blob/master/Cpp/docs/Tutorials/Run-a-simulation-Apps.md">tutorials</a>.</p>
+	<p>Testing feedback controllers usually requires writing a bit of "glue code" that translates native robot commands to Klamp't simulator commands, and translates Klamp't sensor data to native robot data.  This is possible when robots have relatively straightforward actuators (e.g., PID controlled motors) and sensors of the built-in types.  The easiest interface for doing so is the Python API.  See Python/control/controller.py for more details, and see Python/control/roscontroller.py as an example that translates to and from ROS messages.</p>
+	<p>To use the ROS bindings, see the <a href="file:///home/motion/Klampt/Python/docs/build/html/Manual-Control.html#custom-control-loops">custom control documentation</a>.</p>
+     <p>If your robot uses more complex actuators and sensors, these must be emulated in the simulation loop.  Essentially, the emulator should duplicate the robot's communication protocols, actuator behavior, and sensors in simulation. You are responsible for providing such an emulation layer on top of Klamp't.</p>
+     </div>
+  </li>
+  <li>
+	<a class="Q" href="#" onclick="showHide('A_connect_robot'); return false;">
+	How can I use Klamp't planning tools on my robot?
+	</a>
+      <div class="A" id="A_connect_robot">
+      <p>Klamp't planners and utilities must be incorporated into your robot's software environment via a bit of "glue code".</p>
+      <p>For example, a controller may invoke a Klamp't planner when it needs a new path.  The planner reads in the robot state and environment and uses Klamp't subroutines to generate a path.  A path can be serialized using the simple Linear Path format (an ASCII file containing lines of time / milestone pairs).  The controller can read the paths and send them to the robot using your desired communication protocol. </p>
+      <p>Direct robot control can be achieved using a mechanism in Interface/UserInterface.h, employed in the UserTrials program. These interfaces read in user input, call a real-time planner, and then send the resulting path to a MotionQueueInterface object.  In UserTrials, the interface sends the path to a simulated robot.  But by overloading the MotionQueueInterface class with a custom subclass that communicates with your robot, you can control your robot directly.  (We have code available for Staubli 6DOF robots, please contact us if you are interested.)</p>
+     </div>
+  </li>
+
+  <li>
+    <a class="Q" href="#" onclick="showHide('A_bug_report'); return false;">
+    I noticed a bug! How should I report it?
+    </a>
+    <div class="A" id="A_bug_report">
+    <p>Please report the issue on the <a href="https://github.com/krishauser/Klampt/issues">Klampt Github Issues</a> page, and we'll get right on it.</p>
+    </div>
+  </li>
+
+  <li>
+	<a class="Q" href="#" onclick="showHide('A_get_help'); return false;">
+	How should I get help using Klamp't?
+	</a>
+	<div class="A" id="A_get_help">
+	<p>Please use the Klamp't forum at <a href="https://gitq.com/krishauser/Klampt">https://gitq.com/krishauser/Klampt</a>.</p>
+	</div>
+  </li>
+
+  <li>
+	<a class="Q" href="#" onclick="showHide('A_citing'); return false;">
+	How should I acknowledge Klamp't in my publications?
+	</a>
+	<div class="A" id="A_citing">
+	<p>For the Klamp't simulator, please cite K. Hauser. <a href="http://motion.pratt.duke.edu/papers/ISRR2013-RobustContact.pdf">Robust Contact Generation for Robot Simulation with Unstructured Meshes</a>. International Symposium on Robotics Research, December 2013. </p>
+	<p>For the trajectory time-scaling subroutines, please cite K. Hauser. <a href="http://motion.pratt.duke.edu/papers/RSS2013_InterpolationOptimizationManifolds.pdf">Fast Interpolation and Time-Optimization on Implicit Contact Submanifolds</a>. In proceedings of Robotics: Science and Systems (RSS), Berlin, Germany, June 2013. </p>
+	<p>For general usage, please cite the <a href="http://motion.pratt.duke.edu/klampt/pyklampt_docs">Klamp't Manual</a>.</p>
+	</div>
+  </li>
+
+<ol>

@@ -1,0 +1,54 @@
+<python>include("header.htm")</python>
+
+<h3>Yajia Zhang, Kris Hauser and Jingru Luo </h3>
+
+<p> <b> Abstract. </b>
+We present a new Monte Carlo technique, Sub-Loop Inverse Kinematics Monte Carlo (SLIKMC), for
+sampling configurations of a kinematic chain according to a
+specified probability density while accounting for loop closure
+constraints. A key contribution is a method for sampling subloops
+in unbiased fashion using analytical inverse kinematics
+techniques. Sub-loops are then iterated across the chain to produce
+samples for the entire chain. The method is demonstrated
+to scale well to high-dimensional chains (&gt;200DOFs) and is
+applied to flexible 2D chains, protein molecules, and robots
+with multiple closed-chains.
+</p>
+
+<h4> Brief Introduction </h4>
+
+<p class="category"></p><h5>Loop sampling with prior distributions</h5><p></p>
+<div class="media">
+<div class="mediaitem">
+	<img src="./1B8C.jpg" alt="1B8C" width="300">
+    <div class="mediatext"><p>17 samples of 1B8C chain A (108 residues) selected from 170 consecutive samples with skip length 10. Each conformation is drawn
+in a distinct color.</p>
+    </div>
+    </div>
+</div>
+
+<p class="category"></p><h5>Application on multi-loop structures</h5><p></p>
+<div class="media">
+<div class="mediaitem">
+		<img src="./Fluctuation.jpg" alt="Molecule 2D chain" width="300">
+		<div class="mediatext"><p> Fluctuations of a 2D chain with a closed ring constrained on the three ends (open circles). Left: initial conformation. The angular prior for each link is modeled as a normal distribution with 20 degree standard deviation. Right: 20 samples with skip length 100. </p> 
+		</div>
+    </div>
+<div class="mediaitem">
+		<img src="./human_chain.png" alt="Human 2D chain" width="300">
+		<div class="mediatext"><p> A sampling sequence for a planar humanoid robot constrained at the feet, with hard joint limit, collision, and stability constraints and a prior whose mode is a standing-up configuration. Every 500th sample is drawn. </p> 
+		</div>
+	</div>
+</div>
+
+<p class="category"></p><h5>Missing loop completion</h5><p></p>
+<div class="media">
+<div class="mediaitem">
+		<img src="./HelixRecovery.jpg" alt="Missing loop completion" width="300" height="180">
+		<div class="mediatext"><p> Starting from a highly perturbed conformation, SLIKMC recovers a helix using only clash and Ramachandran plots information. Every 20 samples are drawn. </p> 
+		</div>
+    </div>
+</div>
+
+
+<br><br>
