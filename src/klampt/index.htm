@@ -328,9 +328,9 @@ function showHide(shID) {
      <div class="A" id="A_test_robot_controller">
 	<p>Klamp't can be used for simulation testing of robot behaviors in a variety of ways.</p>
 	<p>Testing open-loop paths is straightforward: simply run the SimTest program with the starting robot state and the path as described in the <a href="https://github.com/krishauser/Klampt/blob/master/Cpp/docs/Tutorials/Run-a-simulation-Apps.md">tutorials</a>.</p>
-	<p>Testing feedback controllers usually requires writing a bit of "glue code" that translates native robot commands to Klamp't simulator commands, and translates Klamp't sensor data to native robot data.  This is possible when robots have relatively straightforward actuators (e.g., PID controlled motors) and sensors of the built-in types.  The easiest interface for doing so is the Python API.  See Python/control/controller.py for more details, and see Python/control/roscontroller.py as an example that translates to and from ROS messages.</p>
-	<p>To use the ROS bindings, see the <a href="file:///home/motion/Klampt/Python/docs/build/html/Manual-Control.html#custom-control-loops">custom control documentation</a>.</p>
-     <p>If your robot uses more complex actuators and sensors, these must be emulated in the simulation loop.  Essentially, the emulator should duplicate the robot's communication protocols, actuator behavior, and sensors in simulation. You are responsible for providing such an emulation layer on top of Klamp't.</p>
+	<p>Testing feedback controllers usually requires writing a bit of "glue code" that translates native robot commands to Klamp't simulator commands, and translates Klamp't sensor data to native robot data.  This is possible when robots have relatively straightforward actuators (e.g., PID controlled motors) and sensors of the built-in types.  The easiest interface for doing so is the Python API.  See the <a href="http://pythondocs.klampt.org/Manual-Control.html">control documentation</a> for more details</p>
+	<p>If your robot uses more complex actuators and sensors, these must be emulated in the simulation loop.  Essentially, the emulator should duplicate the robot's communication protocols, actuator behavior, and sensors in simulation. You are responsible for providing such an emulation layer on top of Klamp't.</p>
+    <p>To use ROS bindings, see see Python/control/roscontroller.py as an example that translates to and from ROS messages.</p>
      </div>
   </li>
   <li>
