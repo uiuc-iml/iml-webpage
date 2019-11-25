@@ -13320,13 +13320,14 @@ geodesic between two points. In more general topological spaces,
 geodesics are often difficult to calculate, but there are closed form
 solutions in SO(2) and SO(3).</p>
 <p>We define the signed angular distance between two angles $\theta_1$ and
-$\theta_2$ represented in the range $[0,2\pi)$ as the function:
-$$diff(\theta_2,\theta_1) = \left\lbrace 
+$\theta_2$ represented in the range $[0,2\pi)$ as the function:</p>
+$$
+diff(\theta_2,\theta_1) = \left\lbrace 
 \begin{array}{ll} \theta_2 - \theta_1  &amp; \text{if } -\pi &lt; \theta_2 - \theta_1 \leq \pi \\
 \theta_2 - \theta_1 - 2\pi &amp; \text{if } \theta_2 - \theta_1 &gt; \pi \\
 \theta_2 - \theta_1 + 2\pi &amp; \text{if } \theta_2 - \theta_1 \leq -\pi
-\end{array} \right.$$
-which results in a value in the range $(-\pi,\pi]$
+\end{array} \right.
+$$<p>which results in a value in the range $(-\pi,\pi]$
 that produces the angular displacement of $\theta_2$ from $\theta_1$
 with minimum absolute value, and whose value is positive for CCW
 displacement and negative for CW displacement.</p>
@@ -13398,6 +13399,13 @@ r_{11} &amp; r_{12} &amp; r_{13} \\
 r_{21} &amp; r_{22} &amp; r_{23} \\
 r_{31} &amp; r_{32} &amp; r_{33} 
 \end{bmatrix}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>There are 9 parameters in the matrix, but not all possible values of 9
 parameters correspond to valid rotation matrices. To qualify as a
 rotation, the matrix must satisfy the two properties:</p>
@@ -13429,12 +13437,13 @@ undergo a 2D rotation along the orthogonal plane
 <div class="figcaption"><a name="fig:AxisAlignedRotations">Figure 2</a>. Axis-aligned
 rotations.</div><hr>
 <p>First, the matrix for rotation about the $Z$ axis contains a 2D rotation
-matrix in its upper corner: $$R_Z(\theta) = 
+matrix in its upper corner:</p>
+$$R_Z(\theta) = 
 \begin{bmatrix}
 \cos \theta  &amp; -\sin \theta   &amp; 0 \\
 \sin\theta  &amp; \cos \theta   &amp; 0 \\
 0 &amp; 0 &amp; 1
-\end{bmatrix}$$ This can be interpreted by imagining the $Z$ axis
+\end{bmatrix}$$<p>This can be interpreted by imagining the $Z$ axis
 pointing out of the page, and the $X$ and $Y$ axes marking the axes of a
 standard graph on the page. The rotation about $\theta$ is a CCW
 rotation in the plane of the page. Notice that the $Z$ coordinate of any
@@ -13444,12 +13453,14 @@ property maintained by the first two 0 entries of the third column. In
 the $(X,Y)$ plane, the upper $2\times 2$ matrix is identical to a 2D
 rotation matrix.</p>
 <p>The rotation about the $X$ axis is similar, with a 2D rotation matrix
-appearing along the $Y$ and $Z$ axes: $$R_X(\theta) = 
+appearing along the $Y$ and $Z$ axes:
+$$R_X(\theta) = 
 \begin{bmatrix}
 1 &amp; 0 &amp; 0 \\
 0 &amp; \cos \theta  &amp; -\sin \theta  \\
 0 &amp; \sin\theta  &amp; \cos \theta   
-\end{bmatrix}.$$ Here the $X$ coordinate is preserved while the $Y$
+\end{bmatrix}.$$</p>
+<p>Here the $X$ coordinate is preserved while the $Y$
 and $Z$ entries perform a 2D rotation.</p>
 <p>Finally, the rotation about the $Y$ axis is similar, but with a sign
 switch of the $\sin$ terms: $$R_Y(\theta) = 
@@ -13457,7 +13468,8 @@ switch of the $\sin$ terms: $$R_Y(\theta) =
 \cos \theta &amp; 0 &amp; \sin\theta \\
 0 &amp; 1 &amp; 0\\
 -\sin \theta &amp; 0 &amp; \cos \theta   
-\end{bmatrix}.$$ The reason why the $-\sin \theta$ term switches to
+\end{bmatrix}.$$</p>
+<p>The reason why the $-\sin \theta$ term switches to
 below the diagonal is that if one were to orient a frame so the $Y$ axis
 points out of the page, and align the $X$ axis to point rightward, the
 $Z$ axis would point downward instead of upward. Instead, the matrix can
@@ -13474,7 +13486,15 @@ $Z$, are rotated to post-rotation axes $X^\prime$, $Y^\prime$, and
 $Z^\prime$, respectively. The first column represents the coordinates of
 $X^\prime$ axis <em>relative to the original frame</em> after rotation
 $$\V{x}^\prime = 
-\begin{bmatrix} r_{11} \\ r_{21} \\ r_{31} \end{bmatrix}.$$ Similarly, the
+\begin{bmatrix} r_{11} \\ r_{21} \\ r_{31} \end{bmatrix}.$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Similarly, the
 second column gives $\V{y}^\prime = (r_{12},r_{22},r_{32})$ and the
 third column gives $\V{z}^\prime = (r_{13},r_{23},r_{33})$.</p>
 <p>Moreover, since $R^{-1} = R^T$, the coordinates of the old frame's axes
@@ -13596,21 +13616,22 @@ requires calculating the inverse of the forward conversion using some
 trigonometry.</p>
 <p>First, for the given convention we would begin by equating the matrix
 terms to the sine and cosine terms of the computed rotation matrix,
-e.g., for roll-pitch-yaw convention: $$R<em>{rpy} =<br>
+e.g., for roll-pitch-yaw convention:</p>
+$$
+R_{rpy} =  
 \begin{bmatrix}
-r</em>{11} &amp; r<em>{12} &amp; r</em>{13} \
-r<em>{21} &amp; r</em>{22} &amp; r<em>{23} \
-r</em>{31} &amp; r<em>{32} &amp; r</em>{33} 
+r_{11} &amp; r_{12} &amp; r_{13} \\
+r_{21} &amp; r_{22} &amp; r_{23} \\
+r_{31} &amp; r_{32} &amp; r_{33} 
 \end{bmatrix} = 
 \begin{bmatrix}
-c_1 c_2  &amp; c_1 s_2 s_3 - s_1 c_3 &amp; s_1 s_3 + c_1 s_2 c_3 \
-s_1 c_2  &amp; c_1 c_3 + s_1 s_2 s_3 &amp;  s_1 s_2 c_3 - c_1 s_3 \</p>
-<ul>
-<li>s_2    &amp; c_2 s_3               &amp; c_2 c_3<br>
-\end{bmatrix}$$ where we use the shorthand $c_1 = \cos \phi$,
+c_1 c_2  &amp; c_1 s_2 s_3 - s_1 c_3 &amp; s_1 s_3 + c_1 s_2 c_3 \\
+s_1 c_2  &amp; c_1 c_3 + s_1 s_2 s_3 &amp;  s_1 s_2 c_3 - c_1 s_3 \\
+- s_2    &amp; c_2 s_3               &amp; c_2 c_3  
+\end{bmatrix}
+$$<p>where we use the shorthand $c_1 = \cos \phi$,
 $c_2 = \sin \phi$, $c_2 = \cos \theta$, $s_2 = \sin \theta$,
-$c_3 = \cos \psi$, and $s_3 = \sin \psi$.</li>
-</ul>
+$c_3 = \cos \psi$, and $s_3 = \sin \psi$.</p>
 <p>The simplest term is in the lower left corner, so we find one of the two
 solutions to $r_{31} = -\sin \theta$, namely
 $\theta = - \sin^{-1} r_{31}$ or $\theta = - \sin^{-1} r_{31} + \pi$. We
@@ -13724,6 +13745,13 @@ $$\hat{\V{v}} =
 \begin{bmatrix} 0 &amp; -v_z &amp; v_y \\ v_z &amp; 0 &amp; -v_x \\ -v_y &amp; v_x &amp; 0 \end{bmatrix}, \label{eq:CrossProductMatrix}$$
 so called because
 $\hat{\V{v}} \V{w} = \V{v} \times \V{w}$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Hence we can express the term $\V{a} \times \V{p} = \hat{\V{a}} \V{p}$
 as a matrix multiplication. Also, we can express the term
 $\V{p} - (\V{a} \cdot \V{p}) \V{a} = - \V{a} \times (\V{a} \times \V{p}) = -\hat{\V{a}}^2 \V{p}$,</p>
@@ -13732,7 +13760,14 @@ $$
 \V{p}^\prime &amp;= \cos \theta \V{p} + \sin \theta (\V{a} \times \V{p}) + (1-\cos \theta) (\V{a} \cdot \V{p}) \V{a} - \V{p}) + (1-\cos \theta) \V{p} \\
  &amp;=\V{p} + \sin \theta \hat{\V{a}} \V{p} + (1-\cos\theta) \hat{\V{a}}^2 \V{p} \\
  &amp;= (I + \sin \theta \hat{\V{a}} + (1-\cos\theta) \hat{\V{a}}^2 ) \V{p}
-\end{split}$$<p>The parenthesized term is the rotation matrix
+\end{split}$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The parenthesized term is the rotation matrix
 corresponding to the axis-angle representation:
 $$R_{aa}(\V{a},\theta) = 
 I + \sin \theta \hat{\V{a}} + (1-\cos\theta) \hat{\V{a}}^2.$$</p>
@@ -14166,10 +14201,10 @@ not? (Hint: consider what it means to be a geodesic)</p>
 
  
  
-<div id="bfbc18ac-92c1-446e-a745-6a76b9947a2e"></div>
+<div id="5f4156d9-35fe-4368-bc8e-4477c19b02e9"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#bfbc18ac-92c1-446e-a745-6a76b9947a2e');
+var element = $('#5f4156d9-35fe-4368-bc8e-4477c19b02e9');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "6e14eefe10b84cd5a1dbe1853178cbbf", "version_major": 2, "version_minor": 0}

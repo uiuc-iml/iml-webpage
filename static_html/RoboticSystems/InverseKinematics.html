@@ -13244,7 +13244,45 @@ possesses more degrees of freedom than the dimension of the workspace.</p>
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Code for generating the figures below↔</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Code for generating the figures below</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline↔
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">axjoint</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">axwork</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+
+<span class="n">L1</span><span class="p">,</span><span class="n">L2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">def</span> <span class="nf">fk</span><span class="p">(</span><span class="n">q1</span><span class="p">,</span><span class="n">q2</span><span class="p">):</span>
+    <span class="n">c1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">q1</span><span class="p">)</span>
+    <span class="n">s1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">q1</span><span class="p">)</span>
+    <span class="n">c12</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">q1</span><span class="o">+</span><span class="n">q2</span><span class="p">)</span>
+    <span class="n">s12</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">q1</span><span class="o">+</span><span class="n">q2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">c1</span><span class="o">*</span><span class="n">L1</span><span class="o">+</span><span class="n">c12</span><span class="o">*</span><span class="n">L2</span><span class="p">,</span><span class="n">s1</span><span class="o">*</span><span class="n">L1</span><span class="o">+</span><span class="n">s12</span><span class="o">*</span><span class="n">L2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">plotlines</span><span class="p">(</span><span class="n">qa</span><span class="p">,</span><span class="n">qb</span><span class="p">,</span><span class="n">divs</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">q1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">qa</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">qb</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">divs</span><span class="p">)</span>
+    <span class="n">q2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">qa</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">qb</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">divs</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">fk</span><span class="p">(</span><span class="n">q1</span><span class="p">,</span><span class="n">q2</span><span class="p">)</span>
+    <span class="n">axjoint</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">q1</span><span class="p">,</span><span class="n">q2</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">axwork</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="n">axjoint</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<span class="n">axjoint</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<span class="n">axjoint</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Configuration space&quot;</span><span class="p">)</span>
+<span class="n">axjoint</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;theta 1&#39;</span><span class="p">)</span>
+<span class="n">axjoint</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;theta 2&#39;</span><span class="p">)</span>
+<span class="n">axwork</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">)</span>
+<span class="n">axwork</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">)</span>
+<span class="n">axwork</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Workspace&quot;</span><span class="p">)</span>
+<span class="n">axwork</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">axwork</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plotlines</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plotlines</span><span class="p">((</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plotlines</span><span class="p">((</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">),(</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -13283,14 +13321,31 @@ example above, the task consisted only of Cartesian position, but it
 could generalize to also include orientation of the final link through a
 different choice of $f$. To define a combination of position and
 orientation goal, we would append some rotation parameterization like
-Euler angles to $\V{x}$, and define the forward kinematic map:
-$$\V{x} \equiv
-\left[
-\begin{array}{c} \V{x}_p \\ \V{x}_o \end{array}\right] 
- = f(\V{q}) \equiv
- \left[
-\begin{array}{c} T_N(\V{q})\V{x}_N \\ R_{ea}^{-1}(R_N(\V{q})) \end{array}\right]$$
-where $R_N(\V{q})$ is the 3x3 rotation matrix of the $N$'th link, and
+Euler angles to $\V{x}$, and define the forward kinematic map:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$\V{x} \equiv 
+\begin{bmatrix}
+  \V{x}_p \\
+  \V{x}_o
+\end{bmatrix}=f(\V{q}) \equiv
+
+\begin{bmatrix}
+   T_N(\V{q})\V{x}_N \\
+   R_{ea}^{-1}(R_N(\V{q}))
+ \end{bmatrix}$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>where $R_N(\V{q})$ is the 3x3 rotation matrix of the $N$'th link, and
 $R_{ea}^{-1}(R)$ computes the euler angle representation of the rotation
 matrix $R$ (according to some chosen convention). Here $\V{x}_p$ is the
 position of $X$ and $\V{x}_o$ is the Euler angle representation of the
@@ -13548,15 +13603,29 @@ $L_1$ along the $z$ axis, and with both axes intersecting. The third
 joint is offset by a distance $L_2$ along the $x$ axis at the reference
 configuration, and rotates about the $y$ axis as well. The end effector
 is offset by a distance $L_3$ about the $x$ axis.</p>
-<p>With this definition the end effector's world coordinates are:
+<p>With this definition the end effector's world coordinates are:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 $$
-\V{x}(\V{q}) =
-R_z(q_1) R_y(q_2)</p>
-\begin{bmatrix} L_2 + c_3 L_3 \\ 0 \\ -s_3 L_3 \end{bmatrix}<p>= $$</p>
-$$R_z(q_1) 
-\begin{bmatrix}c_2 (L_2 + c_3 L_3) - s_2 s_3 L_3 \\ 0 \\ -s_2 (L_2 + c_3 L_3) - c_2 s_3 L_3 \end{bmatrix} 
-= $$$$ 
-\begin{bmatrix} c_1 (c_2 (L_2 + c_3 L_3) - s_2 s_3 L_3) \\ s_1 (c_2 (L_2 + c_3 L_3) - s_2 s_3 L_3) \\ L_1 - s_2 (L_2 + c_3 L_3) - c_2 s_3 L_3 \end{bmatrix}.$$<p>We wish to match this to the target
+
+\begin{aligned}
+\V{x}(\V{q}) = &amp; R_z(q_1) R_y(q_2) \begin{bmatrix} L_2 + c_3 L_3 \\ 0 \\ -s_3 L_3 \end{bmatrix}   \\
+= &amp;R_z(q_1) \begin{bmatrix}c_2 (L_2 + c_3 L_3) - s_2 s_3 L_3 \\ 0 \\ -s_2 (L_2 + c_3 L_3) - c_2 s_3 L_3 \end{bmatrix} 
+\\
+= &amp; \begin{bmatrix} c_1 (c_2 (L_2 + c_3 L_3) - s_2 s_3 L_3) \\ s_1 (c_2 (L_2 + c_3 L_3) - s_2 s_3 L_3) \\ L_1 - s_2 (L_2 + c_3 L_3) - c_2 s_3 L_3 \end{bmatrix}. \end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We wish to match this to the target
 $\V{x}_D = (x_D,y_D,z_D)$.</p>
 <hr>
 <p><img src="figures/modeling/ik_3R.png" alt="fig:3RIK"></p>
@@ -13589,10 +13658,25 @@ $$(q_2^\prime,q_3^\prime) \in 2RIK(L_2,L_3,(-\sqrt{x_D^2 + y_D^2},-z_D+L_1)).$$
 each associated with the value $q_1^\prime = atan2(y_D,x_D) + \pi$.
 Hence, altogether, up to 4 solutions exist.</p>
 <h3 id="2RP-spherical-manipulator">2RP spherical manipulator<a class="anchor-link" href="#2RP-spherical-manipulator">&#182;</a></h3><p>For the 2RP robot <a href="Kinematics.html#Examples">described in
-the last chapter</a> we obtained the end effector point
-$$\V{x}(\V{q}) = 
-\begin{bmatrix} c_1 c_2 q_3 \\ s_1 c_2 q_3 \\ -s_2 q_3 \end{bmatrix}.$$
-To match a target point $\V{x}_D = (x_D,y_D,z_D)$ we can observe that
+the last chapter</a> we obtained the end effector point</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$
+\V{x}(\V{q}) = 
+\begin{bmatrix} c_1 c_2 q_3 \\ s_1 c_2 q_3 \\ -s_2 q_3 \end{bmatrix}.
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To match a target point $\V{x}_D = (x_D,y_D,z_D)$ we can observe that
 the norm $\| \V{x}(\V{q}) \|$ is simply $|q_3|$. It is very likely that
 only positive values of $q_3$ are valid joint values, and if so we can
 simply set $q_3 = \| \V{x}_D \|$.</p>
@@ -13619,7 +13703,15 @@ and orientation and represents a 6D task space because the inherent
 dimensionality of SO(3) is 3.</p>
 <p>Since the only degrees of freedom that affect orientation are $q_4$,
 $q_5$, and $q_6$, we can solve for the ZYZ euler angles to achieve
-$R_D$. First, let us derive the forward kinematics: $$
+$R_D$. First, let us derive the forward kinematics:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$
 \begin{aligned}
 R(q_4,q_5,q_6) &amp;= R_z(q_4)R_y(q_5)R_z(q_6) \\
  &amp; = \left[\begin{array}{ccc}
@@ -13654,7 +13746,15 @@ R(q_4,q_5,q_6) &amp;= R_z(q_4)R_y(q_5)R_z(q_6) \\
    -s_5 c_6 &amp; s_5 s_6 &amp; c_5
    \end{array} \right].
 \end{aligned}
-\label{eq:ZYZEulerAngles}$$ Let us denote
+\label{eq:ZYZEulerAngles}$$<p></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let us denote
 $$R_D = \left[
 \begin{array}{ccc}
 r_{11} &amp; r_{12} &amp; r_{13} \\
@@ -13944,18 +14044,36 @@ derivative with respect to that variable is nil:
 $$\frac{\partial f(y)}{\partial x} = 0$$</p>
 <h3 id="Jacobian-definition">Jacobian definition<a class="anchor-link" href="#Jacobian-definition">&#182;</a></h3><p>The Jacobian of an arbitrary vector function $\V{x} = f(\V{q})$, with
 $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$ is given as the following
-matrix of <em>partial derivatives</em>:
+matrix of <em>partial derivatives</em>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 $$J(\V{q}) \equiv \frac{\partial f(\V{q})}{\partial \V{x}} \equiv 
 \begin{bmatrix}
 \frac{\partial f_1(\V{q})}{\partial q_1} &amp; \cdots &amp; \frac{\partial f_1(\V{q})}{\partial q_n} \\
 \vdots &amp; \ddots &amp; \vdots \\
 \frac{\partial f_m(\V{q})}{\partial q_1} &amp; \cdots &amp; \frac{\partial f_m(\V{q})}{\partial q_n} 
 \end{bmatrix}$$
-where $f$'s component functions are given by the
-individual $f_i$'s:
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>where $f$'s component functions are given by the individual $f_i$'s:</p>
 $$f(\V{q}) \equiv 
 \begin{bmatrix} f_1(\V{q}) \\ \vdots \\ f_m(\V{q}) \end{bmatrix}.$$
-Observe that each of the rows of the Jacobian correspond to each of the
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Observe that each of the rows of the Jacobian correspond to each of the
 component functions, and each column corresponds to derivatives of a
 single joint coordinate. It is also important to note that the Jacobian
 is dependent on the configuration.</p>
@@ -13963,14 +14081,15 @@ is dependent on the configuration.</p>
 joint at the origin, and an end effector at $L_1$ distance away from the
 origin. The world coordinates of the end effector are:
 $$\V{x}(\V{q}) = 
-\begin{bmatrix}{L_1 \cos q_1} \\ {L_1 \sin q_1} \end{bmatrix}.$$ The Jacobian
+\begin{bmatrix}{L_1 \cos q_1} \\ {L_1 \sin q_1} \end{bmatrix}.$$</p>
+<p>The Jacobian
 of this point is a $2\times 1$ matrix obtained by taking the derivative
 with respect to each of the joint coordinates, which is just $q_1$ in
 this case.
 $$J(\V{q}) \equiv \frac{\partial \V{x}}{\partial \V{q}}(\V{q}) = 
 \begin{bmatrix}{\partial (L_1 \cos q_1) / \partial q_1} \\ {\partial (L_1 \sin q_1) / \partial q_1} \end{bmatrix} = 
-\begin{bmatrix}{-L_1 \sin q_1} \\ {L_1 \cos q_1} \end{bmatrix}.$$
-Note that this is perpendicular to the direction from the joint to the
+\begin{bmatrix}{-L_1 \sin q_1} \\ {L_1 \cos q_1} \end{bmatrix}.$$</p>
+<p>Note that this is perpendicular to the direction from the joint to the
 end effector, with the same magnitude.</p>
 <p>The significance of the Jacobian in this case is that <em>it gives the
 instantaneous velocity of the point</em> $\V{x}$, in world coordinates, as
@@ -14007,6 +14126,13 @@ $$\dot{q}_2 \frac{\partial \V{x}}{\partial q_2}(\V{q}).$$ If both were
 to rotate simultaneously, then the velocity would be
 $$\dot{\V{x}}(\V{q}) = \dot{q}_1 \frac{\partial \V{x}}{\partial q_1}(\V{q}) + \dot{q}_2 \frac{\partial \V{x}}{\partial q_2}(\V{q}) = J(\V{q})\dot{\V{q}}.$$
 <a href="#fig:Jacobian2R">Fig. 6</a> illustrates this concept.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <hr>
 <p><img src="figures/modeling/jacobian_2R.png" alt="fig:Jacobian2R"></p>
 <div class="figcaption"><a name="fig:Jacobian2R">Figure 5</a>.
@@ -14094,8 +14220,15 @@ $$\frac{d}{dq} L_{z,\V{a}}(q) =
 homogeneous point it multiplies and replaces it with $(a_x,a_y,0)$, we
 can express the Jacobian column with the simplified expression
 $$\frac{\partial f}{\partial q_j}(\V{q}) = T_j(\V{q}) 
-\begin{bmatrix}a_{j,x} \\ a_{j,y} \\ 0\end{bmatrix}.$$
-Note that since the homogeneous coordinate is 0, the translation of the
+\begin{bmatrix}a_{j,x} \\ a_{j,y} \\ 0\end{bmatrix}.$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that since the homogeneous coordinate is 0, the translation of the
 transform $T_j$ does not affect the result, and hence the Jacobian
 column is simply the world direction of the joint axis $\V{a}_j$.</p>
 <h4 id="3D-robots">3D robots<a class="anchor-link" href="#3D-robots">&#182;</a></h4><p>For 3D revolute joints, the local transform is given by an axis-angle
@@ -14956,10 +15089,10 @@ as you approach the limit?</p>
 
  
  
-<div id="5198450d-d7c9-434c-995e-7f3721c0b412"></div>
+<div id="78e51f9f-6741-4fca-82c9-2d09f23fbae8"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#5198450d-d7c9-434c-995e-7f3721c0b412');
+var element = $('#78e51f9f-6741-4fca-82c9-2d09f23fbae8');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "097c8b2a54304758a084989841ba943c", "version_major": 2, "version_minor": 0}
@@ -14978,10 +15111,10 @@ var element = $('#5198450d-d7c9-434c-995e-7f3721c0b412');
 
  
  
-<div id="1e124d83-8104-4516-9c90-031e95c1cd0f"></div>
+<div id="759f2424-e711-4cff-94ef-1c422d220969"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#1e124d83-8104-4516-9c90-031e95c1cd0f');
+var element = $('#759f2424-e711-4cff-94ef-1c422d220969');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "ec4b0eadfc1a43cb952ab87a85e77894", "version_major": 2, "version_minor": 0}

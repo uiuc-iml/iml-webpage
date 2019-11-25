@@ -13303,8 +13303,64 @@ models should be used to analyze and predict their behavior.</p>
 </tbody>
 </table>
 <p>Most of the time, sensors are mounted to a link of the robot, and move while the robot moves.  The raw data produced by the sensor is often not particularly useful in itself (e.g., cameras will give you pixel colors rather than object identities), and perception algorithms must process this data into meaningful quantities.  It is important to build accurate models of the physics behind the sensor (and methods for "inverting" these physics) in order to help a robot correlate sensor signals into an understanding of the physical world.</p>
-<p>The position and orientation of the sensor on the link is extremely important to be able to make sense of sensor data; we will look into this more when we discuss calibration.</p>
-<h2 id="Actuators-and-Transmissions">Actuators and Transmissions<a class="anchor-link" href="#Actuators-and-Transmissions">&#182;</a></h2><p>TODO: fill out section</p>
+<p>The position and orientation of the sensor on the link is extremely important to be able to make sense of sensor data. A laser sensor may be saying that an obstacle is 1m away, but is the obstacle ahead, behind, to the left, or above the robot?  How close is too close before the robot ends up colliding?  We will look into this issue further  when we discuss calibration.</p>
+<h2 id="Actuators-and-Transmissions">Actuators and Transmissions<a class="anchor-link" href="#Actuators-and-Transmissions">&#182;</a></h2><p>An actuator is a mechanism that generates a force / torque given electrical signals; a transmission is a mechanism that applies an actuator's forces / torques to the robot's links.  Most commonly on industrial robots, actuators are electric motors while the transmissions are some sort of gearing system (e.g., gearbox).  On mobile robots, the transmissions from actuators to the ground are actually the wheels (or tracks).  It is also common to think of (and purchase) the actuator and transmission as a unit, such as with servomotors.</p>
+<p>Common actuator types include:</p>
+<ul>
+<li><p><em>Electric motors</em>: stepper motors, brushed / brushless DC motors, AC motors.</p>
+</li>
+<li><p><em>Pneumatic actuators</em>. High variation in size and strength</p>
+</li>
+<li><p><em>Hydraulic actuators</em>. Very strong.</p>
+</li>
+<li><p><em>Chemical (combustion) actuators</em>: internal combustion engines in automobiles and prop planes; turbines in jet planes.</p>
+</li>
+<li><p><em>Piezoelectric actuators</em></p>
+</li>
+</ul>
+<p>Actuators can be rotary (revolves around an axis) or linear (translates about an axis).  Each type and model of actuator has many subtle differences that should be taken into account when fine-tuning a robot's design, e.g., in the power source, power / weight ratio, control bandwidth, maximum speed, stroke length, continuous / peak torque, complexity of electronics and maintenance, etc.  Most often, a roboticist will choose between electric, pneumatic, and hydraulic motors.  Electric motors come in a plethora of models with high variation in size, strength, and speed, and are convenient to use. Pneumatic actuators have a higher power-to-weight ratio, and lightweight pistons can be placed on extremities far from from heavy pumps using air lines, but require maintaining complex pump / valve systems.  Hydraulic actuators are stronger and heavier, and have similar drawbacks.</p>
+<p>There are also a variety of problems that arise when an actuator is pushed beyond its safe operating limits.  Electric motors <em>burn out</em> when the temperature produced by the motor cannot be dissipated quickly enough, and which burns through the insulation on the motor's wiring.  Pneumatic and hydraulic systems can <em>blow seals</em> where the internal pressure overcomes the strength of the seals and gaskets on the pneumatic / hydraulic lines or cylinders. In hydraulic systems, leaks can be quite messy!</p>
+<p>Transmission systems can be quite diverse.  Common forms of transmission include:</p>
+<ul>
+<li><p><em>Gearing</em>: gearboxes, lead screws, harmonic drives.  Can convert rotary to linear motion and vice versa.  Must be located directly at the joint.</p>
+</li>
+<li><p><em>Cables</em>: like tendons in biological systems, cables can connect a motor to a far-off link. Usually outputs linear motion, and can only pull.</p>
+</li>
+<li><p><em>Wheels / tracks</em>: used for mobile robots.  Can be arranged in <em>differential drive</em>, <em>skid-steer</em>, and <em>Ackermann steering</em> arrangements.  Omnidirectional (Mechanum) wheels are available on some platforms.</p>
+</li>
+<li><p><em>Pneumatic / Hydraulic lines</em>: connect a pump / valve system to a pneumatic / hydraulic cylinder.</p>
+</li>
+<li><p><em>4-bar linkages</em>: static bars connected by joints, used to convert rotary to linear motion and vice versa.</p>
+</li>
+<li><p><em>Flywheels</em>: use changes of angular momentum to control orientation, used primarily in space robotics.</p>
+</li>
+<li><p><em>Propellers</em>, <em>aelierons</em>, and <em>control surfaces</em>: deflect a surrounding gaseous / liquid medium to propel the robot; used primarily for aerial and water vehicles.</p>
+</li>
+<li><p><em>Thrusters</em>: eject mass at high speed to exert force using Newton's Law. Used primarily in space robotics.</p>
+</li>
+<li><p><em>Feet</em>, <em>hands</em>, <em>wings</em>, etc: bioinspired methods to touch the environment / deflect the surrounding medium to propel the robot.</p>
+</li>
+</ul>
+<p>When  designing or choosing a transmission systems, a designer must be cognizant of the</p>
+<ul>
+<li><p><em>Gear reduction</em>: force multiplier from input to output.</p>
+</li>
+<li><p><em>Backlash</em>: a dead-band about which force is not productively generated when the motion of direction is switched.</p>
+</li>
+<li><p><em>Internal friction</em>: losses of motive force.</p>
+</li>
+<li><p><em>Backdrivability</em>: the ability for forces on the output shaft to be reflected on the input shaft. High backdrivability implies low backlash and low internal friction.</p>
+</li>
+<li><p><em>Longevity and durability</em>: cheap gear teeth may wear down, materials in cables may exhibit creep (stretch), and tires wear down over time.  Transmission systems are often the first parts of robots to break!</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Cognitive-Architectures">Cognitive Architectures<a class="anchor-link" href="#Cognitive-Architectures">&#182;</a></h2><p>The title of this section is a bit misleading: robots don't perform
 "cognition" as humans and animals do. However, they do indeed need to
 process sensor information and make decisions about how to act. This
@@ -13315,16 +13371,16 @@ computing resources available. Instead, what has greater impact is the
 <em>form and function of information processing elements</em>, which is
 referred to as a <em>cognitive architecture</em>.</p>
 <p>(The terminology used in this chapter is highly influenced by Chapter 2
-in Stuart and Russell's excellent textbook Artificial Intelligence: a
-Modern Approach.)</p>
-<p>A cognitive architecture resides in the robot's mind, which controls the
+in Stuart and Russell's excellent textbook <em>Artificial Intelligence: a
+Modern Approach</em>.)</p>
+<h3 id="Sense-plan-act-framework">Sense-plan-act framework<a class="anchor-link" href="#Sense-plan-act-framework">&#182;</a></h3><p>A cognitive architecture resides in the robot's mind, which controls the
 robot's body, which interacts with the outside world. The body and
 external world form the information processing <em>environment</em> of the
 mind. (Note that the mind cannot alter the outside world directly: in
 other words, no telepathy is allowed!) The role of a robot's mind is to
 receive sensor information (sense), do some processing (plan) and to
 output commands to the body's actuators (act). This perspective is also
-known as the <em>sense-plan-act</em> framework.</p>
+known as the <em>sense-plan-act</em> framework, and is illustrated in <a href="#fig:SensePlanAct">Fig. 1</a>.</p>
 <hr>
 <p><img src="figures/introduction/sense_plan_act.png" alt="fig:SensePlanAct"></p>
 <div class="figcaption"><a name="fig:SensePlanAct">Figure 1</a>. The sense-plan-act framework structures how the robot's "mind" processes information from its sensors (Sense), calculates an action (Plan), and then performs the action using its body (Act).</div><hr>
@@ -13382,7 +13438,27 @@ the predictive model is accurate, 2) the planner discovers a
 high-quality sequence of actions quickly, and 3) the metric encoded by
 the robot is truly a good measure of performance (as judged by human
 observers). Section III covers planning in detail.</p>
-<p>TODO: describe learning architectures.</p>
+<p>Finally, a <em>learning</em> architecture incorporates sensor data over time to
+automatically adapt components of its predictive models, state estimators,
+and/or planners.  The amount of learning can be relatively small, such as
+auto-calibration of a robot's sensors to correct for sensor drift, or large,
+such as reinforcement learning to adapt the robot's behavior according to
+observed outcomes.  Section VI discusses machine learning, calibration, and
+reinforcement learning techniques to be used in such architectures.</p>
+<h3 id="Perception,-planning,-and-control;-hierarchical-architectures">Perception, planning, and control; hierarchical architectures<a class="anchor-link" href="#Perception,-planning,-and-control;-hierarchical-architectures">&#182;</a></h3><p>The Plan component of the Sense-Plan-Act framework above can typically be broken down into three components:</p>
+<ul>
+<li><p><em>Perception</em>.  From sensor data and memory of the past, construct a representation of all the knowledge the robot has available about itself and its surroundings.  When there is uncertainty, either construct a best guess, or explicitly model how much uncertainty is available.</p>
+</li>
+<li><p><em>Planning</em>.  Use the robot's knowledge representation and dynamics models to decide what the robot should do now and in the future.  Outputs reference motions or feedback policies.</p>
+</li>
+<li><p><em>Control</em>. At a high feedback rate, execute the reference motions generated by planning by outputting actuator signals.  Use immediate sensor feedback to correct for minor disturbances.</p>
+</li>
+</ul>
+<p>In a complex intelligent robot, such as an autonomous vehicle, these components are individually quite sophisticated.  To optimize the behavior of each component requires deep knowledge, skills, and effort on the part of its engineering team.</p>
+<p>Although these components are described as though they would be separate stages of a pipeline, they actually interact at multiple levels based on the timing requirements of behavioral decisions.  The planning component is usually broken down so that mission-level decisions are made at the highest layer, which are then broken into subtasks that should be achieved on the order of seconds to minutes, which are then finally broken down into continuous reference motions at sub-second granularity.  In some sense, the control component is the lowest level of the planning hierarchy.</p>
+<p>The perception component may also be hierarchical as well. Some sensor signals, like joint encoder values, are processed minimally to be used by the controller.  Others, like vision data, are processed with computationally expensive, relatively slow operations like map-building and object recognition so that mission planning can make significant decisions about the robot's behavior.</p>
+<h3 id="The-end-to-end-approach">The end-to-end approach<a class="anchor-link" href="#The-end-to-end-approach">&#182;</a></h3><p>In contrast to the perception-planning-control pipeline, the philosophy of <em>end-to-end</em> behavior attempts to compress the entire Plan component into a single monolithic function.  Because robot behavior is usually too complex to tune by hand, this philosophy is usually approached via the perspective of <em>end-to-end learning</em>, where the robot itself adjusts the behavior of the Plan component to achieve better outcomes.  Recently, this is becoming more a plausible approach given the success of deep neural networks in computer vision and related machine learning fields.</p>
+<p>However, there is still a long way to go before end-to-end robots are practical, and in fact there are <em>no commercially-significant robots in the world today that are developed using the end-to-end approach</em>.  Why might this be the case?  One may be that human scientists and engineers have developed exceptionally precise models for robot behavior that can't be matched using model-free approaches.  Another reason may be that the development process for the classical pipeline does a better job of exploiting the ingenuity of human engineering teams by imposing clear roles, responsibilities, and performance metrics for each component.  Indeed, it is very hard to determine why a system built entirely on machine learning made a mistake, which makes debugging and development much more difficult.  A final reason could be that the machine learning community simply does not yet have the right model for robotic cognition, and some breakthrough awaits just around the corner!  (Personally speaking, I enjoy the robot engineering process, and hope for the sake of myself, my colleagues, and my students that this latter scenario does not occur any time soon.)</p>
 
 </div>
 </div>
@@ -13392,7 +13468,7 @@ observers). Section III covers planning in detail.</p>
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
     </div>

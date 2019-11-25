@@ -13196,11 +13196,11 @@ predictive methods.</p>
 <p>(It should be noted that this book stays entirely in the domain of
 state-space models, whereas linear control theory texts extensively use
 the frequency-domain notation induced by the Laplace transform.)</p>
-<h2 id="Control-Philosophies">Control Philosophies<a class="anchor-link" href="#Control-Philosophies">&#182;</a></h2><p>There are many techniques available for controlling a dynamic system.
+<h2 id="Control-philosophies">Control philosophies<a class="anchor-link" href="#Control-philosophies">&#182;</a></h2><p>There are many techniques available for controlling a dynamic system.
 The philosophical approaches behind these techniques can be roughly
 categorized along three axes: prescriptive/descriptive, model free/model
 based, and myoptic/predictive.</p>
-<h3 id="Descriptive-vs-Prescriptive">Descriptive vs Prescriptive<a class="anchor-link" href="#Descriptive-vs-Prescriptive">&#182;</a></h3><p>Descriptive approaches assume that a controller has been given, and the
+<h3 id="Descriptive-vs-prescriptive">Descriptive vs prescriptive<a class="anchor-link" href="#Descriptive-vs-prescriptive">&#182;</a></h3><p>Descriptive approaches assume that a controller has been given, and the
 goal is to <em>analyze</em> whether the controlled system satisfies some
 desired properties. Examples of such properties could be stability,
 disturbance rejection, or some other performance metric. Empirical
@@ -13212,7 +13212,7 @@ control function given some desired properties. In general synthesis is
 more difficult than analysis, because any method with performance
 guarantees on the synthesized controller will also suppose to be able to
 quantitatively describe the level of performance achieved.</p>
-<h3 id="Model-Free-vs-Model-Based">Model-Free vs Model-Based<a class="anchor-link" href="#Model-Free-vs-Model-Based">&#182;</a></h3><p>Model-free controllers exhibit operate under no assumptions about the
+<h3 id="Model-free-vs-model-based">Model-free vs model-based<a class="anchor-link" href="#Model-free-vs-model-based">&#182;</a></h3><p>Model-free controllers exhibit operate under no assumptions about the
 form of $f(x,u)$, besides perhaps general notions of the directions of
 certain effects, e.g., increasing $u_1$ will result in a general
 increase in $x_1$. These controllers exhibit some degree of
@@ -13239,7 +13239,7 @@ room when the external temperature is higher than desired. At an
 extreme, a <em>feedforward</em>, open-loop controller simply calculates a
 trajectory of controls $u(t)$ and executes them without the use of state
 feedback.</p>
-<h3 id="Myoptic-vs-Predictive">Myoptic vs Predictive<a class="anchor-link" href="#Myoptic-vs-Predictive">&#182;</a></h3><p>Myoptic (aka greedy) methods reason about controls only looking at a
+<h3 id="Myoptic-vs-predictive">Myoptic vs predictive<a class="anchor-link" href="#Myoptic-vs-predictive">&#182;</a></h3><p>Myoptic (aka greedy) methods reason about controls only looking at a
 single instant in time. At most, a myopic method will examine the
 direction of motion in state space after the control is chosen at the
 current point in time. The time evolution of the system into the future
@@ -13254,6 +13254,13 @@ Usually, these methods have a reconfigurable parameter called the
 which predictions will be made. The choice of horizon induces a
 tradeoff, with longer horizons resulting in increased performance but
 also greater computational expense.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="PID-Control">PID Control<a class="anchor-link" href="#PID-Control">&#182;</a></h2><p>Proportional-Integral-Derivative (PID) control is the workhorse of 1D
 control systems. It is the most widely studied class of controllers due
 to its simplicity, and is certainly the first thing one might try on any
@@ -13390,10 +13397,10 @@ $\dot{x}_d$ so that the D term can help the system track desired changes
 faster than the P term alone. The expression for the D term is
 $$u_D = -k_D (\dot{x} - \dot{x}_d).$$</p>
 <p>Adding $u = u_P + u_I + u_D$ provides the PID controller.</p>
-<h3 id="PID-Gain-Tuning">PID Gain Tuning<a class="anchor-link" href="#PID-Gain-Tuning">&#182;</a></h3><p>Step change</p>
+<h3 id="PID-gain-tuning">PID gain tuning<a class="anchor-link" href="#PID-gain-tuning">&#182;</a></h3><p>Step change</p>
 <p>Overshoot</p>
 <p>Frequency response</p>
-<h3 id="Stability-Analysis">Stability Analysis<a class="anchor-link" href="#Stability-Analysis">&#182;</a></h3><p>Now we wish to perform stability analysis of a given controller in order
+<h3 id="Stability-analysis">Stability analysis<a class="anchor-link" href="#Stability-analysis">&#182;</a></h3><p>Now we wish to perform stability analysis of a given controller in order
 to determine whether the system in the long run obeys stability (errors
 stay bounded), divergence (errors grow), or convergence (errors shrink
 toward 0). The general method for performing stability analysis is to
@@ -13486,8 +13493,7 @@ system similarly leads to the damped harmonic oscillator system, and is
 left as an exercise. The analysis for the PID case is a bit more
 complex, involving a third-order linear system. We shall see more
 general methods for solving these systems in
-Sec. <a href="#sec:LTIStability">1.4.1</a>{reference-type="ref"
-reference="sec:LTIStability"}.</p>
+Sec. <a href="#sec:Stability-in-Linear-Time-Invariant-systems">4.1</a>.</p>
 <h3 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h3><p>For a system with measured state $x$ and derivative $\dot{x}$, desired
 setpoint $x_d$ and derivative $\dot{x}_d$ (optional; can be set to 0),
 and fixed control frequency $1/\Delta t$, a PID controller calculates
@@ -13545,7 +13551,7 @@ state with worse error than the previous time step, leading to
 instability. Similarly, time delays in state measurement can cause the
 controller to be counteracting errors at a past time, which may no
 longer exist in reality.</p>
-<h3 id="Applying-PID-to-Coupled-Systems">Applying PID to Coupled Systems<a class="anchor-link" href="#Applying-PID-to-Coupled-Systems">&#182;</a></h3><p>An industrial robot can be considered as a $n$-D second order dynamical
+<h3 id="Applying-PID-to-coupled-systems">Applying PID to coupled systems<a class="anchor-link" href="#Applying-PID-to-coupled-systems">&#182;</a></h3><p>An industrial robot can be considered as a $n$-D second order dynamical
 system with an $n$-D control, one for each joints. We can observe that
 each element of the control is aligned with the corresponding element of
 the state, which means that it could be possible to apply a PID
@@ -13576,10 +13582,10 @@ Trajectories starting from $x=(1,0)$ are shown for $k_P=1$, $k_I=0.5$,
 and different values of $k_D$ are
 shown.
     </div><hr>
-<h2 id="Simulation-Analysis">Simulation Analysis<a class="anchor-link" href="#Simulation-Analysis">&#182;</a></h2><p>Frequency response</p>
+<h2 id="Simulation-analysis">Simulation analysis<a class="anchor-link" href="#Simulation-analysis">&#182;</a></h2><p>Frequency response</p>
 <p>Step change</p>
 <p>Monte-Carlo analysis</p>
-<h2 id="Analyzing-Stability-and-Convergence">Analyzing Stability and Convergence<a class="anchor-link" href="#Analyzing-Stability-and-Convergence">&#182;</a></h2><p>First we shall describe methods for analyzing the stability of a dynamic
+<h2 id="Analyzing-stability-and-convergence">Analyzing stability and convergence<a class="anchor-link" href="#Analyzing-stability-and-convergence">&#182;</a></h2><p>First we shall describe methods for analyzing the stability of a dynamic
 system under a given closed loop control. The most well-understood
 methods for doing so are in linear time-invariant (LTI) systems, in
 which solution trajectories can be calculated analytically. In nonlinear
@@ -13594,7 +13600,7 @@ of the error $e = x - x^\star$. Hence
 $\dot{e} = g(e,u) \equiv f(e+x^\star,u)$ is a dynamical system that is
 essentially equivalent to the original one, but has an equilibrium point
 at 0.</p>
-<h3 id="Stability-in-Linear-Time-Invariant-Systems">Stability in Linear Time Invariant Systems<a class="anchor-link" href="#Stability-in-Linear-Time-Invariant-Systems">&#182;</a></h3><p>Recall that LTI systems are given by equations of the form
+<h3 id="Stability-in-Linear-Time-Invariant-systems">Stability in Linear Time Invariant systems<a class="anchor-link" href="#Stability-in-Linear-Time-Invariant-systems">&#182;</a></h3><p>Recall that LTI systems are given by equations of the form
 $$\dot{x} = Ax + Bu$$ where $A$ and $B$ are constant matrices of size
 $n \times n$ and $n \times m$, respectively. We shall consider stability
 under a closed-loop control function of the form $u=-Kx$, where $K$ is
@@ -13611,15 +13617,18 @@ will apply approximately in a neighborhood of the equilibrium point.</p>
 actually <em>subsumes</em> PID control! To observe this, for any given
 second-order single-input single-output system
 $\ddot{x} = ax+b\dot{x}+cu$ we build an equivalent 1-input 3-output
-system $y = (I,x,\dot{x})$ such that
-$$\dot{y} = 
-\begin{bmatrix}x\\ \dot{x}\\ \ddot{x} \end{bmatrix} =</p>
+system $y = (I,x,\dot{x})$ such that</p>
+$$
+\dot{y} = 
+\begin{bmatrix}x\\ \dot{x}\\ \ddot{x} \end{bmatrix} =
+
 \begin{bmatrix}
 0 &amp; 1 &amp; 0 \\
 0 &amp; 0 &amp; 1 \\
 0 &amp; a &amp; b
-\end{bmatrix}<p>y + 
-\begin{bmatrix}0\\0\\c\end{bmatrix} u$$ Then, we can define a
+\end{bmatrix} y + 
+\begin{bmatrix}0\\0\\c\end{bmatrix} u
+$$<p>Then, we can define a
 the 3$\times$1 matrix $K$ as
 $$K=
 \begin{bmatrix}k_I &amp; k_P &amp; k_D\end{bmatrix}$$ so that
@@ -13740,7 +13749,7 @@ pole is at 0 and the LTI analysis determines the system to be stable but
 not convergent. However, if we set $u = -x$, we see that
 $\dot{x} = -x^2$ which has the analytical solution $x(t) = 1/(t+C)$.
 Obviously this converges to 0.</p>
-<h4 id="Lyapunov-Stability">Lyapunov Stability<a class="anchor-link" href="#Lyapunov-Stability">&#182;</a></h4><p>Lyapunov's method is the most commonly used method for directly studying
+<h4 id="Lyapunov-stability">Lyapunov stability<a class="anchor-link" href="#Lyapunov-stability">&#182;</a></h4><p>Lyapunov's method is the most commonly used method for directly studying
 the stability of nonlinear systems. The main difficulty of nonlinear
 systems is that it is challenging to determine a closed-form expression
 for trajectories given an initial state. The idea behind this method is

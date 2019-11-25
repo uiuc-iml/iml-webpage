@@ -13376,13 +13376,22 @@ $$
 \begin{split}
 \dot{x}^\star &amp;= A x^\star + \frac{1}{2} B R^{-1} B^T \lambda^\star \\
 \dot{\lambda}^\star &amp;= - 2 Qx^\star  -A^T \lambda^\star
-\end{split}$$ Hypothesizing that $\lambda^\star = 2 P x^\star$ and
-multiplying the first equation by $P$, we obtain the system of equations
+\end{split}$$</p>
+<p>Hypothesizing that $\lambda^\star = 2 P x^\star$ and
+multiplying the first equation by $P$, we obtain the system of equations</p>
 $$
 \begin{split}
 P\dot{x}^\star &amp;=  (PA + P B R^{-1} B^T P )x^\star \\
-2P\dot{x}^\star &amp;= (-2Q  -2A^T P)x^\star
-\end{split}$$ After dividing the second equation by 2 and equating the
+2P\dot{x}^\star &amp;= (-2Q  -2A^T P)x^\star.
+\end{split}$$<p></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>After dividing the second equation by 2 and equating the
 left hand sides, we have an equation that must be satisfied for all $x$.
 Since the equation must hold for all $x$, the matrices must also be
 equal, which produces the Riccati equations.</p>
@@ -13410,7 +13419,15 @@ velocity and steering angle: $$
 \dot{x} &amp;= v \cos \theta \\
 \dot{y} &amp;= v \sin \theta \\
 \dot{\theta} &amp;= v/L \tan \phi .
-\end{split}$$ Here $(x,y)$ are the coordinates of a point in the middle
+\end{split}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here $(x,y)$ are the coordinates of a point in the middle
 of the rear axis, and $L$ is the length between the rear and front axle.
 The velocity and steering angle are bounded, $v \in [-1,1]$ and
 $\phi \in [-\phi_{max},\phi_{max}]$, and the cost only measures time to

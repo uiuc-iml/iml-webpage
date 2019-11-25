@@ -13567,11 +13567,18 @@ smaller time steps helps a little, but cannot completely remedy the problem.</p>
 $$\ddot{p} = u / m$$</p>
 <p>This problem can be modeled
 with a state $x = (p,v) \in \mathbb{R}^2$ and control
-$u = f \in \mathbb{R}$ with the dynamics equation
-$$\dot{x} \equiv</p>
-\begin{bmatrix}\dot{p}\\ \dot{v} \end{bmatrix}<h1 id="-=-f(x,u)-"> = f(x,u) <a class="anchor-link" href="#-=-f(x,u)-">&#182;</a></h1>\begin{bmatrix}v \\ f/m \end{bmatrix}<p>. \label{eq:PointMass}$$
-This function $f$ can be thought of as a *vector
-field* that maps each 2D point to a 2D vector. If we plot this vector
+$u = f \in \mathbb{R}$ with the dynamics equation</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+\begin{equation}
+\dot{x} \equiv \begin{bmatrix} \dot{p}\\ \dot{v} \end{bmatrix} = f(x,u) = \begin{bmatrix}v \\ f/m \end{bmatrix}. \label{eq:PointMass}
+\end{equation}<p>This function $f$ can be thought of as a <em>vector
+field</em> that maps each 2D point to a 2D vector. If we plot this vector
 field on the $(p,v)$ plane for various values of $f$, we observe a few
 things. First, it is invariant to $p$. Second, the value of $f$ varies
 the length and direction of the vectors in the $v$ direction.</p>
