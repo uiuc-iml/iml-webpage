@@ -13038,6 +13038,45 @@ ul.typeahead-list  > li > a.pull-right {
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
+<style type="text/css">
+    
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+
+    </style>
 
 
 <style type="text/css">
@@ -13179,7 +13218,7 @@ $\newcommand{\Reals} { \mathbb{R} }$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Section-IV.-DYNAMICS-AND-CONTROL">Section IV. DYNAMICS AND CONTROL<a class="anchor-link" href="#Section-IV.-DYNAMICS-AND-CONTROL">&#182;</a></h1><h1 id="Chapter-12.-What-are-Dynamics-and-Control?">Chapter 12. What are Dynamics and Control?<a class="anchor-link" href="#Chapter-12.-What-are-Dynamics-and-Control?">&#182;</a></h1>
+<h1 id="Section-IV.-DYNAMICS-AND-CONTROL">Section IV. DYNAMICS AND CONTROL<a class="anchor-link" href="#Section-IV.-DYNAMICS-AND-CONTROL">&#182;</a></h1><h1 id="Chapter-13.-What-are-Dynamics-and-Control?">Chapter 13. What are Dynamics and Control?<a class="anchor-link" href="#Chapter-13.-What-are-Dynamics-and-Control?">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -13619,7 +13658,7 @@ $T = 2$, $f(t) = 1$ for $t\leq 1$ and $f(t) = -1$ for $1 &lt; t \leq 2$.
 This control accelerates the system to the point $(p,v)=(0.5,1)$ at
 $t=1$, and then decelerates to $(1,0)$ at $t=2$. We shall see more
 general ways of designing such control functions using the optimal
-control methods when we discuss <a href="OptimalControl.html">optimal control</a>.</p>
+control methods presented in <a href="OptimalControl.html">later chapters</a>.</p>
 <h3 id="Pendulum-swing-up">Pendulum swing-up<a class="anchor-link" href="#Pendulum-swing-up">&#182;</a></h3><p>The pendulum swing up problem asks to control an actuator with limited
 torque to drive a pendulum with progressively larger and larger
 momentum, until it can then reach and stabilize about the vertical
@@ -13903,7 +13942,7 @@ $\hat{m} = m + \epsilon_m$. If we construct the augmented state vector
 $(p,v,m)\in \mathbb{R}^3$, then the state follows dynamics
 $$\dot{x} \equiv 
 \begin{bmatrix}\dot{p} \\ \dot{v} \\ \dot{m} \end{bmatrix} = f(x,u) = 
-\begin{bmatrix} v \\ f/m 0 \end{bmatrix}.$$
+\begin{bmatrix} v \\ f/m \\ 0 \end{bmatrix}.$$
 Hence, the modeling error is equivalent to the state uncertainty vector
 $$\epsilon_x = 
 \begin{bmatrix} 0 \\ 0 \\ \hat{m}-m \end{bmatrix}.$$</p>

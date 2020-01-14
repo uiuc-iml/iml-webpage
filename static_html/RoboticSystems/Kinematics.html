@@ -13061,6 +13061,45 @@ ul.typeahead-list  > li > a.pull-right {
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
+<style type="text/css">
+    
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+
+    </style>
 
 
 <style type="text/css">
@@ -13466,10 +13505,9 @@ and each joint angle $q_i$ gives the angle of link $l_i$ <em>relative</em> to
 its parent link, not in absolute heading.</p>
 <h4 id="Deriving-the-general-purpose-formula">Deriving the general-purpose formula<a class="anchor-link" href="#Deriving-the-general-purpose-formula">&#182;</a></h4><p>When the first joint rotates by angle $q_1$, the frame of the first link $T_1(q_1)$ is changed. $T_1(q_1)$ can be derived by observing how a point $X$ attached to $l_i$ would be moved. Let $\V{x}_1$ be the coordinates of this point relative to the link's frame (augmented with a 1, in homogeneous coordinates).</p>
 <p>First, observe that relative to $l_1$'s reference frame, $X$ has coordinates $R(q_1)\V{x}_1$ because the link was rotated about the origin:
-
-$$a=\begin{bmatrix} b \end{bmatrix}$$
-
-</p>
+$$\V{x}_1^{ref} = R(q_{1}) \V{x}_{1} = 
+\begin{bmatrix} {\cos q_1} &amp; {-\sin q_1} &amp; {0} \\ {\sin q_1} &amp; {\cos q_1} &amp; {0} \\ 0 &amp; 0 &amp; 1 
+\end{bmatrix}.$$</p>
 
 </div>
 </div>
@@ -14158,42 +14196,7 @@ sparsely is this shape sampled?</p>
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Code for the interactive example (run me!)</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">klampt</span> <span class="k">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">klampt.math</span> <span class="k">import</span> <span class="n">so3</span><span class="p">,</span><span class="n">vectorops</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">HTML</span><span class="p">,</span><span class="n">clear_output</span>
-<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
-<span class="kn">from</span> <span class="nn">klampt.vis</span> <span class="k">import</span> <span class="n">ipython</span> <span class="k">as</span> <span class="n">ipyklampt</span>
-
-<span class="n">world</span> <span class="o">=</span> <span class="n">WorldModel</span><span class="p">()</span>
-<span class="n">world</span><span class="o">.</span><span class="n">readFile</span><span class="p">(</span><span class="s2">&quot;data/planar2R.rob&quot;</span><span class="p">)</span>
-<span class="n">robot</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">robot</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">ee_local</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>  <span class="c1">#end effector coordinates</span>
-<span class="n">robot</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">appearance</span><span class="p">()</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">)</span>
-<span class="n">robot</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">appearance</span><span class="p">()</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
-<span class="n">kvis</span> <span class="o">=</span> <span class="n">ipyklampt</span><span class="o">.</span><span class="n">KlamptWidget</span><span class="p">(</span><span class="n">world</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
-<span class="c1">#look down</span>
-<span class="n">kvis</span><span class="o">.</span><span class="n">setCamera</span><span class="p">({</span><span class="sa">u</span><span class="s1">&#39;near&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;target&#39;</span><span class="p">:</span> <span class="p">{</span><span class="sa">u</span><span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span> <span class="sa">u</span><span class="s1">&#39;far&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;position&#39;</span><span class="p">:</span> <span class="p">{</span><span class="sa">u</span><span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">6.702563444149367</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">0.27057631353305844</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.049312632332197764</span><span class="p">},</span> <span class="sa">u</span><span class="s1">&#39;up&#39;</span><span class="p">:</span> <span class="p">{</span><span class="sa">u</span><span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">0.44113772676914204</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.003726563135538217</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.897431679153433</span><span class="p">}})</span>
-
-<span class="c1">#called whenever configuration is edited</span>
-<span class="k">def</span> <span class="nf">config_update_cb</span><span class="p">(</span><span class="n">index</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
-    <span class="n">kvis</span><span class="o">.</span><span class="n">beginRpc</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">numLinks</span><span class="p">()):</span>
-        <span class="n">Ti</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">getTransform</span><span class="p">()</span>
-        <span class="n">kvis</span><span class="o">.</span><span class="n">addXform</span><span class="p">(</span><span class="s2">&quot;xform&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">length</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
-        <span class="n">kvis</span><span class="o">.</span><span class="n">setTransform</span><span class="p">(</span><span class="s2">&quot;xform&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">R</span><span class="o">=</span><span class="n">Ti</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="o">=</span><span class="n">vectorops</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Ti</span><span class="p">[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">]))</span>
-    <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">numLinks</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">getWorldPosition</span><span class="p">(</span><span class="n">ee_local</span><span class="p">)</span>
-    <span class="n">kvis</span><span class="o">.</span><span class="n">addSphere</span><span class="p">(</span><span class="s2">&quot;ee_position&quot;</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mf">0.05</span><span class="p">)</span>
-    <span class="n">kvis</span><span class="o">.</span><span class="n">addText</span><span class="p">(</span><span class="s2">&quot;wcoords&quot;</span><span class="p">,</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;World coords: </span><span class="si">%f</span><span class="s2"> </span><span class="si">%f</span><span class="s2"> </span><span class="si">%f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">),</span><span class="n">position</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">kvis</span><span class="o">.</span><span class="n">endRpc</span><span class="p">()</span>
-<span class="n">config_widget</span> <span class="o">=</span> <span class="n">ipyklampt</span><span class="o">.</span><span class="n">EditConfig</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">robot</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">kvis</span><span class="p">,</span><span class="n">link_selector</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="n">config_update_cb</span><span class="p">)</span>
-
-<span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">getWorldPosition</span><span class="p">(</span><span class="n">ee_local</span><span class="p">)</span>
-
-<span class="n">display</span><span class="p">(</span><span class="n">kvis</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">config_widget</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Code for the interactive example (run me!)↔</span>
 </pre></div>
 
     </div>
@@ -14214,10 +14217,10 @@ sparsely is this shape sampled?</p>
 
  
  
-<div id="36011631-491c-405d-b8d1-a51cd5682eb6"></div>
+<div id="85e2b18c-e161-4992-a137-d6ed1355e582"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#36011631-491c-405d-b8d1-a51cd5682eb6');
+var element = $('#85e2b18c-e161-4992-a137-d6ed1355e582');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "1f4c09ff20b34a2aa3cd7244d77ee5c2", "version_major": 2, "version_minor": 0}
@@ -14236,10 +14239,10 @@ var element = $('#36011631-491c-405d-b8d1-a51cd5682eb6');
 
  
  
-<div id="dd2a8657-853f-45b8-b029-759bf34baf44"></div>
+<div id="38a7a521-a7e5-4ee3-80f7-8b446b976f14"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#dd2a8657-853f-45b8-b029-759bf34baf44');
+var element = $('#38a7a521-a7e5-4ee3-80f7-8b446b976f14');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "80ca3387f2fb4035a68b086c5630e177", "version_major": 2, "version_minor": 0}
@@ -14264,42 +14267,7 @@ var element = $('#dd2a8657-853f-45b8-b029-759bf34baf44');
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Code for the interactive example (run me!)</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">klampt</span> <span class="k">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">klampt.math</span> <span class="k">import</span> <span class="n">so3</span><span class="p">,</span><span class="n">vectorops</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">HTML</span><span class="p">,</span><span class="n">clear_output</span>
-<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
-<span class="kn">from</span> <span class="nn">klampt.vis</span> <span class="k">import</span> <span class="n">ipython</span> <span class="k">as</span> <span class="n">ipyklampt</span>
-
-<span class="n">world</span> <span class="o">=</span> <span class="n">WorldModel</span><span class="p">()</span>
-<span class="n">world</span><span class="o">.</span><span class="n">readFile</span><span class="p">(</span><span class="s2">&quot;data/planarRP.rob&quot;</span><span class="p">)</span>
-<span class="n">robot</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">robot</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">ee_local</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>  <span class="c1">#end effector coordinates</span>
-<span class="n">robot</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">appearance</span><span class="p">()</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">)</span>
-<span class="n">robot</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">appearance</span><span class="p">()</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
-<span class="n">kvis</span> <span class="o">=</span> <span class="n">ipyklampt</span><span class="o">.</span><span class="n">KlamptWidget</span><span class="p">(</span><span class="n">world</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
-<span class="c1">#look down</span>
-<span class="n">kvis</span><span class="o">.</span><span class="n">setCamera</span><span class="p">({</span><span class="sa">u</span><span class="s1">&#39;near&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;target&#39;</span><span class="p">:</span> <span class="p">{</span><span class="sa">u</span><span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span> <span class="sa">u</span><span class="s1">&#39;far&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;position&#39;</span><span class="p">:</span> <span class="p">{</span><span class="sa">u</span><span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">6.702563444149367</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">0.27057631353305844</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.049312632332197764</span><span class="p">},</span> <span class="sa">u</span><span class="s1">&#39;up&#39;</span><span class="p">:</span> <span class="p">{</span><span class="sa">u</span><span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">0.44113772676914204</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.003726563135538217</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.897431679153433</span><span class="p">}})</span>
-
-<span class="c1">#called whenever configuration is edited</span>
-<span class="k">def</span> <span class="nf">config_update_cb</span><span class="p">(</span><span class="n">index</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
-    <span class="n">kvis</span><span class="o">.</span><span class="n">beginRpc</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">numLinks</span><span class="p">()):</span>
-        <span class="n">Ti</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">getTransform</span><span class="p">()</span>
-        <span class="n">kvis</span><span class="o">.</span><span class="n">addXform</span><span class="p">(</span><span class="s2">&quot;xform&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">length</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
-        <span class="n">kvis</span><span class="o">.</span><span class="n">setTransform</span><span class="p">(</span><span class="s2">&quot;xform&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">R</span><span class="o">=</span><span class="n">Ti</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="o">=</span><span class="n">vectorops</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Ti</span><span class="p">[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">]))</span>
-    <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">numLinks</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">getWorldPosition</span><span class="p">(</span><span class="n">ee_local</span><span class="p">)</span>
-    <span class="n">kvis</span><span class="o">.</span><span class="n">addSphere</span><span class="p">(</span><span class="s2">&quot;ee_position&quot;</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mf">0.05</span><span class="p">)</span>
-    <span class="n">kvis</span><span class="o">.</span><span class="n">addText</span><span class="p">(</span><span class="s2">&quot;wcoords&quot;</span><span class="p">,</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;World coords: </span><span class="si">%f</span><span class="s2"> </span><span class="si">%f</span><span class="s2"> </span><span class="si">%f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">),</span><span class="n">position</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">kvis</span><span class="o">.</span><span class="n">endRpc</span><span class="p">()</span>
-<span class="n">config_widget</span> <span class="o">=</span> <span class="n">ipyklampt</span><span class="o">.</span><span class="n">EditConfig</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">robot</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">kvis</span><span class="p">,</span><span class="n">link_selector</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="n">config_update_cb</span><span class="p">)</span>
-
-<span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">getWorldPosition</span><span class="p">(</span><span class="n">ee_local</span><span class="p">)</span>
-
-<span class="n">display</span><span class="p">(</span><span class="n">kvis</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">config_widget</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Code for the interactive example (run me!)↔</span>
 </pre></div>
 
     </div>
@@ -14320,10 +14288,10 @@ var element = $('#dd2a8657-853f-45b8-b029-759bf34baf44');
 
  
  
-<div id="3d7942a9-0aa3-462a-8d81-8044776980d8"></div>
+<div id="0ab73492-842b-4375-8dd4-4695ed2cd5d4"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#3d7942a9-0aa3-462a-8d81-8044776980d8');
+var element = $('#0ab73492-842b-4375-8dd4-4695ed2cd5d4');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "27948f2b648b42bb95ea82525cb12b8d", "version_major": 2, "version_minor": 0}
@@ -14342,10 +14310,10 @@ var element = $('#3d7942a9-0aa3-462a-8d81-8044776980d8');
 
  
  
-<div id="058395b0-81e6-4145-8dd8-6a4720211b19"></div>
+<div id="c785cf86-0c7f-42b7-9e69-eda7f21aad13"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#058395b0-81e6-4145-8dd8-6a4720211b19');
+var element = $('#c785cf86-0c7f-42b7-9e69-eda7f21aad13');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "44aabdaa824b4b93b4feec05afebf810", "version_major": 2, "version_minor": 0}
@@ -14370,40 +14338,7 @@ var element = $('#058395b0-81e6-4145-8dd8-6a4720211b19');
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Code for the interactive example (run me!)</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">klampt</span> <span class="k">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">klampt.math</span> <span class="k">import</span> <span class="n">so3</span><span class="p">,</span><span class="n">vectorops</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">HTML</span><span class="p">,</span><span class="n">clear_output</span>
-<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
-<span class="kn">from</span> <span class="nn">klampt.vis</span> <span class="k">import</span> <span class="n">ipython</span> <span class="k">as</span> <span class="n">ipyklampt</span>
-
-<span class="n">world</span> <span class="o">=</span> <span class="n">WorldModel</span><span class="p">()</span>
-<span class="n">world</span><span class="o">.</span><span class="n">readFile</span><span class="p">(</span><span class="s2">&quot;data/tx90l.rob&quot;</span><span class="p">)</span>
-<span class="n">robot</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">robot</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">ee_local</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>  <span class="c1">#end effector coordinates</span>
-<span class="n">robot</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">appearance</span><span class="p">()</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">)</span>
-<span class="n">robot</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">appearance</span><span class="p">()</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
-<span class="n">kvis</span> <span class="o">=</span> <span class="n">ipyklampt</span><span class="o">.</span><span class="n">KlamptWidget</span><span class="p">(</span><span class="n">world</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
-
-<span class="c1">#called whenever configuration is edited</span>
-<span class="k">def</span> <span class="nf">config_update_cb</span><span class="p">(</span><span class="n">index</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
-    <span class="n">kvis</span><span class="o">.</span><span class="n">beginRpc</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">numLinks</span><span class="p">()):</span>
-        <span class="n">Ti</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">getTransform</span><span class="p">()</span>
-        <span class="n">kvis</span><span class="o">.</span><span class="n">addXform</span><span class="p">(</span><span class="s2">&quot;xform&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">length</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
-        <span class="n">kvis</span><span class="o">.</span><span class="n">setTransform</span><span class="p">(</span><span class="s2">&quot;xform&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">R</span><span class="o">=</span><span class="n">Ti</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="o">=</span><span class="n">Ti</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">numLinks</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">getWorldPosition</span><span class="p">(</span><span class="n">ee_local</span><span class="p">)</span>
-    <span class="n">kvis</span><span class="o">.</span><span class="n">addSphere</span><span class="p">(</span><span class="s2">&quot;ee_position&quot;</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mf">0.05</span><span class="p">)</span>
-    <span class="n">kvis</span><span class="o">.</span><span class="n">addText</span><span class="p">(</span><span class="s2">&quot;wcoords&quot;</span><span class="p">,</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;World coords: </span><span class="si">%f</span><span class="s2"> </span><span class="si">%f</span><span class="s2"> </span><span class="si">%f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">),</span><span class="n">position</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">kvis</span><span class="o">.</span><span class="n">endRpc</span><span class="p">()</span>
-<span class="n">config_widget</span> <span class="o">=</span> <span class="n">ipyklampt</span><span class="o">.</span><span class="n">EditConfig</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">robot</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">kvis</span><span class="p">,</span><span class="n">link_selector</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="n">config_update_cb</span><span class="p">)</span>
-
-<span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">getWorldPosition</span><span class="p">(</span><span class="n">ee_local</span><span class="p">)</span>
-
-<span class="n">display</span><span class="p">(</span><span class="n">kvis</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">config_widget</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Code for the interactive example (run me!)↔</span>
 </pre></div>
 
     </div>
@@ -14424,10 +14359,10 @@ var element = $('#058395b0-81e6-4145-8dd8-6a4720211b19');
 
  
  
-<div id="219d5b20-8a2f-4820-9236-5cd3b0087c5e"></div>
+<div id="60eae97a-3682-4dda-9222-49f99411cbdf"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#219d5b20-8a2f-4820-9236-5cd3b0087c5e');
+var element = $('#60eae97a-3682-4dda-9222-49f99411cbdf');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "ade51ddcd5e7442b9358ac10b8fd372c", "version_major": 2, "version_minor": 0}
@@ -14446,10 +14381,10 @@ var element = $('#219d5b20-8a2f-4820-9236-5cd3b0087c5e');
 
  
  
-<div id="5687de56-b7d7-48e5-b5ee-d63d3b2037d0"></div>
+<div id="58ba8949-dd15-4155-bf72-fcd4752e82bf"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#5687de56-b7d7-48e5-b5ee-d63d3b2037d0');
+var element = $('#58ba8949-dd15-4155-bf72-fcd4752e82bf');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "059162a2485f4331af20a2e5ed19057a", "version_major": 2, "version_minor": 0}

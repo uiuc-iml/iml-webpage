@@ -13038,6 +13038,45 @@ ul.typeahead-list  > li > a.pull-right {
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
+<style type="text/css">
+    
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+
+    </style>
 
 
 <style type="text/css">
@@ -13178,7 +13217,7 @@ $\newcommand{\Reals} { \mathbb{R} }$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Section-IV.-DYNAMICS-AND-CONTROL">Section IV. DYNAMICS AND CONTROL<a class="anchor-link" href="#Section-IV.-DYNAMICS-AND-CONTROL">&#182;</a></h1><h1 id="Chapter-14.-Stabilizing-Controlled-Dynamical-Systems">Chapter 14. Stabilizing Controlled Dynamical Systems<a class="anchor-link" href="#Chapter-14.-Stabilizing-Controlled-Dynamical-Systems">&#182;</a></h1>
+<h1 id="Section-IV.-DYNAMICS-AND-CONTROL">Section IV. DYNAMICS AND CONTROL<a class="anchor-link" href="#Section-IV.-DYNAMICS-AND-CONTROL">&#182;</a></h1><h1 id="Chapter-15.-Stabilizing-Controlled-Dynamical-Systems">Chapter 15. Stabilizing Controlled Dynamical Systems<a class="anchor-link" href="#Chapter-15.-Stabilizing-Controlled-Dynamical-Systems">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -13517,13 +13556,13 @@ assumption.</p>
 <li><p>Time delay</p>
 </li>
 </ul>
-<p>occurs when the control is subject to bounds
+<p><strong>Control saturation</strong> occurs when the control is subject to bounds
 $u_{min} \leq u \leq u_{max}$, like minimum/maximum torque, or
 minimum/maximum throttle. If the PID control produces a value of $u$
 outside the bounds, it should be clamped to produce a valid value. This
 clamping will slow down convergence and in some cases, cause
 instability.</p>
-<p>Derivative estimation errors are a problem because derivatives may be
+<p><strong>Derivative estimation</strong> errors are a problem because derivatives may be
 approximated using finite differencing:
 $\dot{x} \approx \frac{x(t)-x(t-\Delta t)}{\Delta t}$. However, since
 $\Delta t$ is small and in the denominator, the derivative is more
@@ -13531,7 +13570,7 @@ sensitive to measurement noise than position estimates. This causes the
 $D$ term to vary, which in turn causing the control to track less
 precisely and in an irregular fashion. To improve derivative estimation
 accuracy, a low-pass filter is typically applied to the signal $x(t)$.</p>
-<p>Integral wind-up occurs when the control cannot be made large enough to
+<p><strong>Integral wind-up</strong> occurs when the control cannot be made large enough to
 counteract a steady-state error, such as when the control is saturated.
 In this case, $I$ proceeds toward infinity, which then causes delays
 responding to changes in setpoint. Suppose the system reaches a steady
@@ -13542,7 +13581,7 @@ the system will not budge until the high positive value of $I$ is
 "erased" by negative errors $x-x_d$. This problem is typically addressed
 by capping the magnitude of $I$ to ensure bounded controls and
 sufficiently fast response.</p>
-<p>Finite control frequency can cause instability when gains are stiff in a
+<p><strong>Finite control frequency</strong> can cause instability when gains are stiff in a
 manner similar to errors in Euler integration. The control computed at
 one time step is applied for $\Delta t$ time in the continuous dynamics
 of the system. The controller cannot respond to changes faster than this

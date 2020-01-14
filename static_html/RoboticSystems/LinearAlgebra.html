@@ -13038,6 +13038,45 @@ ul.typeahead-list  > li > a.pull-right {
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
+<style type="text/css">
+    
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+
+    </style>
 
 
 <style type="text/css">
@@ -13388,13 +13427,23 @@ computing (see <a href="MatrixComputations.html#Singular-value-decomposition">Ap
 <h3 id="Positive-definiteness">Positive definiteness<a class="anchor-link" href="#Positive-definiteness">&#182;</a></h3><p>An $n\times n$ matrix $A$ is called <em>symmetric positive definite</em>
 (s.p.d.), or just positive definite, if it is symmetric ($A=A^T$) and
 satisfies the following condition:
-$$\V{x}^T A \V{x} &gt; 0 \text{ for all }\V{x}\in \mathbb{R}^n.$$  For
-example, an identity matrix is s.p.d., as is any matrix $A = B^T B$ with
-$B$ a matrix with rank $n$. An s.p.d. matrix is invertible.</p>
+$$\V{x}^T A \V{x} &gt; 0 \text{ for all }\V{x}\in \mathbb{R}^n.$$ 
+Some useful properties include:</p>
+<ul>
+<li>An identity matrix is s.p.d.</li>
+<li>A scaling $A = cB$ of a s.p.d. matrix $B$ is s.p.d. iff $c &gt; 0$.</li>
+<li>Any matrix $A = B^T B$, with $B$ a matrix with rank $n$, is s.p.d.</li>
+<li>A symmetric matrix with eigenvalues $\lambda_1,\ldots,\lambda_n$ is symmetric positive definite if all $\lambda_i &gt; 0, \forall i=1,...,n$.</li>
+<li>An s.p.d. matrix is invertible.</li>
+</ul>
 <p>A matrix is positive semi-definite (p.s.d.) if the strict positivity
 condition is replaced with a nonnegativity condition:
-$$\V{x}^T A \V{x} \geq 0 \text{ for all }\V{x}\in \mathbb{R}^n.$$ Any
-s.p.d. matrix is also p.s.d., and any matrix $A=B^TB$ is also p.s.d.</p>
+$$\V{x}^T A \V{x} \geq 0 \text{ for all }\V{x}\in \mathbb{R}^n.$$</p>
+<ul>
+<li>Any s.p.d. matrix is also p.s.d.</li>
+<li>Any matrix $A=B^TB$ is also p.s.d.</li>
+<li>A symmetric matrix with eigenvalues $\lambda_1,\ldots,\lambda_n$ is symmetric positive definite if all $\lambda_i \geq 0, \forall i=1,...,n$.</li>
+</ul>
 
 </div>
 </div>
@@ -13404,7 +13453,7 @@ s.p.d. matrix is also p.s.d., and any matrix $A=B^TB$ is also p.s.d.</p>
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
     </div>

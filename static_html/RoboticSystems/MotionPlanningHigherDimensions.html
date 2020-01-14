@@ -13038,6 +13038,45 @@ ul.typeahead-list  > li > a.pull-right {
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
+<style type="text/css">
+    
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+
+    </style>
 
 
 <style type="text/css">
@@ -13152,7 +13191,7 @@ $( document ).ready(function(){
 
   
         // toc2
-        var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {}, "toc_section_display": true, "toc_window_display": true};
+        var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {}, "toc_section_display": true, "toc_window_display": false};
         // fire the main function with these parameters
         require(['nbextensions/toc2/toc2'], function (toc2) {
             toc2.table_of_contents(cfg);
@@ -13178,7 +13217,15 @@ $\newcommand{\Reals} { \mathbb{R} }$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Section-III.-MOTION-PLANNING">Section III. MOTION PLANNING<a class="anchor-link" href="#Section-III.-MOTION-PLANNING">&#182;</a></h1><h1 id="Chapter-10.-Motion-Planning-in-Higher-Dimensions">Chapter 10. Motion Planning in Higher Dimensions<a class="anchor-link" href="#Chapter-10.-Motion-Planning-in-Higher-Dimensions">&#182;</a></h1>
+<h1 id="Section-III.-MOTION-PLANNING">Section III. MOTION PLANNING<a class="anchor-link" href="#Section-III.-MOTION-PLANNING">&#182;</a></h1><h1 id="Chapter-10.-Motion-Planning-in-Higher-Dimensions">Chapter 10. Motion Planning in Higher Dimensions<a class="anchor-link" href="#Chapter-10.-Motion-Planning-in-Higher-Dimensions">&#182;</a></h1><style>
+div.figcaption {    
+    text-align: center;
+    margin-left:1em;
+    margin-top:1em;
+    margin-right:1em;
+    margin-bottom:1em;
+    }
+</style>
 </div>
 </div>
 </div>
@@ -13210,8 +13257,7 @@ the number of obstacle vertices! This dramatic increase in the
 complexity of exact algorithms in dimensions 3 and higher has led to the
 development of several approximate methods, which are discussed in
 detail in this chapter.</p>
-<h2 id="Implicit-C-obstacle-representation">Implicit C-obstacle representation<a class="anchor-link" href="#Implicit-C-obstacle-representation">&#182;</a></h2><p>As before, the forbidden region is composed of a union of C-obstacles as
-<a href="#Implicit-C-obstacle-representation">described abpve</a>. C-obstacles for general articulated robots
+<h2 id="Implicit-C-obstacle-representation">Implicit C-obstacle representation<a class="anchor-link" href="#Implicit-C-obstacle-representation">&#182;</a></h2><p>C-obstacles for general articulated robots
 are in general, even more complex than they were in 2D and 3D. As a
 result, most motion planning algorithms outside of planar environments
 do not attempt to build an explicit representation of C-obstacles, but
@@ -13227,8 +13273,7 @@ F &amp; \text{ if $q$ is in the forbidden region}
 \end{array} \right.$$ A planner can then call this subroutine to probe
 whether a configuration is feasible. Since this will be called thousands
 or millions of times, fast planning in high-dimensional spaces requires
-efficient collision tests as described in <a href="Geometry.html#Collision-Queries">Chapter 7</a>
-.</p>
+efficient collision tests as described in <a href="Geometry.html#Collision-Queries">Chapter 7</a>.</p>
 <p>Often, we will also need to check whether a <em>motion</em> is feasible as
 well, usually a short segment of a path $\overline{pq}$ between
 configurations $p,q \in \mathcal{C}$. The process is called a
@@ -13545,8 +13590,6 @@ all milestones that are mutually connected by any path.</p>
 <p><a name="alg:PRM">Algorithm Incremental-PRM(s,g,T)</a></p>
 <ol>
 <li>$V \gets \{ s, g \}$.</li>
-</ol>
-<ul>
 <li>$E \gets \{ \}$.</li>
 <li>$CC[s] \gets \{s\}$.</li>
 <li>$CC[g] \gets \{g\}$.</li>
@@ -13562,7 +13605,7 @@ all milestones that are mutually connected by any path.</p>
 <li>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<strong>if</strong> $g \in CC[s]$ </li>
 <li>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<strong>return</strong> the shortest path in $G = (V,E)$ between $s$ and $g$. </li>
 <li><strong>return</strong> "no path"</li>
-</ul>
+</ol>
 <hr>
 <p>Every time an isolated milestone gets added to the graph (Lines 3, 4, and 9), it gets assigned
 a connected component in the data structure $CC$. The connected
@@ -13599,7 +13642,7 @@ random number generator). In typical problems, the probability of
 successfully finding a path increases as $N$ increases. After a "burn
 in" phase with low $N$ where there is no change of finding a solution,
 the probability of success rises fairly sharply before tapering off. The
-slope of this tapering off depends on the visibility characteristics of
+slope of this tapering off depends Ron the visibility characteristics of
 the problem, which we shall discuss below.</p>
 <p>The average time needed for incremental PRM to solve a given problem
 depends on a number of factors. Firstly, efficient collision queries are
@@ -13803,8 +13846,7 @@ repeatedly replaced with shorter, feasible segments.</p>
 <p><img src="figures/planning/shortcutting.svg" alt="fig:Shortcutting"></p>
 <div class="figcaption"><a name="fig:Shortcutting">Figure 4.</a>
    A shortcutting heuristic can quickly smooth out the jerkiest parts of
-paths produced by a sampling-based
-planner.
+paths that are generated by a sampling-based planner.
     </div><hr>
 <p>In order to do so, two random points are sampled along the path. With
 the path being a curve $y(s):[0,1]\rightarrow \mathcal{C}$, we sample
@@ -13821,7 +13863,65 @@ The shortest path found after shortcutting is maintained through each of
 these restarts. Eventually, we might get lucky and find a path close to
 optimal. It turns out that for many problems, this approach can
 outperform RRT* (or PRM*)!</p>
-<h3 id="Dynamic-collision-checking">Dynamic collision checking<a class="anchor-link" href="#Dynamic-collision-checking">&#182;</a></h3><p>TODO</p>
+<h3 id="Dynamic-collision-checking">Dynamic collision checking<a class="anchor-link" href="#Dynamic-collision-checking">&#182;</a></h3><p>So far we have assumed that edges in configuration space can be checked for collision using the $Visible$ subroutine, but checking collisions is not as straightforward as in simple geometric spaces, where we could simply check the collision status of a line segment.</p>
+<p>The simplest method for approximating the feasibility of a configuration-space line segment $\overline{ab}$ is to subdivide $\overline{ab}$ into small segments, with configurations $q_1=a,q_2,\ldots,q_{n-1},q_n=b$ uniformlyspaced no more than $\epsilon$ distance apart.  Then, each of $q_1,...,q_n$ is checked for collision using the $Feasible$ subroutine.  The segment is considered visible if all configurations are feasible.</p>
+<p>Note that this is only an approximate method that depends on the resolution $\epsilon$.  If this is too large, then collisions may be missed between checked points $q_{i}$ and $q_{i+1}$ even if both $q_{i}$ and $q_{i+1}$ are feasible.  On the other hand, if $\epsilon$ is too small, then this takes a lot of time.  Precisely, the number of collisions checked is $n = \lceil d(a,b) / \epsilon \rceil$.</p>
+<p>Another issue is the order in which the configurations are checked.  In the worst case, the edge is feasible, and all configurations must be checked for feasibility.  However, if the edge is infeasible, then we can save time by finding an infeasible configuration quickly.  Let us suppose that both $a$ and $b$ are feasible.  Then, in the absence of additional information, the point that is most likely to lead to a collision is the midpoint $(a+b)/2$.  This intuition gives a recursive implementation that is effective in practice:</p>
+<hr>
+<p><a name="alg:Visible-Recurse">Algorithm Visible-Recurse($a,b,\epsilon$)</a></p>
+<ol>
+<li>If this is the first recursive call, check $a$ and $b$ for collision.  Return false if either $\neg Feasible(a)$ or $\neg Feasible(b)$.</li>
+<li>If $d(a,b) \leq \epsilon$ return true.</li>
+<li>$m \gets (a+b)/2$</li>
+<li>If $\neg Feasible(m)$, return false.</li>
+<li>Return Visible-Recurse$(a,m,\epsilon)$ $\wedge$  Visible-Recurse$(m,b,\epsilon)$.</li>
+</ol>
+<hr>
+<p>This approach is illustrated in <a href="#fig:dynamic-cc">Figure 5.a</a>.</p>
+<hr>
+<table>
+<thead><tr>
+<th>(a) Approximate dynamic CC with recursion</th>
+<th>(b) Exact dynamic CC with adaptive recursion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="figures/planning/dynamic_cc.png" alt="fig:dynamic-cc"></td>
+<td><img src="figures/planning/dynamic_cc_adaptive.png" alt="fig:dynamic-cc-adaptive"></td>
+</tr>
+</tbody>
+</table>
+<div class="figcaption"><a name="fig:dynamic-cc">Figure 5.</a>
+   Approximate and exact dynamic collision checking methods.
+    </div><hr>
+<p>Although this approximate technique is by far the most widely used in practice, <em>exact</em> dynamic collision checking methods are also available.  These methods are based on similar recursions, but use additional information about the clearance of a configuration.  Recall that the clearance $c(q)$ of a configuration is the distance in C-space to the nearest C-obstacle.  If we can show that $d(a,b) \leq c(a)+c(b)$, then we can be certain that $\overline{ab}$ is collision free.  This is because the balls centered at $a$ and $b$ with radii $c(a)$ and $c(b)$, overlap, are in free space, and contain $\overline{ab}$ in their union.  (In most cases, however, we do not have access to an exact clearance function, but this reasoning still works when $c(q)$ is any lower bound on clearance.)  This gives the following exact algorithm:</p>
+<hr>
+<p><a name="alg:Visible-Exact1">Algorithm Visible-Exact1($a,b$)</a></p>
+<ol>
+<li>If this is the first recursive call, check $a$ and $b$ for collision.  Return false if either $\neg Feasible(a)$ or $\neg Feasible(b)$.</li>
+<li>If $d(a,b) \leq c(a) + c(b)$ return true.</li>
+<li>$m \gets (a+b)/2$</li>
+<li>If $\neg Feasible(m)$, return false.</li>
+<li>Return Visible-Exact1$(a,m)$ $\wedge$  Visible-Exact1$(m,b)$.</li>
+</ol>
+<hr>
+<p>This is an adaptive recursion method that terminates quickly when $a$ and $b$ are far from obstacles, but spends more time when the line segment passes close to obstacles.</p>
+<p>It is more likely to have <em>workspace distance</em> information between pairs of objects.  Let $CO_1,\ldots,CO_N$ be the C-obstacles, and let $c_i(q)$ indicate the clearance of the $i$'th obstacle in workspace at configuration $q$.  We also need a function $\eta_i(q,q^\prime)$ that gives an upper bound on the distance that <em>any point on the robot moves</em> in workspace during the motion from $q$ to $q^\prime$.</p>
+<p>For example, consider a 2R robot arm with link lengths $L_1$ and $L_2$, the link geometries are simple line segments, and there are two C-obstacles, one for each link.  The collision constraint for link 1 only depends on $q_1$, and the points on the link are contained within a circle with radius $L_1$.  Moreover, in a movement of $\theta$ radians, the tip of the link moves at most $L_1 \theta$ distance in workspace.  Hence, $$\eta_1(q,q^\prime) = L_1 |q_1 - q^\prime_1 |$$ is a suitable upper bound.  Through similar reasoning, we can show that $$\eta_2(q,q^\prime) = (L_1+L_2) (|q_1 - q^\prime_1 | + |q_2 - q^\prime_2 |)$$ is an upper bound on how far the tip of link 2 moves.  There are general formulas like this for arbitrary articulated robots.  Specifically, $$\eta_k(q,q^\prime) = (R_k + \sum_i^{k-1} L_i) \| (q_1,\ldots,q_k) - (q^\prime_1,\ldots,q_k^\prime)\|_1$$ is a suitable function for all nR robots.</p>
+<p>The following algorithm uses this bound to perform exact collision detection.</p>
+<hr>
+<p><a name="alg:Visible-Exact2">Algorithm Visible-Exact2($a,b$)</a></p>
+<ol>
+<li>If this is the first recursive call, check $a$ and $b$ for collision.  Return false if either $\neg Feasible(a)$ or $\neg Feasible(b)$.</li>
+<li>If $\eta_i(a,b) \leq c_i(a) + c_i(b)$ for all C-obstacles $i=1,\ldots,N$, return true.</li>
+<li>$m \gets (a+b)/2$</li>
+<li>If $\neg Feasible(m)$, return false.</li>
+<li>Return Visible-Exact2$(a,m)$ $\wedge$  Visible-Exact2$(m,b)$.</li>
+</ol>
+<hr>
+<p>A final performance enhancement is that if the condition in Line 2 is satisfied for any C-obtstacle, you can just ignore it from then on.  This focuses effort only on the constraints that need further refinement.</p>
+<p>A non-recursive variant of this algorithm, known as conservative advancement, gives the earliest point of contact during a motion from $a$ to $b$ by walking along the line segment as far as possible ensuring that the condition in Line 2 holds.  This is useful for collision detection in simulation.</p>
 <h3 id="Nearest-neighbor-queries">Nearest-neighbor queries<a class="anchor-link" href="#Nearest-neighbor-queries">&#182;</a></h3><p>TODO</p>
 <h3 id="Common-pitfalls-in-employing-PRMs">Common pitfalls in employing PRMs<a class="anchor-link" href="#Common-pitfalls-in-employing-PRMs">&#182;</a></h3><p>Sampling-based motion planning is appealing since it can be implemented
 for a wide variety of problems by non-planning experts. However, there
@@ -14157,7 +14257,7 @@ local minima.</p>
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
     </div>

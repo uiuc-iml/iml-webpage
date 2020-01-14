@@ -13038,6 +13038,45 @@ ul.typeahead-list  > li > a.pull-right {
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
+<style type="text/css">
+    
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+
+    </style>
 
 
 <style type="text/css">
@@ -13178,6 +13217,20 @@ $( document ).ready(function(){
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Equation-solving">Equation solving<a class="anchor-link" href="#Equation-solving">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Method-of-least-squares">Method of least-squares<a class="anchor-link" href="#Method-of-least-squares">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Eigendecomposition">Eigendecomposition<a class="anchor-link" href="#Eigendecomposition">&#182;</a></h2><h2 id="Singular-value-decomposition">Singular value decomposition<a class="anchor-link" href="#Singular-value-decomposition">&#182;</a></h2><p>The singular value decomposition (SVD) gives a similar factorization to
 the eigendecomposition, but can be applied to non-square matrices. It
 also gives convenient solutions to find a matrix's rank and null space.</p>
@@ -13186,7 +13239,14 @@ $$A = U \Sigma V^T$$ where $U$ is an $m \times m$ orthogonal matrix, $V$
 is an $n \times m$ matrix with orthogonal columns, and $\Sigma$ is an
 $m \times m$ matrix with zero entries on all of the off-diagonals, and
 the diagonal containing only nonnegative entries.</p>
-<p>The SVD can be used for many purposes, but in this book we use it
+<p>The SVD can be used for many purposes:</p>
+<ul>
+<li>Calculating matrix rank</li>
+<li>Calculating a pseudoinverse</li>
+<li>Dimensionality reduction</li>
+<li>Least-squares equation solving</li>
+</ul>
+<p>In this book we use it
 primarily for calculating the matrix pseudoinverse $A^+$. Once the SVD
 is computed, the pseudoinverse $\Sigma^+$ of $\Sigma$ can be computed by
 taking the reciprocal of all nonzero diagonal entries of $\Sigma$, and
@@ -13194,20 +13254,6 @@ leaving the zero entries. Then the pseudoinverse of $A$ is
 $A^+ = V \Sigma^+ U^T$. It is an exercise to convince yourself that this
 solution indeed satisfies the properties of the pseudoinverse.</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Equation-Solving">Equation Solving<a class="anchor-link" href="#Equation-Solving">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Method-of-Least-Squares">Method of Least-Squares<a class="anchor-link" href="#Method-of-Least-Squares">&#182;</a></h2>
 </div>
 </div>
 </div>
