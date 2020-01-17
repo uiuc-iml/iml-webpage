@@ -130,26 +130,24 @@ function showHide(shID) {
 <li>Planning models are fully decoupled from simulation models, which helps simulate uncertainty.</li>
 </ul>
 
-<p><span class="subheading">Current version</span>: 0.8.1</p>
+<p><span class="subheading">Current version</span>: 0.8.2</p>
 <p><span class="subheading">Languages</span>: C++ and Python</p>
 <p><span class="subheading">Supported platforms</span>: *nix environments, Windows, and Mac OSX.</p>
 
 <div class="subheading">What's new?</div>
-<p>Version 0.8.1 introduces:</p>
+<p>Version 0.8.2 introduces:</p>
 <ul>
-<li>Integration with Jupyter Notebook.</li>
-<li>Improved build system for Python, allowing easy installation via pip install python.</li>
-<li>Cleaner file structure, with C++ files in the Cpp directory.</li>
-<li>Cleaned up documentation, separating C++ and Python docs.  Sphinx is now used for Python docs.</li>
-<li>Added Python utility programs (klampt_browse, klampt_sim, klampt_path, klampt_thumbnail).</li>
-<li>Improvements support Python visualization on Mac.</li>
-<li>Upgraded to PyQt5. PyQt4 is still supported for now.</li>
-<li>Geometry conversions exposed in Python via the convert function.</li>
-<li>Improved usage of some graphics card resources for streaming point clouds.</li>
-<li>Support for LOG4CXX logging.</li>
-<li>Removed dependencies on Boost and upgraded to C++11.</li>
-<li>Removed dependencies on GLUT and GLUI. (Some examples still need to be upgraded to Qt.)</li>
-<li>Cleaned up some cruft in KrisLibrary.</li>
+<li>Can now load almost all files from URLs! Just use an http:// prefix to the filenames of worlds, robots, rigid objects, or geometries. This also works for resources in Python. (Resources in C++ are not done yet)
+<li>New mesh visualization shows smooth meshes and black silhouettes by default, making things look prettier.
+<li>Can now mount robots in URDF files (see tutorial for an example).
+<li>Added ability to specify cost functions in kinematic planning.
+<li>Added conversions to Numpy objects in Python API (klampt.io.numpy_convert)
+<li>Added much more ROS support in Python API (klampt.io.ros module).
+<li>Added conversions to Open3D objects in Python API (klampt.io.open3d_convert)
+<li>The Python loading API has changed to have a more complete list of types and file extensions.
+<li>Fixed some bugs when editing in the klampt_browser Python program.
+<li>Fixed some motion planning bugs (closed loop + moving subset spaces in Python, some planners in C++).
+<li>Fixed a bizarre Python 2 to 3 conversion bug in se3.mul.
 </ul>
 <div class="separator"></div>
 
@@ -219,16 +217,16 @@ function showHide(shID) {
     </ul>
 
 <p><b>Precompiled binaries</b></p>
-<p>Windows (32 bit) (up to date as of 1/6/2018).  You must also install the x86 <a href="https://www.microsoft.com/en-us/download/details.aspx?id=48145">Visual Studio 2015 Runtime</a>.</p>
+<p>Windows (32 bit) (up to date as of 1/17/2020).  You must also install the x86 <a href="https://www.microsoft.com/en-us/download/details.aspx?id=48145">Visual Studio 2015 Runtime</a>.</p>
 <ul>
-<li><a href="http://motion.cs.illinois.edu/software/klampt/0.8/Klampt-0.8.1-win32.msi">Win32 Klamp't applications, static library (VS 2015 build) and C++ headers.</a> </li>
+<li><a href="http://motion.cs.illinois.edu/software/klampt/0.8/Klampt-0.8.2-win32.msi">Win32 Klamp't applications, static library (VS 2015 build) and C++ headers.</a> </li>
 </ul>
 <p>To compile your own C++ programs under Windows, you will need to 1) clone Klampt and KrisLibrary from git, then 3) unpack the correct precompiled dependency libraries to the Klampt/Library folder:</p>
 <ul>
-<li><a href="http://motion.cs.illinois.edu/software/klampt/0.8/Klampt-0.8.0.win32-deps-vs2015d.zip">Win32 dependency libraries, Visual Studio 2015, Debug build</a> </li>
-<li><a href="http://motion.cs.illinois.edu/software/klampt/0.8/Klampt-0.8.0.win32-deps-vs2015.zip">Win32 dependency libraries, Visual Studio 2015, Release build</a> </li>
-<li><a href="http://motion.cs.illinois.edu/software/klampt/0.8/Klampt-0.8.0.win64-deps-vs2015d.zip">x64 dependency libraries, Visual Studio 2015, Debug build</a> </li>
-<li><a href="http://motion.cs.illinois.edu/software/klampt/0.8/Klampt-0.8.0.win64-deps-vs2015.zip">x64 dependency libraries, Visual Studio 2015, Release build</a> </li>
+<li><a href="http://motion.cs.illinois.edu/software/klampt/0.8/Klampt-0.8.2.win32-deps-vs2015d.zip">Win32 dependency libraries, Visual Studio 2015, Debug build</a> </li>
+<li><a href="http://motion.cs.illinois.edu/software/klampt/0.8/Klampt-0.8.2.win32-deps-vs2015.zip">Win32 dependency libraries, Visual Studio 2015, Release build</a> </li>
+<li><a href="http://motion.cs.illinois.edu/software/klampt/0.8/Klampt-0.8.2.win64-deps-vs2015d.zip">x64 dependency libraries, Visual Studio 2015, Debug build</a> </li>
+<li><a href="http://motion.cs.illinois.edu/software/klampt/0.8/Klampt-0.8.2.win64-deps-vs2015.zip">x64 dependency libraries, Visual Studio 2015, Release build</a> </li>
 </ul>
 
 <div class="separator"></div>
