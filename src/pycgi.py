@@ -1,4 +1,5 @@
 #!/usr/bin/python
+from __future__ import print_function
 import datetime
 import sys
 import os
@@ -21,7 +22,7 @@ def include(fn):
 
 def cleanpy(s):
     if s.count('</python>') != 0:
-        print 'Warning: </python> tag encountered without corresponding <python> opening tag\n'
+        print('Warning: </python> tag encountered without corresponding <python> opening tag\n')
         s = s.replace('</python>','')
     return s
 
@@ -31,20 +32,22 @@ def run_pycgi(contents):
     for subseg in segs[1:]:
         pos = subseg.find('</python>')
         cmd = subseg[0:pos]
-        #print 'Evaluating...\n"""',cmd,'"""\n'
+        #print('Evaluating...\n"""',cmd,'"""\n')
         try:
             s = eval(cmd)
             output = output+s
         except:
-            #print 'Error encountered during evaluation\n'
-            #print sys.exc_type, ":", sys.exc_value
-            #print 'Trying exec...'
+            #print('Error encountered during evaluation\n')
+            #exc_type,exc_value,exc_tb = sys.exc_info()
+            #print(exc_type, ":", exc_value)
+            #print('Trying exec...')
             try:
                 exec(cmd,globals(),globals())
             except:
-                print 'Neither eval() or exec() worked...\n'
-                print sys.exc_type, ":", sys.exc_value
-                print cmd
+                print('Neither eval() or exec() worked...\n')
+                exc_type,exc_value,exc_tb = sys.exc_info()
+                print(exc_type, ":", exc_value)
+                print(cmd)
                 quit()
 
         output = output + cleanpy(subseg[pos+9:])
@@ -54,11 +57,11 @@ if __name__=='__main__':
     framefile = sys.argv[1]
     outfile = sys.argv[-1]
 
-    print "Processing",framefile
+    print("Processing",framefile)
     output = include(framefile)
 
     #print output
-    print "Outputting to",outfile
+    print("Outputting to",outfile)
     f = open(outfile,'w')
     f.write(output)
     f.close()
