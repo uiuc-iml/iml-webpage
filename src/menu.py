@@ -22,6 +22,7 @@ names = {'realtime':'Adaptive Time Stepping',
     'lmpl':'LMPL',
     'parabolic':'Parabolic Path Smoother'
 }
+
 files = dict((name,name+'/index.html') for name in names.keys())
 files['research']='research.html'
 files['software']='software.html'
