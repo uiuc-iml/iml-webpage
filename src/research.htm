@@ -61,6 +61,30 @@ function showHide(shID) {
 </script>
 
 <div class="proj">
+<a class="project-link" href="packing/index.html"> </a>
+<div class="projimg"><img class="proj" src="packing/packing.png" style="width: 70px; height: 70px;" /></div>
+<div class="projcontent">
+<p class="projtitle">Autonomous robot packing of complex-shaped objects</p>
+<a class="abstract-show" href="#" onclick="showHide('packing');return false;">Summary (click to show)</a>
+<div class="abstract more" id="packing">Automated packaging or packing, a process during which robots stow objects into small containers, e.g., shipping boxes, is an open research problem with significant potential impact on warehouse automation. Packing items densely improves the storage capacity, decreases the delivery cost, and saves packing materials. This project focuses on packing objects of arbitrary shapes, weights, and deformation into a single shipping box with a robot manipulator. We seek to advance the state-of-the-art in robot packing with regards to optimizing container size for a set of objects, planning object placements for stability and feasibility, and increasing robustness of packing execution with a robot manipulator.</div>
+<div class="keywords">packing, warehouse automation, optimal planning</div>
+<div class="sponsors">Amazon Research Award</div>
+</div>
+</div>
+
+<div class="proj">
+<a class="project-link" href="microsurgery/index.html"> </a>
+<div class="projimg"><img class="proj" src="microsurgery/oct.png" style="width: 70px; height: 70px;" /></div>
+<div class="projcontent">
+<p class="projtitle">Image-guided robotic opthalmic microsurgery</p>
+<a class="abstract-show" href="#" onclick="showHide('microsurgery');return false;">Summary (click to show)</a>
+<div class="abstract more" id="microsurgery">With collaborators at Duke University, we are studying robotic microsurgery in the eye guided by real-time intraoperative imaging from optical coherence tomography (OCT). We focus on the task of guiding a needle precisely to a target or along a 3D path, which is challenging for human surgeons due to the limitations of microscope depth perception and the accuracy of the human hand.  Volumetric images from the eye are acquired by our OCT system at approximately 1 volume per second at the resolution of a few microns, and our needle guidance software processes the images, tracks the target in the tissue, predicts cornea deformation, and optimizes robot trajectories to guide the needle accurately to the target. We have also investigated Our techniques are able to achieve approximately 50 micron accuracy in the Deep Anterior Lamellar Keratoplasty (DALK) procedure.</div>
+<div class="keywords">surgical robotics, microsurgery, optical coherence tomography, DALK</div>
+<div class="sponsors">Coulter Foundation, NIH</div>
+</div>
+</div>
+
+<div class="proj">
 <a class="project-link" href="nursing/index.html"> </a>
 <div class="projimg"><img class="proj" src="images/icons/telenursing-icon-small.jpg"></div>
 <div class="projcontent">
@@ -71,7 +95,7 @@ Our lab is developing the Tele-Robotic Intelligent Nursing Assistant (TRINA), a 
 areas, which could reduce infection risk to healthcare workers by minimizing exposure to contagions and other biohazards.  They could also reduce infection risk to immunocompromise patients.  Apart from the engineering challenge, we are addressing scientific questions regarding human-robot interfaces, haptics, and semi-autonomous control and planning algorithms.
 </div>
 <div class="keywords">tele-nursing, assisted teleoperation, real-time planning, human-robot interaction</div>
-<div class="sponsors">NSF RAPID, NSF CAREER</div>
+<div class="sponsors">NSF RAPID, NSF CAREER, NSF NRI</div>
 </div>
 </div>
 
@@ -91,19 +115,6 @@ This project explores the hypothesis that advances in robot motion planning algo
 </div>
 
 
-<div class="proj">
-<a class="project-link" href="decisionsupport/index.html"></a>
-<div class="projimg"><img class="proj" src="images/icons/decision-support-small.jpg"></div>
-<div class="projcontent">
-<p class="projtitle">Intelligent clinical decision support using Markov decision processes</p>
-<a class="abstract-show" href="#" onclick="showHide('decisionsupport');return false;">Summary (click to show)</a>
-<div class="abstract more" id="decisionsupport">
-The explosion in the amount of medical data available in Electronic Health Records (EHRs) provides an opportunity for computers to aid clinicians in providing effective, affordable healthcare.  We are investigating Markov Decision Process techniques that are able to recommend patient-specific treatment plans in the presence of noisy and incomplete observations.  Like a real doctor, the system is able to reason in the space of belief states, integrating uncertainties and contingencies into its plans.  Results on a 5,807 patient dataset involving clinical depression as well as co-occuring conditions suggest that the decisions made by an AI system can improve patient outcomes from 30-35% while reducing costs by 50-55%.
-</div>
-<div class="keywords">medicine, uncertainty, electronic health records, Markov decision processes, optimal planning</div>
-<div class="sponsors">NSF Smart and Connected Health Program</div>
-</div>
-</div>
 
 <div class="proj">
 <a class="project-link" href="knowledge/index.html"></a>
@@ -134,22 +145,6 @@ Computation time is a major impediment to dynamic, autonomous, and safe robot be
 </div>
 
 
-<div class="proj">
-<a class="project-link" href="packing/index.html"> </a>
-<div class="projimg"><img class="proj" src="packing/packing.png" style="width: 70px; height: 70px;" /></div>
-
-<div class="projcontent">
-<p class="projtitle">Autonomous robot packing of complex-shaped objects</p>
-<a class="abstract-show" href="#" onclick="showHide('packing');return false;">Summary (click to show)</a>
-
-<div class="abstract more" id="packing">Recently, one area that has attracted a lot of research attention is automated packaging or packing, a process during which robots stow objects into small confined spaces, such as shipping boxes. Packing items densely improves the storage capacity, decreases the delivery cost, and saves packing materials. This project focuses on packing objects of arbitrary shapes, weights, and deformation into a single shipping box with a robot manipulator. We seek to advance the state-of-the-art in robot packing with regards to optimizing container size for a set of objects, planning object placements for stability and feasibility, and increasing robustness of packing execution with a robot manipulator.</div>
-
-<div class="keywords">packing, warehouse automation, optimal planning</div>
-
-<div class="sponsors">Amazon Research Award</div>
-</div>
-</div>
-
 
 
 
@@ -157,6 +152,19 @@ Computation time is a major impediment to dynamic, autonomous, and safe robot be
 <div class="separator"></div>
 <h3>Inactive projects<h3>
 
+<div class="proj">
+<a class="project-link" href="decisionsupport/index.html"></a>
+<div class="projimg"><img class="proj" src="images/icons/decision-support-small.jpg"></div>
+<div class="projcontent">
+<p class="projtitle">Intelligent clinical decision support using Markov decision processes</p>
+<a class="abstract-show" href="#" onclick="showHide('decisionsupport');return false;">Summary (click to show)</a>
+<div class="abstract more" id="decisionsupport">
+The explosion in the amount of medical data available in Electronic Health Records (EHRs) provides an opportunity for computers to aid clinicians in providing effective, affordable healthcare.  We are investigating Markov Decision Process techniques that are able to recommend patient-specific treatment plans in the presence of noisy and incomplete observations.  Like a real doctor, the system is able to reason in the space of belief states, integrating uncertainties and contingencies into its plans.  Results on a 5,807 patient dataset involving clinical depression as well as co-occuring conditions suggest that the decisions made by an AI system can improve patient outcomes from 30-35% while reducing costs by 50-55%.
+</div>
+<div class="keywords">medicine, uncertainty, electronic health records, Markov decision processes, optimal planning</div>
+<div class="sponsors">NSF Smart and Connected Health Program</div>
+</div>
+</div>
 
 <div class="proj">
 <a class="project-link" href="drc/index.html"></a>
