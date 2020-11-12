@@ -13110,7 +13110,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -13342,10 +13342,10 @@ spring. Larger values of $k_P$ producing stronger (stiffer) springs,
 which drives the system faster toward 0. Stiffer systems can be more
 precise than softer ones. However, stiffer systems can sometimes:</p>
 <ul>
-<li><p>Overshoot a desired setpoint if not tuned correctly,</p>
+<li><p>Overshoot a desired setpoint if not tuned correctly.</p>
 </li>
 <li><p>Go unstable when used with a discrete-time controller with large
-time step</p>
+time step.</p>
 </li>
 <li><p>Generate extreme controls, which may cause motor damage, loss of
 comfort in vehicles, and may be more dangerous to humans and objects
@@ -13598,7 +13598,7 @@ controller separately for each joint. This is not a bad approach for
 stiff, highly-geared industrial robots.</p>
 <p>However, as we have seen in the prior chapter, each movement of a joint
 has inertial effects on the other joints. This is known as <em>coupling</em> in
-the dynamics . Due to this coupling, robot arms with softer PID gains
+the dynamics. Due to this coupling, robot arms with softer PID gains
 may end up performing unstable or even chaotic motion with this
 approach, and the robot will not necessarily track paths in an optimal
 way. The PID approach may also perform quite poorly for vehicles when
@@ -13649,7 +13649,7 @@ form of the control. Note that it is certainly necessary that $u=0$ when
 $x=0$, because otherwise equilibrium would not hold at 0. Also, any
 smooth nonlinear control function $u(x)$ can be approximated by its
 Taylor series at $x=0$, leading to an expression of the form
-$u(x) = \frac{\partial u}{\partial}{x}(0) x + O(\|x\|^2)$. In this case,
+$u(x) = \frac{\partial u}{\partial x}x + O(\|x\|^2)$. In this case,
 $K$ is the negative of its Jacobian. Hence, the results derived here
 will apply approximately in a neighborhood of the equilibrium point.</p>
 <p>It may not be clear at first glance, but this class of controller
@@ -13781,7 +13781,7 @@ $f(0,0) \neq 0$, then a drift vector must also be included in the LTI
 model $$c = f(0,0).$$ Given a gain matrix $K$, the LTI stability methods
 above can then be used to determine stability of the system.</p>
 <p>However, oftentimes the approximation errors introduced by linearization
-are so severe that this method fails to verity that a control is stable
+are so severe that this method fails to verify that a control is stable
 / convergent. As an example, consider the 1D system: $$\dot{x} = xu.$$
 The linearization has the $A$ and $B$ matrices identically 0, hence the
 pole is at 0 and the LTI analysis determines the system to be stable but
@@ -13810,15 +13810,15 @@ properties:</p>
 <p>We can then examine how the value of the Lyapunov function behaves over
 time. Taking the time derivative $\frac{d}{dt} V(x(t))$, we get the
 relation
-$$\frac{d}{dt} V(x) = \frac{\partial V}{\partial x}(x) \dot{x} = \frac{\partial V}{\partial x}(x) g(x).$$
-Now if we can prove that $\frac{\partial V}{\partial x}(x) g(x) \leq 0$
+$$\frac{d}{dt} V(x) = \frac{\partial V(x)}{\partial x} \dot{x} = \frac{\partial V(x)}{\partial x} g(x).$$
+Now if we can prove that $\frac{\partial V(x)}{\partial x} g(x) \leq 0$
 for all $x$ in the neighborhood of the origin $\|x\| \leq \delta$, then
 the system is <em>Lyapunov stable</em>. Intuitively, for any starting state in
 the $\delta$-neighborhood of the equilibrium point, $V$ stays bounded,
 and hence the system state cannot stray too far from the equilibrium
 point.</p>
 <p>If the inequality is replaced by a strict inequality
-$\frac{\partial V}{\partial x}(x) g(x) &lt; 0$ for all $x$ in the
+$\frac{\partial V(x)}{\partial x} g(x) &lt; 0$ for all $x$ in the
 neighborhood $0 &lt; \| x \| \leq \delta$, then the system is convergent.</p>
 <p>The Lyapunov function can be considered to act as a sort of energy
 function that is minimized at equilibrium. Since energy is never added
@@ -13839,7 +13839,7 @@ cycle forever. Such a trajectory is known as periodic. An example would
 be a bipedal walking gait in which the same configurations and
 velocities are reached repeatedly after every two steps. Another would
 be a holding pattern in which an aircraft can repeat an unlimited number
-of times (or at least, until fuel runs out.)</p>
+of times (or at least, until fuel runs out).</p>
 <p>The image
 $\{ x \quad |\quad x=x(t)\text{ for some }t\} \in \mathbb{R}^n$ of a
 periodic trajectory $x(t)$ is known as an <em>orbit</em>. A stable orbit is an
@@ -13923,8 +13923,8 @@ would not go unstable.</p>
 test the stability of a PID controller problem when the pendulum is
 near the vertical position $\theta \approx \pi/2$. Investigate how
 far the initial state can deviate from vertical, with the parameters
-$m=1$ kg, $L=1$ m, $g=9.8$ m/s$^2$, $k_P=10$, $k_D=2$, and
-$u_{max} = 5$ N$\cdot$m.</p>
+$m=1 kg$, $L=1 m$, $g=9.8 m/s^2$, $k_P=10$, $k_D=2$, and
+$u_{max} = 5 N \cdot m$.</p>
 </li>
 </ol>
 

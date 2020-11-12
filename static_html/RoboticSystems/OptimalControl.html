@@ -13110,7 +13110,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -13274,7 +13274,7 @@ the instantaneous cost. For example:</p>
 <ul>
 <li>Trajectory tracking for a trajectory $x_D(t)$ can be implemented by penalizing squared error $L(x,u,t) = \|x - x_D(t)\|^2$.</li>
 <li>Minimizing effort can be defined in terms of a control penalty $\|u\|^2$.</li>
-<li>Minimum time to hit a target $x_{tgt}$ could be implemented as an indicator function $I[x\neq x_{tgt}$ where $I[z]$ is 1 if $z$ is true, and 0 otherwise.</li>
+<li>Minimum time to hit a target $x_{tgt}$ could be implemented as an indicator function $I[x\neq x_{tgt}]$ where $I[z]$ is 1 if $z$ is true, and 0 otherwise.</li>
 <li>Obstacle avoidance and other feasibility constraints can be implemented as indicator functions as well, $\infty \cdot I[x \notin \mathcal{F}]$ where $\mathcal{F}$ is the free space.</li>
 <li>Smoothed obstacle avoidance can be implemented by a repulsive barrier that decreases to 0 when the distance to the closest obstacle $d$ exceeds some minimum buffer distance $d_{min}$ and incrases to infinity as the distance shrinks to 0. One common form of this barrier is $L(x,u,t) = 1/d^2 - 1/d_{min}^2$ when $d &lt; d_{min}$ and $L(x,u,t) = 0$ otherwise.</li>
 </ul>
@@ -13294,7 +13294,7 @@ a nonnegative <em>terminal cost</em> that penalizes the state attained at the
 terminal time.</p>
 <p>The second method is to modify the instantaneous cost functional by
 including a <em>discount factor</em> that decays to 0 relatively quickly as
-$t \rightarrow infty$. This is usually expressed as the product of a
+$t \rightarrow \infty$. This is usually expressed as the product of a
 time-independent term and a time-dependent discount factor term:
 $$L(x,u,t) = L(x,u,0) \gamma(t)$$ with $\gamma(t)$ a decaying function,
 such as $O(1/t^\alpha)$ or $O(\beta^t)$. It is important to choose a
@@ -13469,7 +13469,7 @@ velocity and steering angle: $$
 <p>Here $(x,y)$ are the coordinates of a point in the middle
 of the rear axis, and $L$ is the length between the rear and front axle.
 The velocity and steering angle are bounded, $v \in [-1,1]$ and
-$\phi \in [-\phi_{max},\phi_{max}]$, and the cost only measures time to
+$\phi \in [-\phi_{min},\phi_{max}]$, and the cost only measures time to
 reach a target state. Hence, the Hamiltonian is
 $$H(\lambda,x,u,t) = \lambda_1 v \cos \theta + \lambda_2 v \sin \theta + \lambda_3 v/L \tan \phi + I[x \neq x_{tgt}]$$</p>
 <p>The latter term does not contribute to the choice of $u$, so we can
@@ -13535,11 +13535,10 @@ the state trajectory as follows.</p>
 <ol>
 <li><p>Set $x_0 \gets x(0)$.</p>
 </li>
-<li><p>For $i=1,\ldots,N$, set $x_i = g(x_{i-1},u_i,\Delta t)$</p>
+<li><p>For $i=1,\ldots,N$, set $x_i = g(x_{i-1},u_i,\Delta t)$ to arrive at a state sequence $x_0=x(0),x_1,\ldots,x_N$.</p>
 </li>
 </ol>
-<p>to arrive at a state sequence $x_0=x(0),x_1,\ldots,x_N$. With this
-definition, each $x_i$ is a function of $u_1,\ldots,u_i$. Hence, we can
+<p>With this definition, each $x_i$ is a function of $u_1,\ldots,u_i$. Hence, we can
 approximate the cost functional as:
 $$J(x,u) \approx \tilde{J}(u_1,\ldots,u_n) = \delta t \sum_{i=0}^{N-1} L(x_i,u_{i+1},t_i)  + \Phi(x_N).$$
 Using this definition we can express the approximated optimal control
@@ -13659,7 +13658,7 @@ contribution to cost will be dropped.</p>
 local minima. Only in a few cases can we prove that the problem is
 convex, such as in LTI problems with convex costs and linear control
 constraints. As we have seen before, random restarts are one of the most
-effective ways to handle minima, but in the high dimensional spaces of
+effective ways to handle local minima, but in the high dimensional spaces of
 trajectory optimization, a prohibitive number of restarts is needed to
 have a high chance of finding a global optimum.</p>
 
@@ -13796,7 +13795,7 @@ performance Step 2 should succeed regularly.</p>
 <p>Due to all of these variables, MPC is difficult to analyze, and as
 employed in practice it usually does not satisfy many theoretical
 stability / convergence properties. However, with careful tuning, MPC
-can an extremely high performing and practical nonlinear optimal control
+can be an extremely high performing and practical nonlinear optimal control
 technique.</p>
 
 </div>
@@ -13837,45 +13836,45 @@ covered in this chapter.</p>
 <hr>
 <div class="figcaption"><a name="tab:OptControlSummary">Summary of optimal control approaches</a></div><table>
 <thead><tr>
-<th style="text-align:left"></th>
-<th><strong>Approach</strong></th>
-<th style="text-align:right"><strong>Type</strong></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"><strong>Approach</strong></th>
+<th style="text-align:center"><strong>Type</strong></th>
 <th><strong>Characteristics</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"></td>
-<td>LQR</td>
-<td style="text-align:right">Analytical</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">LQR</td>
+<td style="text-align:center">Analytical</td>
 <td>Applies to LTI systems with quadratic costs</td>
 <td></td>
 </tr>
 <tr>
-<td style="text-align:left"></td>
-<td>PMP</td>
-<td style="text-align:right">Analytical</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">PMP</td>
+<td style="text-align:center">Analytical</td>
 <td>Defines necessary conditions for optimality</td>
 <td></td>
 </tr>
 <tr>
-<td style="text-align:left"></td>
-<td>Trajectory opt.</td>
-<td style="text-align:right">Numerical</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">Trajectory opt.</td>
+<td style="text-align:center">Numerical</td>
 <td>Optimize a time-discretized control or trajectory space. Local minima</td>
 <td></td>
 </tr>
 <tr>
-<td style="text-align:left"></td>
-<td>HJB</td>
-<td style="text-align:right">Numerical</td>
-<td>Discretize and solve over state space.</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">HJB</td>
+<td style="text-align:center">Numerical</td>
+<td>Discretize and solve over state space</td>
 <td></td>
 </tr>
 <tr>
-<td style="text-align:left"></td>
-<td>MPC</td>
-<td style="text-align:right">Numerical</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">MPC</td>
+<td style="text-align:center">Numerical</td>
 <td>Closed-loop control by repeated optimization</td>
 <td></td>
 </tr>
@@ -13904,9 +13903,9 @@ Express this as an LTI system, and solve for the LQR gain matrix $K$
 with the cost terms $Q=
 \begin{bmatrix}{10}&amp;{0}\\{0}&amp;{1}\end{bmatrix}$ and $R=5$.</p>
 </li>
-<li><p>Let $V^*(x)$ denote the infinite-horizon value function (i.e., the cost incurred by the optimal infinite-horizon control starting at $x$).  Now define a finite-horizon optimal control problem with horizon $T$, the same incremental cost $L$, and terminal cost $\Phi(x) = V^\*(x)$. Prove that the solution to this finite-horizon optimal control problem is identical to the infinite horizon optimal control problem for all $x$.</p>
+<li><p>Let $V^*(x)$ denote the infinite-horizon value function (i.e., the cost incurred by the optimal infinite-horizon control starting at $x$).  Now define a finite-horizon optimal control problem with horizon $T$, the same incremental cost $L$, and terminal cost $\Phi(x) = V^*(x)$. Prove that the solution to this finite-horizon optimal control problem is identical to the infinite horizon optimal control problem for all $x$.</p>
 </li>
-<li><p>Let $V^*_T(x)$ denote the $T$-horizon value function for a terminal cost function $\Phi$.  Suppose that $0 \leq T_1 &lt; T_2$. Is it always true that $V*_{T2}(x) \geq V^*_{T1}(x)$?  If so, give a proof. If not, define a condition on $\Phi$ that would make this condition true.</p>
+<li><p>Let $V^*_T(x)$ denote the $T$-horizon value function for a terminal cost function $\Phi$.  Suppose that $0 \leq T_1 &lt; T_2$. Is it always true that $V^*_{T2}(x) \geq V^*_{T1}(x)$?  If so, give a proof. If not, define a condition on $\Phi$ that would make this condition true.</p>
 </li>
 <li><p>TBD...</p>
 </li>

@@ -13110,7 +13110,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -13297,7 +13297,7 @@ $\mathcal{C}O = \{ q \quad |\quad f(q) \leq 0 \}$. For example, one such
 implicit function $f$ may be the signed distance in workspace between
 the robot and obstacles. (Specifically, this would return the distance
 when there is no collision, and the negative of the penetration depth
-when collision exists). For most complex geometric models it is far more
+when collision exists.) For most complex geometric models it is far more
 computationally expensive to perform distance and penetration depth
 computations than collision queries. As a result there is a trade off
 between using a computational query that provides richer information vs
@@ -13400,7 +13400,7 @@ Examples include the fact that the volume of a hypersphere drops
 dramatically as dimension increases. In fact the volume of a unit
 hypersphere approaches 0 as $d\rightarrow \infty$! This implies that
 <em>almost all points are far</em> in a high dimensional space, for most
-reasonable definitions of "far." Another effect is that the complexity
+reasonable definitions of "far". Another effect is that the complexity
 of a polytope grows dramatically. Consider a polytope in $d$-D space
 with $n$ faces, such as that defined by a linear equality $A x \leq b$,
 with $A$ an $n \times d$ matrix and $b$ an $n$-vector. The number of
@@ -13527,7 +13527,7 @@ collision-free.</p>
 and performance:</p>
 <ul>
 <li><p>The sampling distribution over $\mathcal{C}$ (the $Sample()$
-subroutine in Line 4),</p>
+subroutine in Line 4).</p>
 </li>
 <li><p>The method for determining nearby milestones in Line 7.</p>
 </li>
@@ -13622,7 +13622,7 @@ $CC[v]$ set of milestones $w \in V$ that can be reached from $v$ via a
 path in the $G=(V,E)$. After each change of $G$, $CC$ is updated to
 reflect any changes in connected component. The difficulty is that each
 time an edge gets added, the connected components of those two points
-need to be <em>merged</em> (Line 13). If this were done in a naïve fashion
+need to be <em>merged</em> (Line 13). If this were done in a naive fashion
 (say, by storing a list of connected milestones per milestone), it could
 take an extremely long time ($O(|V|)$, where $|V|$ is the number of
 vertices currently in $V$) for each update. Fortunately, there is a
@@ -13642,7 +13642,7 @@ random number generator). In typical problems, the probability of
 successfully finding a path increases as $N$ increases. After a "burn
 in" phase with low $N$ where there is no change of finding a solution,
 the probability of success rises fairly sharply before tapering off. The
-slope of this tapering off depends Ron the visibility characteristics of
+slope of this tapering off depends on the visibility characteristics of
 the problem, which we shall discuss below.</p>
 <p>The average time needed for incremental PRM to solve a given problem
 depends on a number of factors. Firstly, efficient collision queries are
@@ -13709,7 +13709,7 @@ than $\delta$. Also, if the two extended milestones are within distance
 $\delta$, they are connected. For small values of $\delta$, it is more
 likely for each extension to succeed, but the tree makes slower progress
 in exploring the free space.</p>
-<p>Code for $Extend-Tree$ is given in
+<p>Pseudocode for $Extend-Tree$ is given in
 <a href="#alg:ExtendTree">Alg. Extend-Tree</a>. It first performs a nearest-neighbor query
 on the milestones in the given tree to determine a milestone $q_{near}$.
 It then extends a short path no more than distance $\delta$ toward the
@@ -13719,15 +13719,15 @@ tree.</p>
 $Sample()$ function directly, nor do they attempt more than one edge
 connection per iteration. Hence, they sample points in a different
 distribution than PRMs. But what is this distribution? We first
-introduce the concept of a Voronoï diagram, which defined for some set
-of points $X = \{\V{x}_1,\ldots,\V{x}_n\}$. The Voronoï diagram is a
-partition of the space $\mathcal{C}$ into Voronoï cells , one per point.
-The cell $C_i$ corresponding to a point $\V{x}_i$ is the subset of
-$\mathcal{C}$ for which $\V{x}_i$ is the closest point. In other words,
-$$C_i \equiv \{ \V{x} \in \mathcal{C}\quad | \quad i = \arg \min_{i=1,\ldots,n} d(\V{x},\V{x}_i) \}$$
-RRT is said to employ a Voronoï bias strategy because each milestone in
+introduce the concept of a Voronoi diagram, which defined for some set
+of points $X = \{\bf{x}_1,\ldots,\bf{x}_n\}$. The Voronoi diagram is a
+partition of the space $\mathcal{C}$ into Voronoi cells , one per point.
+The cell $C_i$ corresponding to a point $\bf{x}_i$ is the subset of
+$\mathcal{C}$ for which $\bf{x}_i$ is the closest point. In other words,
+$$C_i \equiv \{ \bf{x} \in \mathcal{C}\quad | \quad i = \arg \min_{i=1,\ldots,n} d(\bf{x},\bf{x}_i) \}$$
+RRT is said to employ a Voronoi bias strategy because each milestone in
 a tree is selected for expansion (i.e., be the nearest node to
-$q_{rand}$) with probability proportional to the volume of its Voronoï
+$q_{rand}$) with probability proportional to the volume of its Voronoi
 cell. This means that milestones that are closer to unexplored areas of
 $\mathcal{C}$ have a higher likelihood of being expanded. Moreover, the
 extended milestone will have a higher likelihood of extending the tree
@@ -13744,7 +13744,7 @@ refining.</p>
 <div class="figcaption"><a name="fig:RRTBugtrap">Figure 3</a>
 To escape the mouth of a bugtrap, an RRT needs to sample a very
 carefully chosen sequence of milestones within the general area that it
-has already explored. But due to the Voronoï bias, it frequently
+has already explored. But due to the Voronoi bias, it frequently
 attempts infeasible extensions from the highlighted frontier
 nodes.
 </div><hr>
@@ -13754,8 +13754,8 @@ this and many other problems, a planner needs to strike a balance
 between <em>exploration</em> toward new areas and <em>refinement</em> of the roadmap
 in existing areas. Let's assume RRT only grows a tree from the start; it
 is easy to imagine double-bugtraps that cause the same behavior for the
-goal. Here, the has a very difficult time wiggling out of the opening of
-the trap because it appears purely from the Voronoï bias that the
+goal. Here, the bug has a very difficult time wiggling out of the opening of
+the trap because it appears purely from the Voronoi bias that the
 frontier has not yet been adequately explored. However, each attempted
 extension ends up bumping into the walls of the trap. A <em>sequence</em> of
 precisely-chosen values of $q_{rand}$ are needed to escape the trap,
@@ -13864,7 +13864,7 @@ these restarts. Eventually, we might get lucky and find a path close to
 optimal. It turns out that for many problems, this approach can
 outperform RRT* (or PRM*)!</p>
 <h3 id="Dynamic-collision-checking">Dynamic collision checking<a class="anchor-link" href="#Dynamic-collision-checking">&#182;</a></h3><p>So far we have assumed that edges in configuration space can be checked for collision using the $Visible$ subroutine, but checking collisions is not as straightforward as in simple geometric spaces, where we could simply check the collision status of a line segment.</p>
-<p>The simplest method for approximating the feasibility of a configuration-space line segment $\overline{ab}$ is to subdivide $\overline{ab}$ into small segments, with configurations $q_1=a,q_2,\ldots,q_{n-1},q_n=b$ uniformlyspaced no more than $\epsilon$ distance apart.  Then, each of $q_1,...,q_n$ is checked for collision using the $Feasible$ subroutine.  The segment is considered visible if all configurations are feasible.</p>
+<p>The simplest method for approximating the feasibility of a configuration-space line segment $\overline{ab}$ is to subdivide $\overline{ab}$ into small segments, with configurations $q_1=a,q_2,\ldots,q_{n-1},q_n=b$ uniformly spaced no more than $\epsilon$ distance apart.  Then, each of $q_1,...,q_n$ is checked for collision using the $Feasible$ subroutine.  The segment is considered visible if all configurations are feasible.</p>
 <p>Note that this is only an approximate method that depends on the resolution $\epsilon$.  If this is too large, then collisions may be missed between checked points $q_{i}$ and $q_{i+1}$ even if both $q_{i}$ and $q_{i+1}$ are feasible.  On the other hand, if $\epsilon$ is too small, then this takes a lot of time.  Precisely, the number of collisions checked is $n = \lceil d(a,b) / \epsilon \rceil$.</p>
 <p>Another issue is the order in which the configurations are checked.  In the worst case, the edge is feasible, and all configurations must be checked for feasibility.  However, if the edge is infeasible, then we can save time by finding an infeasible configuration quickly.  Let us suppose that both $a$ and $b$ are feasible.  Then, in the absence of additional information, the point that is most likely to lead to a collision is the midpoint $(a+b)/2$.  This intuition gives a recursive implementation that is effective in practice:</p>
 <hr>
@@ -13927,7 +13927,7 @@ outperform RRT* (or PRM*)!</p>
 for a wide variety of problems by non-planning experts. However, there
 are several issues that can cause PRM's to fail. What is often
 frustrating is that the PRM will not provide a <em>rationale</em> for failure!
-It just appears that it just "doesn't work." Some of the most common
+It just appears that it just "doesn't work". Some of the most common
 pitfalls encountered when implement PRMs and their variants are:</p>
 <ul>
 <li><p>Improper handling of non-Euclidean topology of $\mathcal{C}$ in the
@@ -13972,7 +13972,7 @@ PRM.</p>
 <p>The infeasible endpoint problem is often encountered when there is a bit
 of error in the world model or the robot's sensing of its configuration,
 and the robot starts or ends at a configuration that is in contact (or
-close to it.) There are two approaches to handling this: before
+close to it). There are two approaches to handling this: before
 planning, adjust the world model so that the robot is collision free
 (which can be hard), or slightly perturb $s$ and $g$ to new
 configurations $s^\prime$ and $g^\prime$ that are collision free with
@@ -14026,7 +14026,7 @@ planning libraries will do this automatically and ask the user to define
 individual conditions, but in others this is up to the user. If a test
 never fails (or always passes) this suggests an obvious implementation
 bug.</p>
-<p>Finally, the free space must not contain a contain a non-neglible volume
+<p>Finally, the free space must not contain a non-neglible volume
 of space (that is, $\mu(\mathcal{F}) / \mu(\mathcal{C})&gt; 0$). This
 condition may be produced when a constraint is introduced (like an IK
 constraint, or a constraint that two objects must touch, or that a joint
@@ -14102,8 +14102,8 @@ caused either by concave obstacles, or narrow passages where the
 repulsive forces from either side of the passage cancel out the
 attractive force.</p>
 <h3 id="Trajectory-optimization">Trajectory optimization<a class="anchor-link" href="#Trajectory-optimization">&#182;</a></h3><p>Trajectory optimization is another potential-based method that optimizes
-the overall shape the robot's path to minimize cost. Unlike potential
-fields, for which the optimization variable is the configuration is a
+the overall shape of the robot's path to minimize cost. Unlike potential
+fields, for which the optimization variable is the configuration of a
 single point in time, trajectory optimization uses some parameterization
 of the <em>entire</em> path as the optimization variable. This helps it avoid
 future obstacles and, in some cases, avoid local minima that potential

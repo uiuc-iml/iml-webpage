@@ -13110,7 +13110,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -13274,7 +13274,7 @@ that a variable can take on. If the notation is insufficiently clear, we
 shall explicitly write the assignments and domains.</p>
 <p>The joint probability distribution may be used to order to answer <em>any</em>
 probabilistic question that might be asked about variables in the world.
-Let $e$ be an <em>event</em>: some logical statement involving any subset of
+Let $e$ be an <em>event</em> : some logical statement involving any subset of
 $X_1,\ldots,X_N$ taking on certain values. Then $P(e)$ is defined as
 $$P(e) = \sum_{s\in S} P(s)I[e\text{ holds in }s]$$ where $I[x]$ is the
 <em>indicator function</em> that is 1 if $x$ is true and 0 if $x$ is false.</p>
@@ -13439,7 +13439,7 @@ $$P(X\leq x,Y\leq y) = F(x,y)$$ while the joint pdf $f(x,y)$ is defined
 such that
 $$F(a,b)  = \int_{-\infty}^{a}\int_{-\infty}^{b} f(x,y) dy dx.$$ An
 alternate definition of the density takes the limit
-$$\lim_{\epsilon\rightarrow 0} P(x\leq X\leq x+epsilon,y \leq Y \leq y+\epsilon)/\epsilon^2 = f(x,y).$$
+$$\lim_{\epsilon\rightarrow 0} P(x\leq X\leq x+ \epsilon,y \leq Y \leq y+\epsilon)/\epsilon^2 = f(x,y).$$
 <a href="#fig:Gaussian">Fig. 1</a> illustrates an example of the pdf and cdf for
 the bivariate Gaussian distribution.</p>
 <hr>
@@ -13612,7 +13612,7 @@ This function is has the shape of the famous bell curve, and has a peak
 at $x=\mu$ and has spread controlled by $\sigma$. We say a Gaussian (or
 normal) variable $X$ has distribution $\mathcal{N}(\mu,\sigma)$, or
 $X \sim N(\mu,\sigma^2)$.</p>
-<p>The significance of this distribution is the <em>central limit theorem</em>:
+<p>The significance of this distribution is the <em>central limit theorem</em> :
 the distribution of the mean of a sample of independent, identically
 distributed random variables approaches a Gaussian as the sample size
 grows larger. This holds under very few assumptions about the
@@ -13628,10 +13628,10 @@ $$aX+b \sim N(a\mu+b,a^2 \sigma^2).$$</p>
 $X \sim N(\mu_X,\sigma_X^2)$, $Y \sim N(\mu_Y,\sigma_Y^2)$ are
 independent, then $$X + Y \sim N(\mu_X+\mu_Y,\sigma_X^2+\sigma_Y^2)$$</p>
 <h3 id="Multivariate-Gaussians">Multivariate Gaussians<a class="anchor-link" href="#Multivariate-Gaussians">&#182;</a></h3><p>A multivariate Gaussian distribution over a vector-valued random
-variable $\V{X}=[X_1,...,X_n]^T \in \mathbb{R}^n$ with mean vector
+variable $\bf{X}=[X_1,...,X_n]^T \in \mathbb{R}^n$ with mean vector
 $\boldsymbol{\mu}$ and covariance matrix $\Sigma$ has the density
 function:
-$$P(\V{x}) = N(\V{x};\boldsymbol{\mu},\Sigma) = \frac{1}{(2\pi)^{n/2}\sqrt{|\Sigma|}} e^{-\frac{1}{2} (\V{x}-\boldsymbol{\mu})^T \Sigma^{-1} (\V{x}-\boldsymbol{\mu})}.
+$$P(\bf{x}) = N(\bf{x};\boldsymbol{\mu},\Sigma) = \frac{1}{(2\pi)^{n/2}\sqrt{|\Sigma|}} e^{-\frac{1}{2} (\bf{x}-\boldsymbol{\mu})^T \Sigma^{-1} (\bf{x}-\boldsymbol{\mu})}.
 \label{eq:MultivariateGaussian}$$ Like the (univariate) Gaussian
 distribution, it has a peak at $x=\boldsymbol{\mu}$, and its spread is
 determined by the matrix $\Sigma$.
@@ -13639,13 +13639,13 @@ determined by the matrix $\Sigma$.
 $\boldsymbol{\mu}=0$ and $\Sigma=I$.</p>
 <p>The <em>covariance matrix</em> is defined as $$\Sigma_{ij} = Cov[X_i,X_j].$$
 $\Sigma$ must be symmetric positive definite as well. Its diagonal
-entries define the variance of individual elements of $\V{x}$, while the
+entries define the variance of individual elements of $\bf{x}$, while the
 off-diagonals determine how much it is skewed.</p>
 <p>For example, consider a 2D Gaussian with mean
 $\boldsymbol{\mu} = 
 \begin{bmatrix}\mu_1 \\ \mu_2 \end{bmatrix}$ and covariance
 $$\Sigma = 
-\begin{bmatrix}\Sigma_1 &amp;&amp; \Sigma_{12} \\ \Sigma_{12} &amp; \Sigma_{2} \end{bmatrix}.$$ If
+\begin{bmatrix}\Sigma_1 &amp; \Sigma_{12} \\ \Sigma_{12} &amp; \Sigma_{2} \end{bmatrix}.$$ If
 $\Sigma_{12} = 0$, then $X_1$ and $X_2$ are independent, with respective
 distributions $X_1 \sim N(\mu_1,\Sigma_1)$ and
 $X_2 \sim N(\mu_2,\Sigma_2)$. Otherwise, the marginal distributions stay
@@ -13660,26 +13660,26 @@ in the upper left and lower right quadrants.</p>
 of ($\ref{eq:MultivariateGaussian}$). We shall simply state them without
 proof; the proofs are left as exercise for the interested reader.</p>
 <h4 id="Stacking-of-multivariate-Gaussians">Stacking of multivariate Gaussians<a class="anchor-link" href="#Stacking-of-multivariate-Gaussians">&#182;</a></h4><p>Independent multivariate Gaussian variables can be stacked according to
-the following rule. If $\V{X} \sim N(\boldsymbol{\mu}_X,\Sigma_X)$ and
-$\V{Y} \sim N(\boldsymbol{\mu}_Y,\Sigma_Y)$ are independent, then
-$$\V{Z} = 
-\begin{bmatrix}\V{X} \\ \V{Y} \end{bmatrix} \sim N\left(
+the following rule. If $\bf{X} \sim N(\boldsymbol{\mu}_X,\Sigma_X)$ and
+$\bf{Y} \sim N(\boldsymbol{\mu}_Y,\Sigma_Y)$ are independent, then
+$$\bf{Z} = 
+\begin{bmatrix}\bf{X} \\ \bf{Y} \end{bmatrix} \sim N\left(
 \begin{bmatrix}\boldsymbol{\mu}_X \\ \boldsymbol{\mu}_Y \end{bmatrix}, 
 \begin{bmatrix}\Sigma_X &amp; 0 \\ 0 &amp; \Sigma_Y \end{bmatrix}\right)$$
 where the mean and covariance matrix are written in block-matrix form.</p>
-<h4 id="Marginalization-of-multivariate-Gaussians">Marginalization of multivariate Gaussians<a class="anchor-link" href="#Marginalization-of-multivariate-Gaussians">&#182;</a></h4><p>If $\V{Z} = 
-\begin{bmatrix}\V{X} \\ \V{Y} \end{bmatrix}$ is Gaussian:
-$$\V{Z} = 
-\begin{bmatrix}\V{X} \\ \V{Y} \end{bmatrix} \sim N\left( 
+<h4 id="Marginalization-of-multivariate-Gaussians">Marginalization of multivariate Gaussians<a class="anchor-link" href="#Marginalization-of-multivariate-Gaussians">&#182;</a></h4><p>If $\bf{Z} = 
+\begin{bmatrix}\bf{X} \\ \bf{Y} \end{bmatrix}$ is Gaussian:
+$$\bf{Z} = 
+\begin{bmatrix}\bf{X} \\ \bf{Y} \end{bmatrix} \sim N\left( 
 \begin{bmatrix}\boldsymbol{\mu}_X \\ \boldsymbol{\mu}_Y \end{bmatrix}, 
 \begin{bmatrix} \Sigma_X &amp; \Sigma_{XY} \\ \Sigma_{YX} &amp; \Sigma_Y\end{bmatrix} \right)$$
-then the marginal distribution of $\V{X}$ is
-$\V{X} \sim N(\boldsymbol{\mu}_X,\Sigma_X)$, and the marginal
-distribution of $\V{y}$ is $\V{Y} \sim N(\boldsymbol{\mu}_Y,\Sigma_Y)$.</p>
+then the marginal distribution of $\bf{X}$ is
+$\bf{X} \sim N(\boldsymbol{\mu}_X,\Sigma_X)$, and the marginal
+distribution of $\bf{y}$ is $\bf{Y} \sim N(\boldsymbol{\mu}_Y,\Sigma_Y)$.</p>
 <p><img src="figures/appendix/gaussian_linear_transform.svg" alt="fig:GaussianTransform"></p>
 <div class="figcaption"><a name="fig:GaussianTransform">Figure 3</a>.
     An affine transform of a Gaussian distribution is also a Gaussian. A
-transform $A\V{x}+\V{b}$ (left) is applied to an initial zero-mean
+transform $A\bf{x}+\bf{b}$ (left) is applied to an initial zero-mean
 distribution, whose density is displayed in the leftmost contour plot.
 The middle contour plot displays the density of the resulting
 distribution. Applying the transform again yields a density in the
@@ -13687,41 +13687,41 @@ rightmost contour
 plot.
     </div><p>Affine transformations of multivariate Gaussians are also Gaussian
 (<a href="#fig:GaussianTransform">Fig. 3</a>). If
-$\V{X} \sim N(\boldsymbol{\mu},\Sigma)$, then for any appropriately
-sized matrix $A$ and vector $\V{b}$,
-$$A\V{X}+\V{b} \sim N(A\boldsymbol{\mu}+\V{b},A\Sigma A^T).$$ More
-specifically, $\V{X}$ and $A\V{X}+\V{b}$ are jointly distributed
+$\bf{X} \sim N(\boldsymbol{\mu},\Sigma)$, then for any appropriately
+sized matrix $A$ and vector $\bf{b}$, $$A\bf{X}+\bf{b} \sim N(A\boldsymbol{\mu}+\bf{b},A\Sigma A^T).$$ 
+More specifically, $\bf{X}$ and $A\bf{X}+\bf{b}$ are jointly distributed
 according to:
 $$
-\begin{bmatrix}\V{X} \\ A\V{X}+\V{b} \end{bmatrix} \sim N\left(
-\begin{bmatrix}\boldsymbol{\mu} \\ A\boldsymbol{\mu}+\V{b} \end{bmatrix},
+\begin{bmatrix}\bf{X} \\ A\bf{X}+\bf{b} \end{bmatrix} \sim N\left(
+\begin{bmatrix}\boldsymbol{\mu} \\ A\boldsymbol{\mu}+\bf{b} \end{bmatrix},
 \begin{bmatrix}\Sigma &amp; \Sigma A^T \\ A\Sigma &amp; A\Sigma A^T\end{bmatrix}\right).$$</p>
 <h4 id="Sum-of-multivariate-Gaussians">Sum of multivariate Gaussians<a class="anchor-link" href="#Sum-of-multivariate-Gaussians">&#182;</a></h4><p>The sum of independent multivariate Gaussians is also Gaussian, which
 can be derived by stacking and linear transformation rule. If
-$\V{X} \sim N(\boldsymbol{\mu}_X,\Sigma_X)$ and
-$\V{Y} \sim N(\boldsymbol{\mu}_Y,\Sigma_Y)$ are independent $n$-D
+$\bf{X} \sim N(\boldsymbol{\mu}_X,\Sigma_X)$ and
+$\bf{Y} \sim N(\boldsymbol{\mu}_Y,\Sigma_Y)$ are independent $n$-D
 Gaussian variables, then
-$$\V{Z} = \V{X}+\V{Y} = [I_n I_n]
-\begin{bmatrix}\V{X} \\ \V{Y} \end{bmatrix} = N(\boldsymbol{\mu}_X+\boldsymbol{\mu}_Y,\Sigma_X+\Sigma_Y)$$
-where $[I_n I_n]$ is the horizontal block matrix of two identity
+$$\bf{Z} = \bf{X}+\bf{Y} = [I_n \quad I_n]
+\begin{bmatrix}\bf{X} \\ \bf{Y} \end{bmatrix} = N(\boldsymbol{\mu}_X+\boldsymbol{\mu}_Y,\Sigma_X+\Sigma_Y)$$
+where $[I_n \quad I_n]$ is the horizontal block matrix of two identity
 matrices.</p>
 <h4 id="Conditioning-of-multivariate-Gaussians">Conditioning of multivariate Gaussians<a class="anchor-link" href="#Conditioning-of-multivariate-Gaussians">&#182;</a></h4><p>Conditional distributions of multivariate Gaussians are also Gaussian.
-Specifically, if $Val(\V{X}) = \mathbb{R}^n$ and
-$Val(\V{Y}) = \mathbb{R}^m$ are jointly Gaussian, that is,
+Specifically, if $Val(\bf{X}) = \mathbb{R}^n$ and
+$Val(\bf{Y}) = \mathbb{R}^m$ are jointly Gaussian, that is,
 $$
-\begin{bmatrix}{\V{X}} \\ {\V{Y}} \end{bmatrix} \sim N\left(
+\begin{bmatrix}{\bf{X}} \\ {\bf{Y}} \end{bmatrix} \sim N\left(
 \begin{bmatrix}{\boldsymbol{\mu}_X} \\ {\boldsymbol{\mu}_Y} \end{bmatrix},
 \begin{bmatrix}{\Sigma_X}&amp;{\Sigma_{XY}} \\ {\Sigma_{XY}^T}&amp;{\Sigma_Y} \end{bmatrix}\right),$$
-then the conditional distribution of $\V{X}$ given that $\V{Y}=\V{y}$ is
+then the conditional distribution of $\bf{X}$ given that $\bf{Y}=\bf{y}$ is
 also Gaussian:
-$$P(\V{x}|\V{y}) = N\left( \V{x};\boldsymbol{\mu}_X+\Sigma_{XY}\Sigma_Y^{-1}(\V{y}-\boldsymbol{\mu}_Y),\Sigma_X - \Sigma_{XY}\Sigma_Y^{-1}\Sigma_{XY}^T \right)
+$$P(\bf{x}|\bf{y}) = N\left( \bf{x};\boldsymbol{\mu}_X+\Sigma_{XY}\Sigma_Y^{-1}(\bf{y}-\boldsymbol{\mu}_Y),\Sigma_X - \Sigma_{XY}\Sigma_Y^{-1}\Sigma_{XY}^T \right)
 \label{eq:GaussianConditioning}$$ It can be observed that the mean of
 the new distribution depends on the value of $y$, but the covariance
-does not. Observe also that if $\V{X}$ and $\V{Y}$ are independent
-($\Sigma_{XY}=0$), then knowing the value of $\V{Y}$ does not change the
-marginal distribution of $\V{X}$.</p>
+does not. Observe also that if $\bf{X}$ and $\bf{Y}$ are independent
+($\Sigma_{XY}=0$), then knowing the value of $\bf{Y}$ does not change the
+marginal distribution of $\bf{X}$.</p>
 <p><a href="#fig:GaussianMarginalization">Fig. 2</a>, right illustrates conditioning
-on a zero-mean Gaussian with $\Sigma=\MatTwo{0.25}{0.3}{0.3}{1}$ at
+on a zero-mean Gaussian with $$\Sigma=
+\begin{bmatrix}{0.25}&amp;{0.3} \\ {0.3}&amp;{1} \end{bmatrix}$$ at
 $x_1=1$. According to
 ($\ref{eq:GaussianConditioning}$), the mean of $x_2$ becomes
 $0.3\cdot 0.25^{-1} \cdot 1 = 1.2$, and its variance becomes

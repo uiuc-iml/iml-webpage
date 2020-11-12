@@ -13110,7 +13110,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -13329,7 +13329,7 @@ commands into joint torques.</p>
 <p>First, discontinuities in $q_D(t)$ should be forbidden since the robot
 will accelerate quickly, and possibly overshoot the target. Similarly,
 discontinuities in $\dot{q}_D(t)$ should be avoided if possible, because
-exact tracking would require instantaneous acceleration. Naïvely
+exact tracking would require instantaneous acceleration. Naively
 requesting sudden changes of velocity runs the risk of overheating
 motors and overshooting setpoints.</p>
 <p>Secondly, joint stops and self-collision should be avoided with some
@@ -13472,7 +13472,7 @@ the curve as a function of $t_f$
 $$v^\star(t_f) = \frac{3}{2}(\theta_g-\theta_s)/t_f.$$ The acceleration
 is $$\ddot{\theta}(t) = 6(\theta_g-\theta_s)(1/t_f^2 - 2t/t_f^3)$$ which
 has maximum absolute value at the endpoints. Hence, the maximum
-acceleration along the curve is is
+acceleration along the curve is
 $$a^\star(t_f) = 6(\theta_g-\theta_s)/t_f^2.$$ It is then a simple
 matter to determine whether the curve is acceleration limited or
 velocity limited, and then to set $t_f$ appropriately.</p>
@@ -13631,7 +13631,7 @@ steady-state error.
 accounts for inertial and Coriolis effects during movement. Supposing we
 have a desired acceleration $\ddot{q}_D$. If we use inverse dynamics to
 calculate the necessary torque needed to guide the robot upon this
-acceleration: $$\tau_{ID}(\ddot{q}) = B(q) \ddot{q} + C(q,q\dot) + G(q)
+acceleration: $$\tau_{ID}(\ddot{q}) = B(q) \ddot{q} + C(q,\dot q) + G(q)
 \label{eq:InverseDynamics}$$ then feeding this torque to the robot will
 generate the desired acceleration, assuming no disturbances and modeling
 errors. There are generally two methods for compensating for error. The
@@ -13768,9 +13768,8 @@ directly report $f_{ext}$ but rather a combination of external force,
 gravity, inertial forces due to end-effector acceleration, and noise, 2)
 it is not clear how much to increase or reduce $x$ to obtain a desired
 change in force, and 3) those changes in $x$ need to be converted into
-joint-level commands. Operational control handles issue 3, but not 1 or</p>
-<ol>
-<li>To extract the external forces from the sensed forces, the operation
+joint-level commands. Operational control handles issue 3, but not 1 or 2.
+To extract the external forces from the sensed forces, the operation
 of a force sensor should be modeled in detail. Accelerations will be
 observed as force spikes in the sensed force signal, and changes in the
 end effector orientation will be observed as a bias in the force signal:
@@ -13779,8 +13778,7 @@ $$f_{sensed} = f_{ext} + f_{gravity} + f_{inertial}
 to model the force of gravity and inertia on the sensor by estimating
 the sensor's orientation and acceleration and subtracting their sum from
 the sensed force. Orientation and acceleration must be estimated from
-the robot's encoders or an inertial measurement unit.</li>
-</ol>
+the robot's encoders or an inertial measurement unit.</p>
 <p>Next, we need some way to link the deviation of force $f_D - f_{ext}$
 and the control signal given to the operational space controller
 (usually $\ddot{x}_{cmd}$ or if joint torque control is available, the
@@ -13802,13 +13800,13 @@ simulate MSD behavior on a robot's end effector, equation
 ($\ref{eq:MassSpringDamper}$) can be used in conjunction with
 ($\ref{eq:ForceSensor}$) to estimate $f_{ext}$, and the resulting
 $\ddot{x}$ should be fed into an operational space controller as
-$\ddot{x}_cmd$.</p>
+$\ddot{x}_{cmd}$.</p>
 <p>An implementer of such systems should be aware that it is difficult to
 simulate a low-mass MSD with a high-mass robot, since the accelerations
 encountered by the mass in response to an applied force may exceed the
 limits of the robot's torques. The range of accelerations that a robot
 can perform is also known as its <em>control bandwidth</em>. Lighter robots,
-with with stronger motors, and with low mass near the end effector tend
+with stronger motors, and with low mass near the end effector tend
 to have larger control bandwidth than heavy ones.</p>
 
 </div>

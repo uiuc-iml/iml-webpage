@@ -13110,7 +13110,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -13236,7 +13236,7 @@ sensors, and actuators is accomplished via wires or sometimes wireless
 communication.</p>
 <p>Each of these components is analogous to some component of a biological
 system. Links are analogous to bones; joints are analogous to, well,
-joints; sensors are analogous sensory organs; actuators are analogous to
+joints; sensors are analogous to sensory organs; actuators are analogous to
 muscles, and wires are analogous to nerves. Just as there are millions
 of biological species with diverse, sometimes exotic external and
 internal structures, the range of possible robot designs is endless.</p>
@@ -13261,7 +13261,7 @@ internal structures, the range of possible robot designs is endless.</p>
 <td style="text-align:left">Actuated by electrical motors + speaker</td>
 </tr>
 <tr>
-<td style="text-align:left">Sensors: SICK laser, sonar ,wheel encoders</td>
+<td style="text-align:left">Sensors: SICK laser, sonar, wheel encoders</td>
 <td style="text-align:left">Sensors: stereo cameras, joint encoders, gyroscope, inertial measurement unit, foot pressure sensors</td>
 </tr>
 </tbody>
@@ -13280,7 +13280,7 @@ desired task, and may be coated in rubber or another high-friction
 material to ensure consistency of contact.</p>
 <p>Joints in robots typically either allow rotation or translation.
 Rotation usually occurs about a single hinge-joint axis. Ball-and-socket
-joints like in the human hip or shoulder are much more rare due to the
+joints like in the human hip or shoulder are much rarer due to the
 difficulty of fabrication, lubrication, and actuation. Translational
 joints are fairly common in the form of linear slides used in gantries
 and Cartesian positioning stages, and in pistons used in many hydraulic
@@ -13289,7 +13289,7 @@ the joint should be constructed from high-strength materials and
 high-precision manufacturing. Friction reduction along joints is usually
 provided using lubrication, bearings, or bushings.</p>
 <p>The links and joints of a robot also make up its outward appearance, and
-for some applications significant effort is devoted to designing a
+for some applications, significant effort is devoted to designing a
 pleasing appearance. To an engineer this may seem like a frivolous
 concern, but the success of a consumer product often rests on the appeal of
 its design! Robots that are designed for direct human interaction, such
@@ -13348,16 +13348,16 @@ models should be used to analyze and predict their behavior.</p>
 <ul>
 <li><p><em>Electric motors</em>: stepper motors, brushed / brushless DC motors, AC motors.</p>
 </li>
-<li><p><em>Pneumatic actuators</em>. High variation in size and strength</p>
+<li><p><em>Pneumatic actuators</em>. High variation in size and strength.</p>
 </li>
 <li><p><em>Hydraulic actuators</em>. Very strong.</p>
 </li>
 <li><p><em>Chemical (combustion) actuators</em>: internal combustion engines in automobiles and prop planes; turbines in jet planes.</p>
 </li>
-<li><p><em>Piezoelectric actuators</em></p>
+<li><p><em>Piezoelectric actuators</em>.</p>
 </li>
 </ul>
-<p>Actuators can be rotary (revolves around an axis) or linear (translates about an axis).  Each type and model of actuator has many subtle differences that should be taken into account when fine-tuning a robot's design, e.g., in the power source, power / weight ratio, control bandwidth, maximum speed, stroke length, continuous / peak torque, complexity of electronics and maintenance, etc.  Most often, a roboticist will choose between electric, pneumatic, and hydraulic motors.  Electric motors come in a plethora of models with high variation in size, strength, and speed, and are convenient to use. Pneumatic actuators have a higher power-to-weight ratio, and lightweight pistons can be placed on extremities far from from heavy pumps using air lines, but require maintaining complex pump / valve systems.  Hydraulic actuators are stronger and heavier, and have similar drawbacks.</p>
+<p>Actuators can be rotary (revolves around an axis) or linear (translates about an axis).  Each type and model of actuator has many subtle differences that should be taken into account when fine-tuning a robot's design, e.g., in the power source, power / weight ratio, control bandwidth, maximum speed, stroke length, continuous / peak torque, complexity of electronics and maintenance, etc.  Most often, a roboticist will choose between electric, pneumatic, and hydraulic motors.  Electric motors come in a plethora of models with high variation in size, strength, and speed, and are convenient to use. Pneumatic actuators have a higher power-to-weight ratio, and lightweight pistons can be placed on extremities far from heavy pumps using air lines, but require maintaining complex pump / valve systems.  Hydraulic actuators are stronger and heavier, and have similar drawbacks.</p>
 <p>There are also a variety of problems that arise when an actuator is pushed beyond its safe operating limits.  Electric motors <em>burn out</em> when the temperature produced by the motor cannot be dissipated quickly enough, and which burns through the insulation on the motor's wiring.  Pneumatic and hydraulic systems can <em>blow seals</em> where the internal pressure overcomes the strength of the seals and gaskets on the pneumatic / hydraulic lines or cylinders. In hydraulic systems, leaks can be quite messy!</p>
 <p>Transmission systems can be quite diverse.  Common forms of transmission include:</p>
 <ul>
@@ -13373,14 +13373,14 @@ models should be used to analyze and predict their behavior.</p>
 </li>
 <li><p><em>Flywheels</em>: use changes of angular momentum to control orientation, used primarily in space robotics.</p>
 </li>
-<li><p><em>Propellers</em>, <em>aelierons</em>, and <em>control surfaces</em>: deflect a surrounding gaseous / liquid medium to propel the robot; used primarily for aerial and water vehicles.</p>
+<li><p><em>Propellers</em>, <em>aelierons</em>, and <em>control surfaces</em>: deflect a surrounding gaseous / liquid medium to propel the robot, used primarily for aerial and water vehicles.</p>
 </li>
-<li><p><em>Thrusters</em>: eject mass at high speed to exert force using Newton's Law. Used primarily in space robotics.</p>
+<li><p><em>Thrusters</em>: eject mass at high speed to exert force using Newton's Law, used primarily in space robotics.</p>
 </li>
 <li><p><em>Feet</em>, <em>hands</em>, <em>wings</em>, etc: bioinspired methods to touch the environment / deflect the surrounding medium to propel the robot.</p>
 </li>
 </ul>
-<p>When  designing or choosing a transmission systems, a designer must be cognizant of the</p>
+<p>When  designing or choosing a transmission systems, a designer must be cognizant of the:</p>
 <ul>
 <li><p><em>Gear reduction</em>: force multiplier from input to output.</p>
 </li>
@@ -13427,7 +13427,7 @@ known as the <em>sense-plan-act</em> framework, and is illustrated in <a href="#
 from one's body at the spinal cord, the sense-plan-act framework views
 the brain's role as processing the input and output that pass through
 the nerves at the spinal cord. The brain is a highly developed organ
-that processes information, makes decisions, learn, and adapts in such a
+that processes information, makes decisions, learns, and adapts in such a
 way to generate the infinite richness of human behavior. When we program
 a robot's software, we likewise control the contents and functions of
 its mind. The question is, how do we construct a mind so that the robot
@@ -13469,7 +13469,7 @@ deliberation into the fold. A <em>deliberative</em> architecture uses a
 environment as well as a <em>performance metric</em> to choose which course of
 action is the best. To generate possible future actions in a systematic
 way, a <em>planner</em> computes many potential options and their outcomes. By
-maximizing performance a deliberative architecture is designed
+maximizing performance, a deliberative architecture is designed
 explicitly to achieve some notion of <em>optimality</em>. (Contrast this with a
 reflexive device, which can perform well only by coincidence or shrewdly
 designed rules.) These techniques can generate excellent behaviors if 1)

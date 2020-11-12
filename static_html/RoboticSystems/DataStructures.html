@@ -13110,7 +13110,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -13275,7 +13275,7 @@ the <em>descendants</em> of $v$ are the set of nodes $w$ for which either $v=w$
 or there exists a directed path from $v$ to $w$. In other words, $v$'s
 descendants are $v$, $v$'s children, $v$'s children's children, and so
 on. The tree consisting of $v$'s descendants and edges between them is
-also known as the <em>subtree</em> at $v$. In the subtree. $v$ is the root
+also known as the <em>subtree</em> at $v$. In the subtree, $v$ is the root
 (<a href="#fig:Tree">Fig. 1</a>.c).</p>
 <h2 id="Representations">Representations<a class="anchor-link" href="#Representations">&#182;</a></h2><p>Representations of trees are simpler than general graphs, so we will
 describe them first. In most object-oriented programming languages, a
@@ -13287,7 +13287,7 @@ subtree. It has the following members:</p>
 <li><code>children</code>: array or list of <code>TreeNode</code>s.</li>
 <li><code>parent</code>: optional, a <code>TreeNode</code> reference.</li>
 </ul>
-<p>Then the entire tree is stored as the root <code>T</code>reeNode. With this
+<p>Then the entire tree is stored as the root <code>TreeNode</code>. With this
 structure it is possible to search downward from the root for any
 desired node. If the parent member is present, then it is also possible
 to search upward from any node.</p>

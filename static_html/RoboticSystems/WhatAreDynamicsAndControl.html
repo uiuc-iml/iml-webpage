@@ -13110,7 +13110,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -13286,7 +13286,7 @@ the <em>equations of motion</em>.</p>
 time</em>. If we need to explicitly represent the dependence on time we
 shall write $x(t)$ and $u(t)$. Hence, the dot notation is simply the
 time derivative $\dot{x} = \frac{d}{dt}x$. (Or more explicitly,
-$\dot{x}(t) = \frac{dx}{dt}(t)$). Also note that from this chapter
+$\dot{x}(t) = \frac{d}{dt}x(t)$.) Also note that from this chapter
 onward, all variables except for time will be vector quantities unless
 stated otherwise.</p>
 <p>It should be noted that we have introduced the terms "dynamical" and
@@ -13296,15 +13296,15 @@ while something is dynamical if it <em>regards</em> dynamics. When we say
 "dynamical system" it means that the system regards a dynamic quantity
 (the state) but the system itself is not changing over time. We shall
 also sometimes say "dynamic equation" which is a synonym with "dynamics
-equation" and is chosen according to author preference. But why don't we
-call it a "dynamical equation?" Let's just move on, and let the grammar
+equation" and is chosen according to author's preference. But why don't we
+call it a "dynamical equation"? Let's just move on, and let the grammar
 Nazis squabble over terminology...</p>
 <h3 id="Open-loop-and-closed-loop-control">Open-loop and closed-loop control<a class="anchor-link" href="#Open-loop-and-closed-loop-control">&#182;</a></h3><p>Given a dynamics function $f$, our job is to decide upon the control $u$
 in order to accomplish some desired task. There are two primary types of
 controls: 1) <em>open-loop</em> control, in which case $u \equiv u(t)$ only
 depends on time, and 2) closed-loop control, in which case
 $u \equiv u(x)$ depends on state. (It may also depend on time, in which
-case we write $u \equiv u(x,t)$).</p>
+case we write $u \equiv u(x,t)$.)</p>
 <p>The significance of closed-loop control is that the control function can
 "observe" the state of the system and change accordingly in order to
 achieve the desired task. The control function in this case is also
@@ -13339,7 +13339,7 @@ and $u\in \mathbb{R}^m$.  Suppose we are given an <em>initial state</em> $x_0$ e
 $$\text{Find }x(t) \text{ for } t &gt; 0 \text{ subject to }\dot{x}(t) = g(x(t),t) \text{ and } x(0)=x_0. $$<p>where $g(x,t) \equiv f(x,u(x,t))$ is a time-varying dynamics function.  (Note that we have applied the simple trick of pushing the control $u$ inside $g$, which turns the controlled system into an uncontrolled system.)</p>
 <p>For some limited classes of dynamic systems and control trajectories we can solve the ODE analytically.  We shall see some of these solutions for the <a href="#Dubins-car">Dubins car</a> and <a href="#Linear-Time-Invariant-Systems">linear time invariant systems</a>.  However, in the general case, we shall need to resort to numerical methods.  This problem is known as <strong>ODE integration</strong> (also known as <strong>simulation</strong>).</p>
 <h3 id="Euler's-method">Euler's method<a class="anchor-link" href="#Euler's-method">&#182;</a></h3><p>The simplest numerical integration technique is known as <strong>Euler's method</strong>, which divides time into a sequence of small steps of $\Delta t$ in which the dynamics are assumed constant.  Each subsequent movement simply displaces the state by the first-order approximation $\Delta t g(x(t),t)$.  What emerges is a sequence of states $x_0,\ldots,x_N$ given by:</p>
-$$x_1 = x_0 + \Delta t \cdot g(x_0,t)$$$$x_2 = x_1 + \Delta t \cdot g(x_1,t)$$$$...$$$$x_N = x_{N-1} + \Delta t \cdot g(x_{N-1},\Delta t\cdot(N-1))$$<p>This is a widely-used technique due to its straightforward implementation, and it is also easy to analyze.  Code for this method is given below.</p>
+$$x_1 = x_0 + \Delta t \cdot g(x_0,\Delta t\cdot 0)$$$$x_2 = x_1 + \Delta t \cdot g(x_1,\Delta t\cdot 1)$$$$...$$$$x_N = x_{N-1} + \Delta t \cdot g(x_{N-1},\Delta t\cdot(N-1))$$<p>This is a widely-used technique due to its straightforward implementation, and it is also easy to analyze.  Code for this method is given below.</p>
 
 </div>
 </div>
@@ -13429,12 +13429,12 @@ $$x_1 = x_0 + \Delta t \cdot g(x_0,t)$$$$x_2 = x_1 + \Delta t \cdot g(x_1,t)$$$$
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Note that the accuracy of the integration depends heavily on the timestep chosen.  In general, the smaller
 the timestep, the more accurate the integration will be.  More formally, define the <em>integration error</em>
-as $\epsilon(t) = x(t) - x_{\lfloor t/Delta t\rfloor}$. 
+as $\epsilon(t) = x(t) - x_{\lfloor t/ \Delta t\rfloor}$. 
 Higher errors result as</p>
 <ul>
 <li><p>The spatial variation of the dynamics function is large.  More precisely, the error will grow if the Jacobian of f (in either x or u) are large.</p>
 </li>
-<li><p>The time $t$ is large (i.e., the error generally gets worse over time.)</p>
+<li><p>The time $t$ is large (i.e., the error generally gets worse over time).</p>
 </li>
 <li><p>$\Delta t$ is large.</p>
 </li>
@@ -13693,7 +13693,7 @@ strength to hold the pendulum steady horizontally, and it is possible to
 drive it monotonically to the goal
 (<a href="#fig:PendulumStrongMotor">Fig. 1</a>). But if the maximum torque is
 lowered beyond some amount, the motor can no longer achieve sufficient
-inertia to raise the pendulum without "pumping," like a child on a
+inertia to raise the pendulum without "pumping", like a child on a
 swing, to increase the kinetic energy of the system. As we shall see when we discuss <a href="OptimalControl.html">bang-bang control</a>, the optimal controller will then
 alternate between extreme controls to build up enough kinetic energy to
 reach the goal. This implies that the time evolution of the system will
@@ -13726,7 +13726,7 @@ attached to it with a pin joint
 extensively, and it has similar dynamics to the Segway mobility
 scooters.</p>
 <hr>
-<p><img src="figures/control/cartpole.svg" alt="fig:Cartpole"></p>
+<p><img src="figures/control/cartpole_1.svg" alt="fig:Cartpole"></p>
 <div class="figcaption"><a name="fig:Cartpole">Figure 3.</a>
     Illustration of the cart-pole problem.
 </div><hr>
@@ -13825,7 +13825,7 @@ a widely studied class of dynamical system is the <em>linear,
 time-invariant</em> (LTI) system. In an LTI system, the dynamics equation
 takes on the form $$\dot{x} = Ax + Bu$$ where $A$ and $B$ are constant
 matrices of size $n \times n$ and $n \times m$, respectively. This type
-of system is easily analyzed using results from linear algebra can
+of system is easily analyzed using results from linear algebra and can
 represent a wide range of dynamic behavior.</p>
 <p>For example, the 1D point
 mass system (\ref{eq:PointMass}) can be represented as an LTI system with:
@@ -13856,8 +13856,8 @@ $u = u_0 + \Delta u$. Then $$
 \dot{x} &amp; = \dot {\Delta x} = (f(x_0)+g(x_0) u_0) + \left(\frac{\partial f}{\partial x}(x_0) + \frac{\partial g}{\partial x}(x_0)u_0\right) \Delta x + g(x_0) \Delta u \\
  &amp; = \left(\frac{\partial f}{\partial x}(x_0) + \frac{\partial g}{\partial x}(x_0)u_0\right) \Delta x + g(x_0) \Delta u 
 \end{aligned}$$ This is LTI in $(\Delta x,\Delta u)$ with
-$A=\frac{\partial f}{\partial x}(x_0) + \frac{\partial g}{\partial x}(x_0)$
-and $B=\frac{\partial g}{\partial x}(x_0)$.</p>
+$A=\frac{\partial f}{\partial x}(x_0) + \frac{\partial g}{\partial x}(x_0)u_0$
+and $B=g(x_0)$.</p>
 
 </div>
 </div>
@@ -14017,7 +14017,6 @@ when we discuss <a href="RobotControl.html#Motion-queues-(motion-generation">mot
 <li>Continuous-time dynamic systems are represented by a dynamics equation in the canonical form $\dot{x}(t) = f(x(t),u(t))$, where $x$ is the state trajectory and $u$ is the control trajectory.  Discrete-time systems are represented by the form $x_{t+1} = f(x_t,u_t)$.</li>
 <li>Integration (or simulation) is needed to determine the trajectory that the state will follow under a given control.  Numerical instability can result with a time step that is too large.</li>
 <li>Dynamic systems can be convergent, stable, or divergent under a given controller.</li>
-<li></li>
 </ul>
 
 </div>

@@ -13110,7 +13110,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -13313,26 +13313,26 @@ because it is easy to implement, can handle "black box" functions, and
 each iteration is cheap. Its major disadvantage is that it can take a
 long time to converge. We will also describe a discrete descent method
 often used to solve large combinatorial problems.</p>
-<h4 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h4><p>Given a differentiable scalar field $f(\V{x})$ and an initial guess
-$\V{x_1}$, gradient descent iteratively moves the guess toward lower
+<h4 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h4><p>Given a differentiable scalar field $f(\bf{x})$ and an initial guess
+$\bf{x}_1$, gradient descent iteratively moves the guess toward lower
 values of $f$ by taking steps in the direction of the negative gradient
-$-\nabla f(\V{x})$. Locally, the negated gradient is the steepest
-descent direction, i.e., the direction that $\V{x}$ would need to move
+$-\nabla f(\bf{x})$. Locally, the negated gradient is the steepest
+descent direction, i.e., the direction that $\bf{x}$ would need to move
 in order to decrease $f$ the fastest. The algorithm typically converges
 to a local minimum, but may rarely reach a saddle point, or not move at
-all if $\V{x_1}$ lies at a local maximum.</p>
-<h4 id="The-gradient-is-the-steepest-descent-direction">The gradient is the steepest descent direction<a class="anchor-link" href="#The-gradient-is-the-steepest-descent-direction">&#182;</a></h4><p>The first order Taylor approximation of $f(\V{x})$ about $f(\V{x_1})$ is
-$$f(\V{x}) = f(\V{x_1}) + \nabla f(\V{x_1}) \cdot (\V{x}-\V{x_1}) + O(||\V{x}-\V{x_1}||^2).$$
-Consider moving from $\V{x_1}$ a small amount $h$ in a unit direction
-$\V{u}$. We want to find the $\V{u}$ that minimizes
-$f(\V{x_1} + h\V{u})$. Using the Taylor expansion, we see that
-$$f(\V{x_1} + h\V{u}) - f(\V{x_1}) =  h \nabla f(\V{x_1}) \cdot \V{u} +  h^2 O(1).$$
+all if $\bf{x}_{1}$ lies at a local maximum.</p>
+<h4 id="The-gradient-is-the-steepest-descent-direction">The gradient is the steepest descent direction<a class="anchor-link" href="#The-gradient-is-the-steepest-descent-direction">&#182;</a></h4><p>The first order Taylor approximation of $f(\bf{x})$ about $f(\bf{x}_{1})$ is
+$$f(\bf{x}) = f(\bf{x}_{1}) + \nabla f(\bf{x}_{1}) \cdot (\bf{x}-\bf{x}_{1}) + O(||\bf{x}-\bf{x}_{1}||^2).$$
+Consider moving from $\bf{x}_{1}$ a small amount $h$ in a unit direction
+$\bf{u}$. We want to find the $\bf{u}$ that minimizes
+$f(\bf{x}_{1} + h\bf{u})$. Using the Taylor expansion, we see that
+$$f(\bf{x}_{1} + h\bf{u}) - f(\bf{x}_{1}) =  h \nabla f(\bf{x}_{1}) \cdot \bf{u} +  h^2 O(1).$$
 If we make the $h^2$ term insignificant by shrinking $h$, we see that in
-order to decrease $f(\V{x_1} + h\V{u}) - f(\V{x_1})$ the fastest we must
-minimize $\nabla f(\V{x_1}) \cdot \V{u}$. The unit vector that minimizes
-$\nabla f(\V{x_1}) \cdot \V{u}$ is
-$\V{u} = -\nabla f(\V{x_1}) / || \nabla f(\V{x_1}) ||$ as desired.</p>
-<h4 id="Algorithm">Algorithm<a class="anchor-link" href="#Algorithm">&#182;</a></h4><p>The algorithm is initialized with a guess $\V{x_1}$, a maximum iteration
+order to decrease $f(\bf{x}_{1} + h\bf{u}) - f(\bf{x}_{1})$ the fastest we must
+minimize $\nabla f(\bf{x}_{1}) \cdot \bf{u}$. The unit vector that minimizes
+$\nabla f(\bf{x}_{1}) \cdot \bf{u}$ is
+$\bf{u} = -\nabla f(\bf{x}_{1}) / || \nabla f(\bf{x}_{1}) ||$ as desired.</p>
+<h4 id="Algorithm">Algorithm<a class="anchor-link" href="#Algorithm">&#182;</a></h4><p>The algorithm is initialized with a guess $\bf{x}_{1}$, a maximum iteration
 count $N_{max}$, a gradient norm tolerance $\epsilon_g$ that is used to
 determine whether the algorithm has arrived at a critical point, and a
 step tolerance $\epsilon_x$ to determine whether significant progress is
@@ -13342,14 +13342,14 @@ being made. It proceeds as follows:</p>
 <ol>
 <li><p><strong>for</strong> {$t=1,2,\ldots,N_{max}$}</p>
 </li>
-<li><p>&nbsp;&nbsp;&nbsp; $\V{x_{t+1}} \gets \V{x_{t}} - \alpha_t \nabla f(\V{x_{t}})$</p>
+<li><p>&nbsp;&nbsp;&nbsp; $\bf{x}_{t+1} \gets \bf{x}_{t} - \alpha_t \nabla f(\bf{x}_{t})$</p>
 </li>
-<li><p>&nbsp;&nbsp;&nbsp; <strong>if</strong> $\|\nabla f(\V{x_{t}})\| &lt; \epsilon_g$ <strong>return</strong> "Converged
+<li><p>&nbsp;&nbsp;&nbsp; <strong>if</strong> $\|\nabla f(\bf{x}_{t})\| &lt; \epsilon_g$ <strong>return</strong> "Converged
 on critical point"</p>
 </li>
-<li><p>&nbsp;&nbsp;&nbsp; <strong>if</strong> $\|V{x_{t+1}}-\V{x_{t}}\| &lt; \epsilon_x$ <strong>return</strong> "Converged on an $x$ value"</p>
+<li><p>&nbsp;&nbsp;&nbsp; <strong>if</strong> $\|\bf{x}_{t+1}-\bf{x}_{t}\| &lt; \epsilon_x$ <strong>return</strong> "Converged on an $x$ value"</p>
 </li>
-<li><p>&nbsp;&nbsp;&nbsp; <strong>if</strong> $f(\V{x_{t+1}}) &gt; f(\V{x}_t)$ <strong>return</strong> "Diverging"</p>
+<li><p>&nbsp;&nbsp;&nbsp; <strong>if</strong> $f(\bf{x}_{t+1}) &gt; f(\bf{x}_{t})$ <strong>return</strong> "Diverging"</p>
 </li>
 <li><p><strong>return</strong> "Maximum number of iterations reached"</p>
 </li>
@@ -13359,7 +13359,7 @@ on critical point"</p>
 chosen to maintain a balance between convergence speed and avoiding
 divergence. Note that $\alpha_t$ may depend on the step $t$.</p>
 <h4 id="Choosing-a-step-size-using-line-search">Choosing a step size using line search<a class="anchor-link" href="#Choosing-a-step-size-using-line-search">&#182;</a></h4><p>To a first-order approximation, each step decreases the value of $f$ by
-approximately $\alpha_t ||\nabla f(\V{x_0})||^2$. If $\alpha_t$ is too
+approximately $\alpha_t ||\nabla f(\bf{x}_{0})||^2$. If $\alpha_t$ is too
 small, then the algorithm will converge very slowly. On the other hand,
 if the step size $\alpha_t$ is not chosen small enough, then the
 algorithm may fail to reduce the value of $f$. (Because the first order
@@ -13368,11 +13368,11 @@ approximation is valid only locally.)</p>
 a reduction in $f$ while still making sufficiently fast progress. This
 procedure is known as a <em>line search</em> and is employed in many
 multivariate optimization algorithms. The input to a line search is a
-function $f$, an initial point $\V{x}$ and direction $\V{d}$, initial
+function $f$, an initial point $\bf{x}$ and direction $\bf{d}$, initial
 candidate step size $\gamma_1$. The output is a step size $\gamma &gt; 0$
-such that $f(\V{x}+\gamma \V{d}) &lt; f(\V{x})$, or failure if the step
+such that $f(\bf{x}+\gamma \bf{d}) &lt; f(\bf{x})$, or failure if the step
 size falls below some threshold.</p>
-<p>The first step is to check whether $\V{x} + \gamma_1 \V{d}$ decreases
+<p>The first step is to check whether $\bf{x} + \gamma_1 \bf{d}$ decreases
 the value of $f$. If so, then we can either terminate the line search,
 or search for a larger valid $\gamma$ by repeated doubling:
 $\gamma_n = \gamma_1 2^n$. If a step of size $\gamma_1$ increases $f$,
@@ -13538,7 +13538,7 @@ Cx = d. \\
 <p>Professional-grade LP and QP software is widely available, highly reliable, and scales to thousands and even millions of variables and constraints. Example software packages include GLPK, Gurobi, and CVXOPT.  In order to get optimal scalability to large problems, the A, C, and P matrices ought to be representable using <em>sparse matrices</em> (that is, $m\times n$ matrices in which the number of nonzero entries is $O(m+n)$ rather than $O(mn)$), and a package that can exploit sparsity should be employed.</p>
 <h3 id="Nonlinear-programming">Nonlinear programming<a class="anchor-link" href="#Nonlinear-programming">&#182;</a></h3><p>In nonlinear programming (NLP), the $f$, $g$, and $h$ functions may be nonlinear.  Problems of this form can be solved to a local optimum using sequential quadratic programming (SQP) or interior-point methods.</p>
 <p>Note that due to nonlinearity, there is no guarantee of finding a global optimum, and moreover there is no guarantee that these methods will even find a point in the feasible set $ \{ x \,|\, g(x) \leq 0, h(x) = 0\}$.</p>
-<p>Software for solving such problems are available in SNOPT, IPOPT, Matlab's <code>fmincon</code> function, and Scipy's <a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize.html"><code>minimize</code></a> function.  Although LP and QP problems are subsumed by the class of NLP problems, general NLP solvers are usually not as fast or reliable as special-purpose solvers.</p>
+<p>Software for solving such problems are available in SNOPT, IPOPT, Matlab's <code>fmincon</code> function, and Scipy's <code>minimize</code> (<a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize.html">https://docs.scipy.org/doc/scipy/reference/optimize.minimize.html</a>) function.  Although LP and QP problems are subsumed by the class of NLP problems, general NLP solvers are usually not as fast or reliable as special-purpose solvers.</p>
 
 </div>
 </div>

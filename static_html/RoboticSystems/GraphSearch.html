@@ -13110,7 +13110,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -13278,7 +13278,7 @@ is given, then all edges are assumed to have uniform cost and we wish to
 optimize the total number of edges in a path.</p>
 <h3 id="Dijkstra's-algorithm">Dijkstra's algorithm<a class="anchor-link" href="#Dijkstra's-algorithm">&#182;</a></h3><p>The most famous graph search method is <em>Dijkstra's algorithm</em>. It
 calculates an optimal path when one exists, and works in
-O($|E| + |V| \log |V|$) time and O($|V|$) space, when implemented with
+$O(|E| + |V| \log |V|$) time and $O(|V|$) space, when implemented with
 an appropriate priority queue data structure. The general idea is to
 iterate through all unexplored vertices, ordered in increasing cost from
 the start (cost-to-come) $d[v]$ . All vertices have estimated
@@ -13344,10 +13344,11 @@ it will never expand the same vertex more than once.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span><span class="n">division</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Demonstration of Dijkstra&#39;s algorithm. Note that this code can be found in rsbook_code.utilities.search</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span><span class="n">division</span>
 
 <span class="c1">#dijkstra&#39;s algorithm</span>
 <span class="kn">import</span> <span class="nn">heapq</span>  <span class="c1">#for a fast priority queue implementation</span>
@@ -13438,7 +13439,7 @@ it will never expand the same vertex more than once.</p>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Simple graph adj list: {&#39;A&#39;: [&#39;B&#39;, &#39;C&#39;], &#39;B&#39;: [&#39;E&#39;], &#39;C&#39;: [&#39;B&#39;, &#39;D&#39;], &#39;D&#39;: [], &#39;E&#39;: [&#39;B&#39;, &#39;D&#39;]}
+<pre>Simple graph adj list: {&#39;C&#39;: [&#39;B&#39;, &#39;D&#39;], &#39;D&#39;: [], &#39;A&#39;: [&#39;B&#39;, &#39;C&#39;], &#39;E&#39;: [&#39;B&#39;, &#39;D&#39;], &#39;B&#39;: [&#39;E&#39;]}
 Running dijkstra&#39;s...
 Dijkstra&#39;s succeeded in 4 iterations
 Path in simple graph: [&#39;A&#39;, &#39;C&#39;, &#39;D&#39;]
@@ -13452,7 +13453,7 @@ Path in simple graph: [&#39;A&#39;, &#39;C&#39;, &#39;D&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">make_grid_graph</span><span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
@@ -13516,9 +13517,9 @@ replacing line 6 in Dijkstra's algorithm with the line:</p>
 <ol>
 <li>$v \gets$ vertex in $Q$ that minimizes $d[v] + h(v)$</li>
 </ol>
-<p>we obtain a method called <em>A\</em> search<em>. This method is proven to
-calculate optimal paths under the conditions that $h(v)$ is </em>admissible<em>
-and </em>consistent*. Admissibility means that $h(v)$ is a lower bound on
+<p>we obtain a method called <em>$A^</em> search$*. This method is proven to
+calculate optimal paths under the conditions that $h(v)$ is *admissible*
+and *consistent* . Admissibility means that $h(v)$ is a lower bound on
 the true cost from $v$ to $g$ in the graph, and consistency means that
 $h(v)$ becomes more accurate as $v$ approaches $g$. (Specifically,
 $h(u) \leq h(v) + c(u,w)$ for all edges $(u,v) \in E$.)</p>
@@ -13528,10 +13529,10 @@ $h(u) \leq h(v) + c(u,w)$ for all edges $(u,v) \in E$.)</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Below is code for the A* algorithm</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Below is code for the A* algorithm. Note that this code can be found in rsbook_code.utilities.search</span>
 
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">display</span><span class="p">,</span><span class="n">Markdown</span>
 
@@ -13686,10 +13687,10 @@ requires auxiliary techniques for <em>revisited state detection</em>.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Below is code for the A* algorithm</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Below is code for the implicit A* algorithm. Note that this code can be found in rsbook_code.utilities.search</span>
 
 <span class="k">def</span> <span class="nf">astar_implicit</span><span class="p">(</span><span class="n">successors</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">cost</span><span class="o">=</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">,</span><span class="n">w</span><span class="p">:</span><span class="mi">1</span><span class="p">),</span><span class="n">heuristic</span><span class="o">=</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span><span class="mi">0</span><span class="p">),</span><span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Completes an A* search on a large/infinite implicit graph.</span>

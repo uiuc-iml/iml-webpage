@@ -13110,7 +13110,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -13238,7 +13238,7 @@ motion planning, loosely defined as follows.</p>
 <p>Motion planning is a critical component of any autonomous system that exhibits intelligent behavior.  It plays a central role in the ecosystem of components of a robot, since the inputs to a planner include the robot’s state (coming from localization), environmental conditions (coming from perception), dynamic predictive models (coming from calibration and simulation), and task specification (coming from systems engineers and human supervisors), and the output of a motion planner is a low-level motion representation (sent to the controller). In short, motion planning governs how <em>all of the knowledge</em> available to the system influences <em>all actuation decisions</em>.</p>
 <p>The three inputs into a motion planner are the system state, the system model and the task specification. For example, in the context of autonomous vehicles, the system state may specify the vehicle’s state, the map around it, and the state and intentions of other agents. The system model predicts how the system state changes in the future, conditioned on the robot’s decisions. The task specification includes cost function(s) that measure the quality of candidate motions as well as constraints that the motion must meet.  For example, an autonomous vehicle may wish to maximize ride comfort while also remaining collision-free, staying within a lane, etc.</p>
 <p>In this section, we will focus mainly on the problem of <em>kinematic motion planning</em> (aka
-path planning), defined here</p>
+path planning), defined here:</p>
 <blockquote><p><strong>Kinematic motion planning</strong> (aka <strong>Path planning</strong>): the use of computational methods generate a continuous path between two robot configurations while respecting joint limits and avoiding obstacles.</p>
 </blockquote>
 <p>This is purely a <em>geometric</em> problem that sidesteps the complexity of timing and dynamics. 
@@ -13268,8 +13268,8 @@ terrain. In order to do so, the robot must be able to hypothesize
 various future states that it might be in, and actions it might take.
 Planning is somewhat like playing a game of chess, in that you imagine
 possible future states of the board as a result of various actions that
-you might take. This cannot be done efficiently in a naïve fashion. If
-$n$ steps wer needed to reach a goal, and $m$ actions were available at
+you might take. This cannot be done efficiently in a naive fashion. If
+$n$ steps were needed to reach a goal, and $m$ actions were available at
 each step, then there would be $m^n$ possible future action sequences!
 This can rapidly become huge, even for small values of $m$ and $n$ (not
 to mention the fact that robots can perform a <em>continuously infinite</em>
@@ -13396,11 +13396,11 @@ time, the planner will produce progressively better paths.</p>
 <li><em>Score</em> each path using a score function $S(p)$.  Let $p_i$ be the path with minimum score.</li>
 <li><em>Execute</em> the first part of $p_i$, and then repeat from step 1.</li>
 </ol>
-<p>Unlike behavior scripting, this <em>generate-and-score</em> approach is indeed a true planner, because the Generate step predicts how the robot will behave and the Score step can perform collision checks and handle other constraints.</p>
+<p>Unlike behavior scripting, this <em>generate-and-score</em> approach is indeed a true planner, because the <em>Generate</em> step predicts how the robot will behave and the <em>Score</em> step can perform collision checks and handle other constraints.</p>
 <p>A huge range of behavior can be obtained by tweaking the path generation and scoring methods.  In fact, most motion planners perform some variant of this process, but use sophisticated methods to generate the paths.  This approach can be very computationally light, and even effective at solving some problems.  However, because the generated paths usually do not reach all the way to the goal, this approach assumes that the problem requires minimal amounts of long-range deliberation to reach the goal.</p>
 <p>As an example, a random-path generation approach simply generates $N$ paths at random, and the scoring function will assign infinite cost to any infeasible path. For feasible paths, the score will measure a combination of the length of the path and the distance from the end of the path to the goal. What we can observe with this approach is that its success is highly problem-dependent. If the robot is traveling in a wide open space or around small obstacles, then it works fairly well, although there is a little jittering.</p>
 <p>This jittering can be reduced by applying some smoothing in postprocessing.  Or, rather than generating random paths, we can use a library of <em>motion primitives</em> that are the same at each iteration, slightly modified to start at the robot's current state.  For example, a mobile robot can move forward, move backward, turn right, turn left, or perform swerving maneuvers left and right.</p>
-<p>However, if the robot must exit a room before making progress to the goal, then it will be incredibly unlikely to find a path out of the first room, either using random paths or motion primitives.  This is known as a <em>local minimum</em>, which will be a reoccurring issue throughout robotics (and other fields of engineering as well.)</p>
+<p>However, if the robot must exit a room before making progress to the goal, then it will be incredibly unlikely to find a path out of the first room, either using random paths or motion primitives.  This is known as a <em>local minimum</em>, which will be a reoccurring issue throughout robotics (and other fields of engineering as well).</p>
 
 </div>
 </div>
@@ -13745,7 +13745,7 @@ AABJRU5ErkJggg==
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Polynomial">Polynomial<a class="anchor-link" href="#Polynomial">&#182;</a></h3><p>Another common representation is a degree $d$ polynomial</p>
-$$ y(s) = poly(\V{c}_0,\ldots,\V{c}_d;s) = \sum_{i=0}^d \V{c}_i s^i $$<p>where $\V{c}_0,\ldots,\V{c}_d \in \mathcal{C}$ are the polynomial coefficients.  This is a <em>parametric</em> representation in which each component of the motion is represented by an independent 1D function.  Hence, in 2D the y component of a curve may not be, in general, a proper function of x, even though both x and y are proper functions of u.</p>
+$$ y(s) = poly(\bf{c}_0,\ldots,\bf{c}_d;s) = \sum_{i=0}^d \bf{c}_i s^i $$<p>where $\bf{c}_0,\ldots,\bf{c}_d \in \mathcal{C}$ are the polynomial coefficients.  This is a <em>parametric</em> representation in which each component of the motion is represented by an independent 1D function.  Hence, in 2D the y component of a curve may not be, in general, a proper function of x, even though both x and y are proper functions of u.</p>
 
 </div>
 </div>
@@ -14087,7 +14087,7 @@ yK9U9Uu3sxljAkY34GERqQWqgOtdzmN8wFpYjDHGGOP3bAyLMcYYY/yeFSzGGGOM8XtWsBhjjDHG
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Splines">Splines<a class="anchor-link" href="#Splines">&#182;</a></h3><p>Splines are a cross between polynomials and piecewise linear curves that gives the "best of both worlds" in terms of the flexibility of piecewise linear curves but also the smoothness qualities of polynomials.  They consist of a sequence of piecewise polynomials, all of low degree.  The representation of the path is given by a set of <em>control points</em> which control the shape of the curve. From these points, polynomial coefficients are derived in order to enforce continuity.</p>
 <p>The general form of a spline with $n$ segments and degree $d$ is given as follows</p>
-$$y(s) = poly(C_i;sn-i)$$<p>where $i=\lfloor sn \rfloor$ is the segment index and $C_i=(\V{c}_{0,i},...,\V{c}_{d,i})$ is the set of polynomial coefficients for the $i$th segment.  We do not typically store the polynomial coefficients themselves, but instead represent a list of control points $\V{p}_1,\ldots,\V{p}_k$ from which the coefficients of each polynomial are derived.  This is because it is difficult to set up coefficients manually such that the spline is continuous and smooth.  Modifying control points is far easier and more intuitive.  The method for converting control points to coefficients is the <em>interpolation scheme</em>.</p>
+$$y(s) = poly(C_i;sn-i)$$<p>where $i=\lfloor sn \rfloor$ is the segment index and $C_i=(\bf{c}_{0,i},...,\bf{c}_{d,i})$ is the set of polynomial coefficients for the $i$th segment.  We do not typically store the polynomial coefficients themselves, but instead represent a list of control points $\bf{p}_1,\ldots,\bf{p}_k$ from which the coefficients of each polynomial are derived.  This is because it is difficult to set up coefficients manually such that the spline is continuous and smooth.  Modifying control points is far easier and more intuitive.  The method for converting control points to coefficients is the <em>interpolation scheme</em>.</p>
 <p>Typical splines are degree 3 or 5, which are known as cubic or quintic splines, respectively.  (Degree 1 splines are actually piecewise linear curves.) These degrees are popular because they allow control point interpolation schemes to dictate the order of the spline's smoothness (derivative continuity).</p>
 <h4 id="Cubic-Hermite-splines">Cubic Hermite splines<a class="anchor-link" href="#Cubic-Hermite-splines">&#182;</a></h4><p>The simplest spline is the cubic Hermite spline, which defines the control points to include milestones and the derivative of the spline at each milestone.  The Hermite interpolation scheme solves for the polynomials to enforce continuity and derivative continuity (C1 continuity).</p>
 
@@ -14132,49 +14132,49 @@ $$y(s) = poly(C_i;sn-i)$$<p>where $i=\lfloor sn \rfloor$ is the segment index an
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Specifically, suppose the segment travels from milestone $\V{m}_0$ to $\V{m}_1$ as the interpolation parameter travels from 0 to 1.  We wish to find a cubic polynomial segment that respects the initial tangent $\V{t}_0$ and the terminal tangent $\V{t}_1$.  In other words, the terminal conditions are</p>
+<p>Specifically, suppose the segment travels from milestone $\bf{m}_0$ to $\bf{m}_1$ as the interpolation parameter travels from 0 to 1.  We wish to find a cubic polynomial segment that respects the initial tangent $\bf{t}_0$ and the terminal tangent $\bf{t}_1$.  In other words, the terminal conditions are</p>
 $$
 \begin{split}
-\V{m}_0 &amp;= poly(C_i;0) \\
-\V{m}_1 &amp;= poly(C_i;1) \\
-\V{t}_0 &amp;= \left. \frac{d}{du} poly(C_i;u) \right|_{u=0} \\
-\V{t}_1 &amp;= \left. \frac{d}{du} poly(C_i;u) \right|_{u=1} 
+\bf{m}_0 &amp;= poly(C_i;0) \\
+\bf{m}_1 &amp;= poly(C_i;1) \\
+\bf{t}_0 &amp;= \left. \frac{d}{du} poly(C_i;u) \right|_{u=0} \\
+\bf{t}_1 &amp;= \left. \frac{d}{du} poly(C_i;u) \right|_{u=1} 
 \end{split}
-$$<p>Letting the coefficients $C_i =(\V{a},\V{b},\V{c},\V{t})$, we have 
-$$ poly(C_i;u) = \V{a} + u \V{b} + u^2 \V{c} + u^3 \V{t} $$
-$$ \frac{d}{du} poly(C_i;u) = \V{b} + 2 u \V{c} + 3 u^2 \V{t} $$
-so immediately, we see that $\V{a} = \V{m}_0$ and $\V{b} = \V{t}_0$.  We now need to solve for $\V{c}$ and $\V{t}$ such that the linear equations
-$$\V{m}_1 = \V{m}_0 + \V{t}_0 + \V{c} + \V{t}$$
+$$<p>Letting the coefficients $C_i =(\bf{a},\bf{b},\bf{c},\bf{t})$, we have 
+$$ poly(C_i;u) = \bf{a} + u \bf{b} + u^2 \bf{c} + u^3 \bf{t} $$
+$$ \frac{d}{du} poly(C_i;u) = \bf{b} + 2 u \bf{c} + 3 u^2 \bf{t} $$
+so immediately, we see that $\bf{a} = \bf{m}_0$ and $\bf{b} = \bf{t}_0$.  We now need to solve for $\bf{c}$ and $\bf{t}$ such that the linear equations
+$$\bf{m}_1 = \bf{m}_0 + \bf{t}_0 + \bf{c} + \bf{t}$$
 and
-$$\V{t}_1 = \V{t}_0 + 2 \V{c} + 3 \V{t}$$
+$$\bf{t}_1 = \bf{t}_0 + 2 \bf{c} + 3 \bf{t}$$
 hold.  To do so we rearrange the above into the matrix equation
 $$
-\begin{bmatrix}\V{m}_1 - \V{m}_0 - \V{t}_0 \\
-\V{t}_1 - \V{h_0}
+\begin{bmatrix}\bf{m}_1 - \bf{m}_0 - \bf{t}_0 \\
+\bf{t}_1 - \bf{t}_{0}
 \end{bmatrix} =</p>
 \begin{bmatrix}
 1 &amp; 1 \\
 2 &amp; 3
-\end{bmatrix}\begin{bmatrix} \V{c} \\ \V{t} \end{bmatrix}<p>$$
+\end{bmatrix}\begin{bmatrix} \bf{c} \\ \bf{t} \end{bmatrix}<p>$$
 Which has the solution via 2x2 matrix inversion
 $$
-\begin{bmatrix} \V{c} \\ \V{t} \end{bmatrix} =</p>
+\begin{bmatrix} \bf{c} \\ \bf{t} \end{bmatrix} =</p>
 \begin{bmatrix}
 1 &amp; 1 \\
 2 &amp; 3
 \end{bmatrix}<p>^{-1}</p>
-\begin{bmatrix}\V{m}_1 - \V{m}_0 - \V{t}_0 \\
-\V{t}_1 - \V{h_0}
+\begin{bmatrix}\bf{m}_1 - \bf{m}_0 - \bf{t}_0 \\
+\bf{t}_1 - \bf{t}_{0}
 \end{bmatrix}<p>=</p>
 \begin{bmatrix}
 3 &amp; -1 \\
 -2 &amp; 1
-\end{bmatrix}\begin{bmatrix}\V{m}_1 - \V{m}_0 - \V{t}_0 \\
-\V{t}_1 - \V{h_0}
+\end{bmatrix}\begin{bmatrix}\bf{m}_1 - \bf{m}_0 - \bf{t}_0 \\
+\bf{t}_1 - \bf{t}_{0}
 \end{bmatrix}<p>. $$
-(Check that the inverse is correct by inspection.) In other words, $\V{c} = - 3\V{m}_0 + 3 \V{m}_1 - 2\V{t}_0 - \V{t}_1$ and $\V{t} =  2\V{m}_0 -2 \V{m}_1 + \V{t}_0 + \V{t}_1$.</p>
+(Check that the inverse is correct by inspection.) In other words, $\bf{c} = - 3\bf{m}_0 + 3 \bf{m}_1 - 2\bf{t}_0 - \bf{t}_1$ and $\bf{t} =  2\bf{m}_0 -2 \bf{m}_1 + \bf{t}_0 + \bf{t}_1$.</p>
 <p>Another convenient way of expressing the segment is:</p>
-$$poly(C_i;u) = (2u^3 - 3u^2 + 1) \V{m}_0 + (-2u^3 + 3u^3) \V{m}_1 + (u^3 - 2u^2 + u)\V{t}_0 + (u^3 - u^2) \V{t}_1.$$<h4 id="Quintic-Hermite-splines">Quintic Hermite splines<a class="anchor-link" href="#Quintic-Hermite-splines">&#182;</a></h4><p>The quintic Hermite spline defines control points to include milestones and their 1st and second derivatives. The interpolation scheme enforce continuity of first and second derivatives (C2 continuity).</p>
+$$poly(C_i;u) = (2u^3 - 3u^2 + 1) \bf{m}_0 + (-2u^3 + 3u^3) \bf{m}_1 + (u^3 - 2u^2 + u)\bf{t}_0 + (u^3 - u^2) \bf{t}_1.$$<h4 id="Quintic-Hermite-splines">Quintic Hermite splines<a class="anchor-link" href="#Quintic-Hermite-splines">&#182;</a></h4><p>The quintic Hermite spline defines control points to include milestones and their 1st and second derivatives. The interpolation scheme enforce continuity of first and second derivatives (C2 continuity).</p>
 
 </div>
 </div>

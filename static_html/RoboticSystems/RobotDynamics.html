@@ -13110,7 +13110,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -13270,8 +13270,8 @@ $\cos^2 x + \sin^2 x = 1$ to obtain $$K_2(q,\dot{q}) =
 <p>With $K(q,\dot{q}) = K_1(q,\dot{q}) + K_2(q,\dot{q})$ we first calculate
 the term $\frac{\partial K}{\partial \dot{q}}$:
 $$\frac{\partial K}{\partial \dot{q}} = 
-\begin{bmatrix}{\frac{\partial K}{\partial \dot{\theta}}}\\{\frac{\partial K}{\partial \dot{r}}}\end{bmatrix} = 
-\ColVecTwo{\dot{\theta}(H_1 + m_1\|c_1^L\|^2 + H_2 + m_2 r^2)}{m_2 \dot{r}}.$$
+\begin{bmatrix}{\frac{\partial K}{\partial \dot{\theta}}}\\{\frac{\partial K}{\partial \dot{r}}}\end{bmatrix} =</p>
+\begin{bmatrix}{\dot{\theta}(H_1 + m_1\|c_1^L\|^2 + H_2 + m_2 r^2)}\\{m_2 \dot{r}}\end{bmatrix}<p>.$$
 Now, let us define the constant $\bar{H} = H_1 + m_1\|c_1^L\|^2 + H_2$,
 and take the derivative with respect to time to obtain the term
 $\frac{d}{dt}(\frac{\partial K}{\partial \dot{q}})$ in the Lagrangian:
@@ -13281,10 +13281,12 @@ where we must apply the product rule to the term proportional to
 $\dot{\theta} r^2$.</p>
 <p>Proceeding to the $\frac{\partial K}{\partial q}$ term, we see no
 dependence of $K_1$ on $q$, but a dependence of $K_2$ on $r$ to obtain
-$$\frac{\partial K}{\partial q} = \ColVecTwo{0}{m_2 \dot{\theta}^2 r}.$$</p>
+$$\frac{\partial K}{\partial q} = 
+\begin{bmatrix}{0}\\{m_2 \dot{\theta}^2 r}\end{bmatrix}.$$</p>
 <p>The last term in the Lagrangian dynamics equation is the derivative of
 potential energy $P(q) = mgh = mgr\sin \theta$:
-$$\frac{\partial P}{\partial q} = mg \ColVecTwo{r \cos \theta}{\sin \theta}.$$
+$$\frac{\partial P}{\partial q} = mg 
+\begin{bmatrix}{r \cos \theta}\\{\sin \theta}\end{bmatrix}.$$
 Overall, we have the dynamic equations: $$
 \begin{aligned}
 (\bar{h}+m_2 r^2)\ddot{\theta} + 2 \dot{r}\dot{\theta} m_2 r + m g r \cos \theta &amp;= u_1 \\
@@ -13293,20 +13295,24 @@ m_2 \ddot{r} - m_2 \dot{\theta}^2 r + mg \sin \theta &amp;= u_2
 is the force on the second.</p>
 <p>Let us now determine the standard form of the dynamics. First, we can
 determine the $B$ matrix by matching terms that depend on $\ddot{q}$:
-$$B(q)\ddot{q} = \ColVecTwo{\ddot{\theta}(\bar{H}+m_2r^2)}{m_2 \ddot{r}} = \MatTwo{\bar{H}+m_2r^2}{0}{0}{m_2} \ddot{q}.$$
+$$B(q)\ddot{q} = 
+\begin{bmatrix}{\ddot{\theta}(\bar{H}+m_2r^2)}\\{m_2 \ddot{r}}\end{bmatrix} = 
+\begin{bmatrix}{\bar{H}+m_2r^2}&amp;{0}\\{0}&amp;{m_2} \end{bmatrix}\ddot{q}.$$
 The velocity-dependent terms go into $C$:
-$$C(q,\dot{q}) = \ColVecTwo{2 m_2 r \dot{r} \dot{\theta}}{-m_2 r \dot{\theta}^2}$$
+$$C(q,\dot{q}) = 
+\begin{bmatrix}{2 m_2 r \dot{r} \dot{\theta}}\\{-m_2 r \dot{\theta}^2}\end{bmatrix}$$
 Finally, the generalized gravity vector $G$ contains all other terms:
-$$G(q) = mg \ColVecTwo{r \cos \theta}{\sin \theta}.$$</p>
+$$G(q) = mg 
+\begin{bmatrix}{r \cos \theta}\\{\sin \theta}\end{bmatrix}.$$</p>
 <h3 id="Effective-inertia">Effective inertia<a class="anchor-link" href="#Effective-inertia">&#182;</a></h3><p>In many applications we may wish to convert between joint space dynamics
 and workspace dynamics. This concept of effective inertial lets us
 answer questions like or "How much force would the robot apply to an
 object at point $p$?" or "How much external force is needed to
-accelerate a point $p$ on the robot at a given rate?"</p>
+accelerate a point $p$ on the robot at a given rate?".</p>
 <p>Let us assume that without any external force, at the robot's current
-state $(q,\dot{q})$ and external torques $u_0$ it generates
+state $(q,\dot{q})$ and external torques $u_0$ generates
 accelerations $\ddot{q}_{0}$:
-$$\ddot{q}_0 = B^{-1}(q)( u - C(q,\dot{q}) - G(q))$$ We now wish to
+$$\ddot{q}_0 = B^{-1}(q)( u_{0} - C(q,\dot{q}) - G(q))$$ We now wish to
 calculate what accelerations $\ddot{q}$ would occur a force $f$ were
 applied at this point in time at point $p$. Supposing $J(q)$ is the
 Jacobian of $p$, the external torques become $u = u_0  + J^T(q)f$.
@@ -13320,7 +13326,7 @@ $$\ddot{p} = \dot{J}(q)\dot{q} + J(q)\ddot{q}.$$ Compared to the
 un-forced acceleration of $p$
 $$\ddot{p}_0 = \dot{J}(q)\dot{q} + J(q)\ddot{q}_0$$ we have
 $$\ddot{p} - \ddot{p}_0 = J(q)\ddot{q} - J(q)\ddot{q}_0 = J(q)B^{-1}(q)J^T(q)f.$$
-Another way of saying this, which matches the form of Newton's first law
+Another way of saying this, which matches the form of Newton's second law
 $f=ma$, is $$f = (J(q)B^{-1}(q)J^T(q))^{-1}(\ddot{p} - \ddot{p}_0).$$
 Hence, the matrix $(J(q)B^{-1}(q)J^T(q))^{-1}$ is known as the
 <em>effective inertia matrix</em> at point $p$.</p>
@@ -13329,7 +13335,7 @@ when the robot is at a singularity. Although $B^{-1}$ is always full
 rank, singularities in $J$ may cause $J(q)B^{-1}(q)J^T(q)$ to drop rank,
 making it non-invertible. The ultimate effect is that in some
 directions, there may be no force that can accelerate the robot.
-Similarity, if the manipulability of the Jacobian is small, a huge force
+Similarly, if the manipulability of the Jacobian is small, a huge force
 may be needed to cause a small acceleration.</p>
 <p>In some cases this can be dangerous, such as when robots handle delicate
 objects or are supposed to be human-safe. Like a nutcracker, large
