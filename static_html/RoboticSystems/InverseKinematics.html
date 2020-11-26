@@ -13265,30 +13265,30 @@ several general issues regarding IK, including the notions of task
 space, redundancy, and singularities. Both analytical and numerical
 methods to solve inverse kinematics will be presented.</p>
 <h2 id="General-discussion">General discussion<a class="anchor-link" href="#General-discussion">&#182;</a></h2><p>If we express the coordinates of some point $X$ attached to the robot as
-a vector $\bf{x}$, forward kinematics allows us to compute a map
-$\bf{x}(\bf{q}) \equiv f(\bf{q})$ where $\bf{q}$ is the robot's
+a vector $\mathbf{x}$, forward kinematics allows us to compute a map
+$\mathbf{x}(\mathbf{q}) \equiv f(\mathbf{q})$ where $\mathbf{q}$ is the robot's
 configuration. Note that this map is vector-valued. The goal of IK is to
 produce an inverse of the map $f$, or more specifically, given a desired
-value $\bf{x}_D$, calculate one or more solutions $\bf{q}$ such that
-$\bf{x}_D = \bf{x}(\bf{q}) \equiv f(\bf{q})$ hold. We also say that
-$\bf{x}(\bf{q}) - \bf{x}_D = 0$ is the <em>constraint equation</em> that $\bf{q}$
+value $\mathbf{x}_D$, calculate one or more solutions $\mathbf{q}$ such that
+$\mathbf{x}_D = \mathbf{x}(\mathbf{q}) \equiv f(\mathbf{q})$ hold. We also say that
+$\mathbf{x}(\mathbf{q}) - \mathbf{x}_D = 0$ is the <em>constraint equation</em> that $\mathbf{q}$
 must meet.</p>
 <hr>
 <p><img src="figures/modeling/ik_2R.png" alt="fig:2RIK"></p>
 <div class="figcaption"><a name="fig:2RIK">Figure 1</a>.
 Illustrating the IK problem for a 2R planar manipulator. (a) The goal
-is to find one or more configurations $\bf{q}$ so that the end effector
-position $\bf{x}(\bf{q})$ is matched to a target position $\bf{x}_D$. IK
+is to find one or more configurations $\mathbf{q}$ so that the end effector
+position $\mathbf{x}(\mathbf{q})$ is matched to a target position $\mathbf{x}_D$. IK
 problems may have more than one solution, and in this case there are two
 solutions (b,c) given by $(q_1^A,q_2^A)$ and
 $(q_1^B,q_2^B)$.</div><hr>
 <p>For instance, suppose $X$ is a point on link $N$ and has local
-coordinates $\bf{x}_N$ (relative to link $N$). After the robot moves,
-link $N$ has coordinate frame $T_N(\bf{q})$ relative to the world frame.
-Hence, $X$ has world coordinates $$\bf{x}(\bf{q}) = T_N(\bf{q}) \bf{x}_N.$$</p>
-<p>Given $\bf{x}_D$ specifying some desired coordinates of $X$ in the world
-frame, IK would compute some $\bf{q}$ so that
-$T_N(\bf{q}) \bf{x}_N = \bf{x}_D$. Depending on the value of $\bf{x}_D$ and
+coordinates $\mathbf{x}_N$ (relative to link $N$). After the robot moves,
+link $N$ has coordinate frame $T_N(\mathbf{q})$ relative to the world frame.
+Hence, $X$ has world coordinates $$\mathbf{x}(\mathbf{q}) = T_N(\mathbf{q}) \mathbf{x}_N.$$</p>
+<p>Given $\mathbf{x}_D$ specifying some desired coordinates of $X$ in the world
+frame, IK would compute some $\mathbf{q}$ so that
+$T_N(\mathbf{q}) \mathbf{x}_N = \mathbf{x}_D$. Depending on the value of $\mathbf{x}_D$ and
 the kinematic structure of the robot, there may be no solution, such as
 when the desired point is out of reach. There may also be multiple
 solutions, as illustrated in
@@ -13339,13 +13339,13 @@ possesses more degrees of freedom than the dimension of the workspace.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Task-space">Task space<a class="anchor-link" href="#Task-space">&#182;</a></h3><p>The coordinates $\bf{x}$ are known as <em>task coordinates</em> which define the
+<h3 id="Task-space">Task space<a class="anchor-link" href="#Task-space">&#182;</a></h3><p>The coordinates $\mathbf{x}$ are known as <em>task coordinates</em> which define the
 robot's intended goal that it should perform in Cartesian space. In the
 example above, the task consisted only of Cartesian position, but it
 could generalize to also include orientation of the final link through a
 different choice of $f$. To define a combination of position and
 orientation goal, we would append some rotation parameterization like
-Euler angles to $\bf{x}$, and define the forward kinematic map:</p>
+Euler angles to $\mathbf{x}$, and define the forward kinematic map:</p>
 
 </div>
 </div>
@@ -13353,15 +13353,15 @@ Euler angles to $\bf{x}$, and define the forward kinematic map:</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-$$\bf{x} \equiv 
+$$\mathbf{x} \equiv 
 \begin{bmatrix}
-  \bf{x}_p \\
-  \bf{x}_o
-\end{bmatrix}=f(\bf{q}) \equiv
+  \mathbf{x}_p \\
+  \mathbf{x}_o
+\end{bmatrix}=f(\mathbf{q}) \equiv
 
 \begin{bmatrix}
-   T_N(\bf{q})\bf{x}_N \\
-   R_{ea}^{-1}(R_N(\bf{q}))
+   T_N(\mathbf{q})\mathbf{x}_N \\
+   R_{ea}^{-1}(R_N(\mathbf{q}))
  \end{bmatrix}$$<p></p>
 
 </div>
@@ -13370,34 +13370,34 @@ $$\bf{x} \equiv
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>where $R_N(\bf{q})$ is the 3x3 rotation matrix of the $N$'th link, and
+<p>where $R_N(\mathbf{q})$ is the 3x3 rotation matrix of the $N$'th link, and
 $R_{ea}^{-1}(R)$ computes the euler angle representation of the rotation
-matrix $R$ (according to some chosen convention). Here $\bf{x}_p$ is the
-position of $X$ and $\bf{x}_o$ is the Euler angle representation of the
+matrix $R$ (according to some chosen convention). Here $\mathbf{x}_p$ is the
+position of $X$ and $\mathbf{x}_o$ is the Euler angle representation of the
 orientation of the link on which it resides.</p>
 <p>It is also possible to define more exotic task spaces to accomplish
 different goals. Suppose for example that $X$ is a point in the middle
 of the robot's gripper, and it is supposed to lift a cup of liquid
-without tipping it. If we define a local direction $\bf{d}_N$ as an "up"
-direction perpendicular to the gripper opening direction, and $\bf{z}$
+without tipping it. If we define a local direction $\mathbf{d}_N$ as an "up"
+direction perpendicular to the gripper opening direction, and $\mathbf{z}$
 being the up direction in world coordinates, then we can specify a
 directional task constraint:
-$$\bf{d}(\bf{q}) - \bf{z} = R_N (\bf{q}) \bf{d}_N - \bf{z} = 0$$ where
-$\bf{d}(\bf{q})$ is the direction of the desired "up" vector attached to
+$$\mathbf{d}(\mathbf{q}) - \mathbf{z} = R_N (\mathbf{q}) \mathbf{d}_N - \mathbf{z} = 0$$ where
+$\mathbf{d}(\mathbf{q})$ is the direction of the desired "up" vector attached to
 the gripper, but expressed in world coordinates.</p>
 <p>In general, the task space may consist of any number of position and
 orientation constraints on the robot. For example, for a $k$-legged
 robot, up to $k$ leg positions and orientation may be constrained to be
 fixed while the body moves. In any of these cases we can still express
-the constraint as a vector equation $\bf{x}(\bf{q}) - \bf{x}_D = 0$ by
+the constraint as a vector equation $\mathbf{x}(\mathbf{q}) - \mathbf{x}_D = 0$ by
 stacking each individual constraint into a larger vector.</p>
 <h3 id="Analytical-vs-numerical-IK">Analytical vs numerical IK<a class="anchor-link" href="#Analytical-vs-numerical-IK">&#182;</a></h3><p>There exist two general approaches for solving IK problems. In the
-<em>analytical</em> approach, the equation $\bf{x}_D = f(\bf{q})$ is
+<em>analytical</em> approach, the equation $\mathbf{x}_D = f(\mathbf{q})$ is
 mathematically inverted into a closed-form expression through symbolic
 manipulations. In the <em>numerical approach</em>, we are given an initial
-guess $\bf{q}_0$ and then calculate a sequence of configurations
-$\bf{q}_0,\bf{q}_1,\bf{q}_2,\ldots$ such that the error
-$\| f(\bf{q}) - \bf{x}_D \|$ approaches 0. This section will focus on
+guess $\mathbf{q}_0$ and then calculate a sequence of configurations
+$\mathbf{q}_0,\mathbf{q}_1,\mathbf{q}_2,\ldots$ such that the error
+$\| f(\mathbf{q}) - \mathbf{x}_D \|$ approaches 0. This section will focus on
 analytical methods.</p>
 <p>The advantages of the analytical method include:</p>
 <ul>
@@ -13406,7 +13406,7 @@ exists.</p>
 </li>
 <li><p>Once the equations are derived, solutions are very fast to compute.</p>
 </li>
-<li><p>No need to define solution parameters or initial guesses $\bf{q}_0$</p>
+<li><p>No need to define solution parameters or initial guesses $\mathbf{q}_0$</p>
 </li>
 </ul>
 <p>Disadvantages of the analytical method include:</p>
@@ -13431,24 +13431,24 @@ of task. The requirement of producing high-quality solutions can be
 considered as a <em>soft constraint</em>, while strict requirements are
 considered <em>hard constraints</em>.</p>
 <p>Soft constraints can be expressed as seeking an IK solution that
-minimizes some scalar function $g(\bf{q})$. To handle soft constraints,
+minimizes some scalar function $g(\mathbf{q})$. To handle soft constraints,
 in the analytical case where multiple solutions exist, we may simply
 loop through all solutions; in the numerical case, there are some
-solution techniques that (locally) minimize $g(\bf{q})$ among possible
+solution techniques that (locally) minimize $g(\mathbf{q})$ among possible
 solutions. To handle hard constraints in the analytical solution case,
 they may be checked after solving for all solutions. In the numerical
 case, it is preferable to use solution techniques that enforce these
 additional constraints.</p>
 <p>Throughout this chapter, however, additional constraints will not be
 considered unless otherwise specified.</p>
-<h3 id="Counting-solutions">Counting solutions<a class="anchor-link" href="#Counting-solutions">&#182;</a></h3><p>For <em>almost all</em> task parameters $\bf{x}$ (in a sense to be made more
+<h3 id="Counting-solutions">Counting solutions<a class="anchor-link" href="#Counting-solutions">&#182;</a></h3><p>For <em>almost all</em> task parameters $\mathbf{x}$ (in a sense to be made more
 precise later) and "usual" kinematic structures, it is possible to coarsely
 determine the number of solutions simply by examining the number of DOFs
 of the robot and the number of constraints. Letting $n$ be the number of
 DOFs and $m$ be the number of task constraints, we have the following
 general rules:</p>
 <ul>
-<li><p>If $n &lt; m$, then no solutions to $\bf{x} = f(\bf{q})$ exist.
+<li><p>If $n &lt; m$, then no solutions to $\mathbf{x} = f(\mathbf{q})$ exist.
 (Overconstrained system of equations.)</p>
 </li>
 <li><p>If $n = m$, then a finite number of solutions exist.</p>
@@ -13458,7 +13458,7 @@ solutions exist. (Underconstrained system of equations.)</p>
 </li>
 </ul>
 <p>In the overconstrained case, there is insufficient flexibility in the
-choice of $\bf{q}$ to attain arbitrary values of $\bf{x}$. In the
+choice of $\mathbf{q}$ to attain arbitrary values of $\mathbf{x}$. In the
 underconstrained case, the robot is also called <em>redundant</em>. When the
 task exceeds the reach of the robot, there is no solution, but whenever
 a solution exists, there is a <em>continuum</em> of solutions that attain the
@@ -13469,18 +13469,18 @@ It is often the case in redundant robots that it is difficult to
 characterize all of the solutions for a given task, although we shall
 describe methods for doing so when describing parallel robots.</p>
 <h3 id="Singularities">Singularities<a class="anchor-link" href="#Singularities">&#182;</a></h3><p>The counting rules hold almost everywhere except for certain unstable
-settings of the parameter $\bf{x}$, which are known as <em>singularities</em>.
+settings of the parameter $\mathbf{x}$, which are known as <em>singularities</em>.
 We have already discussed singularities in the context of 3D rotations,
 where a rotation may have multiple representations. In nonredundant IK,
 a singularity occurs when the task has an infinite number of solutions,
 or precisely one solution. In redundant IK, a singularity is observed as
 a change in the intrinsic dimensionality of the solution set.</p>
 <p>Singularities are <em>unstable</em> in the sense that any open neighborhood
-containing a singular task point $\bf{x}$ will have different numbers of
-solutions. In other words, if $\bf{x}$ were perturbed slightly, the
+containing a singular task point $\mathbf{x}$ will have different numbers of
+solutions. In other words, if $\mathbf{x}$ were perturbed slightly, the
 number of solutions will almost certainly change. Non-singular points do
-not have this problem: for a non-singular point $\bf{x}$, there will
-exist an open neighborhood of $\bf{x}$ for which the number of solutions
+not have this problem: for a non-singular point $\mathbf{x}$, there will
+exist an open neighborhood of $\mathbf{x}$ for which the number of solutions
 remains constant.</p>
 <p>In practical terms, singularities usually avoided during IK for a number
 of reasons: as a singularity is approached in task space, the
@@ -13514,31 +13514,31 @@ distance away along the $x$ axis. The end effector is located $L_2$
 distance away from the second joint along the $x$ axis.</p>
 <p>With this definition, the forward kinematics equations in the previous
 chapter show that the world coordinates of the end effector at
-configuration $\bf{q} = (q_1,q_2)$ are given by: $$
+configuration $\mathbf{q} = (q_1,q_2)$ are given by: $$
 \begin{split}
-\bf{x}(\bf{q}) &amp;= R(q_1)\left(R(q_2) \begin{bmatrix} L_2 \\ 0 \end{bmatrix} + \begin{bmatrix} L_1 \\ 0 \end{bmatrix} \right) \\
+\mathbf{x}(\mathbf{q}) &amp;= R(q_1)\left(R(q_2) \begin{bmatrix} L_2 \\ 0 \end{bmatrix} + \begin{bmatrix} L_1 \\ 0 \end{bmatrix} \right) \\
  &amp; = R(q_1) \begin{bmatrix}L_1 + c_2 L_2 \\ s_2 L_2 \end{bmatrix} = \begin{bmatrix} c_1(L_1 + c_2 L_2) - s_1 s_2 L_2 \\ s_1(L_1 + c_2 L_2) + c_1 s_2 L_2 \end{bmatrix}
 \end{split}$$ where $c_i = \cos q_i$ and $s_i = \sin q_i$, for
 $i = 1,2$.</p>
-<p>Suppose we wish to move this $\bf{x}$ to the target point $\bf{x}_D$.
+<p>Suppose we wish to move this $\mathbf{x}$ to the target point $\mathbf{x}_D$.
 Thinking geometrically, we observe that the only joint controlling the
-norm $\| \bf{x}(\bf{q}) \|$ (i.e., the distance from the end effector to
+norm $\| \mathbf{x}(\mathbf{q}) \|$ (i.e., the distance from the end effector to
 the origin) is $q_2$. See
 <a href="#fig:2RIKb">Fig. 2</a>(a) for an illustration. As a result,
-$\| \bf{x}(q_1,q_2) \| = \| \bf{x}(0,q_2) \|$ which results in the
+$\| \mathbf{x}(q_1,q_2) \| = \| \mathbf{x}(0,q_2) \|$ which results in the
 simplified calculation:
-$$\| \bf{x}(q_1,q_2) \| = \sqrt{(L_1 + c_2 L_2)^2 + (s_2 L_2)^2}.$$ Since
-this norm must match the norm of $\bf{x}_D$, we require:
-$$\| \bf{x}_D \|^2 = (L_1 + c_2 L_2)^2 + (s_2 L_2)^2 = L_1^2 + 2 c_2 L_1 L_2 + c_2^2 L_2^2 + s_2^2 L_2^2 = L_1^2 + 2 c_2 L_1 L_2 + L_2^2$$
+$$\| \mathbf{x}(q_1,q_2) \| = \sqrt{(L_1 + c_2 L_2)^2 + (s_2 L_2)^2}.$$ Since
+this norm must match the norm of $\mathbf{x}_D$, we require:
+$$\| \mathbf{x}_D \|^2 = (L_1 + c_2 L_2)^2 + (s_2 L_2)^2 = L_1^2 + 2 c_2 L_1 L_2 + c_2^2 L_2^2 + s_2^2 L_2^2 = L_1^2 + 2 c_2 L_1 L_2 + L_2^2$$
 where in the last equality we've used the fact that $c_i^2 + s_i^2 = 1$.
 Now, the only unknown quantity in this equation is $c_2$. Solving for
 $c_2$, we obtain:
-$$c_2 = \frac{\| \bf{x}_D \|^2 - L_1^2 - L_2^2}{2 L_1 L_2}.$$</p>
+$$c_2 = \frac{\| \mathbf{x}_D \|^2 - L_1^2 - L_2^2}{2 L_1 L_2}.$$</p>
 <p>Based on the properties of the cosine, the right hand side (r.h.s.) of
 this equation must be in the range $[-1,1]$ for a solution to exist. If
 it were identically $\pm 1$, then one solution would exist, namely 0 or
 $\pi$, and otherwise two solutions exist, namely
-$$q_2 = \pm \cos^{-1} \left( \frac{\| \bf{x}_D \|^2 - L_1^2 - L_2^2}{2 L_1 L_2} \right).$$
+$$q_2 = \pm \cos^{-1} \left( \frac{\| \mathbf{x}_D \|^2 - L_1^2 - L_2^2}{2 L_1 L_2} \right).$$
 The positive and negative solutions are known as <em>elbow down</em> and <em>elbow
 up</em> solutions, respectively (with "down" and "up" indicating the
 direction that the elbow is facing, not the rotation of the forearm).
@@ -13546,21 +13546,21 @@ For robots with anthropomorphic joint limits it is possible to restrict
 further consideration to only one of these solutions; otherwise, both
 solutions must be considered.</p>
 <p>Examining the case in which no solution exists, if the r.h.s. were
-greater than 1, then $\| \bf{x}_D \|^2 - L_1^2 - L_2^2 &gt; 2 L_1 L_2$, or
+greater than 1, then $\| \mathbf{x}_D \|^2 - L_1^2 - L_2^2 &gt; 2 L_1 L_2$, or
 in other words:
-$$\| \bf{x}_D \|^2 &gt; L_1^2 + 2 L_1 L_2 + L_2^2 = (L_1 + L_2)^2$$ which
+$$\| \mathbf{x}_D \|^2 &gt; L_1^2 + 2 L_1 L_2 + L_2^2 = (L_1 + L_2)^2$$ which
 indicates that the desired point exceeds the reachable range of the
 manipulator.</p>
 <p>If on the other hand, the r.h.s. were less than -1, then
-$\| \bf{x}_D \|^2 - L_1^2 - L_2^2 &lt; - 2 L_1 L_2$, in other words
-$$\| \bf{x}_D \|^2 &lt; L_1^2 - 2 L_1 L_2 + L_2^2 = (L_1 - L_2)^2.$$ For
+$\| \mathbf{x}_D \|^2 - L_1^2 - L_2^2 &lt; - 2 L_1 L_2$, in other words
+$$\| \mathbf{x}_D \|^2 &lt; L_1^2 - 2 L_1 L_2 + L_2^2 = (L_1 - L_2)^2.$$ For
 this to be possible, we must have the link lengths unequal, and the
 target point is within a circle of radius $|L_1 - L_2|$ centered at the
 origin.</p>
 <p>If we have determined that there exists one or more solutions for the
 second joint, $q_2^{(k)}$ with $k=1$ or $2$, for each solution we can
 determine a value of $q_1^{(k)}$ so that the end effector reaches the
-proper heading toward $\bf{x}_D$. Let the heading of $\bf{x}_D$ be denoted
+proper heading toward $\mathbf{x}_D$. Let the heading of $\mathbf{x}_D$ be denoted
 $\theta \equiv atan2(x_y,x_x)$.</p>
 <p>Observe that if $q_1^{(k)}$ were to be set to 0, then the end effector
 would have heading
@@ -13574,15 +13574,15 @@ Algorithm 2RIK below.</p>
 <hr>
 <p><strong>Algorithm 2RIK</strong></p>
 <ol>
-<li><p>$c_2 \gets \frac{\| \bf{x}_D \|^2 - L_1^2 - L_2^2}{2 L_1 L_2}$.</p>
+<li><p>$c_2 \gets \frac{\| \mathbf{x}_D \|^2 - L_1^2 - L_2^2}{2 L_1 L_2}$.</p>
 </li>
 <li><p><strong>if</strong> $|c_2|&gt;1$ <strong>then</strong> <strong>return</strong> $\emptyset$.</p>
 </li>
 <li><p><strong>if</strong> $c_2 = 1$ <strong>then</strong> <strong>return</strong> $\{ (atan2(x_y,x_x),0) \}$.</p>
 </li>
-<li><p><strong>if</strong> $c_2 = -1$ and $\bf{x}_D \neq 0$ <strong>then</strong> <strong>return</strong> $\{ (atan2(x_y,x_x),\pi) \}$.</p>
+<li><p><strong>if</strong> $c_2 = -1$ and $\mathbf{x}_D \neq 0$ <strong>then</strong> <strong>return</strong> $\{ (atan2(x_y,x_x),\pi) \}$.</p>
 </li>
-<li><p><strong>if</strong> $c_2 = -1$ and $\bf{x}_D = 0$ <strong>then</strong> <strong>return</strong> $\{ (q_1,\pi) \quad | \quad q_1 \in [0,2\pi) \}$</p>
+<li><p><strong>if</strong> $c_2 = -1$ and $\mathbf{x}_D = 0$ <strong>then</strong> <strong>return</strong> $\{ (q_1,\pi) \quad | \quad q_1 \in [0,2\pi) \}$</p>
 </li>
 <li><p>Otherwise, let $q_2^{(1)} \gets \cos^{-1} c_2$ and $q_2^{(2)} \gets -\cos^{-1} c_2$.</p>
 </li>
@@ -13607,10 +13607,10 @@ has both the revolute and prismatic joint at the origin, the
 configuration $(q_1,q_2)$ simply gives the polar coordinates of the
 second link. Suppose the end effector were specified with a distance
 $L_2$ from the origin on the $x$ axis.</p>
-<p>Then, if the polar coordinates of the target point $\bf{x}_D$ are
-$(\theta,d) \equiv (atan2(x_y,x_x),\|\bf{x}_D\|)$, then the two solutions
-are $\bf{q}^{(1)} = (\theta, d - L_2)$ and
-$\bf{q}^{(2)} = (\theta + \pi, - d + L_2)$.</p>
+<p>Then, if the polar coordinates of the target point $\mathbf{x}_D$ are
+$(\theta,d) \equiv (atan2(x_y,x_x),\|\mathbf{x}_D\|)$, then the two solutions
+are $\mathbf{q}^{(1)} = (\theta, d - L_2)$ and
+$\mathbf{q}^{(2)} = (\theta + \pi, - d + L_2)$.</p>
 
 </div>
 </div>
@@ -13639,7 +13639,7 @@ is offset by a distance $L_3$ about the $x$ axis.</p>
 $$
 
 \begin{aligned}
-\bf{x}(\bf{q}) = &amp; R_z(q_1) R_y(q_2) \begin{bmatrix} L_2 + c_3 L_3 \\ 0 \\ -s_3 L_3 \end{bmatrix}   \\
+\mathbf{x}(\mathbf{q}) = &amp; R_z(q_1) R_y(q_2) \begin{bmatrix} L_2 + c_3 L_3 \\ 0 \\ -s_3 L_3 \end{bmatrix}   \\
 = &amp;R_z(q_1) \begin{bmatrix}c_2 (L_2 + c_3 L_3) - s_2 s_3 L_3 \\ 0 \\ -s_2 (L_2 + c_3 L_3) - c_2 s_3 L_3 \end{bmatrix} 
 \\
 = &amp; \begin{bmatrix} c_1 (c_2 (L_2 + c_3 L_3) - s_2 s_3 L_3) \\ s_1 (c_2 (L_2 + c_3 L_3) - s_2 s_3 L_3) \\ L_1 - s_2 (L_2 + c_3 L_3) - c_2 s_3 L_3 \end{bmatrix}. \end{aligned}
@@ -13651,7 +13651,7 @@ $$
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We wish to match this to the target
-$\bf{x}_D = (x_D,y_D,z_D)$.</p>
+$\mathbf{x}_D = (x_D,y_D,z_D)$.</p>
 <hr>
 <p><img src="figures/modeling/ik_3R.png" alt="fig:3RIK"></p>
 <div class="figcaption"><a name="fig:3RIK">Figure 3</a>. 
@@ -13692,7 +13692,7 @@ the last chapter</a> we obtained the end effector point</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 $$
-\bf{x}(\bf{q}) = 
+\mathbf{x}(\mathbf{q}) = 
 \begin{bmatrix} c_1 c_2 q_3 \\ s_1 c_2 q_3 \\ -s_2 q_3 \end{bmatrix}.
 $$
 </div>
@@ -13701,15 +13701,15 @@ $$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To match a target point $\bf{x}_D = (x_D,y_D,z_D)$ we can observe that
-the norm $\| \bf{x}(\bf{q}) \|$ is simply $|q_3|$. It is very likely that
+<p>To match a target point $\mathbf{x}_D = (x_D,y_D,z_D)$ we can observe that
+the norm $\| \mathbf{x}(\mathbf{q}) \|$ is simply $|q_3|$. It is very likely that
 only positive values of $q_3$ are valid joint values, and if so we can
-simply set $q_3 = \| \bf{x}_D \|$.</p>
-<p>If $\bf{x}_D = 0$, then we have a singularity in which any setting of
+simply set $q_3 = \| \mathbf{x}_D \|$.</p>
+<p>If $\mathbf{x}_D = 0$, then we have a singularity in which any setting of
 $q_1$ and $q_2$ will satisfy the IK constraint. Otherwise, we solve the
-term $s_2 = z_D/\|\bf{x}_D\|$ with $q_2 = \sin^{-1}(z_D/\|\bf{x}_D\|)$ and
+term $s_2 = z_D/\|\mathbf{x}_D\|$ with $q_2 = \sin^{-1}(z_D/\|\mathbf{x}_D\|)$ and
 the alternative solution
-$q_2^\prime = \pi - \sin^{-1}(z_D/\|\bf{x}_D\|)$. Finally, we see the
+$q_2^\prime = \pi - \sin^{-1}(z_D/\|\mathbf{x}_D\|)$. Finally, we see the
 direction in $x-y$ plane is controlled by the first joint. So, $q_1$ can
 be solved with $atan2(y_D/c_2,x_D/c_2)$. The exception is if
 $x_D = y_D = 0$, in which any solution of $q_1$ works.</p>
@@ -13723,7 +13723,7 @@ rotary operations we have $x_W=y_W$ so that $q_6$ can operate as the
 drilling degree of freedom.</p>
 <p>In this problem the target is not just to reach a single point
 $(x_D,y_D,z_D)$ in space, but also a desired tool orientation $R_D \in$
-SO(3). Here, the target task coordinate $\bf{x}_D$ contains both position
+SO(3). Here, the target task coordinate $\mathbf{x}_D$ contains both position
 and orientation and represents a 6D task space because the inherent
 dimensionality of SO(3) is 3.</p>
 <p>Since the only degrees of freedom that affect orientation are $q_4$,
@@ -13794,7 +13794,7 @@ calculate the two possible values $s_5 = \sin q_5$ and determine
 $q_4 = atan2(-r_{31},r_{32})$ and $q_6 = atan2(r_{23},r_{13})$.</p>
 <p>Once these values are determined, it remains to be seen where to place
 the <em>wrist</em> so that the tool is at $(x_D,y_D,z_D)$. We know that
-$$\bf{x}(\bf{q}) = 
+$$\mathbf{x}(\mathbf{q}) = 
 \begin{bmatrix}q_1 \\ q_2 \\ q_3 \end{bmatrix} + R(q_4,q_5,q_6)
 \begin{bmatrix}x_W \\ y_W \\ z_W \end{bmatrix}$$
 which should be equated to $(x_D,y_D,z_D)$. Since we know
@@ -13824,29 +13824,29 @@ shoulder, 2-axis wrist manipulator as an exercise.</p>
 <p>An end effector position for an industrial manipulator is also known as
 the <em>tool center point</em> . Since the origin of the last link's
 coordinates are inside its joint, the tool center point is defined by
-some local coordinates $\bf{x}_6$ given its offset from the last link,
+some local coordinates $\mathbf{x}_6$ given its offset from the last link,
 which are measured or calibrated for any end effector attachment. From
 this information we define the world coordinates of the tool center
-point $$\bf{x}_{tcp}(\bf{q}) = T_6(\bf{q})\bf{x}_6$$ We wish to match
-$\bf{x}_{tcp}$ with a desired position $\bf{x}_D$ and the last link should
+point $$\mathbf{x}_{tcp}(\mathbf{q}) = T_6(\mathbf{q})\mathbf{x}_6$$ We wish to match
+$\mathbf{x}_{tcp}$ with a desired position $\mathbf{x}_D$ and the last link should
 have orientation $R_D$.</p>
 <p>The basic idea of the solution technique is that the wrist position can
 be first uniquely determined from this information. Specifically, we
 assume that we will eventually be able to solve the rotation
-$R_6(\bf{q}) = R_D$. Then, the constraint equation becomes
-$$\bf{x}_D = \bf{x}_{tcp}(\bf{q}) = R_6(\bf{q}) \bf{x}_6 + \bf{t}_6(\bf{q})$$
-Where $\bf{t}_6(\bf{q})$ is the wrist position. In other words,
-$\bf{t}_6(\bf{q}) = \bf{x}_D - R_D \bf{x}_6$.</p>
+$R_6(\mathbf{q}) = R_D$. Then, the constraint equation becomes
+$$\mathbf{x}_D = \mathbf{x}_{tcp}(\mathbf{q}) = R_6(\mathbf{q}) \mathbf{x}_6 + \mathbf{t}_6(\mathbf{q})$$
+Where $\mathbf{t}_6(\mathbf{q})$ is the wrist position. In other words,
+$\mathbf{t}_6(\mathbf{q}) = \mathbf{x}_D - R_D \mathbf{x}_6$.</p>
 <p>We then notice that the wrist position is only affected by the first
 three links: $q_1$, $q_2$, and $q_3$. In fact, this is simply a matter
-of solving a 3R IK problem with target $\bf{x}_D - R_D \bf{x}_6$! As
+of solving a 3R IK problem with target $\mathbf{x}_D - R_D \mathbf{x}_6$! As
 before, we have up to 4 solutions for $(q_1,q_2,q_3)$.</p>
 <p>Now, once we have determined a set of these values, we can determine a
 rotation of the third link, $R_3(q_1,q_2,q_3)$. The remaining job for
 $q_4$, $q_5$, and $q_6$ is to rotate the rest of the way to $R_D$. Since
 all of the reference frames are oriented with the world frame, we need
 to satisfy
-$$R_6(\bf{q}) = R_3(q_1,q_2,q_3) R_x(q_4) R_y(q_5) R_x(q_6) = R_D.$$ By
+$$R_6(\mathbf{q}) = R_3(q_1,q_2,q_3) R_x(q_4) R_y(q_5) R_x(q_6) = R_D.$$ By
 premultiplying by $R_3(q_1,q_2,q_3)$, we obtain an XYX Euler angle
 conversion problem from the relative rotation matrix
 $R_3^{-1}(q_1,q_2,q_3)R_D$. This conversion is similar to the solution
@@ -13854,7 +13854,7 @@ for the ZYZ Euler angle conversion problem described above, and has 2
 solutions (except at singularities).</p>
 <p>In all, since there are up to 4 solutions for $(q_1,q_2,q_3)$, and for
 each solution there are 2 solutions for $(q_4,q_5,q_6)$, there are a
-total of 8 solutions for $\bf{q}$ (except at singularities).</p>
+total of 8 solutions for $\mathbf{q}$ (except at singularities).</p>
 
 </div>
 </div>
@@ -14067,7 +14067,7 @@ $\frac{\partial h(x,y)}{\partial x} = \frac{\partial f(g(x),y)}{d g} g^\prime(x)
 <p>Also if a function is not dependent on some variable, then its partial
 derivative with respect to that variable is nil:
 $$\frac{\partial f(y)}{\partial x} = 0$$</p>
-<h3 id="Jacobian-definition">Jacobian definition<a class="anchor-link" href="#Jacobian-definition">&#182;</a></h3><p>The Jacobian of an arbitrary vector function $\bf{x} = f(\bf{q})$, with
+<h3 id="Jacobian-definition">Jacobian definition<a class="anchor-link" href="#Jacobian-definition">&#182;</a></h3><p>The Jacobian of an arbitrary vector function $\mathbf{x} = f(\mathbf{q})$, with
 $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$ is given as the following
 matrix of <em>partial derivatives</em>:</p>
 
@@ -14077,11 +14077,11 @@ matrix of <em>partial derivatives</em>:</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-$$J(\bf{q}) \equiv \frac{\partial f(\bf{q})}{\partial \bf{x}} \equiv 
+$$J(\mathbf{q}) \equiv \frac{\partial f(\mathbf{q})}{\partial \mathbf{x}} \equiv 
 \begin{bmatrix}
-\frac{\partial f_1(\bf{q})}{\partial q_1} &amp; \cdots &amp; \frac{\partial f_1(\bf{q})}{\partial q_n} \\
+\frac{\partial f_1(\mathbf{q})}{\partial q_1} &amp; \cdots &amp; \frac{\partial f_1(\mathbf{q})}{\partial q_n} \\
 \vdots &amp; \ddots &amp; \vdots \\
-\frac{\partial f_m(\bf{q})}{\partial q_1} &amp; \cdots &amp; \frac{\partial f_m(\bf{q})}{\partial q_n} 
+\frac{\partial f_m(\mathbf{q})}{\partial q_1} &amp; \cdots &amp; \frac{\partial f_m(\mathbf{q})}{\partial q_n} 
 \end{bmatrix}$$
 </div>
 </div>
@@ -14090,8 +14090,8 @@ $$J(\bf{q}) \equiv \frac{\partial f(\bf{q})}{\partial \bf{x}} \equiv
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>where $f$'s component functions are given by the individual $f_i$'s:</p>
-$$f(\bf{q}) \equiv 
-\begin{bmatrix} f_1(\bf{q}) \\ \vdots \\ f_m(\bf{q}) \end{bmatrix}.$$
+$$f(\mathbf{q}) \equiv 
+\begin{bmatrix} f_1(\mathbf{q}) \\ \vdots \\ f_m(\mathbf{q}) \end{bmatrix}.$$
 </div>
 </div>
 </div>
@@ -14105,51 +14105,51 @@ is dependent on the configuration.</p>
 <h3 id="Single-joint-example">Single joint example<a class="anchor-link" href="#Single-joint-example">&#182;</a></h3><p>As an example, let us consider a single joint planar robot with its
 joint at the origin, and an end effector at $L_1$ distance away from the
 origin. The world coordinates of the end effector are:
-$$\bf{x}(\bf{q}) = 
+$$\mathbf{x}(\mathbf{q}) = 
 \begin{bmatrix}{L_1 \cos q_1} \\ {L_1 \sin q_1} \end{bmatrix}.$$</p>
 <p>The Jacobian
 of this point is a $2\times 1$ matrix obtained by taking the derivative
 with respect to each of the joint coordinates, which is just $q_1$ in
 this case.
-$$J(\bf{q}) \equiv \frac{\partial \bf{x}}{\partial \bf{q}}(\bf{q}) = 
+$$J(\mathbf{q}) \equiv \frac{\partial \mathbf{x}}{\partial \mathbf{q}}(\mathbf{q}) = 
 \begin{bmatrix}{\partial (L_1 \cos q_1) / \partial q_1} \\ {\partial (L_1 \sin q_1) / \partial q_1} \end{bmatrix} = 
 \begin{bmatrix}{-L_1 \sin q_1} \\ {L_1 \cos q_1} \end{bmatrix}.$$</p>
 <p>Note that this is perpendicular to the direction from the joint to the
 end effector, with the same magnitude.</p>
 <p>The significance of the Jacobian in this case is that <em>it gives the
-instantaneous velocity of the point</em> $\bf{x}$, in world coordinates, as
+instantaneous velocity of the point</em> $\mathbf{x}$, in world coordinates, as
 $q_1$ rotates at 1 rad/s. If $q_1$ rotates at another velocity
 $\dot{q}_1$ (the dot denotes time derivative), then the end effector
-velocity is given by: $$\dot{\bf{x}} = J(\bf{q}) \dot{q}_1.$$ This holds
+velocity is given by: $$\dot{\mathbf{x}} = J(\mathbf{q}) \dot{q}_1.$$ This holds
 as a consequence of the chain rule. Note that this equation only holds
 in the 1 joint case; let us now discuss a more general case.</p>
 <h3 id="Two-joint-example">Two joint example<a class="anchor-link" href="#Two-joint-example">&#182;</a></h3><p>Now consider the two joint planar arm <a href="#2R-manipulator">described above</a>. The end effector has world position
-$$\bf{x}(\bf{q}) = 
+$$\mathbf{x}(\mathbf{q}) = 
 \begin{bmatrix}{c_1(L_1 + c_2 L_2) - s_1 s_2 L_2} \\ {s_1(L_1 + c_2 L_2) + c_1 s_2 L_2} \end{bmatrix}.$$
 The first column of the Jacobian is the partial derivative with respect
 to $q_1$, keeping $q_2$ constant:
-$$\frac{\partial \bf{x}}{\partial q_1}(\bf{q}) = 
+$$\frac{\partial \mathbf{x}}{\partial q_1}(\mathbf{q}) = 
 \begin{bmatrix}{-s_1(L_1 + c_2 L_2) - c_1 s_2 L_2} \\ {c_1(L_1 + c_2 L_2) - s_1 s_2 L_2} \end{bmatrix}.$$
 The second column is the partial derivative with respect to $q_2$,
 keeping $q_1$ constant:
-$$\frac{\partial \bf{x}}{\partial q_2}(\bf{q}) = 
+$$\frac{\partial \mathbf{x}}{\partial q_2}(\mathbf{q}) = 
 \begin{bmatrix}{-c_1 s_2 L_2 - s_1 c_2 L_2} \\ {- s_1 s_2 L_2 + c_1 c_2 L_2} \end{bmatrix}.$$
 Overall, the Jacobian matrix is a $2\times 2$ matrix as follows:
-$$J(\bf{q}) = 
+$$J(\mathbf{q}) = 
 \begin{bmatrix}{-s_1(L_1 + c_2 L_2) - c_1 s_2 L_2} &amp; {- c_1 s_2 L_2 - s_1 c_2 L_2} \\ {c_1(L_1 + c_2 L_2) - s_1 s_2 L_2} &amp; {-s_1 s_2 L_2 + c_1 c_2 L_2} \end{bmatrix}.$$
 Observe that the first column is simply a vector perpendicular to
-$\bf{x}$ with the same magnitude. The second column is a bit more
+$\mathbf{x}$ with the same magnitude. The second column is a bit more
 challenging to interpret, but with a bit of scrutiny it can be seen as a
 vector perpendicular and with the same magnitude as the displacement
-vector from the second joint position to $\bf{x}$.</p>
+vector from the second joint position to $\mathbf{x}$.</p>
 <p>This means that if $q_1$ were to rotate at velocity $\dot{q}_1$ while
 $q_2$ is held constant, then the end effector would have instantaneous
-velocity: $$\dot{q}_1 \frac{\partial \bf{x}}{\partial q_1}(\bf{q}).$$
+velocity: $$\dot{q}_1 \frac{\partial \mathbf{x}}{\partial q_1}(\mathbf{q}).$$
 Likewise, if $q_2$ were to rotate at velocity $\dot{q}_2$, and $q_1$
 were to be held constant, then the velocity would be:
-$$\dot{q}_2 \frac{\partial \bf{x}}{\partial q_2}(\bf{q}).$$ If both were
+$$\dot{q}_2 \frac{\partial \mathbf{x}}{\partial q_2}(\mathbf{q}).$$ If both were
 to rotate simultaneously, then the velocity would be
-$$\dot{\bf{x}}(\bf{q}) = \dot{q}_1 \frac{\partial \bf{x}}{\partial q_1}(\bf{q}) + \dot{q}_2 \frac{\partial \bf{x}}{\partial q_2}(\bf{q}) = J(\bf{q})\dot{\bf{q}}.$$
+$$\dot{\mathbf{x}}(\mathbf{q}) = \dot{q}_1 \frac{\partial \mathbf{x}}{\partial q_1}(\mathbf{q}) + \dot{q}_2 \frac{\partial \mathbf{x}}{\partial q_2}(\mathbf{q}) = J(\mathbf{q})\dot{\mathbf{q}}.$$
 <a href="#fig:Jacobian2R">Fig. 6</a> illustrates this concept.</p>
 
 </div>
@@ -14168,23 +14168,23 @@ second column gives its velocity if the second joint moves at unit
 velocity. The linear combination of Jacobian columns, weighted by joint
 speed, gives the overall Cartesian velocity.</div><hr>
 <h3 id="Formula-for-arbitrary-branched-robots">Formula for arbitrary branched robots<a class="anchor-link" href="#Formula-for-arbitrary-branched-robots">&#182;</a></h3><p>In general, using the forward kinematics formula given in Chapter 4:
-$$T_i(\bf{q}) = T_{p[i]}(\bf{q}) T_{i\rightarrow p[i]}^{ref} L_{z_i,\bf{a}_i}(q_i)$$
+$$T_i(\mathbf{q}) = T_{p[i]}(\mathbf{q}) T_{i\rightarrow p[i]}^{ref} L_{z_i,\mathbf{a}_i}(q_i)$$
 we can derive the Jacobian of an end effector point on any link $n$. Let
 $A(n)$ denote the set of <em>ancestors</em> of link $n$, that is, $n$, its
 parent, its parent's parent, and so on down to the root. Let the task
-space $\bf{x} = f(\bf{q})$ be given by the position of an end effector on
-the $n$'th link, and $\bf{x}_n$ are its local coordinates.</p>
+space $\mathbf{x} = f(\mathbf{q})$ be given by the position of an end effector on
+the $n$'th link, and $\mathbf{x}_n$ are its local coordinates.</p>
 <p>If $j \notin A(n)$, then joint $j$ does not affect the end effector. In
 this case, the $j$'th column of the Jacobian is zero.</p>
 <p>Otherwise, the $j$'th column of the Jacobian is given by:
-$$\frac{\partial f}{\partial q_j}(\bf{q}) = T_{p[j]}(\bf{q}) T_{j\rightarrow p[j]}^{ref} \frac{d L_{z_j,\bf{a}_j}}{d q_j}(q_j) T_{n\rightarrow j}(\bf{q}) \bf{x}_n$$
-Where $T_{n\rightarrow j}(\bf{q}) = T_j^{-1}(\bf{q}) T_n(\bf{q})$ is the
+$$\frac{\partial f}{\partial q_j}(\mathbf{q}) = T_{p[j]}(\mathbf{q}) T_{j\rightarrow p[j]}^{ref} \frac{d L_{z_j,\mathbf{a}_j}}{d q_j}(q_j) T_{n\rightarrow j}(\mathbf{q}) \mathbf{x}_n$$
+Where $T_{n\rightarrow j}(\mathbf{q}) = T_j^{-1}(\mathbf{q}) T_n(\mathbf{q})$ is the
 transform from local coordinates on link $n$ to local coordinates on
-link $j$, at configuration $\bf{q}$. Note that
-$T_{n\rightarrow j}(\bf{q})$ only depends on the joint angles of $j$'s
+link $j$, at configuration $\mathbf{q}$. Note that
+$T_{n\rightarrow j}(\mathbf{q})$ only depends on the joint angles of $j$'s
 descendants, not including $j$.</p>
 <h4 id="Planar-robots">Planar robots<a class="anchor-link" href="#Planar-robots">&#182;</a></h4><p>For 2D revolute joints, we have no joint type nor axis, so the local
-transform is given as: $$L_{z,\bf{a}}(q) \equiv R(q) = 
+transform is given as: $$L_{z,\mathbf{a}}(q) \equiv R(q) = 
 \left[
 \begin{array}{ccc}
 \cos q &amp; -\sin q &amp; 0 \\
@@ -14208,14 +14208,14 @@ $$\frac{d}{dq} R(q) = R(q)
 1 &amp; 0 &amp; 0 \\
 0 &amp; 0 &amp; 0 
 \end{array}\right]$$ and hence we obtain the compact expression for the
-Jacobian $$\frac{\partial f}{\partial q_j}(\bf{q}) = T_j(\bf{q})
+Jacobian $$\frac{\partial f}{\partial q_j}(\mathbf{q}) = T_j(\mathbf{q})
 \left[
 \begin{array}{ccc}
 0 &amp; -1 &amp; 0 \\
 1 &amp; 0 &amp; 0 \\
 0 &amp; 0 &amp; 0 
 \end{array}\right]
-T_{n\rightarrow j}(\bf{q}) \bf{x}_n.$$ This shows that the Jacobian column
+T_{n\rightarrow j}(\mathbf{q}) \mathbf{x}_n.$$ This shows that the Jacobian column
 corresponding to a revolute joint is perpendicular to the vector from
 the joint to the end effector (rotated $90^\circ$ CCW).
 <a href="#fig:Jacobian3R">Fig. 6</a> illustrates this principle.</p>
@@ -14227,14 +14227,14 @@ taking the perpendicular vector to the displacement vector from the
 joint center to the end effector. The Jacobian is different for
 different configurations (a) and (b).
 </div><hr>
-<p>For a prismatic joint, we have a local transform: $$L_{z,\bf{a}}(q) = 
+<p>For a prismatic joint, we have a local transform: $$L_{z,\mathbf{a}}(q) = 
 \left[
 \begin{array}{ccc}
 1 &amp; 0 &amp; a_x q \\
 0 &amp; 1 &amp; a_y q \\
 0 &amp; 0 &amp; 1
 \end{array}\right]$$ and hence the derivative is
-$$\frac{d}{dq} L_{z,\bf{a}}(q) = 
+$$\frac{d}{dq} L_{z,\mathbf{a}}(q) = 
 \left[
 \begin{array}{ccc}
 0 &amp; 0 &amp; a_x \\
@@ -14244,7 +14244,7 @@ $$\frac{d}{dq} L_{z,\bf{a}}(q) =
 <p>Since this matrix wipes out the $x$ and $y$ coordinates of whatever
 homogeneous point it multiplies and replaces it with $(a_x,a_y,0)$, we
 can express the Jacobian column with the simplified expression
-$$\frac{\partial f}{\partial q_j}(\bf{q}) = T_j(\bf{q}) 
+$$\frac{\partial f}{\partial q_j}(\mathbf{q}) = T_j(\mathbf{q}) 
 \begin{bmatrix}a_{j,x} \\ a_{j,y} \\ 0\end{bmatrix}.$$</p>
 
 </div>
@@ -14255,54 +14255,54 @@ $$\frac{\partial f}{\partial q_j}(\bf{q}) = T_j(\bf{q})
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Note that since the homogeneous coordinate is 0, the translation of the
 transform $T_j$ does not affect the result, and hence the Jacobian
-column is simply the world direction of the joint axis $\bf{a}_j$.</p>
+column is simply the world direction of the joint axis $\mathbf{a}_j$.</p>
 <h4 id="3D-robots">3D robots<a class="anchor-link" href="#3D-robots">&#182;</a></h4><p>For 3D revolute joints, the local transform is given by an axis-angle
-rotation: $$L_{z,\bf{a}}(q) \equiv R_{aa}(\bf{a},q)$$ The velocity of a
+rotation: $$L_{z,\mathbf{a}}(q) \equiv R_{aa}(\mathbf{a},q)$$ The velocity of a
 point $X$ being rotated along with the rotation frame at unit velocity
 $\dot{q}$ is given by its cross product with the rotation axis:
-$$\frac{d}{dt} \bf{x} = \bf{a} \times \bf{x}.$$ Here $\bf{x}$ is the
+$$\frac{d}{dt} \mathbf{x} = \mathbf{a} \times \mathbf{x}.$$ Here $\mathbf{x}$ is the
 post-rotation coordinates of the point. Since multiplication with a
-rotation matrix $R_{aa}(\bf{a},q)$ converts pre-rotation coordinates to
+rotation matrix $R_{aa}(\mathbf{a},q)$ converts pre-rotation coordinates to
 post-rotation coordinates, the angular velocity of a point given with
-pre-rotation coordinates $\bf{x}_L$ is given by
-$$\frac{d}{dt} \bf{x} = \bf{a} \times R_{aa}(\bf{a},q) \bf{x}_L.$$ Since the
+pre-rotation coordinates $\mathbf{x}_L$ is given by
+$$\frac{d}{dt} \mathbf{x} = \mathbf{a} \times R_{aa}(\mathbf{a},q) \mathbf{x}_L.$$ Since the
 cross product axis and the rotation axis are the same, Rodrigues'
 formula can be used to switch the order of the cross product:
-$$\bf{a} \times (R_{aa}(\bf{a},q) \bf{x}_L) =  R_{aa}(\bf{a},q) (\bf{a} \times \bf{x}_L).$$
+$$\mathbf{a} \times (R_{aa}(\mathbf{a},q) \mathbf{x}_L) =  R_{aa}(\mathbf{a},q) (\mathbf{a} \times \mathbf{x}_L).$$
 Finally, using the skew-symmetric product notation $\hat{\cdot}$ used in
 Chapter 2 we obtain
-$$\frac{d}{dt} R_{aa}(\bf{a},q) \bf{x}_L = R_{aa}(\bf{a},q) \hat{\bf{a}} \bf{x}_L$$
-and since this holds for all $\bf{x}_L$, we see that
-$$\frac{d}{dt} R_{aa}(\bf{a},q) = R_{aa}(\bf{a},q) \hat{\bf{a}}.$$
+$$\frac{d}{dt} R_{aa}(\mathbf{a},q) \mathbf{x}_L = R_{aa}(\mathbf{a},q) \hat{\mathbf{a}} \mathbf{x}_L$$
+and since this holds for all $\mathbf{x}_L$, we see that
+$$\frac{d}{dt} R_{aa}(\mathbf{a},q) = R_{aa}(\mathbf{a},q) \hat{\mathbf{a}}.$$
 Replacing this in the Jacobian expression and converting to homogeneous
 coordinates, we obtain the simplified expression:
-$$\frac{\partial f}{\partial q_j}(\bf{q}) = T_j(\bf{q})
+$$\frac{\partial f}{\partial q_j}(\mathbf{q}) = T_j(\mathbf{q})
 \left[
 \begin{array}{c|c}
-\hat{\bf{a}} &amp; 0  \\
+\hat{\mathbf{a}} &amp; 0  \\
 \hline
 0 &amp; 0  
 \end{array}\right]
-T_{n\rightarrow j}(\bf{q}) \bf{x}_n.
+T_{n\rightarrow j}(\mathbf{q}) \mathbf{x}_n.
 \label{eq:JacobianRevolute3D}$$ Another way to interpret this is that
 the $j$'th column of the Jacobian is the cross-product between the axis
 of joint $j$ and the vector pointing from joint $j$ to the end effector
 (both given in world coordinates). To see this, note that the axis in
-world coordinates is $R_j\bf{a} = T_j 
-\begin{bmatrix} \bf{a} \\ 0 \end{bmatrix}$ and the
-displacement vector is $T_n \bf{x}_n - \bf{t}_j$. Here, $R_j$ is the
-orientation of link $j$, $\bf{t}_j$ is its origin, we have implicitly
-assumed dependence on $\bf{q}$, and we slightly abuse notation to convert
+world coordinates is $R_j\mathbf{a} = T_j 
+\begin{bmatrix} \mathbf{a} \\ 0 \end{bmatrix}$ and the
+displacement vector is $T_n \mathbf{x}_n - \mathbf{t}_j$. Here, $R_j$ is the
+orientation of link $j$, $\mathbf{t}_j$ is its origin, we have implicitly
+assumed dependence on $\mathbf{q}$, and we slightly abuse notation to convert
 freely between homogeneous and standard coordinates. The displacement
 vector could also be expressed as
-$R_j T_{n\rightarrow j} \bf{x}_n + \bf{t}_j - \bf{t}_j = R_j T_{n\rightarrow j} \bf{x}_n$.</p>
+$R_j T_{n\rightarrow j} \mathbf{x}_n + \mathbf{t}_j - \mathbf{t}_j = R_j T_{n\rightarrow j} \mathbf{x}_n$.</p>
 <p>Hence, by the distributive property of the cross-product,
-$$R_j\bf{a} \times R_j T_{n\rightarrow j} \bf{x}_n = R_j (\bf{a} \times T_{n\rightarrow j} \bf{x}_n) = R_j \hat{\bf{a}} T_{n \rightarrow j} \bf{x}_n$$
+$$R_j\mathbf{a} \times R_j T_{n\rightarrow j} \mathbf{x}_n = R_j (\mathbf{a} \times T_{n\rightarrow j} \mathbf{x}_n) = R_j \hat{\mathbf{a}} T_{n \rightarrow j} \mathbf{x}_n$$
 which is equivalent to ($\ref{eq:JacobianRevolute3D}$).</p>
 <p>For prismatic joints, a derivation similar to the planar case gives the
 simplified expression:
-$$\frac{\partial f}{\partial q_j}(\bf{q}) = T_j(\bf{q}) 
-\begin{bmatrix}\bf{a}_j \\ \hline 0 \end{bmatrix}.$$
+$$\frac{\partial f}{\partial q_j}(\mathbf{q}) = T_j(\mathbf{q}) 
+\begin{bmatrix}\mathbf{a}_j \\ \hline 0 \end{bmatrix}.$$
 Similar derivations exist for helical and other exotic joint types.</p>
 <h4 id="Orientation-jacobians">Orientation jacobians<a class="anchor-link" href="#Orientation-jacobians">&#182;</a></h4><p>For task spaces that include orientation components, the Jacobian of the
 orientation components can also be computed in a straightforward manner.
@@ -14317,26 +14317,26 @@ zero.</p>
 <p>For revolute joints in 2D, each joint affects the orientation of the end
 effector equally. Hence, each column of $J_\theta$ corresponding to a
 revolute joint is 1.</p>
-<p>In 3D, an angular velocity vector is a vector $\bf{$\omega$}$ such that for
-any point $\bf{x}$ expressed in world coordinates but attached to link
+<p>In 3D, an angular velocity vector is a vector $\mathbf{$\omega$}$ such that for
+any point $\mathbf{x}$ expressed in world coordinates but attached to link
 $n$, its instantaneous velocity will be:
-$$\bf{$\omega$}\times (\bf{x} - \bf{t}_n) + \dot{\bf{t}}_n$$ where $\bf{t}_n$
+$$\mathbf{$\omega$}\times (\mathbf{x} - \mathbf{t}_n) + \dot{\mathbf{t}}_n$$ where $\mathbf{t}_n$
 is the origin of link $n$. Hence, the angular velocity at the end
 effector is simply the angular velocity of link $n$. The angular
 velocity of each revolute joint are summed to obtain the angular
 velocity of the end effector:
-$$\bf{$\omega$} = \sum_{j\text{ is revolute}} J_{\theta,j}(\bf{q})\dot{q}_j$$
+$$\mathbf{$\omega$} = \sum_{j\text{ is revolute}} J_{\theta,j}(\mathbf{q})\dot{q}_j$$
 Hence the $j$'th column of the Jacobian is:
-$$J_{\theta,j}(\bf{q}) = T_j(\bf{q}) 
-\begin{bmatrix}\bf{a}_j \\ \hline 0 \end{bmatrix}$$ where
+$$J_{\theta,j}(\mathbf{q}) = T_j(\mathbf{q}) 
+\begin{bmatrix}\mathbf{a}_j \\ \hline 0 \end{bmatrix}$$ where
 the multiplication orients the local axis to the world coordinate frame.</p>
-<p>It is important to note that $\bf{$\omega$}$ is usually not the derivative
+<p>It is important to note that $\mathbf{$\omega$}$ is usually not the derivative
 of a given rotation representation, like Euler angles. Instead, it is
 that an additional transformation is typically necessary to obtain the
 derivative of the orientation representation used in the task coordinate
-$\bf{x}$.</p>
+$\mathbf{x}$.</p>
 <h3 id="Significance-and-interpretation">Significance and interpretation<a class="anchor-link" href="#Significance-and-interpretation">&#182;</a></h3><h4 id="Relating-joint-and-task-velocities">Relating joint and task velocities<a class="anchor-link" href="#Relating-joint-and-task-velocities">&#182;</a></h4><p>The general formula relating joint space velocities to task space
-velocities is: $$\dot{\bf{x}} = J(\bf{q}) \dot{\bf{q}}$$ where $J$ is the
+velocities is: $$\dot{\mathbf{x}} = J(\mathbf{q}) \dot{\mathbf{q}}$$ where $J$ is the
 Jacobian of the task space map. In other words, the $i$'th column of $J$
 gives the velocity at which the end effector would move if the $i$'th
 joint were to move at unit velocity.</p>
@@ -14350,19 +14350,19 @@ increasingly better approximated with the line
 $y = f(x) + \Delta x f^\prime(x)$ as $\Delta x$ shrinks toward 0.</p>
 <p>The Jacobian appears in the $n$-dimensional Taylor expansion of a
 multidimensional differentiable function:
-$$f(\bf{x} + \Delta \bf{x}) = f(\bf{x}) + J(\bf{x}) \Delta \bf{x} + O(\|\Delta \bf{x}\|^2).$$
+$$f(\mathbf{x} + \Delta \mathbf{x}) = f(\mathbf{x}) + J(\mathbf{x}) \Delta \mathbf{x} + O(\|\Delta \mathbf{x}\|^2).$$
 This states that an arbitrary function is well-approximated as a
-hyperplane $$\bf{y} = f(\bf{x}) + J(\bf{x}) \Delta \bf{x}$$ as
-$\Delta \bf{x}$ shrinks toward 0.</p>
+hyperplane $$\mathbf{y} = f(\mathbf{x}) + J(\mathbf{x}) \Delta \mathbf{x}$$ as
+$\Delta \mathbf{x}$ shrinks toward 0.</p>
 <h4 id="Use-in-error-propagation">Use in error propagation<a class="anchor-link" href="#Use-in-error-propagation">&#182;</a></h4><p>Another important use of the Jacobian is in error propagation. Suppose
-that at a robot has configuration $\bf{q}$ but with a joint space error
-$\bf{$\epsilon$}$. Then the task-space error
-$$f(\bf{q}+\bf{$\epsilon$}) - f(\bf{q})$$ is approximated by the Taylor
+that at a robot has configuration $\mathbf{q}$ but with a joint space error
+$\mathbf{$\epsilon$}$. Then the task-space error
+$$f(\mathbf{q}+\mathbf{$\epsilon$}) - f(\mathbf{q})$$ is approximated by the Taylor
 expansion
-$$f(\bf{q}+\bf{$\epsilon$}) - f(\bf{q}) \approx J(\bf{q}) \bf{$\epsilon$}$$ if
+$$f(\mathbf{q}+\mathbf{$\epsilon$}) - f(\mathbf{q}) \approx J(\mathbf{q}) \mathbf{$\epsilon$}$$ if
 $\epsilon$ is small. In terms of absolute magnitude, the task space
-error is $\| J(\bf{q}) \bf{$\epsilon$}\|$. We can also bound the error:
-$$\| J(\bf{q}) \bf{$\epsilon$}\| \leq \sum_{i=1}^n |\epsilon_{i}| \|J_i(\bf{q})\|$$
+error is $\| J(\mathbf{q}) \mathbf{$\epsilon$}\|$. We can also bound the error:
+$$\| J(\mathbf{q}) \mathbf{$\epsilon$}\| \leq \sum_{i=1}^n |\epsilon_{i}| \|J_i(\mathbf{q})\|$$
 where $J_i$ is the $i$'th column of the Jacobian. As a result if joint
 $i$ had an error, the norm of $J_i$ approximates the corresponding error
 in task space.</p>
@@ -14393,10 +14393,10 @@ approaches, only provide point solutions, and may fall prey to local
 minima. Robotics practitioners must be aware of these drawbacks when
 building systems based on numerical IK techniques.</p>
 <p>All numerical approaches share a common iterative structure. First, let
-$f(\bf{q})$ denote the task space error (rather than task coordinate).
-These methods are given a seed configuration $\bf{q}_0$, and iteratively
-improve it to obtain a sequence $\bf{q}_1,\bf{q}_2,\ldots,\bf{q}_k$ with
-decreasing error values $\|f(\bf{q}_i)\|$. The iteration can terminate
+$f(\mathbf{q})$ denote the task space error (rather than task coordinate).
+These methods are given a seed configuration $\mathbf{q}_0$, and iteratively
+improve it to obtain a sequence $\mathbf{q}_1,\mathbf{q}_2,\ldots,\mathbf{q}_k$ with
+decreasing error values $\|f(\mathbf{q}_i)\|$. The iteration can terminate
 when the error decreases below some threshold, or when $i$ exceeds an
 iteration limit $k$. However, they differ in their approach for
 calculating these iterates.</p>
@@ -14409,20 +14409,20 @@ all the joints repeatedly (making it cyclic).</p>
 <p><a name="alg:CCD">**Algorithm CCD**</a></p>
 <ol>
 <li><strong>for</strong> $i=1,\ldots,k$ <strong>do</strong></li>
-<li>&nbsp;&nbsp;&nbsp;$\bf{q}_i \gets \bf{q}_{i-1}$</li>
+<li>&nbsp;&nbsp;&nbsp;$\mathbf{q}_i \gets \mathbf{q}_{i-1}$</li>
 <li>&nbsp;&nbsp;&nbsp;<strong>for</strong> all joints $j = 1,...,n$ $do$</li>
-<li>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;Compute $q_j^* = \arg \min_{q_j} \|f(\bf{q}_i)\|$</li>
-<li>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;Set $\bf{q}_{i,j} \gets q_j^*$</li>
-<li><strong>return</strong> $\bf{q}_k$</li>
+<li>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;Compute $q_j^* = \arg \min_{q_j} \|f(\mathbf{q}_i)\|$</li>
+<li>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;Set $\mathbf{q}_{i,j} \gets q_j^*$</li>
+<li><strong>return</strong> $\mathbf{q}_k$</li>
 </ol>
 <hr>
 <p>CCD iterates by performing $k$ passes through the joints as listed in
 <a href="#alg:CCD">Algorithm CCD</a>. On each pass, it loops through the $n$ joints, and
 modifies each joint $j$ assuming the rest of the robot is fixed.
 Specifically, line 4 finds the value that minimizes the error keeping
-the rest of $\bf{q}_i$ constant, and this is updated in $\bf{q}_i$ in line 5.
+the rest of $\mathbf{q}_i$ constant, and this is updated in $\mathbf{q}_i$ in line 5.
 This procedure iterates until $N$ passes have been made, or
-convergence has been reached. Note that the error $\|f(\bf{q}_i)\|$ will
+convergence has been reached. Note that the error $\|f(\mathbf{q}_i)\|$ will
 never increase. However, it may terminate without convergence in the
 case that a singularity is reached.</p>
 <p>To make CCD converge quickly, the single-joint minimization in Line 4
@@ -14536,7 +14536,7 @@ procedure is used for the final steps.</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Root-finding-methods">Root-finding methods<a class="anchor-link" href="#Root-finding-methods">&#182;</a></h3><p>The class of root-finding methods attempt to solve for a zero of the
-error function $f(\bf{q})=0$ using iterative solutions of the 1st Taylor
+error function $f(\mathbf{q})=0$ using iterative solutions of the 1st Taylor
 expansion. In particular, we will discuss the Newton-Raphson method, a
 multi-dimensional analogue of Newton's method in 1D.</p>
 <h4 id="Derivation-from-Taylor-expansion">Derivation from Taylor expansion<a class="anchor-link" href="#Derivation-from-Taylor-expansion">&#182;</a></h4><p>For a 1D function $f(x)$, Newton's method repeatedly approximates the
@@ -14549,23 +14549,23 @@ this case we say that the method <em>converges</em>. In fact, it can be proven
 to obtain a quadratic order of convergence for most "well-behaved"
 functions.</p>
 <p>In the multidimensional case, we seek the next iterate
-$\bf{q}_{i+1} = \bf{q}_i + \Delta \bf{q}_i$ to solve the following Taylor
+$\mathbf{q}_{i+1} = \mathbf{q}_i + \Delta \mathbf{q}_i$ to solve the following Taylor
 expansion: $$\label{eq:NewtonRaphson}
-0 = f(\bf{q}_i) + J(\bf{q}_i) \Delta \bf{q}_i.$$ In the nonredundant case
+0 = f(\mathbf{q}_i) + J(\mathbf{q}_i) \Delta \mathbf{q}_i.$$ In the nonredundant case
 where $n = m$, the Jacobian is square and this system of linear
-equations can be solved via matrix inversion as long as $J(\bf{q}_i)$ is
+equations can be solved via matrix inversion as long as $J(\mathbf{q}_i)$ is
 invertible. The matrix is invertible as long as the robot is not at a
 singularity.</p>
 <p>However, in the redundant $n &gt; m$ case, the Jacobian is not even square.
-Here there is a linear subspace of values of $\Delta \bf{q}_i$ that
+Here there is a linear subspace of values of $\Delta \mathbf{q}_i$ that
 satisfy this equation. Luckily there is generalization of the matrix
 inverse known as the <em>pseudoinverse</em> that allows for solving for a
-unique value of $\Delta \bf{q}_i$ that not only
+unique value of $\Delta \mathbf{q}_i$ that not only
 solves ($\ref{eq:NewtonRaphson}$) but also minimizes the amount of deviation
 from the previous iterate. See
 <a href="LinearAlgebra.html#Matrix-pseudoinverse">Appendix A.1</a> for more information. The pseudoinverse
-solution $\Delta \bf{q}_i = -J(\bf{q}_i)^+ f(\bf{q}_i)$ is the solution
-that minimizes the joint space deviation $\| \Delta \bf{q}_i \|$.</p>
+solution $\Delta \mathbf{q}_i = -J(\mathbf{q}_i)^+ f(\mathbf{q}_i)$ is the solution
+that minimizes the joint space deviation $\| \Delta \mathbf{q}_i \|$.</p>
 <p>The below figures show how quickly Newton-Raphson finds a very accurate solution for the 4R manipulator that CCD had trouble with above.  Within 8 iterations the error is less than 1/1000 units, and in 15 iterations the error is approximately 10<sup>-7</sup> units.</p>
 
 </div>
@@ -14617,7 +14617,7 @@ that weights the relative movement of each joint, with higher weights
 penalizing larger movements.</p>
 <h4 id="Step-direction-and-size,-divergence">Step direction and size, divergence<a class="anchor-link" href="#Step-direction-and-size,-divergence">&#182;</a></h4><p>In total, the Newton-Raphson method chooses the step direction as
 follows: $$\label{eq:NewtonRaphsonStep}
-\Delta \bf{q}_i = - J^+(\bf{q}_i) f(\bf{q}_i)$$</p>
+\Delta \mathbf{q}_i = - J^+(\mathbf{q}_i) f(\mathbf{q}_i)$$</p>
 <p>Unfortunately, Newton's method does not always converge if the initial
 guess is too far from a root. The sequence of iterates may oscillate or
 even diverge toward infinity. The step size may also become huge as the
@@ -14668,8 +14668,8 @@ dividing by zero.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>There are multiple ways of keeping the step size small. One
 straightforward method is known as a line search , in which the entire
-step $\Delta \bf{q}_i$ is not taken, but rather a scaled step
-$$\bf{q}_{i+1} = \bf{q}_i + \alpha_i \Delta \bf{q}_i$$ is taken, with
+step $\Delta \mathbf{q}_i$ is not taken, but rather a scaled step
+$$\mathbf{q}_{i+1} = \mathbf{q}_i + \alpha_i \Delta \mathbf{q}_i$$ is taken, with
 $\alpha_i &gt; 0$ a parameter chosen at each step. The step size is usually
 taken to obtain a sufficient decrease in the error function value. One
 simple way of doing this is to start with some value of $\alpha_i$, and
@@ -14682,11 +14682,11 @@ pseudoinverse itself, which is known as a <em>damped pseudoinverse</em> method
 . In this method, the step size is allowed to deviate from solving the
 root finding problem by instead minimizing the regularized least squares
 function:
-$$\min_{\Delta \bf{q}} \| f(\bf{q}) + J(\bf{q})\Delta \bf{q} \|^2 + \gamma^2 \| \Delta \bf{q} \|^2.$$
+$$\min_{\Delta \mathbf{q}} \| f(\mathbf{q}) + J(\mathbf{q})\Delta \mathbf{q} \|^2 + \gamma^2 \| \Delta \mathbf{q} \|^2.$$
 The $\gamma$ term affects how much the step length is penalized compared
 to the error term. It can be shown that the result is simply
 $$J^+_\gamma = V (\Sigma + \gamma I)^{-1} U^T$$ where $U \Sigma V^T$ is
-the SVD of $J(\bf{q})$.</p>
+the SVD of $J(\mathbf{q})$.</p>
 <p>As the figure below shows, the damped pseudoinverse regulates the step size more strongly as $\gamma$ increases.  However, this comes at a cost of a slower convergence rate.  Adding a line search is extremely helpful, as the initial step size is not too large and the error is guaranteed not to increase on each step.</p>
 
 </div>
@@ -14731,25 +14731,25 @@ the SVD of $J(\bf{q})$.</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Minimization-methods">Minimization methods<a class="anchor-link" href="#Minimization-methods">&#182;</a></h3><p>Minimization methods attempt to minimize the error function
-$\| f(\bf{q}) \|$ (usually expressed as minimizing squared error
-$\| f(\bf{q}) \|^2$ for ease of computation). They are similar to
+$\| f(\mathbf{q}) \|$ (usually expressed as minimizing squared error
+$\| f(\mathbf{q}) \|^2$ for ease of computation). They are similar to
 root-finding methods, but produce more "reasonable" results when a
 solution does not exist, since the result should be as close as possible
 to attaining the target task. The simplest method is <em>gradient descent</em>
 but higher-order methods are also available as described in
 <a href="Optimization.html#Gradient-descent">Appendix B.2</a>.</p>
-<h3 id="Incorporating-other-constraints">Incorporating other constraints<a class="anchor-link" href="#Incorporating-other-constraints">&#182;</a></h3><p>Soft preferences, such as minimizing $g(\bf{q})$ can designate other
+<h3 id="Incorporating-other-constraints">Incorporating other constraints<a class="anchor-link" href="#Incorporating-other-constraints">&#182;</a></h3><p>Soft preferences, such as minimizing $g(\mathbf{q})$ can designate other
 desired criteria to be achieved in redundant systems. In minimization
 methods, preferences can be formulated by augmenting the objective
-function with a small cost term: $\|f(\bf{q})\|^2 + \epsilon g(\bf{q})$.
+function with a small cost term: $\|f(\mathbf{q})\|^2 + \epsilon g(\mathbf{q})$.
 The drawback of this approach is that if $\epsilon$ is too large, the
 optimum of the augmented objective will no longer meet the task
 constraint, but if it is too small then it will not significantly affect
 the descent direction. In root finding methods, the direction of each
 step can be optimized in the null space of the task Jacobian to move in
-the gradient descent direction $-\nabla g(\bf{q})$ while also respecting
+the gradient descent direction $-\nabla g(\mathbf{q})$ while also respecting
 the constraint. Specifically, the null space projection is given by
-$-(I - J^+ J ) \nabla g(\bf{q})$ which can be added onto the step
+$-(I - J^+ J ) \nabla g(\mathbf{q})$ which can be added onto the step
 direction (with some scaling factor).</p>
 <p>The easiest type of hard constraint to incorporate is joint limits,
 where each joint $q_i$ is limited to the range $[a_i,b_i]$. In numerical
@@ -14764,7 +14764,7 @@ constrained joints to zero before computing the pseudoinverse. In
 Newton and Quasi-Newton optimization, both the row and column of the
 Hessian matrix are eliminated before inversion.</p>
 <p>More complex constraints, such as obstacle avoidance, may be expressed
-in the form $h(\bf{q}) \leq 0$, but are harder to accommodate. It is not
+in the form $h(\mathbf{q}) \leq 0$, but are harder to accommodate. It is not
 appropriate to simply check the feasibility of the solution after
 optimizing, since it will very likely be infeasible. More sophisticated
 constrained optimization models, like nonlinear programming, express all
@@ -14840,14 +14840,14 @@ according to various flags.</p>
 <p>Taking our cup-picking problem as an example:</p>
 <ul>
 <li><p>To pick up a cup, the robot's hand should be constrained to a
-position $\bf{x}_G$ and orientation $R_G$ so that it makes contact
+position $\mathbf{x}_G$ and orientation $R_G$ so that it makes contact
 with the cup (a grasp pose). This would be a <em>fixed</em> constraint,
 with a 6D task space.</p>
 </li>
 <li><p>Next, while keeping the cup oriented upward, the orientation of the
 hand about the $z$ axis should be kept constant. This means that our
-constraint is the $z$ axis in the hand's local frame, $R_G^T \bf{z}$,
-should be matched to $\bf{z}$ in world coordinates. Since we don't
+constraint is the $z$ axis in the hand's local frame, $R_G^T \mathbf{z}$,
+should be matched to $\mathbf{z}$ in world coordinates. Since we don't
 care about position, and we don't care how the robot rotates about
 $z$, this would be an <em>axis</em> constraint, which has a 2D task space.</p>
 </li>
@@ -14858,18 +14858,18 @@ height $z_S$. So, we need to include the prior orientation
 constraint, plus an additional 1D position constraint. To implement
 this, we can compute one point on the bottom of the cup in local
 coordinates of the hand. Let's say we recorded such a point
-$\bf{x}_B$ in world coordinates back when we first picked up the cup.
-In hand-local coordinates, this point is $R_G^T(\bf{x}_B - \bf{x}_G)$.
+$\mathbf{x}_B$ in world coordinates back when we first picked up the cup.
+In hand-local coordinates, this point is $R_G^T(\mathbf{x}_B - \mathbf{x}_G)$.
 Now, the new world coordinates of this point need to be at height
 $z_S$, which is a <em>plane</em> constraint.</p>
 </li>
 </ul>
-<p>To implement an axis constraint, a local direction $\bf{d}_L$ is matched
-to a world direction $\bf{d}_D$. Such a constraint can be specified with
-a flag and either 1) $\bf{d}_L$, $\bf{d}_D$, or 2) $T_L$ and either
+<p>To implement an axis constraint, a local direction $\mathbf{d}_L$ is matched
+to a world direction $\mathbf{d}_D$. Such a constraint can be specified with
+a flag and either 1) $\mathbf{d}_L$, $\mathbf{d}_D$, or 2) $T_L$ and either
 direction (the other quantity can be derived from $T_L$).</p>
 <p>To implement a plane constraint, $T_L$ and the normal to the plane in
-world coordinates $\bf{n}$ must be specified.</p>
+world coordinates $\mathbf{n}$ must be specified.</p>
 <p>Support of these various tasks is mixed in various software packages.
 Klamp't supports arbitrary numbers of tasks, each of which can have
 position and orientation components enabled or disabled. The data
@@ -14951,10 +14951,10 @@ offsets to transform the output appropriately.</p>
 </li>
 </ul>
 <p>In Case 1, we may simply determine a desired joint space value $q_D$ that matches the end effector
-$\bf{x}(q_D)$ maps to the task space coordinates $\bf{x}_D$.  Then, the robot can move from the current value
+$\mathbf{x}(q_D)$ maps to the task space coordinates $\mathbf{x}_D$.  Then, the robot can move from the current value
 of $q$ to $q_D$ in a straight line in joint space. However, as <a href="#Nonlinear-mapping-between-C-space-and-workspace">we have seen before</a>,
 such a motion does not usually move in a straight line in workspace due to the nonlinearity of forward kinematics.  If we want the end effector to move in a designated Cartesian trajectory, then we must be more careful.</p>
-<p>Case 2 is a <em>Cartesian path following</em> problem, which asks to generate a trajectory $q(t)$ so that $\bf{x}(q(t)) = \bf{x}_D(t)$ for $t\in[0,1]$.  It may be tempting to simply write an algorithm like this:</p>
+<p>Case 2 is a <em>Cartesian path following</em> problem, which asks to generate a trajectory $q(t)$ so that $\mathbf{x}(q(t)) = \mathbf{x}_D(t)$ for $t\in[0,1]$.  It may be tempting to simply write an algorithm like this:</p>
 <hr>
 <p><a name="alg:NaivePathFollowing">Algorithm 1</a>. <strong>Naive Cartesian path following</strong></p>
 <ol>
@@ -14964,7 +14964,7 @@ such a motion does not usually move in a straight line in workspace due to the n
 </li>
 <li><p>&nbsp;&nbsp;&nbsp;Let $t=i/N$.</p>
 </li>
-<li><p>&nbsp;&nbsp;&nbsp;Use a IK solver to find $q$ satisfying $\bf{x}(q) = \bf{x}_D(t)$, picking the solution closest to $q_{i-1}$.</p>
+<li><p>&nbsp;&nbsp;&nbsp;Use a IK solver to find $q$ satisfying $\mathbf{x}(q) = \mathbf{x}_D(t)$, picking the solution closest to $q_{i-1}$.</p>
 </li>
 <li><p>&nbsp;&nbsp;&nbsp;$q_i \gets q$.</p>
 </li>
@@ -14972,7 +14972,7 @@ such a motion does not usually move in a straight line in workspace due to the n
 </li>
 </ol>
 <hr>
-<p>For example, in step 4, a numerical IK method may simply use $q_{i-1}$ as the initial seed.  An analytical method for a nonredundant robot should enumerate all solutions and pick the closest one.  The choice of the resolution $N$ is also important, because it will determine how closely $\bf{x}(q(t))$ tracks the desired trajectory.  For example, if a long screw needs to be drilled along a precise path, a very fine resolution will be needed.  In fact, industrial robot controllers will solve these problems at or near the control frequency (several hundreds of times per second)</p>
+<p>For example, in step 4, a numerical IK method may simply use $q_{i-1}$ as the initial seed.  An analytical method for a nonredundant robot should enumerate all solutions and pick the closest one.  The choice of the resolution $N$ is also important, because it will determine how closely $\mathbf{x}(q(t))$ tracks the desired trajectory.  For example, if a long screw needs to be drilled along a precise path, a very fine resolution will be needed.  In fact, industrial robot controllers will solve these problems at or near the control frequency (several hundreds of times per second)</p>
 <p>It is important to note that there are a number of caveats that may cause this procedure to fail or to create unusual artifacts:</p>
 <ol>
 <li><p>The configuration may run into joint limits, preventing further progress.</p>
@@ -15037,10 +15037,10 @@ IK solvers for general mechanisms.</p>
 <li><p>Consider a planar "spider robot" with 3 arms, each consisting of a
 2R manipulator, connected at a center point. Each of the "hands"
 (end effectors of each arm) must be placed at locations
-$\bf{x}_1,\bf{x}_2,\bf{x}_3$, respectively. Define a configuration
+$\mathbf{x}_1,\mathbf{x}_2,\mathbf{x}_3$, respectively. Define a configuration
 space of the robot. What is the task space of the IK constraints?
 What is the intrinsic dimension of the self-motion manifold? For
-what values of $\bf{x}_1,\bf{x}_2,\bf{x}_3$ would the solution space be
+what values of $\mathbf{x}_1,\mathbf{x}_2,\mathbf{x}_3$ would the solution space be
 empty?</p>
 </li>
 <li><p>Derive an analytical IK solution for a 3R planar manipulator with
@@ -15050,8 +15050,8 @@ to place the third joint there.</p>
 </li>
 <li><p>Derive an analytical IK solution for the 3R 3D manipulator (ZYY) in
 the general case where the end effector has local coordinates
-$\bf{x}_3$ on the third link, and the task is to place the end
-effector at coordinates $\bf{x}$.</p>
+$\mathbf{x}_3$ on the third link, and the task is to place the end
+effector at coordinates $\mathbf{x}$.</p>
 </li>
 <li><p>Derive the configuration space for a closed 4-bar linkage with link
 lengths $L_1,\ldots,L_4$, assuming the first bar is fixed in world
@@ -15070,9 +15070,9 @@ configuration at random. Then, for each of those transforms, and
 attempt numerical IK using a seed configuration sampled at random.</p>
 </li>
 <li><p>(Implementation) Implement the naive Cartesian path following algorithm
-for a simple robot (the 2R robot, for example).  Give it an input path $\bf{x}_D(t)$ 
+for a simple robot (the 2R robot, for example).  Give it an input path $\mathbf{x}_D(t)$ 
 so that all points along the path are reachable.  How finely do you need to discretize
-the path so that the configuration space path, when interpolated, deviates from $\bf{x}_D(t)$ 
+the path so that the configuration space path, when interpolated, deviates from $\mathbf{x}_D(t)$ 
 no more than 1mm?  Now input a path that goes unreachable.  What happens to the configurations
 as you approach the limit?</p>
 </li>
@@ -15114,13 +15114,13 @@ as you approach the limit?</p>
 
  
  
-<div id="79bd97fb-41a1-43ba-b758-1a2ce9e4b3bb"></div>
+<div id="df678df0-7314-466e-b353-ff17f26835f1"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#79bd97fb-41a1-43ba-b758-1a2ce9e4b3bb');
+var element = $('#df678df0-7314-466e-b353-ff17f26835f1');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "model_id": "4afb3f061b6745d38aaa995b57e76e9a", "version_minor": 0}
+{"version_minor": 0, "version_major": 2, "model_id": "4afb3f061b6745d38aaa995b57e76e9a"}
 </script>
 </div>
 
@@ -15136,13 +15136,13 @@ var element = $('#79bd97fb-41a1-43ba-b758-1a2ce9e4b3bb');
 
  
  
-<div id="f5091c98-a209-468d-bdd0-fb2531884429"></div>
+<div id="3f355c99-c1b8-4334-9d74-013a5a10dd4d"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#f5091c98-a209-468d-bdd0-fb2531884429');
+var element = $('#3f355c99-c1b8-4334-9d74-013a5a10dd4d');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "model_id": "08b282032baa4806958bb4a7971f99b5", "version_minor": 0}
+{"version_minor": 0, "version_major": 2, "model_id": "08b282032baa4806958bb4a7971f99b5"}
 </script>
 </div>
 

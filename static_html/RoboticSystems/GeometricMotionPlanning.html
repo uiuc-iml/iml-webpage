@@ -13470,7 +13470,7 @@ that meet at their boundary. So, once a cell decomposition is created,
 we can identify the cells containing the start and goal configurations
 and then search the graph to find a sequence of cells that contains a
 feasible path.</p>
-<p>One of the simplest cell-decomposition methods is the <em>trapezoidal
+<h3 id="Trapezoidal-decomposition">Trapezoidal decomposition<a class="anchor-link" href="#Trapezoidal-decomposition">&#182;</a></h3><p>One of the simplest cell-decomposition methods is the <em>trapezoidal
 decomposition</em>. This method divides free-space into trapezoids by
 imagining vertical upper and lower edges emanating from each obstacle
 vertex. The remaining cells are trapezoids and triangles, which are
@@ -13478,35 +13478,50 @@ degenerate trapezoids with one edge of length zero. Each cell that
 borders another with a vertical line can be connected together with an
 edge in the graph. Because each cell is convex, any line connecting the
 left and right edges of the cell is also in free space.</p>
-<p>To create a trapezoidal decomposition, we sweep a vertical line from
-left to right and output cells incrementally. First we order all of the
-obstacle vertices in increasing $x$ coordinate. The upper and lower
-edges of the cell to the left of the leftmost obstacle vertex are
-infinite. By beginning an obstacle, vertex will then <em>split</em> this cell
-into two. We output the leftward cell, and then maintain the lower and
-upper edges of these two cells in a list $L$ sorted in increasing $y$
-coordinate.</p>
-<p>Proceeding to the next vertex, one of three things may happen. 1) The
-next vertex may end <em>two</em> of the edges in $L$, causing two cells to
-<em>merge</em>, 2) the next vertex may end one of the edges in $L$, simply
-<em>continuing</em> on to another cell, or 3) the next vertex may split an
-existing cell. In case 1, we output the two cells above and below the
-ended edges, and remove the edges from $L$. In case 2, we output one
-cell either above or below the ended edge, remove that edge from $L$ and
-then insert the new edge in the same place as the old one. In case 3, we
-identify the location in $L$ into which the two new edges should be
-inserted. A cell is outputted, bounded by the two edges surrounding the
-insertion position, and the two new edges are inserted there.</p>
+<hr>
+<p><img src="figures/planning/trapezoidal.svg" alt="fig:TrapezoidalDecomposition"></p>
+<div class="figcaption"><a name="fig:Trapezoidal">Figure 8</a>.
+Illustrating the trapezoidal decomposition method. The division of free space into trapezoids and triangles creates a decomposition of the space into convex regions, connected by their vertical boundaries.  More useful for planning is the boundary graph, where nodes are midpoints of the vertical boundaries of each trapezoid, and edges connect any nodes touching the same trapezoid. The start and goal locations can be connected to the graph by identifying which trapezoid in which they lie, and connecting the vertex to each edge bordering the trapezoid.
+    </div><hr>
+<p>To create a trapezoidal decomposition, a <em>sweep line algorithm</em> can be used. 
+This method imagines a vertical line passing between vertices from
+left to right, and cells are output incrementally. First we order all of the
+obstacle vertices in increasing $x$ coordinate. Ties are broken by $y$ coordinate.  This approach is known as <em>lexicographical order</em>, in which $(x,y) \prec (x^\prime,y^\prime)$ iff either $x &lt; x^\prime$, or ($x=x^\prime$ and $y&lt;y^\prime$).  Let us assume this order is $v_1,\ldots,v_n$, with $v_i=(x_i,y_i)$.</p>
+<p>The algorithm proceeds by moving the sweep line from $v_1$ to $v_2$, $v_2$ to $v_3$, and so on. At every vertex $(x_i,y_i)$, the algorithm maintains an <em>invariant</em> that all free-space segments through the vertical line passing through $x_i$ are maintained in a list $L$.  Each segment is an interval $[a,b]$, and each endpoint of the interval stores the edge to which it belongs (i.e., $e_a$, $e_b$).  Each interval is sorted in terms of increasing y coordinate.  Let's assume that the free space is bounded. In this case, we initialize $L$ with the interval $[y_1,y_1]$ with endpoints associated with the edges emanating from the bottom and top of $v_1$, respectively.</p>
+<p>Proceeding to the next vertex, one of three events may happen. 1) the next vertex may end <em>one</em> of the edges in $L$, simply <em>continuing</em> on to another cell, 2) the next vertex may <em>split</em> an
+existing cell, 3) the next vertex may <em>birth</em> a new cell, or 4) the next vertex may end <em>two</em> of the edges in $L$, causing two cells to
+<em>merge</em>.  Each operation modifies $L$ and outputs at most one cell.</p>
+<ul>
+<li><em>Continue</em>: output one cell either above or below the ended edge, remove that edge from $L$ and
+then insert the next edge in the same place as the old one. </li>
+<li><em>Split</em>: identify the location in $L$ into which the two new edges should be inserted.  A cell is outputted, bounded by the two edges surrounding the insertion position, and the two new edges are inserted there.</li>
+<li><em>Birth</em>: the vertex arises from within an obstacle. An singleton interval is added to $L$, with edges emanating above and below the vertex.</li>
+<li><em>Merge</em>: output the cell bounded below and above by the ended edges, and remove the edges from $L$. </li>
+</ul>
+<hr>
+<p><img src="figures/planning/sweep-line.svg" alt="fig:SweepLine"></p>
+<div class="figcaption"><a name="fig:SweepLine">Figure 9</a>.
+Illustrating the types of events that can occur when a sweep line meets a vertex: (a) continue, (b) split, (c) birth, (d) merge.  The sweep line passes from left to right.  Blue edges are those on the sweep line that are unchanged; red edges are deleted; green edges are added.
+    </div><hr>
 <p>This repeats until all vertices are processed. To maintain the
 connectivity of the cell decomposition, we can remember the rightmost
-cell added above or below each edge, and when a new cell is added it is
+cell added above or below each edge, and when a new cell is created, it is
 attached to the previous cell associated with that edge, and the
-rightmost cell is changed to the new cell.</p>
-<p>The trapezoidal decomposition as stated is complete but not optimal.
-However, simple modifications of the vertical coordinates
+rightmost cell is changed to the new cell.  (If the free space is unbounded, we produce an unbounded trapezoid to the left of the first vertex and to the right of the last vertex.)</p>
+<p>Note that there are a fair bit of bookkeeping and technical details required to implement this properly, e.g., to trace the boundary of the free space, determine the event type, and maintain the connectivity of the decomposition. But we can still establish the key computational bottlenecks.  First, we must sort the points in lexicographic order, which takes time $O(n \log n)$.  The sweep line algorithm passes through $n$ points, and either a continue, split, or merge operation must be performed for each point. To look up the interval in which the new point is located takes $O(\log n)$ time using bisection, and the update and cell creation steps take O(1) time.  Overall, the running time is $O(n \log n)$.</p>
+<p>To find a path given a trapezoidal decomposition, it suffices to find the cells in which the start and goal are located, then search for a path containing the start and goal.  The continuous path is constructed by connecting the midpoints between each cell. Because each path segment is completely contained within the cell, and because trapezoids are convex, the path is guaranteed to be feasible.  Hence, the trapezoidal decomposition algorithm is complete but not optimal.
+Simple modifications of the vertical coordinates
  --- straightening the path when possible --- can be made to find the
-shortest path passing through the cells produced by the algorithm.</p>
-<p><strong> TODO: add more here </strong></p>
+shortest path passing through the cells produced by the algorithm.  However, the sequence of cells may indeed miss the true shortest path.</p>
+<h3 id="Approximate-cell-decomposition">Approximate cell decomposition<a class="anchor-link" href="#Approximate-cell-decomposition">&#182;</a></h3><p>Exact cell decomposition algorithms have been extended to 3D spaces with polyhedral obstacles, but in general require sophisticated geometric reasoning about how the free space is cut into convex polyhedra.  An alternative technique is <em>approximate cell decomposition</em>, in which we do not worry about creating a decomposition of the true free space, but rather create cells that are contained in the free space.</p>
+<p>One possible approach is that of an <em>octree</em>, which progressively subdivides the space into progressively smaller cubes until it can be determined that 1) a cube is <em>free</em>, i.e., completely within free space, 2) a cube is <em>closed</em>, i.e., completely inside an obstacle, or 3) a cube is smaller than a given resolution.  If a cube is neither free nor closed, it is <em>mixed</em>, and will be subdivided if it is larger than that resolution. An octree is constructed recursively, starting with a box $B_0$ that is know to contain the free space.  It proceeds by recursion on all boxes at level $i$. If a box is found to be mixed, then it is subdivided along each axis, which gives 8 child cubes (and hence the oct- prefix).</p>
+<hr>
+<p><img src="figures/planning/octree.svg" alt="fig:SweepLine"></p>
+<div class="figcaption"><a name="fig:Octree">Figure 10</a>.
+An octree cell decomposition progressively divides an initial bounding cube $B_0$ into smaller cubes $B_{1a}$--$B_{1h}$.  A cube does not need to be subdivided if it is completely within the free space, or if it is completely contained within obstacles.  The right figure shows two levels of subdivision, with free cubes in white, obstacle cubes darkly shaded, and mixed cubes lightly shaded.
+    </div><hr>
+<p>Some more details are warranted on the collision checking step.  Suppose that obstacles are represented by triangle meshes. Then, if any triangle in the mesh overlaps the box, then the box is mixed.  Otherwise, the box is either free or closed.  It is somewhat difficult to tell whether the box is contained entirely inside an obstacle, but this case can be more or less safely ignored --- if our decomposition only contains free or closed cells, it cannot be the case that any free cell will be connected to any closed cell.</p>
+<p>Once the octree is constructed, it is a matter of bookeeping to connect each non-mixed cell to its non-mixed neighbors, because on each of the 6 faces of a cell, the neighboring cell(s) may be at a finer level or a coarser level.  In this decomposition, if two free cells are connected, then there is certainly a free space path between them.  However, if two free cells are not connected, it is not certain whether a free space path exists.  Like grid search, this is a resolution complete method, because if the minimum resolution shrinks below a threshold (based on the clearance), then any free path connecting two points will correspond to a sequence of cells in the decomposition.</p>
 
 </div>
 </div>
@@ -13555,7 +13570,7 @@ radius $r$. In other words, it is a uniformly "fattened" version of the
 workspace obstacle.</p>
 <hr>
 <p><img src="figures/planning/disk_cobstacle.svg" alt="fig:DiskCObstacle"></p>
-<div class="figcaption"><a name="fig:DiskCObstacle">Figure 8</a>.
+<div class="figcaption"><a name="fig:DiskCObstacle">Figure 11</a>.
 (a) For a disk robot and polygonal workspace obstacles, (b) the
 corresponding C-obstacles are polygons "fattened" by the robot's radius
 $r$. (Top) If the obstacle is convex, the C-obstacle is determined by
@@ -13565,7 +13580,7 @@ holes.
     </div><hr>
 <p>If $O$ is a convex polygon, then the boundary of the C-obstacle consists
 of a series of circular arcs and straight lines
-(<a href="#fig:DiskCObstacle">Fig. 8</a>). To construct the boundary, we may start
+(<a href="#fig:DiskCObstacle">Fig. 11</a>). To construct the boundary, we may start
 with any vertex $u$ of the polygon, and place a point offset
 perpendicularly to its outgoing edge $\overline{uv}$. Tracing a straight
 line parallel to that edge until it is perpendicular to the next vertex
@@ -15242,7 +15257,7 @@ FMMAAABorf8DGjIwrEyU/5EAAAAASUVORK5CYII=
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Motion-planning-in-SE(2)">Motion planning in SE(2)<a class="anchor-link" href="#Motion-planning-in-SE(2)">&#182;</a></h3><p>Although some geometric techniques have been developed for planning in
+<h3 id="Motion-planning-in-SE(2)">Motion planning in SE(2)<a class="anchor-link" href="#Motion-planning-in-SE(2)">&#182;</a></h3><p>Although some exact geometric techniques have been developed for planning in
 SE(2), it is more common to adopt resolution-complete techniques to
 handle the rotational DOF. As an example, grid search can be applied
 fairly easily.</p>
@@ -15305,7 +15320,7 @@ searched to connect any two points in SE(2).</p>
 <li>Bug algorithms only use local information about obstacles and a small amount of memory to make decisions on-line.  They are sufficiently simple that their completeness and suboptimality can be analyzed using geometric reasoning.</li>
 <li>Grid search methods are quite general, can be applied to robots with arbitrary geometry, and can be extended to solve curvature-constrained problems using the state lattice approach.  They are resolution-complete, and their performance depends heavily on the grid resolution, and somewhat on the grid search heuristic.</li>
 <li>Visibility graph methods build a network of free paths between obstacle vertices. They are complete and optimal in 2D configuration spaces, but take at least $O(n^2)$ time and $O(n^2)$ space to build.</li>
-<li>Cell decomposition methods build a representation of the free space volume as a collection of simple geometric shapes. They can be complete, optimal, and constructed efficiently.</li>
+<li>Cell decomposition methods build a representation of the free space volume as a collection of simple geometric shapes. They can be complete, optimal, and constructed efficiently ($O(n \log n)$ for the trapezoidal decomposition).</li>
 <li>Translating robots with geometry can be converted into point robot problems by constructing C-obstacles. This can be done using the Minkowski difference operation.</li>
 </ul>
 
@@ -15341,12 +15356,20 @@ so, derive an approximation factor. If not, show a class of
 environments in which an arbitrarily poor approximation factor can
 be constructed.</p>
 </li>
-<li><p>Create a modified <code>grid_search</code> algorithm in <code>code.planning.grid_search</code>
+<li><p>Create a modified <code>grid_search</code> algorithm in <code>rsbook_code.planning.grid_search</code>
 that accepts a <code>max_time</code> parameter that gives a maximum time budget
 for search.  After this amount of time has elapsed, no more nodes
 should be evaluated, and instead the algorithm should return the path
 leading to the explored node that got closest to the goal. 
 <em>Hint: you can raise an exception to break out of the search loop.</em></p>
+</li>
+<li><p>The <em>medial axis</em> of the free space is the set of free points that are equidistant between exactly 
+two or more points on the obstacle boundary.  Draw the medial axis of the simple environment in Fig. 1.
+Could the medial axis be considered a form of roadmap?  Describe a path planning algorithm that could
+accept a medial axis as input and produce a path.</p>
+</li>
+<li><p>Prove that the medial axis of a free space with polygonal obstacles consists of straight lines and
+parabolic arcs.  (Hint: recall the focus and directrix that define a parabola.)</p>
 </li>
 <li><p>Give pseudocode for computing the Minkowski sum of two convex
 polygons in O($m+n$) time.</p>

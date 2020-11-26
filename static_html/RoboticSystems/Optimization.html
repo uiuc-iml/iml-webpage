@@ -13313,26 +13313,26 @@ because it is easy to implement, can handle "black box" functions, and
 each iteration is cheap. Its major disadvantage is that it can take a
 long time to converge. We will also describe a discrete descent method
 often used to solve large combinatorial problems.</p>
-<h4 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h4><p>Given a differentiable scalar field $f(\bf{x})$ and an initial guess
-$\bf{x}_1$, gradient descent iteratively moves the guess toward lower
+<h4 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h4><p>Given a differentiable scalar field $f(\mathbf{x})$ and an initial guess
+$\mathbf{x}_1$, gradient descent iteratively moves the guess toward lower
 values of $f$ by taking steps in the direction of the negative gradient
-$-\nabla f(\bf{x})$. Locally, the negated gradient is the steepest
-descent direction, i.e., the direction that $\bf{x}$ would need to move
+$-\nabla f(\mathbf{x})$. Locally, the negated gradient is the steepest
+descent direction, i.e., the direction that $\mathbf{x}$ would need to move
 in order to decrease $f$ the fastest. The algorithm typically converges
 to a local minimum, but may rarely reach a saddle point, or not move at
-all if $\bf{x}_{1}$ lies at a local maximum.</p>
-<h4 id="The-gradient-is-the-steepest-descent-direction">The gradient is the steepest descent direction<a class="anchor-link" href="#The-gradient-is-the-steepest-descent-direction">&#182;</a></h4><p>The first order Taylor approximation of $f(\bf{x})$ about $f(\bf{x}_{1})$ is
-$$f(\bf{x}) = f(\bf{x}_{1}) + \nabla f(\bf{x}_{1}) \cdot (\bf{x}-\bf{x}_{1}) + O(||\bf{x}-\bf{x}_{1}||^2).$$
-Consider moving from $\bf{x}_{1}$ a small amount $h$ in a unit direction
-$\bf{u}$. We want to find the $\bf{u}$ that minimizes
-$f(\bf{x}_{1} + h\bf{u})$. Using the Taylor expansion, we see that
-$$f(\bf{x}_{1} + h\bf{u}) - f(\bf{x}_{1}) =  h \nabla f(\bf{x}_{1}) \cdot \bf{u} +  h^2 O(1).$$
+all if $\mathbf{x}_{1}$ lies at a local maximum.</p>
+<h4 id="The-gradient-is-the-steepest-descent-direction">The gradient is the steepest descent direction<a class="anchor-link" href="#The-gradient-is-the-steepest-descent-direction">&#182;</a></h4><p>The first order Taylor approximation of $f(\mathbf{x})$ about $f(\mathbf{x}_{1})$ is
+$$f(\mathbf{x}) = f(\mathbf{x}_{1}) + \nabla f(\mathbf{x}_{1}) \cdot (\mathbf{x}-\mathbf{x}_{1}) + O(||\mathbf{x}-\mathbf{x}_{1}||^2).$$
+Consider moving from $\mathbf{x}_{1}$ a small amount $h$ in a unit direction
+$\mathbf{u}$. We want to find the $\mathbf{u}$ that minimizes
+$f(\mathbf{x}_{1} + h\mathbf{u})$. Using the Taylor expansion, we see that
+$$f(\mathbf{x}_{1} + h\mathbf{u}) - f(\mathbf{x}_{1}) =  h \nabla f(\mathbf{x}_{1}) \cdot \mathbf{u} +  h^2 O(1).$$
 If we make the $h^2$ term insignificant by shrinking $h$, we see that in
-order to decrease $f(\bf{x}_{1} + h\bf{u}) - f(\bf{x}_{1})$ the fastest we must
-minimize $\nabla f(\bf{x}_{1}) \cdot \bf{u}$. The unit vector that minimizes
-$\nabla f(\bf{x}_{1}) \cdot \bf{u}$ is
-$\bf{u} = -\nabla f(\bf{x}_{1}) / || \nabla f(\bf{x}_{1}) ||$ as desired.</p>
-<h4 id="Algorithm">Algorithm<a class="anchor-link" href="#Algorithm">&#182;</a></h4><p>The algorithm is initialized with a guess $\bf{x}_{1}$, a maximum iteration
+order to decrease $f(\mathbf{x}_{1} + h\mathbf{u}) - f(\mathbf{x}_{1})$ the fastest we must
+minimize $\nabla f(\mathbf{x}_{1}) \cdot \mathbf{u}$. The unit vector that minimizes
+$\nabla f(\mathbf{x}_{1}) \cdot \mathbf{u}$ is
+$\mathbf{u} = -\nabla f(\mathbf{x}_{1}) / || \nabla f(\mathbf{x}_{1}) ||$ as desired.</p>
+<h4 id="Algorithm">Algorithm<a class="anchor-link" href="#Algorithm">&#182;</a></h4><p>The algorithm is initialized with a guess $\mathbf{x}_{1}$, a maximum iteration
 count $N_{max}$, a gradient norm tolerance $\epsilon_g$ that is used to
 determine whether the algorithm has arrived at a critical point, and a
 step tolerance $\epsilon_x$ to determine whether significant progress is
@@ -13342,14 +13342,14 @@ being made. It proceeds as follows:</p>
 <ol>
 <li><p><strong>for</strong> {$t=1,2,\ldots,N_{max}$}</p>
 </li>
-<li><p>&nbsp;&nbsp;&nbsp; $\bf{x}_{t+1} \gets \bf{x}_{t} - \alpha_t \nabla f(\bf{x}_{t})$</p>
+<li><p>&nbsp;&nbsp;&nbsp; $\mathbf{x}_{t+1} \gets \mathbf{x}_{t} - \alpha_t \nabla f(\mathbf{x}_{t})$</p>
 </li>
-<li><p>&nbsp;&nbsp;&nbsp; <strong>if</strong> $\|\nabla f(\bf{x}_{t})\| &lt; \epsilon_g$ <strong>return</strong> "Converged
+<li><p>&nbsp;&nbsp;&nbsp; <strong>if</strong> $\|\nabla f(\mathbf{x}_{t})\| &lt; \epsilon_g$ <strong>return</strong> "Converged
 on critical point"</p>
 </li>
-<li><p>&nbsp;&nbsp;&nbsp; <strong>if</strong> $\|\bf{x}_{t+1}-\bf{x}_{t}\| &lt; \epsilon_x$ <strong>return</strong> "Converged on an $x$ value"</p>
+<li><p>&nbsp;&nbsp;&nbsp; <strong>if</strong> $\|\mathbf{x}_{t+1}-\mathbf{x}_{t}\| &lt; \epsilon_x$ <strong>return</strong> "Converged on an $x$ value"</p>
 </li>
-<li><p>&nbsp;&nbsp;&nbsp; <strong>if</strong> $f(\bf{x}_{t+1}) &gt; f(\bf{x}_{t})$ <strong>return</strong> "Diverging"</p>
+<li><p>&nbsp;&nbsp;&nbsp; <strong>if</strong> $f(\mathbf{x}_{t+1}) &gt; f(\mathbf{x}_{t})$ <strong>return</strong> "Diverging"</p>
 </li>
 <li><p><strong>return</strong> "Maximum number of iterations reached"</p>
 </li>
@@ -13359,7 +13359,7 @@ on critical point"</p>
 chosen to maintain a balance between convergence speed and avoiding
 divergence. Note that $\alpha_t$ may depend on the step $t$.</p>
 <h4 id="Choosing-a-step-size-using-line-search">Choosing a step size using line search<a class="anchor-link" href="#Choosing-a-step-size-using-line-search">&#182;</a></h4><p>To a first-order approximation, each step decreases the value of $f$ by
-approximately $\alpha_t ||\nabla f(\bf{x}_{0})||^2$. If $\alpha_t$ is too
+approximately $\alpha_t ||\nabla f(\mathbf{x}_{0})||^2$. If $\alpha_t$ is too
 small, then the algorithm will converge very slowly. On the other hand,
 if the step size $\alpha_t$ is not chosen small enough, then the
 algorithm may fail to reduce the value of $f$. (Because the first order
@@ -13368,11 +13368,11 @@ approximation is valid only locally.)</p>
 a reduction in $f$ while still making sufficiently fast progress. This
 procedure is known as a <em>line search</em> and is employed in many
 multivariate optimization algorithms. The input to a line search is a
-function $f$, an initial point $\bf{x}$ and direction $\bf{d}$, initial
+function $f$, an initial point $\mathbf{x}$ and direction $\mathbf{d}$, initial
 candidate step size $\gamma_1$. The output is a step size $\gamma &gt; 0$
-such that $f(\bf{x}+\gamma \bf{d}) &lt; f(\bf{x})$, or failure if the step
+such that $f(\mathbf{x}+\gamma \mathbf{d}) &lt; f(\mathbf{x})$, or failure if the step
 size falls below some threshold.</p>
-<p>The first step is to check whether $\bf{x} + \gamma_1 \bf{d}$ decreases
+<p>The first step is to check whether $\mathbf{x} + \gamma_1 \mathbf{d}$ decreases
 the value of $f$. If so, then we can either terminate the line search,
 or search for a larger valid $\gamma$ by repeated doubling:
 $\gamma_n = \gamma_1 2^n$. If a step of size $\gamma_1$ increases $f$,

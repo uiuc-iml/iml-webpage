@@ -13224,43 +13224,43 @@ $\newcommand{\Reals} { \mathbb{R} }$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Vector-notation-and-definitions">Vector notation and definitions<a class="anchor-link" href="#Vector-notation-and-definitions">&#182;</a></h2><p>An $n$-dimensional <em>vector</em> $\bf{x}$ is a tuple of real numbers
-$\bf{x}=(x_1,\ldots,x_n) \in \mathbb{R}^{n}$. In later portions of this course,
+<h2 id="Vector-notation-and-definitions">Vector notation and definitions<a class="anchor-link" href="#Vector-notation-and-definitions">&#182;</a></h2><p>An $n$-dimensional <em>vector</em> $\mathbf{x}$ is a tuple of real numbers
+$\mathbf{x}=(x_1,\ldots,x_n) \in \mathbb{R}^{n}$. In later portions of this course,
 we will usually drop the boldface.</p>
 <p>Vectors can be added and subtracted component-wise, can be multipled by
 elements of $\mathbb{R}$, and can be divided by elements of
-$\mathbb{R} \setminus \{0\}$. There is a zero vector $\bf{0}$ with all
+$\mathbb{R} \setminus \{0\}$. There is a zero vector $\mathbf{0}$ with all
 elements equal to zero. Each element has a component-wise negation,
-$-\bf{x}$. We will also on occasion refer to the standard <em>basis vectors</em>
-$\bf{e}_{1},\ldots,\bf{e}_{n}$, where $\bf{e}_{i}$ has all elements equal to 0
+$-\mathbf{x}$. We will also on occasion refer to the standard <em>basis vectors</em>
+$\mathbf{e}_{1},\ldots,\mathbf{e}_{n}$, where $\mathbf{e}_{i}$ has all elements equal to 0
 except for the $i$'th element, which is equal to 1. More commonly, we
-refer to $\bf{e}_{1}$ as the x-axis, $\bf{e}_{2}$ as the y-axis, and so on.</p>
+refer to $\mathbf{e}_{1}$ as the x-axis, $\mathbf{e}_{2}$ as the y-axis, and so on.</p>
 <blockquote><p><strong>Dot product</strong>. The dot product is a function that takes two vectors
-$\bf{x}=(x_1,\ldots,x_n)$ and $\bf{y}=(y_1,\ldots,y_n)$ and returns a real
+$\mathbf{x}=(x_1,\ldots,x_n)$ and $\mathbf{y}=(y_1,\ldots,y_n)$ and returns a real
 number, and is given by the expression
-$$\bf{x} \cdot \bf{y} = \sum_{i=1}^n x_i y_i.$$</p>
+$$\mathbf{x} \cdot \mathbf{y} = \sum_{i=1}^n x_i y_i.$$</p>
 </blockquote>
-<p>For example, $\bf{x} \cdot \bf{e}_{i} = x_i$.</p>
+<p>For example, $\mathbf{x} \cdot \mathbf{e}_{i} = x_i$.</p>
 <blockquote><p><strong>Orthogonal vectors</strong>. Two vectors whose dot product is identically zero are called
 <em>orthogonal</em>.</p>
 </blockquote>
-<p>For example, $\bf{e}_{i} \cdot \bf{e}_{j} = 0$ for any pair $i\neq j$, and so $\bf{e}_{i}$ and $\bf{e}_{j}$ are orthogonal.  Also, $
+<p>For example, $\mathbf{e}_{i} \cdot \mathbf{e}_{j} = 0$ for any pair $i\neq j$, and so $\mathbf{e}_{i}$ and $\mathbf{e}_{j}$ are orthogonal.  Also, $
 \begin{bmatrix}1 \\ 2 \end{bmatrix} \cdot 
 \begin{bmatrix} -6 \\ 3 \end{bmatrix} = 0$, so these vectors are orthogonal as well.</p>
 <blockquote><p><strong>Norms</strong>. A norm describes some notion of vector magnitude. The standard Euclidean
-norm $\|\cdot\|$ is defined as $\|\bf{x}\|=\sqrt{\bf{x} \cdot \bf{x}}$.</p>
+norm $\|\cdot\|$ is defined as $\|\mathbf{x}\|=\sqrt{\mathbf{x} \cdot \mathbf{x}}$.</p>
 </blockquote>
-<p>Some identities are $\|\bf{0}\|=0$, $\|\bf{x}\| &gt; 0$ if
-$\bf{x} \neq \bf{0}$, and $\|c\bf{x}\| = |c|\,\|\bf{x}\|$ for all real values $c$.</p>
-<blockquote><p><strong>Unit vectors</strong>. A unit vector is a vector with unit norm: $\|\bf{x}\|=1$.</p>
+<p>Some identities are $\|\mathbf{0}\|=0$, $\|\mathbf{x}\| &gt; 0$ if
+$\mathbf{x} \neq \mathbf{0}$, and $\|c\mathbf{x}\| = |c|\,\|\mathbf{x}\|$ for all real values $c$.</p>
+<blockquote><p><strong>Unit vectors</strong>. A unit vector is a vector with unit norm: $\|\mathbf{x}\|=1$.</p>
 <p><strong>Euclidean distance</strong>. The euclidean distance between two vectors is given by the norm of the
-difference between the vectors: $d(\bf{x},\bf{y}) = \|\bf{x}-\bf{y}\|$.</p>
+difference between the vectors: $d(\mathbf{x},\mathbf{y}) = \|\mathbf{x}-\mathbf{y}\|$.</p>
 </blockquote>
 <p>It satisfies all the criteria of a metric, and hence vector spaces are metric spaces.</p>
 <blockquote><p><strong>Cosine angle formula</strong>. The cosine of the angle between two unit vectors is equal to their dot
-product, i.e. $\cos(\theta) = \bf{a} \cdot \bf{b}$.</p>
-<p><strong>Linear Combinations</strong>. $\bf{x}$ is a <em>linear combination</em> of a set of vectors
-$\{\bf{a}_{1},\ldots,\bf{a}_{m}\}$ if $$\bf{x} = \sum_{i=1}^m u_i \bf{a}_{i}$$ for
+product, i.e. $\cos(\theta) = \mathbf{a} \cdot \mathbf{b}$.</p>
+<p><strong>Linear Combinations</strong>. $\mathbf{x}$ is a <em>linear combination</em> of a set of vectors
+$\{\mathbf{a}_{1},\ldots,\mathbf{a}_{m}\}$ if $$\mathbf{x} = \sum_{i=1}^m u_i \mathbf{a}_{i}$$ for
 some set of numbers $u_1,\ldots,u_m$.</p>
 </blockquote>
 
@@ -13281,8 +13281,8 @@ A_{1,1} &amp; \cdots &amp; A_{1,n} \\
 \dots &amp;   &amp; \dots \\
 A_{m,1} &amp; \cdots &amp; A_{m,n}
 \end{array}\right]$$</p>
-<h3 id="Matrix-Vector-Product">Matrix-Vector Product<a class="anchor-link" href="#Matrix-Vector-Product">&#182;</a></h3><p>An $m\times n$ matrix $A$ transforms vectors $\bf{x} =(x_1,\ldots,x_n)$
-into $m$-dimensional vectors $\bf{y} = (y_1,\ldots,y_m) = A\bf{x}$ as
+<h3 id="Matrix-Vector-Product">Matrix-Vector Product<a class="anchor-link" href="#Matrix-Vector-Product">&#182;</a></h3><p>An $m\times n$ matrix $A$ transforms vectors $\mathbf{x} =(x_1,\ldots,x_n)$
+into $m$-dimensional vectors $\mathbf{y} = (y_1,\ldots,y_m) = A\mathbf{x}$ as
 follows: $$
 \begin{split}
 y_1 = \sum_{j=1}^n A_{1j} x_j \\
@@ -13290,41 +13290,41 @@ y_1 = \sum_{j=1}^n A_{1j} x_j \\
 y_m = \sum_{j=1}^n A_{mj} x_j \\
 \end{split}$$ Or, more concisely, $y_i = \sum_{j=1}^n A_{ij} x_j$ for
 $i=1,\ldots,m$. (Note that matrix-vector multiplication <em>is not
-symmetric</em>, so $\bf{x} A$ is an invalid operation.)</p>
+symmetric</em>, so $\mathbf{x} A$ is an invalid operation.)</p>
 <h4 id="Linearity-of-matrix-vector-multiplication">Linearity of matrix-vector multiplication<a class="anchor-link" href="#Linearity-of-matrix-vector-multiplication">&#182;</a></h4><p>We can see that matrix-vector multiplication is linear, that is
-$A(a\bf{x}+b\bf{y}) = a A \bf{x} + b A \bf{y}$ for all $a$, $b$, $\bf{x}$,
-and $\bf{y}$. It is also linear in terms of component-wise addition and
+$A(a\mathbf{x}+b\mathbf{y}) = a A \mathbf{x} + b A \mathbf{y}$ for all $a$, $b$, $\mathbf{x}$,
+and $\mathbf{y}$. It is also linear in terms of component-wise addition and
 multiplication of matrices, as long as the matrices are of the same
 size. More precisely, if $A$ and $B$ are both $m\times n$ matrices, then
-$(a A + b B)\bf{x} = a A\bf{x} + b B\bf{x}$ for all $a$, $b$, and $\bf{x}$.</p>
+$(a A + b B)\mathbf{x} = a A\mathbf{x} + b B\mathbf{x}$ for all $a$, $b$, and $\mathbf{x}$.</p>
 <h4 id="Identity-matrix">Identity matrix<a class="anchor-link" href="#Identity-matrix">&#182;</a></h4><p>One special matrix that occurs frequently is the $n\times n$ <em>identity
 matrix</em> $I_n$, which has 0's in all off-diagonal positions $I_{ij}$ with
 $i\neq j$, and 1's in all diagonal positions $I_{ii}$. It is significant
-because $I_n \bf{x} = \bf{x}$ for all $\bf{x} \in \mathbb{R}^n$.</p>
+because $I_n \mathbf{x} = \mathbf{x}$ for all $\mathbf{x} \in \mathbb{R}^n$.</p>
 <h3 id="Matrix-Product">Matrix Product<a class="anchor-link" href="#Matrix-Product">&#182;</a></h3><p>When two linear transformations are performed one after the other, the
 result is also a linear transformation. Suppose $A$ is $m\times n$, $B$
-is $n \times p$, and $\bf{x}$ is a $p$-dimensional vector, and consider
-the result of $A(B\bf{x})$ (that is, first multiplying by $B$ and then
+is $n \times p$, and $\mathbf{x}$ is a $p$-dimensional vector, and consider
+the result of $A(B\mathbf{x})$ (that is, first multiplying by $B$ and then
 multiplying the result by $A$). We see that
-$$B\bf{x} = (\sum_{j=1}^p B_{1j} x_j,\ldots,\sum_{j=1}^p B_{nj} x_j)$$
+$$B\mathbf{x} = (\sum_{j=1}^p B_{1j} x_j,\ldots,\sum_{j=1}^p B_{nj} x_j)$$
 and
-$$A \bf{y} = (\sum_{k=1}^n A_{1k} y_k,\ldots,\sum_{k=1}^n A_{mk} y_k)$$
+$$A \mathbf{y} = (\sum_{k=1}^n A_{1k} y_k,\ldots,\sum_{k=1}^n A_{mk} y_k)$$
 So
-$$A (B \bf{x}) = \left(\sum_{k=1}^n A_{1k} (\sum_{j=1}^p B_{kj} x_j),\ldots,\sum_{k=1}^n A_{mk} (\sum_{j=1}^p B_{kj} x_j)\right).$$
+$$A (B \mathbf{x}) = \left(\sum_{k=1}^n A_{1k} (\sum_{j=1}^p B_{kj} x_j),\ldots,\sum_{k=1}^n A_{mk} (\sum_{j=1}^p B_{kj} x_j)\right).$$
 Rearranging the summations, we see that
-$$A (B \bf{x}) = \left(\sum_{j=1}^p (\sum_{k=1}^n A_{1k} B_{kj}) x_j),\ldots,\sum_{j=1}^p (\sum_{k=1}^n A_{mk} B_{kj} x_j)\right).$$
-In other words, we could have $A(B\bf{x}) = C \bf{x}$ if we were to form a
+$$A (B \mathbf{x}) = \left(\sum_{j=1}^p (\sum_{k=1}^n A_{1k} B_{kj}) x_j),\ldots,\sum_{j=1}^p (\sum_{k=1}^n A_{mk} B_{kj} x_j)\right).$$
+In other words, we could have $A(B\mathbf{x}) = C \mathbf{x}$ if we were to form a
 matrix $C$ such that $$C_{ij} = \sum_{k=1}^n A_{ik} B_{kj}$$ This is
 exactly the definition of the <em>matrix product</em>, and we say $C=AB$. The
 entry $C_{ij}$ of can also be obtained taking the dot-product of the
 $i$'th column of $A$ and the $j$'th column of $B$.</p>
 <h4 id="Matrix-product-is-associative-but-not-symmetric">Matrix product is associative but not symmetric<a class="anchor-link" href="#Matrix-product-is-associative-but-not-symmetric">&#182;</a></h4><p>By the above derivation we can drop the parentheses
-$A(B\bf{x}) = (AB)\bf{x}$. So, matrix-vector and matrix-matrix
+$A(B\mathbf{x}) = (AB)\mathbf{x}$. So, matrix-vector and matrix-matrix
 multiplication are <em>associative</em>. Note again however that matrix-matrix
 multiplication <em>is not symmetric</em>, that is $AB \neq BA$ in general.</p>
-<h4 id="Column-and-row-vectors">Column and row vectors<a class="anchor-link" href="#Column-and-row-vectors">&#182;</a></h4><p>Note that if we were to write an $n$-dimensional vector $\bf{x}$ stacked
+<h4 id="Column-and-row-vectors">Column and row vectors<a class="anchor-link" href="#Column-and-row-vectors">&#182;</a></h4><p>Note that if we were to write an $n$-dimensional vector $\mathbf{x}$ stacked
 in a $n\times 1$ matrix $x$ (denoted in lowercase), we can turn the
-matrix-vector $\bf{y}=A\bf{x}$ into the matrix product $y = A x$. Here, if
+matrix-vector $\mathbf{y}=A\mathbf{x}$ into the matrix product $y = A x$. Here, if
 $A$ is an $m\times n$ matrix, then $y$ is an $m\times 1$ matrix.
 $$\left[
 \begin{array}{c}
@@ -13376,9 +13376,9 @@ symmetric.</p>
 </li>
 <li><p>$A + A^T$ is symmetric.</p>
 </li>
-<li><p>The dot product $\bf{x} \cdot \bf{y}$ is equal to $x^T y$, with $x$
-and $y$ denoting the column vector representations of $\bf{x}$ and
-$\bf{y}$, respectively.</p>
+<li><p>The dot product $\mathbf{x} \cdot \mathbf{y}$ is equal to $x^T y$, with $x$
+and $y$ denoting the column vector representations of $\mathbf{x}$ and
+$\mathbf{y}$, respectively.</p>
 </li>
 <li><p>$x^T A y = y^T A^T x$, with $x$ and $y$ column vectors.</p>
 </li>
@@ -13427,7 +13427,7 @@ computing (see <a href="MatrixComputations.html#Singular-value-decomposition">Ap
 <h3 id="Positive-definiteness">Positive definiteness<a class="anchor-link" href="#Positive-definiteness">&#182;</a></h3><p>An $n\times n$ matrix $A$ is called <em>symmetric positive definite</em>
 (s.p.d.), or just positive definite, if it is symmetric ($A=A^T$) and
 satisfies the following condition:
-$$\bf{x}^T A \bf{x} &gt; 0 \text{ for all }\bf{x}\in \mathbb{R}^n.$$ 
+$$\mathbf{x}^T A \mathbf{x} &gt; 0 \text{ for all }\mathbf{x}\in \mathbb{R}^n.$$ 
 Some useful properties include:</p>
 <ul>
 <li>An identity matrix is s.p.d.</li>
@@ -13438,7 +13438,7 @@ Some useful properties include:</p>
 </ul>
 <p>A matrix is positive semi-definite (p.s.d.) if the strict positivity
 condition is replaced with a nonnegativity condition:
-$$\bf{x}^T A \bf{x} \geq 0 \text{ for all }\bf{x}\in \mathbb{R}^n.$$</p>
+$$\mathbf{x}^T A \mathbf{x} \geq 0 \text{ for all }\mathbf{x}\in \mathbb{R}^n.$$</p>
 <ul>
 <li>Any s.p.d. matrix is also p.s.d.</li>
 <li>Any matrix $A=B^TB$ is also p.s.d.</li>

@@ -13311,19 +13311,19 @@ and one point of its complement.</p>
 a single number (a scalar). A <em>scalar field</em>
 $f : \mathbb{R}^n \rightarrow \mathbb{R}$, is a real-valued function of
 $n$ real-valued variables. We can either write the arguments explicitly
-as $f(x_1,\ldots,x_n)$ or as a single vector argument as $f(\bf{x})$. The
+as $f(x_1,\ldots,x_n)$ or as a single vector argument as $f(\mathbf{x})$. The
 same notions of continuity, minima, and maxima that apply to univariate
 functions also apply to scalar fields.</p>
 <blockquote><p><strong>Continuity</strong>. A scalar field $f$ is continuous on a domain $S\in \mathbb{R}^n$ if for
-every point $\bf{x} \in S$ and $\epsilon &gt; 0$, there exists a
-neighborhood with radius $\delta$ around $\bf{x}$ that satisfies
-$|f(\bf{x})-f(\bf{y})| &lt; \epsilon$ for all $y \in N_\delta(\bf{x})$.</p>
+every point $\mathbf{x} \in S$ and $\epsilon &gt; 0$, there exists a
+neighborhood with radius $\delta$ around $\mathbf{x}$ that satisfies
+$|f(\mathbf{x})-f(\mathbf{y})| &lt; \epsilon$ for all $y \in N_\delta(\mathbf{x})$.</p>
 <p><strong>Extreme value theorem</strong>. A continuous scalar field $f$ attains a minimum and maximum value on a
 <em>closed</em> set $S \subseteq \mathbb{R}^n$.</p>
-<p><strong>Local minima</strong>. $\bf{x}$ is said to be a local minimum of a scalar field $f$ on an <em>open</em>
+<p><strong>Local minima</strong>. $\mathbf{x}$ is said to be a local minimum of a scalar field $f$ on an <em>open</em>
 set $S \subseteq \mathbb{R}^n$ if there exists a neighborhood
-$N_r(\bf{x})$ around $\bf{x}$ such that $f(\bf{x}) &lt; f(\bf{y})$ for all
-$\bf{y} \in N_r(\bf{x}) \setminus \{ \bf{x}\}$. A similar definition holds
+$N_r(\mathbf{x})$ around $\mathbf{x}$ such that $f(\mathbf{x}) &lt; f(\mathbf{y})$ for all
+$\mathbf{y} \in N_r(\mathbf{x}) \setminus \{ \mathbf{x}\}$. A similar definition holds
 for local maxima.</p>
 </blockquote>
 <h2 id="Partial-derivatives">Partial derivatives<a class="anchor-link" href="#Partial-derivatives">&#182;</a></h2><p>Partial derivatives allow taking derivatives of a scalar field with
@@ -13334,11 +13334,11 @@ $$\frac{\partial f}{\partial x_i}(a_1,\ldots,a_n) = \lim_{h \rightarrow 0} \frac
 In other words, this is the deriative in the direction of the $a_i$
 while fixing all of the other $a_j$'s, $i\neq j$, constant.</p>
 <p>We can write this definition more compactly in vector notation:
-$$\frac{\partial f}{\partial x_i}(\bf{a}) = \lim_{h \rightarrow 0} \frac{f(\bf{a}+h\bf{e}_{i})-f(\bf{a})}{h}$$</p>
+$$\frac{\partial f}{\partial x_i}(\mathbf{a}) = \lim_{h \rightarrow 0} \frac{f(\mathbf{a}+h\mathbf{e}_{i})-f(\mathbf{a})}{h}$$</p>
 <p>A third possible interpretation is that we are taking the derivative of
 the function $$g_i(x) = f(a_1,\ldots,a_{i-1},x,a_{i+1},\ldots,a_n)$$ at
 $x = a_i$. In other words,
-$g_i^\prime(x)|_{x = a_i} =\frac{\partial f}{\partial x_i}(\bf{a})$.</p>
+$g_i^\prime(x)|_{x = a_i} =\frac{\partial f}{\partial x_i}(\mathbf{a})$.</p>
 <p>(Note that some other texts may use the notation $f_i$ to denote the
 partial derivative with respect to the $i$'th argument to $f$. I find this
 notation to be extremely confusing so we will use the
@@ -13369,90 +13369,90 @@ function, $h(x) = f(x,g(x))$, and involves a chain rule with both
 partial derivatives:
 $$\frac{d}{dx}f(x,g(x)) = h^\prime(x) = \frac{\partial}{\partial x_1} f(x,g(x)) + \frac{\partial}{\partial x_2} f(x,g(x)) g(x)^\prime.$$</p>
 <h3 id="Directional-derivatives">Directional derivatives<a class="anchor-link" href="#Directional-derivatives">&#182;</a></h3><p>The <em>directional derivative</em> is another type of derivative that measures
-the rate of change of the scalar field $f$ as you move from $\bf{a}$ in a
-direction $\bf{d}$. You can think about moving along a ray
-$\bf{x}(u) = \bf{a} + u\bf{d}$ standing at $\bf{a}$ and beginning to move
-with velocity $\bf{d}$. The directional derivative measures the slope of
+the rate of change of the scalar field $f$ as you move from $\mathbf{a}$ in a
+direction $\mathbf{d}$. You can think about moving along a ray
+$\mathbf{x}(u) = \mathbf{a} + u\mathbf{d}$ standing at $\mathbf{a}$ and beginning to move
+with velocity $\mathbf{d}$. The directional derivative measures the slope of
 the field in your desired direction.</p>
-<blockquote><p>The <strong>directional derivative</strong> of $f$ at $\bf{a}$ in direction $\bf{d}$ is the value:
-$$\nabla_{\bf{d}}f(\bf{a}) = \lim_{h\rightarrow 0} \frac{f(\bf{a}+h\bf{d})-f(\bf{a})}{h}.$$</p>
+<blockquote><p>The <strong>directional derivative</strong> of $f$ at $\mathbf{a}$ in direction $\mathbf{d}$ is the value:
+$$\nabla_{\mathbf{d}}f(\mathbf{a}) = \lim_{h\rightarrow 0} \frac{f(\mathbf{a}+h\mathbf{d})-f(\mathbf{a})}{h}.$$</p>
 </blockquote>
-<p>Note that the standard partial derivative $\frac{\partial}{\partial i}f(\bf{a})$ is equivalent to
-$\nabla_{\bf{e}_{i}}f(\bf{a})$.</p>
+<p>Note that the standard partial derivative $\frac{\partial}{\partial i}f(\mathbf{a})$ is equivalent to
+$\nabla_{\mathbf{e}_{i}}f(\mathbf{a})$.</p>
 <h3 id="Gradient">Gradient<a class="anchor-link" href="#Gradient">&#182;</a></h3><p>A fundamental result in multivariate calculus is that <em>all directional
-derivatives</em> can be expressed as a dot product of $\bf{d}$ with a vector
+derivatives</em> can be expressed as a dot product of $\mathbf{d}$ with a vector
 known as the <em>gradient</em> of $f$. The gradient of $f$, denoted
-$\nabla f(\bf{a})$, is the vector of all partial derivatives of $f$:
-$$\nabla f(\bf{a}) = \left(\frac{\partial}{\partial x_1} f(\bf{a}), \ldots, \frac{\partial}{\partial x_n} f(\bf{a})\right).$$</p>
+$\nabla f(\mathbf{a})$, is the vector of all partial derivatives of $f$:
+$$\nabla f(\mathbf{a}) = \left(\frac{\partial}{\partial x_1} f(\mathbf{a}), \ldots, \frac{\partial}{\partial x_n} f(\mathbf{a})\right).$$</p>
 <p>We will prove the key result that
-$$\nabla_{\bf{d}}f(\bf{a}) = (\nabla f(\bf{a})) \cdot \bf{d}$$</p>
+$$\nabla_{\mathbf{d}}f(\mathbf{a}) = (\nabla f(\mathbf{a})) \cdot \mathbf{d}$$</p>
 <p>We will need a lemma that directional derviatives are linear,
 specifically that:
-$$\nabla_{c\bf{d}} f(\bf{a}) = c \nabla_{\bf{d}} f(\bf{a})$$ and
-$$\nabla_{\bf{d}+\bf{e}_{i}} f(\bf{a}) = \nabla_{\bf{d}} f(\bf{a}) + \nabla_{\bf{e}_{i}} f(\bf{a})$$
-for any scalar $c$, vectors $\bf{d}$, $\bf{d}_{1}$, and $\bf{d}_{2}$.</p>
+$$\nabla_{c\mathbf{d}} f(\mathbf{a}) = c \nabla_{\mathbf{d}} f(\mathbf{a})$$ and
+$$\nabla_{\mathbf{d}+\mathbf{e}_{i}} f(\mathbf{a}) = \nabla_{\mathbf{d}} f(\mathbf{a}) + \nabla_{\mathbf{e}_{i}} f(\mathbf{a})$$
+for any scalar $c$, vectors $\mathbf{d}$, $\mathbf{d}_{1}$, and $\mathbf{d}_{2}$.</p>
 <p>First, scaling: $$
 \begin{split}
-\nabla_{c\bf{d}} f(\bf{a}) &amp;= \lim_{h\rightarrow 0} \frac{f(\bf{a} + ch\bf{d})-f(\bf{a})}{h} \\
-    &amp;= c \lim_{h\rightarrow 0} \frac{f(\bf{a} + ch\bf{d})-f(\bf{a})}{ch} \\
-    &amp;= c \lim_{(ch)\rightarrow 0} \frac{f(\bf{a} + ch\bf{d})-f(\bf{a})}{ch} \\
-    &amp;= c \lim_{h\rightarrow 0} \frac{f(\bf{a} + h\bf{d})-f(\bf{a})}{h} \\
-    &amp;= c \nabla_{\bf{d}} f(\bf{a})
+\nabla_{c\mathbf{d}} f(\mathbf{a}) &amp;= \lim_{h\rightarrow 0} \frac{f(\mathbf{a} + ch\mathbf{d})-f(\mathbf{a})}{h} \\
+    &amp;= c \lim_{h\rightarrow 0} \frac{f(\mathbf{a} + ch\mathbf{d})-f(\mathbf{a})}{ch} \\
+    &amp;= c \lim_{(ch)\rightarrow 0} \frac{f(\mathbf{a} + ch\mathbf{d})-f(\mathbf{a})}{ch} \\
+    &amp;= c \lim_{h\rightarrow 0} \frac{f(\mathbf{a} + h\mathbf{d})-f(\mathbf{a})}{h} \\
+    &amp;= c \nabla_{\mathbf{d}} f(\mathbf{a})
 \end{split}$$</p>
 <p>Now, let's look at summing.
-$$\nabla_{\bf{d}_{1}+\bf{d}_{2}} f(\bf{a}) = \lim_{h\rightarrow 0} \frac{f(\bf{a}+h\bf{d}_{1}+h\bf{d}_{2})-f(\bf{a})}{h}$$</p>
-<p>Now let $g_h(x) = f(\bf{a}+h\bf{d}_{1} + x\bf{d}_{2})$ and evaluate the Taylor
+$$\nabla_{\mathbf{d}_{1}+\mathbf{d}_{2}} f(\mathbf{a}) = \lim_{h\rightarrow 0} \frac{f(\mathbf{a}+h\mathbf{d}_{1}+h\mathbf{d}_{2})-f(\mathbf{a})}{h}$$</p>
+<p>Now let $g_h(x) = f(\mathbf{a}+h\mathbf{d}_{1} + x\mathbf{d}_{2})$ and evaluate the Taylor
 expansion of $g_h(x)$ around $x=0$:
-$$g_h(x) = f(\bf{a}+h\bf{d}_{1}) + g_h^\prime(x)|_{x=0} x + O(x^2)$$</p>
+$$g_h(x) = f(\mathbf{a}+h\mathbf{d}_{1}) + g_h^\prime(x)|_{x=0} x + O(x^2)$$</p>
 <p>So $$
 \begin{split}
-\nabla_{\bf{d}_{1}+\bf{d}_{2}} f(\bf{a}) &amp;= \lim_{h\rightarrow 0} \frac{1}{h}[f(\bf{a}+h\bf{d}_{1}) + g_h^\prime(0) h + O(h^2) - f(\bf{a})] \\
-&amp;= \lim_{h\rightarrow 0} \left(\frac{1}{h}[f(\bf{a}+h\bf{d}_{1}) - f(\bf{a}) + O(h^2)] + g_h^\prime(0) \right)\\
-&amp;= \nabla_{\bf{d}_{1}} f(\bf{a}) + \lim_{h\rightarrow 0} g_h^\prime(x)|_{x=0}.
+\nabla_{\mathbf{d}_{1}+\mathbf{d}_{2}} f(\mathbf{a}) &amp;= \lim_{h\rightarrow 0} \frac{1}{h}[f(\mathbf{a}+h\mathbf{d}_{1}) + g_h^\prime(0) h + O(h^2) - f(\mathbf{a})] \\
+&amp;= \lim_{h\rightarrow 0} \left(\frac{1}{h}[f(\mathbf{a}+h\mathbf{d}_{1}) - f(\mathbf{a}) + O(h^2)] + g_h^\prime(0) \right)\\
+&amp;= \nabla_{\mathbf{d}_{1}} f(\mathbf{a}) + \lim_{h\rightarrow 0} g_h^\prime(x)|_{x=0}.
 \end{split}$$ The desired result is obtained by noting that
 $\lim_{h\rightarrow 0} g_h^\prime(x)|_{x=0}$ is identically
-$\nabla_{\bf{d}_{2}}f(\bf{a})$.</p>
+$\nabla_{\mathbf{d}_{2}}f(\mathbf{a})$.</p>
 <p>Returning to the original question, we use linearity of the directional
 derivative to obtain $$
 \begin{split}
-(\nabla f(\bf{a})) \cdot \bf{d} &amp;= \sum_{i=1}^n d_{i} \nabla_{\bf{e}_{i}}f(\bf{a}) \\
-&amp;= \sum_{i=1}^n \nabla_{d_i \bf{e}_{i}}f(\bf{a}) \\
-&amp;= \nabla {\sum_{i=1}^n d_i \bf{e}_{i}}f(\bf{a}) \\
-&amp;= \nabla_{\bf{d}} f(\bf{a})
+(\nabla f(\mathbf{a})) \cdot \mathbf{d} &amp;= \sum_{i=1}^n d_{i} \nabla_{\mathbf{e}_{i}}f(\mathbf{a}) \\
+&amp;= \sum_{i=1}^n \nabla_{d_i \mathbf{e}_{i}}f(\mathbf{a}) \\
+&amp;= \nabla {\sum_{i=1}^n d_i \mathbf{e}_{i}}f(\mathbf{a}) \\
+&amp;= \nabla_{\mathbf{d}} f(\mathbf{a})
 \end{split}$$ as desired. QED.</p>
 <blockquote><p><strong>First-order Taylor expansion of a scalar field</strong>.
 If a scalar field $f$ is differentiable, we can use the gradient to
-define the first-order Taylor expansion of $f$ about a point $\bf{a}$:
-$$f(\bf{x}) = f(\bf{a}) + (\nabla f(\bf{a})) \cdot (\bf{x}-\bf{a}) + O(||\bf{x}-\bf{a}||^2).$$</p>
+define the first-order Taylor expansion of $f$ about a point $\mathbf{a}$:
+$$f(\mathbf{x}) = f(\mathbf{a}) + (\nabla f(\mathbf{a})) \cdot (\mathbf{x}-\mathbf{a}) + O(||\mathbf{x}-\mathbf{a}||^2).$$</p>
 </blockquote>
 <p>Note that the equation
-$f(\bf{x}) = f(\bf{a}) + \nabla f(\bf{a}) \cdot (\bf{x}-\bf{a})$ defines a
-plane in the $(\bf{x},f)$ space. This says that the first two terms of
+$f(\mathbf{x}) = f(\mathbf{a}) + \nabla f(\mathbf{a}) \cdot (\mathbf{x}-\mathbf{a})$ defines a
+plane in the $(\mathbf{x},f)$ space. This says that the first two terms of
 the Taylor expansion give the plane that is <em>tangent to the surface</em>
-defined by $f$ at $\bf{a}$. Moreover, when $\bf{x}$ is close to $\bf{a}$,
+defined by $f$ at $\mathbf{a}$. Moreover, when $\mathbf{x}$ is close to $\mathbf{a}$,
 the fit is quite good. It therefore serves a role that is very much like
 the tangent line found by the Taylor expansion of a univariate function.</p>
 <h3 id="Differentiation-rules">Differentiation rules<a class="anchor-link" href="#Differentiation-rules">&#182;</a></h3><p>Here, let $f$ and $g$ be scalar fields, let $h$ be a univariate
 function, and let $c$ be a scalar.</p>
 <ul>
 <li><p><em>Linearity.</em>
-$\nabla ( f(\bf{x}) + c g(\bf{x})) = \nabla f(\bf{x}) + c \nabla g(\bf{x})$.</p>
+$\nabla ( f(\mathbf{x}) + c g(\mathbf{x})) = \nabla f(\mathbf{x}) + c \nabla g(\mathbf{x})$.</p>
 </li>
 <li><p><em>Chain rule.</em>
-$\nabla h(f(\bf{x})) = h^\prime(f(\bf{x}))\nabla f(\bf{x})$.</p>
+$\nabla h(f(\mathbf{x})) = h^\prime(f(\mathbf{x}))\nabla f(\mathbf{x})$.</p>
 </li>
 <li><p><em>Multiplication rule.</em>
-$\nabla (fg)(\bf{x}) = f(\bf{x}) \nabla g(\bf{x}) + g(\bf{x}) \nabla f(\bf{x})$.</p>
+$\nabla (fg)(\mathbf{x}) = f(\mathbf{x}) \nabla g(\mathbf{x}) + g(\mathbf{x}) \nabla f(\mathbf{x})$.</p>
 </li>
 </ul>
 <p>There is another version of the chain rule that is occasionally useful.
-Let $\bf{y}(u)$ be a vector space curve parameterized by
+Let $\mathbf{y}(u)$ be a vector space curve parameterized by
 $u \in \mathbb{R}$. Then
-$$\frac{d}{du}(f(\bf{y}(u))) = \nabla f(\bf{y}(u)) \cdot \bf{y}^\prime(u).$$
+$$\frac{d}{du}(f(\mathbf{y}(u))) = \nabla f(\mathbf{y}(u)) \cdot \mathbf{y}^\prime(u).$$
 In other words, you get the directional derivative of $f$ in the
-direction $\bf{y}^\prime(u)$.</p>
+direction $\mathbf{y}^\prime(u)$.</p>
 <h3 id="Critical-points">Critical points<a class="anchor-link" href="#Critical-points">&#182;</a></h3><p>Analogously to univariate functions, the critical points of a scalar
-field are those points $\bf{x}$ where $\nabla f(\bf{x})=\bf{0}$. All local
+field are those points $\mathbf{x}$ where $\nabla f(\mathbf{x})=\mathbf{0}$. All local
 minima and maxima are critical points, but not all critical points are
 local minima and maxima. These critical points are known as <em>saddle
 points</em> because in two dimensional scalar fields they look like saddles.</p>

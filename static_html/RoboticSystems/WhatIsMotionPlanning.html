@@ -13236,18 +13236,24 @@ motion planning, loosely defined as follows.</p>
 <blockquote><p><strong>Motion planning</strong>: the use of computational methods to generate a robot's motion to achieve a specified task.</p>
 </blockquote>
 <p>Motion planning is a critical component of any autonomous system that exhibits intelligent behavior.  It plays a central role in the ecosystem of components of a robot, since the inputs to a planner include the robot’s state (coming from localization), environmental conditions (coming from perception), dynamic predictive models (coming from calibration and simulation), and task specification (coming from systems engineers and human supervisors), and the output of a motion planner is a low-level motion representation (sent to the controller). In short, motion planning governs how <em>all of the knowledge</em> available to the system influences <em>all actuation decisions</em>.</p>
+<hr>
+<p><img src="figures/planning/overview.svg" alt="fig:PlanningOverview"></p>
+<div class="figcaption"><a href="#fig:PlanningOverview">Figure 1</a>.
+    The role of planning is to consume mission objectives, perception outputs, and prior information to generate a representation of the robot's motion.  The motion will be executed by the controller.
+</div><hr>
 <p>The three inputs into a motion planner are the system state, the system model and the task specification. For example, in the context of autonomous vehicles, the system state may specify the vehicle’s state, the map around it, and the state and intentions of other agents. The system model predicts how the system state changes in the future, conditioned on the robot’s decisions. The task specification includes cost function(s) that measure the quality of candidate motions as well as constraints that the motion must meet.  For example, an autonomous vehicle may wish to maximize ride comfort while also remaining collision-free, staying within a lane, etc.</p>
-<p>In this section, we will focus mainly on the problem of <em>kinematic motion planning</em> (aka
-path planning), defined here:</p>
+<p>In Chapters <a href="GeometricMotionPlanning.html">9</a> and <a href="MotionPlanningHigherDimensions.html">10</a>, we will focus mainly on the problem of <em>kinematic motion planning</em> (aka
+path planning), defined as follows:</p>
 <blockquote><p><strong>Kinematic motion planning</strong> (aka <strong>Path planning</strong>): the use of computational methods generate a continuous path between two robot configurations while respecting joint limits and avoiding obstacles.</p>
 </blockquote>
 <p>This is purely a <em>geometric</em> problem that sidesteps the complexity of timing and dynamics. 
 The resulting path is much like a route planned on a map, which instructs you the sequence of routes and
 turns to take to reach the goal, but not how quickly to drive. Although this doesn't solve the motion planning problem in its entirety, the resulting algorithms are still quite useful for robot manipulators and high-level routes for mobile robots. Indeed, the techniques studied for this simplified problems are often used in practice because it is relatively straightforward to construct schemes for some robots (e.g., industrial
-robots and differential drive mobile robots) to track a geometric path.. Also, by studying the kinematic problem we introduce computational representations, algorithms, and complexity theorems used
+robots and differential drive mobile robots) to track a geometric path. Also, by studying the kinematic problem we introduce computational representations, algorithms, and complexity theorems used
 ubiquitously in robot decision making.</p>
-<p>It should be noted that highly dynamic robots like autonomous cars and agile drones may require reasoning about dynamics <em>upfront</em> during the planning procedure. We will revisit the problem of
-dynamics in the next section of the book.</p>
+<p>Highly dynamic robots like autonomous cars and agile drones will require reasoning about dynamics <em>upfront</em> during the planning procedure.  We will discuss how to plan for these systems in <a href="PlanningWithDynamicsAndUncertainty.html">Chapter 11</a>. Later will revisit the problem of
+dynamics and uncertainty in <a href="WhatAreDynamicsAndControl.html">Section IV</a>.</p>
+<p>In the <a href="AdvancedTopicsInPlanning.html">final chapter</a> of this section we discuss specialized applications of planning to multi-agent systems, planning for manipulation and legged locomotion, and integrating motion planning with high-level reasoning.</p>
 <h2 id="Why-is-planning-hard?">Why is planning hard?<a class="anchor-link" href="#Why-is-planning-hard?">&#182;</a></h2><p>Because it is natural for humans to navigate their environments (at
 least outside of hedge mazes!) the motion planning problem at
 first glance may appear to be somewhat straightforward. Our brains quite
@@ -13289,7 +13295,8 @@ A motion planning problem is specified with the following inputs:</p>
 <li><p>A description of the robot's goal (usually a configuration, a point
 in task-space, or a subset of configuration space)</p>
 </li>
-<li><p>Optionally, an optimality criterion (such as minimum path length,
+<li><p>Optionally, an optimality criterion that should be minimized or maximized
+(such as minimum path length,
 maximum clearance from obstacles, or minimum energy expended)</p>
 </li>
 </ul>
@@ -13315,6 +13322,25 @@ length must be within some bound.</p>
 </ul>
 <p>When both kinematic and dynamic constraints are present, this is known
 as a <em>kinodynamic planning</em> problem.</p>
+<hr>
+<table>
+<thead><tr>
+<th>(a)  Local (kinematic)</th>
+<th>(b) Differential (dynamic)</th>
+<th>Global</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="figures/planning/constraints1.svg" alt="fig:PlanningConstraints1"></td>
+<td><img src="figures/planning/constraints2.svg" alt="fig:PlanningConstraints1"></td>
+<td><img src="figures/planning/constraints3.svg" alt="fig:PlanningConstraints1"></td>
+</tr>
+</tbody>
+</table>
+<div class="figcaption"><a href="#fig:PlanningConstraints">Figure 2</a>.
+    Illustrating the three classes of constraints.  Local constraints include collisions with obstacles.  Differential constraints limit the derivative of the robot's path.  Global constraints are imposed on the entire path, e.g., the robot must return to its base before its battery is exhausted.
+</div><hr>
 <h3 id="Point-to-point-path-planning">Point-to-point path planning<a class="anchor-link" href="#Point-to-point-path-planning">&#182;</a></h3><p>In the most basic path planning problem, which is the topic of most of
 the next chapters, we consider problems that are <em>point-to-point,
 feasible, and kinematic</em>. In other words, the motion constraints include
@@ -13378,7 +13404,26 @@ the optimal cost, where $\epsilon &gt; 0$ is some constant. An
 whose cost is within a factor of $(1+\epsilon)$ times the optimal cost
 for <em>any</em> specified value $\epsilon &gt; 0$. In other words, given more
 time, the planner will produce progressively better paths.</p>
-<h3 id="Explicit-vs-implicit-plans-(paths-vs-policies)">Explicit vs implicit plans (paths vs policies)<a class="anchor-link" href="#Explicit-vs-implicit-plans-(paths-vs-policies)">&#182;</a></h3><p>The classical form of planning described above <em>computes a single path</em> (or declares "no path found").  Another type of output is a <em>policy</em>, which is a behavior-generating process that must be executed repeatedly, and over time the robot's state will trace out a path.  We will discuss policies in more detail when we cover control in <a href="WhatAreDynamicsAndControl.html">Section IV</a>; suffice to say, finding complete / optimal policies is at least as hard as finding complete / optimal paths.</p>
+<h3 id="Explicit-vs-implicit-plans-(paths-vs-policies)">Explicit vs implicit plans (paths vs policies)<a class="anchor-link" href="#Explicit-vs-implicit-plans-(paths-vs-policies)">&#182;</a></h3><p>The classical form of planning described above <em>computes a single path</em> (or declares "no path found"). The planned path is then sent to a controller (described in more detail in <a href="WhatAreDynamicsAndControl.html">Section IV</a>) which will then try to <em>execute</em> the plan by generating actuator commands to follow it.<br>
+Over the course of execution, the robot's state will trace out an <em>executed path</em>, which may or may not be close to the original plan.   For some systems and situations, everything goes "according to plan" and the robot will follow the path faithfully, and predictions about the world's behavior are accurate (<a href="#fig:Execution">Fig. 3</a>).  But in many settings, trusting the plan is risky.</p>
+<table>
+<thead><tr>
+<th>(a)  Imperfect plan execution</th>
+<th>(b) Imperfect prediction about other agents in the world</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="figures/planning/imperfect-execution.svg" alt="fig:ImperfectExecution"></td>
+<td><img src="figures/planning/imperfect-prediction.svg" alt="fig:ImperfectPrediction"></td>
+</tr>
+</tbody>
+</table>
+<div class="figcaption"><a name="fig:Execution">Figure 3</a>. 
+    A planned path may differ from an executed path.  (a) The robot's execution (dotted line) does not track the plan (solid line) well, triggering a replan that requires it to back up to pass through the obstacles.  (b) The robot executes its path perfectly, but its initial plan predicts that the pedestrian will continue walking (dotted line). When the pedestrian stops, the robot must detect that the plan is invalid, and take an alternate path.
+    </div><hr>
+<p>We shall cover two methods for planning under imperfect execution / prediction in <a href="PlanningWithDynamicsAndUncertainty.html#Planning-under-imperfect-execution">Chapter 11</a>.  The first idea addresses the problem at the level of the sense-plan-act loop by frequently <em>replanning</em>.  Replanning can happen either on a fixed schedule or when the robot deviates from the plan; if it can be done fast enough, then the robot can respond to changes in the environment before a catastrophic failure.</p>
+<p>The second idea is to modifying the planning problem so that it generates a <em>policy</em>, which is a sensor-based  process that is designed to respond to changes in the robot's state or the environment.  We will discuss policies in more detail in <a href="PlanningWithDynamicsAndUncertainty.html#Markov-Decision-Processes-(MDPs">Chapter 11</a>) and when we cover control in <a href="WhatAreDynamicsAndControl.html">Section IV</a>.  To plan a policy, the robot must be able to anticipate when and how execution can go wrong, and determine contingency plans for all possible outcomes. Suffice to say, finding complete / optimal policies is at least as hard as finding complete / optimal paths.</p>
 
 </div>
 </div>
@@ -13389,7 +13434,7 @@ time, the planner will produce progressively better paths.</p>
 <h2 id="Heuristic-methods">Heuristic methods<a class="anchor-link" href="#Heuristic-methods">&#182;</a></h2><p>As a counterpoint to the more principled approaches that we will begin to study in the next chapter and beyond, it is worth mentioning two heuristic methods that are often used in practice.  By "heuristic" it is meant that these methods are often useful to achieve satisfactory performance, but offer no guarantees about optimality or success.</p>
 <h3 id="Behavior-scripting">Behavior scripting<a class="anchor-link" href="#Behavior-scripting">&#182;</a></h3><p>In behavior scripting, the control signal sent to the robot's actuators is a direct function of its input sensor signals, which is programmed as a body of procedural code; e.g., a set of arithmetic operations and if-else statements.  This programmed logic becomes the body of the "planner", which does not actually explicitly plan anything. Behavior scripting has the appeal in that it provides novices with an easy pathway to start experimenting with robot behaviors.  For example, to follow a black line on a sheet of white paper, two brightness sensors can be used, one to the left and the other to the right of the line.  If the left sensor reads "black", turn the wheel more to the left and reduce the forward velocity.  If the right sensor reads "black", turn the wheel more to the right and reduce the forward velocity.  Otherwise, turn the wheel toward center, and increase the forward velocity.  Properly tuned, this behavior will do a reasonable job at following lines that are not too curved at a slow speed.</p>
 <p>A more complex behavior script can include some notion of memory that is maintained from step to step, such as a list of objects seen or past actions taken.  A common form of memory is used in a <em>state machine</em>, where the behavior switches between discrete modes depending on the sensor input or past actions taken.  In a pure state machine, the only thing that needs to be remembered is the index of the current state. State machines will be discussed in more detail in <a href="RobotControl.html#State-machines">Chapter 16</a>.</p>
-<p>The challenge of behavior scripting is that as the problem domain becomes more complex, the complexity of the program's logic (and the corresponding difficulty of programming good behavior) tends to grow exponentially.</p>
+<p>With a bit of ingenuity (and a great deal of testing and tuning), engineers can produce behavior scripts that encode sophisticated behavior.  There is some degree of pride in crafting such behaviors, with the intelligence of the engineer manifesting itself in the appearance of intelligent behavior.  However, the challenge of this approach is that as the problem domain becomes more complex, the complexity of the program's logic (and the corresponding difficulty of programming good behavior) tends to grow exponentially.</p>
 <h3 id="Generate-and-score">Generate-and-score<a class="anchor-link" href="#Generate-and-score">&#182;</a></h3><p>A straightforward way of performing motion planning is a three step process:</p>
 <ol>
 <li><em>Generate</em> a set of $N$ paths $p_1,\ldots,p_N$, each of which starts from the robot's current state $x$.</li>
@@ -13397,10 +13442,14 @@ time, the planner will produce progressively better paths.</p>
 <li><em>Execute</em> the first part of $p_i$, and then repeat from step 1.</li>
 </ol>
 <p>Unlike behavior scripting, this <em>generate-and-score</em> approach is indeed a true planner, because the <em>Generate</em> step predicts how the robot will behave and the <em>Score</em> step can perform collision checks and handle other constraints.</p>
-<p>A huge range of behavior can be obtained by tweaking the path generation and scoring methods.  In fact, most motion planners perform some variant of this process, but use sophisticated methods to generate the paths.  This approach can be very computationally light, and even effective at solving some problems.  However, because the generated paths usually do not reach all the way to the goal, this approach assumes that the problem requires minimal amounts of long-range deliberation to reach the goal.</p>
-<p>As an example, a random-path generation approach simply generates $N$ paths at random, and the scoring function will assign infinite cost to any infeasible path. For feasible paths, the score will measure a combination of the length of the path and the distance from the end of the path to the goal. What we can observe with this approach is that its success is highly problem-dependent. If the robot is traveling in a wide open space or around small obstacles, then it works fairly well, although there is a little jittering.</p>
+<p>A huge range of behavior can be obtained by tweaking the path generation and scoring methods.  As an example, a random-path generation approach simply generates $N$ paths at random, and the scoring function will assign infinite cost to any infeasible path. For feasible paths, the score will measure a combination of the length of the path and the distance from the end of the path to the goal. What we can observe with this approach is that its success is highly problem-dependent. If the robot is traveling in a wide open space or around small obstacles, then it works fairly well, although there is a little jittering.</p>
 <p>This jittering can be reduced by applying some smoothing in postprocessing.  Or, rather than generating random paths, we can use a library of <em>motion primitives</em> that are the same at each iteration, slightly modified to start at the robot's current state.  For example, a mobile robot can move forward, move backward, turn right, turn left, or perform swerving maneuvers left and right.</p>
-<p>However, if the robot must exit a room before making progress to the goal, then it will be incredibly unlikely to find a path out of the first room, either using random paths or motion primitives.  This is known as a <em>local minimum</em>, which will be a reoccurring issue throughout robotics (and other fields of engineering as well).</p>
+<hr>
+<p><img src="figures/planning/generate-and-score.svg" alt="fig:GenerateAndScore"></p>
+<div class="figcaption"><a name="fig:GenerateAndScore">Figure 4</a>. 
+    A generate-and-score approach for a mobile robot may use a set of local motion primitives, defined in the robot's local frame (<em>egocentric</em> coordinates).  The scoring function will check collisions with each primitive, and will choose to execute the primitive that makes the most progress toward the target (restricted to its collision-free subpath).
+    </div><hr>
+<p>This approach can be very computationally light, and even effective at solving some simpler problems.  However, because the generated paths usually do not reach all the way to the goal, this approach assumes that the problem requires minimal amounts of long-range deliberation. For example, consider the problem where the robot must exit a room before making progress to the goal.  Because the robot must sacrifice progress before making progress, it will be incredibly unlikely to find a path out of the first room, either using random paths or motion primitives.  This is known as a <em>local minimum</em>, which will be a reoccurring issue throughout robotics (and other fields of engineering as well).</p>
 
 </div>
 </div>
@@ -13745,7 +13794,7 @@ AABJRU5ErkJggg==
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Polynomial">Polynomial<a class="anchor-link" href="#Polynomial">&#182;</a></h3><p>Another common representation is a degree $d$ polynomial</p>
-$$ y(s) = poly(\bf{c}_0,\ldots,\bf{c}_d;s) = \sum_{i=0}^d \bf{c}_i s^i $$<p>where $\bf{c}_0,\ldots,\bf{c}_d \in \mathcal{C}$ are the polynomial coefficients.  This is a <em>parametric</em> representation in which each component of the motion is represented by an independent 1D function.  Hence, in 2D the y component of a curve may not be, in general, a proper function of x, even though both x and y are proper functions of u.</p>
+$$ y(s) = poly(\mathbf{c}_0,\ldots,\mathbf{c}_d;s) = \sum_{i=0}^d \mathbf{c}_i s^i $$<p>where $\mathbf{c}_0,\ldots,\mathbf{c}_d \in \mathcal{C}$ are the polynomial coefficients.  This is a <em>parametric</em> representation in which each component of the motion is represented by an independent 1D function.  Hence, in 2D the y component of a curve may not be, in general, a proper function of x, even though both x and y are proper functions of u.</p>
 
 </div>
 </div>
@@ -14087,7 +14136,7 @@ yK9U9Uu3sxljAkY34GERqQWqgOtdzmN8wFpYjDHGGOP3bAyLMcYYY/yeFSzGGGOM8XtWsBhjjDHG
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Splines">Splines<a class="anchor-link" href="#Splines">&#182;</a></h3><p>Splines are a cross between polynomials and piecewise linear curves that gives the "best of both worlds" in terms of the flexibility of piecewise linear curves but also the smoothness qualities of polynomials.  They consist of a sequence of piecewise polynomials, all of low degree.  The representation of the path is given by a set of <em>control points</em> which control the shape of the curve. From these points, polynomial coefficients are derived in order to enforce continuity.</p>
 <p>The general form of a spline with $n$ segments and degree $d$ is given as follows</p>
-$$y(s) = poly(C_i;sn-i)$$<p>where $i=\lfloor sn \rfloor$ is the segment index and $C_i=(\bf{c}_{0,i},...,\bf{c}_{d,i})$ is the set of polynomial coefficients for the $i$th segment.  We do not typically store the polynomial coefficients themselves, but instead represent a list of control points $\bf{p}_1,\ldots,\bf{p}_k$ from which the coefficients of each polynomial are derived.  This is because it is difficult to set up coefficients manually such that the spline is continuous and smooth.  Modifying control points is far easier and more intuitive.  The method for converting control points to coefficients is the <em>interpolation scheme</em>.</p>
+$$y(s) = poly(C_i;sn-i)$$<p>where $i=\lfloor sn \rfloor$ is the segment index and $C_i=(\mathbf{c}_{0,i},...,\mathbf{c}_{d,i})$ is the set of polynomial coefficients for the $i$th segment.  We do not typically store the polynomial coefficients themselves, but instead represent a list of control points $\mathbf{p}_1,\ldots,\mathbf{p}_k$ from which the coefficients of each polynomial are derived.  This is because it is difficult to set up coefficients manually such that the spline is continuous and smooth.  Modifying control points is far easier and more intuitive.  The method for converting control points to coefficients is the <em>interpolation scheme</em>.</p>
 <p>Typical splines are degree 3 or 5, which are known as cubic or quintic splines, respectively.  (Degree 1 splines are actually piecewise linear curves.) These degrees are popular because they allow control point interpolation schemes to dictate the order of the spline's smoothness (derivative continuity).</p>
 <h4 id="Cubic-Hermite-splines">Cubic Hermite splines<a class="anchor-link" href="#Cubic-Hermite-splines">&#182;</a></h4><p>The simplest spline is the cubic Hermite spline, which defines the control points to include milestones and the derivative of the spline at each milestone.  The Hermite interpolation scheme solves for the polynomials to enforce continuity and derivative continuity (C1 continuity).</p>
 
@@ -14132,49 +14181,49 @@ $$y(s) = poly(C_i;sn-i)$$<p>where $i=\lfloor sn \rfloor$ is the segment index an
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Specifically, suppose the segment travels from milestone $\bf{m}_0$ to $\bf{m}_1$ as the interpolation parameter travels from 0 to 1.  We wish to find a cubic polynomial segment that respects the initial tangent $\bf{t}_0$ and the terminal tangent $\bf{t}_1$.  In other words, the terminal conditions are</p>
+<p>Specifically, suppose the segment travels from milestone $\mathbf{m}_0$ to $\mathbf{m}_1$ as the interpolation parameter travels from 0 to 1.  We wish to find a cubic polynomial segment that respects the initial tangent $\mathbf{t}_0$ and the terminal tangent $\mathbf{t}_1$.  In other words, the terminal conditions are</p>
 $$
 \begin{split}
-\bf{m}_0 &amp;= poly(C_i;0) \\
-\bf{m}_1 &amp;= poly(C_i;1) \\
-\bf{t}_0 &amp;= \left. \frac{d}{du} poly(C_i;u) \right|_{u=0} \\
-\bf{t}_1 &amp;= \left. \frac{d}{du} poly(C_i;u) \right|_{u=1} 
+\mathbf{m}_0 &amp;= poly(C_i;0) \\
+\mathbf{m}_1 &amp;= poly(C_i;1) \\
+\mathbf{t}_0 &amp;= \left. \frac{d}{du} poly(C_i;u) \right|_{u=0} \\
+\mathbf{t}_1 &amp;= \left. \frac{d}{du} poly(C_i;u) \right|_{u=1} 
 \end{split}
-$$<p>Letting the coefficients $C_i =(\bf{a},\bf{b},\bf{c},\bf{t})$, we have 
-$$ poly(C_i;u) = \bf{a} + u \bf{b} + u^2 \bf{c} + u^3 \bf{t} $$
-$$ \frac{d}{du} poly(C_i;u) = \bf{b} + 2 u \bf{c} + 3 u^2 \bf{t} $$
-so immediately, we see that $\bf{a} = \bf{m}_0$ and $\bf{b} = \bf{t}_0$.  We now need to solve for $\bf{c}$ and $\bf{t}$ such that the linear equations
-$$\bf{m}_1 = \bf{m}_0 + \bf{t}_0 + \bf{c} + \bf{t}$$
+$$<p>Letting the coefficients $C_i =(\mathbf{a},\mathbf{b},\mathbf{c},\mathbf{t})$, we have 
+$$ poly(C_i;u) = \mathbf{a} + u \mathbf{b} + u^2 \mathbf{c} + u^3 \mathbf{t} $$
+$$ \frac{d}{du} poly(C_i;u) = \mathbf{b} + 2 u \mathbf{c} + 3 u^2 \mathbf{t} $$
+so immediately, we see that $\mathbf{a} = \mathbf{m}_0$ and $\mathbf{b} = \mathbf{t}_0$.  We now need to solve for $\mathbf{c}$ and $\mathbf{t}$ such that the linear equations
+$$\mathbf{m}_1 = \mathbf{m}_0 + \mathbf{t}_0 + \mathbf{c} + \mathbf{t}$$
 and
-$$\bf{t}_1 = \bf{t}_0 + 2 \bf{c} + 3 \bf{t}$$
+$$\mathbf{t}_1 = \mathbf{t}_0 + 2 \mathbf{c} + 3 \mathbf{t}$$
 hold.  To do so we rearrange the above into the matrix equation
 $$
-\begin{bmatrix}\bf{m}_1 - \bf{m}_0 - \bf{t}_0 \\
-\bf{t}_1 - \bf{t}_{0}
+\begin{bmatrix}\mathbf{m}_1 - \mathbf{m}_0 - \mathbf{t}_0 \\
+\mathbf{t}_1 - \mathbf{t}_{0}
 \end{bmatrix} =</p>
 \begin{bmatrix}
 1 &amp; 1 \\
 2 &amp; 3
-\end{bmatrix}\begin{bmatrix} \bf{c} \\ \bf{t} \end{bmatrix}<p>$$
+\end{bmatrix}\begin{bmatrix} \mathbf{c} \\ \mathbf{t} \end{bmatrix}<p>$$
 Which has the solution via 2x2 matrix inversion
 $$
-\begin{bmatrix} \bf{c} \\ \bf{t} \end{bmatrix} =</p>
+\begin{bmatrix} \mathbf{c} \\ \mathbf{t} \end{bmatrix} =</p>
 \begin{bmatrix}
 1 &amp; 1 \\
 2 &amp; 3
 \end{bmatrix}<p>^{-1}</p>
-\begin{bmatrix}\bf{m}_1 - \bf{m}_0 - \bf{t}_0 \\
-\bf{t}_1 - \bf{t}_{0}
+\begin{bmatrix}\mathbf{m}_1 - \mathbf{m}_0 - \mathbf{t}_0 \\
+\mathbf{t}_1 - \mathbf{t}_{0}
 \end{bmatrix}<p>=</p>
 \begin{bmatrix}
 3 &amp; -1 \\
 -2 &amp; 1
-\end{bmatrix}\begin{bmatrix}\bf{m}_1 - \bf{m}_0 - \bf{t}_0 \\
-\bf{t}_1 - \bf{t}_{0}
+\end{bmatrix}\begin{bmatrix}\mathbf{m}_1 - \mathbf{m}_0 - \mathbf{t}_0 \\
+\mathbf{t}_1 - \mathbf{t}_{0}
 \end{bmatrix}<p>. $$
-(Check that the inverse is correct by inspection.) In other words, $\bf{c} = - 3\bf{m}_0 + 3 \bf{m}_1 - 2\bf{t}_0 - \bf{t}_1$ and $\bf{t} =  2\bf{m}_0 -2 \bf{m}_1 + \bf{t}_0 + \bf{t}_1$.</p>
+(Check that the inverse is correct by inspection.) In other words, $\mathbf{c} = - 3\mathbf{m}_0 + 3 \mathbf{m}_1 - 2\mathbf{t}_0 - \mathbf{t}_1$ and $\mathbf{t} =  2\mathbf{m}_0 -2 \mathbf{m}_1 + \mathbf{t}_0 + \mathbf{t}_1$.</p>
 <p>Another convenient way of expressing the segment is:</p>
-$$poly(C_i;u) = (2u^3 - 3u^2 + 1) \bf{m}_0 + (-2u^3 + 3u^3) \bf{m}_1 + (u^3 - 2u^2 + u)\bf{t}_0 + (u^3 - u^2) \bf{t}_1.$$<h4 id="Quintic-Hermite-splines">Quintic Hermite splines<a class="anchor-link" href="#Quintic-Hermite-splines">&#182;</a></h4><p>The quintic Hermite spline defines control points to include milestones and their 1st and second derivatives. The interpolation scheme enforce continuity of first and second derivatives (C2 continuity).</p>
+$$poly(C_i;u) = (2u^3 - 3u^2 + 1) \mathbf{m}_0 + (-2u^3 + 3u^3) \mathbf{m}_1 + (u^3 - 2u^2 + u)\mathbf{t}_0 + (u^3 - u^2) \mathbf{t}_1.$$<h4 id="Quintic-Hermite-splines">Quintic Hermite splines<a class="anchor-link" href="#Quintic-Hermite-splines">&#182;</a></h4><p>The quintic Hermite spline defines control points to include milestones and their 1st and second derivatives. The interpolation scheme enforce continuity of first and second derivatives (C2 continuity).</p>
 
 </div>
 </div>

@@ -13410,12 +13410,12 @@ $$d(\theta_1,\theta_2) = | diff(\theta_2,\theta_1) |.$$</p>
 </ul>
 <p>It is also possible to compose multiple spaces with the Cartesian product, such as $S_1 \times S_1$, which is the topology of the torus.  We also use a power notation $S_1 \times S_1 = S_1^2$ to denote repeated applications of the Cartesian product.</p>
 <p>Although we usually use a vector of parameters to describe elements of these spaces, this representation (in $\mathbb{R}^n$) does not capture their connectivity perfectly.  The vector representation will have deficiencies in having double representations of the same object, infinite representations of the same object (singularities), and in interpolation, which may not produce geodesics.</p>
-<p>Let us first consider a simpler example that will illustrate several of the issues we will come across when representing 3D rotations.  The latitude and longitude representation of the unit sphere (spherical coordinates), where each point has coordinates $$\bf{x}(\theta,\phi) = 
+<p>Let us first consider a simpler example that will illustrate several of the issues we will come across when representing 3D rotations.  The latitude and longitude representation of the unit sphere (spherical coordinates), where each point has coordinates $$\mathbf{x}(\theta,\phi) = 
 \begin{bmatrix} \cos \theta \cos \phi \\ \sin \theta \cos \phi \\ \sin \phi \end{bmatrix}.$$
 Here $\theta \in [0,2\pi)$ gives the longitude and $\phi \in [-\pi/2,\pi/2]$ gives the latitude.</p>
 <p>Since each point on the sphere can be represented by some $(\theta,\phi)$ pair, this shows that the inherent dimensionality of $S_2$ is no more than 2.
-However, there are two singularities of this representation, namely, the north and south poles (0,0,1) and (0,0,-1), in which a point on the sphere have an infinite number of 2D representations. $\bf{x}(\theta,\pi/2) = (0,0,1)$  for any value of $\theta$, and $\bf{x}(\theta,-\pi/2) = (0,0,-1)$ for any value of $\theta$.</p>
-<p>The nonlinearity in this mapping also means that as a point approaches and passes either pole, the representation of the point swings wildly.  If $\bf{x} = (x,y,z)$, we have the inverse relation $\phi = \sin^{-1} z$, and $\theta = atan2(y,x)$ (which is undefined for $x=y=0$).  Observe the $\theta$ variable in the following plot as the arc gets closer to passing through the pole (blue and black curves):</p>
+However, there are two singularities of this representation, namely, the north and south poles (0,0,1) and (0,0,-1), in which a point on the sphere have an infinite number of 2D representations. $\mathbf{x}(\theta,\pi/2) = (0,0,1)$  for any value of $\theta$, and $\mathbf{x}(\theta,-\pi/2) = (0,0,-1)$ for any value of $\theta$.</p>
+<p>The nonlinearity in this mapping also means that as a point approaches and passes either pole, the representation of the point swings wildly.  If $\mathbf{x} = (x,y,z)$, we have the inverse relation $\phi = \sin^{-1} z$, and $\theta = atan2(y,x)$ (which is undefined for $x=y=0$).  Observe the $\theta$ variable in the following plot as the arc gets closer to passing through the pole (blue and black curves):</p>
 
 </div>
 </div>
@@ -13458,7 +13458,7 @@ However, there are two singularities of this representation, namely, the north a
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Another limitation of this representation is that interpolation is not as straightforward as simply blending between two points.  Suppose two points $\bf{a}$ and $\bf{b}$ on the sphere are represented by spherical coordinates $(\theta_a,\phi_a)$ and $(\theta_b,\phi_b)$, respectively.  In general, the straight line path from $(\theta_a,\phi_a)$ and $(\theta_b,\phi_b)$ does not map to the shortest line between $\bf{a}$ and $\bf{b}$ on the sphere.  First of all, the connectivity between 0 and $2\pi$ in the $\theta$ dimension (that is, the topology of SO(2) in the domain of $\theta$) needs to be taken into account.  But even with that handled properly, these straight line paths are still not the shortest paths on the sphere &mdash; in other words, straight line interpolation in the representation space does not produce geodesic paths on the sphere.</p>
+<p>Another limitation of this representation is that interpolation is not as straightforward as simply blending between two points.  Suppose two points $\mathbf{a}$ and $\mathbf{b}$ on the sphere are represented by spherical coordinates $(\theta_a,\phi_a)$ and $(\theta_b,\phi_b)$, respectively.  In general, the straight line path from $(\theta_a,\phi_a)$ and $(\theta_b,\phi_b)$ does not map to the shortest line between $\mathbf{a}$ and $\mathbf{b}$ on the sphere.  First of all, the connectivity between 0 and $2\pi$ in the $\theta$ dimension (that is, the topology of SO(2) in the domain of $\theta$) needs to be taken into account.  But even with that handled properly, these straight line paths are still not the shortest paths on the sphere &mdash; in other words, straight line interpolation in the representation space does not produce geodesic paths on the sphere.</p>
 <p>You will have observed this phenomenon if you have ever taken an intercontinental flight between two destinations somewhat north of the equator. For example, the flight path from New York to London, when seen on a traditional map, is actually a curve that arcs above the straight line path from New York to London.  An even more extreme example is when flying from New York to Beijing: the flight path actually passes close to the North Pole!  Airlines are extremely sensitive to fuel usage, so they prefer to travel around the Earth along minimum length paths.  The mathematical solution to this problem is to interpolate along <em>great circles</em>, which are geodesics on the sphere.  Solving for and proving optimality of geodesics is of great interest, and as we shall see below, luckily there are closed-form solutions for geodesics in SO(3) as well.</p>
 
 </div>
@@ -13560,7 +13560,7 @@ $Y$ is $(Z,X)$, and the plane orthogonal to $Z$ is $(X,Y)$.</p>
 $Z$, are rotated to post-rotation axes $X^\prime$, $Y^\prime$, and
 $Z^\prime$, respectively. The first column represents the coordinates of
 $X^\prime$ axis <em>relative to the original frame</em> after rotation
-$$\bf{x}^\prime = 
+$$\mathbf{x}^\prime = 
 \begin{bmatrix} r_{11} \\ r_{21} \\ r_{31} \end{bmatrix}.$$</p>
 
 </div>
@@ -13570,13 +13570,13 @@ $$\bf{x}^\prime =
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Similarly, the
-second column gives $\bf{y}^\prime = (r_{12},r_{22},r_{32})$ and the
-third column gives $\bf{z}^\prime = (r_{13},r_{23},r_{33})$.</p>
+second column gives $\mathbf{y}^\prime = (r_{12},r_{22},r_{32})$ and the
+third column gives $\mathbf{z}^\prime = (r_{13},r_{23},r_{33})$.</p>
 <p>Moreover, since $R^{-1} = R^T$, the coordinates of the old frame's axes
 <em>relative to the new frame</em> are the individual rows of $R$.</p>
 <p>Due to the cosine rule, $r_{11}$ is the cosine of the angle between the
 old and new $X$ axis (because it is the dot product between
-$\bf{x}^\prime$ and $\bf{x} = (1,0,0)$. Similarly, the other diagonal
+$\mathbf{x}^\prime$ and $\mathbf{x} = (1,0,0)$. Similarly, the other diagonal
 elements give the cosine of the angle between the other axes.</p>
 <h3 id="Operations">Operations<a class="anchor-link" href="#Operations">&#182;</a></h3><p><strong>Applying rotation to a point.</strong> As we have seen before, applying
 rotation to a point (i.e., deriving the coordinates of a rotated point
@@ -13594,10 +13594,10 @@ reference frame, or rotating along with the local reference frame. In
 this class we will use the former convention, which is known as
 <em>extrinsic</em> rotation. Suppose that $R_1$ is a rotation about axis $A$
 and $R_2$ is a rotation about axis $B$. When composed to $R_1 R_2$, this
-means that a point $P$ given in local coordinates $\bf{p}$ will first get
+means that a point $P$ given in local coordinates $\mathbf{p}$ will first get
 rotated about axis $B$ to obtain a point $P^\prime$ and then about axis
 $A$ <em>where $A$ is interpreted as being fixed in the un-rotated reference
-frame</em> to obtain $P^{\prime\prime}$. The result $R_1 R_2 \bf{p}$ gives
+frame</em> to obtain $P^{\prime\prime}$. The result $R_1 R_2 \mathbf{p}$ gives
 the coordinates of $P^{\prime\prime}$ relative to the un-rotated
 reference frame, as shown in <a href="#fig:RotationComposition">Fig. 3</a>.</p>
 <hr>
@@ -13614,7 +13614,7 @@ to a rigid body $B$ and have coordinates $(1,2,3)$ relative to $B$'s
 coordinate frame. Find the world coordinates of the point after rotating
 $B$ about its $Z$ axis by $90^\circ$, and then by another $90^\circ$
 about $B$'s local $X$ axis, and finally translating its origin by the
-offset $\bf{t}(10,0,5)$."</p>
+offset $\mathbf{t}(10,0,5)$."</p>
 <p>Naïvely performing each transformation in sequence produces the wrong
 answer:</p>
 <ol>
@@ -13627,7 +13627,7 @@ answer:</p>
 </ol>
 <p>This answer is incorrect, and is also the answer that would have been
 obtained through composing the matrices:
-$$R_X(90^\circ) R_Z(90^\circ) \bf{p} + \bf{t}$$ Instead, the key problem
+$$R_X(90^\circ) R_Z(90^\circ) \mathbf{p} + \mathbf{t}$$ Instead, the key problem
 is that after the first rotation, the local $X$ axis has rotated along
 with the body, and is no longer equivalent to the $X$ axis in world
 coordinates! Instead, it is aligned with the world's $Y$ axis. The
@@ -13645,7 +13645,7 @@ world $Y$ axis.</p>
 </ol>
 <p>It is also confusing that the correct result is also obtained by
 switching the order of the rotations!
-$$R_Z(90^\circ) R_X(90^\circ) \bf{p} + \bf{t}.$$ The reason why this
+$$R_Z(90^\circ) R_X(90^\circ) \mathbf{p} + \mathbf{t}.$$ The reason why this
 switched order works is that in the first rotation about $X$, the local
 and world $X$ axis are aligned. The second rotation about $Z$ is
 performed with respect to the world $Z$ axis, which is also equivalent
@@ -13768,16 +13768,16 @@ that every rotation can be represented in this form!</p>
 <div class="figcaption"><a name="fig:AxisAngleRotation">Figure 5</a>. Any
     rotation matrix (bold) can be represented by a rotation of some angle about
     some axis.</div><hr>
-<p>Axis-angle representation uses a pair $(\bf{a},\theta)$ where $\bf{a}$ is
+<p>Axis-angle representation uses a pair $(\mathbf{a},\theta)$ where $\mathbf{a}$ is
 a unit 3D vector and $\theta$ is an angle in the range $[0,\pi]$, for a
-total of 4 parameters. However, the constraint $\| \bf{a} \| = 1$ removes
+total of 4 parameters. However, the constraint $\| \mathbf{a} \| = 1$ removes
 a degree of freedom, again spanning the 3-D space of rotations.</p>
 <p>A related representation, which we call the <em>rotation vector</em> form
 improves upon some of the deficiencies of axis-angle representation by
 simply encoding the axis as the direction and the angle as the length of
-a 3D vector $\bf{m} = \theta \bf{a}$. They are easy to convert between,
-with $\theta = \| \bf{m} \|$ and $\bf{a} = \bf{m} / \| \bf{m} \|$ if
-$\| \bf{m} \| \neq 0$, or some arbitrary vector like $(1,0,0)$ otherwise.
+a 3D vector $\mathbf{m} = \theta \mathbf{a}$. They are easy to convert between,
+with $\theta = \| \mathbf{m} \|$ and $\mathbf{a} = \mathbf{m} / \| \mathbf{m} \|$ if
+$\| \mathbf{m} \| \neq 0$, or some arbitrary vector like $(1,0,0)$ otherwise.
 The range of valid parameters is a closed ball of radius $\pi$. It
 should be noted that the rotation vector representation has been
 referred to many names in the literature, including Rodrigues
@@ -13786,40 +13786,40 @@ become extremely useful when we discuss the derivative of rotation
 matrices in the context of the angular velocity of rigid bodies.)</p>
 <h3 id="Converting-to-rotation-matrix">Converting to rotation matrix<a class="anchor-link" href="#Converting-to-rotation-matrix">&#182;</a></h3><p>To convert from axis-angle form to rotation matrices, we use <em>Rodrigues'
 formula</em>. The derivation of Rodrigues' formula starts by decomposing a
-rotated point into its coordinate about the axis $\bf{a}$ and its
+rotated point into its coordinate about the axis $\mathbf{a}$ and its
 coordinates about an orthogonal plane. The planar coordinates are then
 rotated by a 2D rotation of angle $\theta$.</p>
-<p>Any point $\bf{p}$ can be decomposed into a sum of a component
-$\bf{p}_\parallel$ parallel to $\bf{a}$ and a component $\bf{p}_\perp$
-orthogonal to $\bf{a}$ such that $\bf{p} = \bf{p}_\parallel + \bf{p}_\perp$.</p>
-$$\bf{p}_\parallel = (\bf{a} \cdot \bf{p}) \bf{a}$$$$\bf{p}_\perp = \bf{p} - (\bf{a} \cdot \bf{p}) \bf{a}$$<p>The rotation leaves $\bf{p}_\parallel$ unchanged, and rotates the
-$\bf{p}_\perp$ component about the axis to a new vector
-$\bf{p}_\perp^\prime$, with a changed direction but an unchanged
+<p>Any point $\mathbf{p}$ can be decomposed into a sum of a component
+$\mathbf{p}_\parallel$ parallel to $\mathbf{a}$ and a component $\mathbf{p}_\perp$
+orthogonal to $\mathbf{a}$ such that $\mathbf{p} = \mathbf{p}_\parallel + \mathbf{p}_\perp$.</p>
+$$\mathbf{p}_\parallel = (\mathbf{a} \cdot \mathbf{p}) \mathbf{a}$$$$\mathbf{p}_\perp = \mathbf{p} - (\mathbf{a} \cdot \mathbf{p}) \mathbf{a}$$<p>The rotation leaves $\mathbf{p}_\parallel$ unchanged, and rotates the
+$\mathbf{p}_\perp$ component about the axis to a new vector
+$\mathbf{p}_\perp^\prime$, with a changed direction but an unchanged
 magnitude.</p>
-<p>To derive $\bf{p}_\perp^\prime$ we establish a basis for the orthogonal
-plane to $\bf{a}$. One axis on this plane, call it $\bf{u}$, is in the
-direction of the cross product $\bf{a} \times \bf{p}$, which is nonzero as
-long as $\bf{p}_\perp \neq 0$. A second orthogonal axis, call it $\bf{v}$,
+<p>To derive $\mathbf{p}_\perp^\prime$ we establish a basis for the orthogonal
+plane to $\mathbf{a}$. One axis on this plane, call it $\mathbf{u}$, is in the
+direction of the cross product $\mathbf{a} \times \mathbf{p}$, which is nonzero as
+long as $\mathbf{p}_\perp \neq 0$. A second orthogonal axis, call it $\mathbf{v}$,
 is in the direction of a second cross product
-$\bf{a} \times (\bf{a} \times \bf{p})$. This is in fact an expression of
-the negative direction of $\bf{p}_\perp$:
-$\bf{p}_\perp = -\bf{a} \times (\bf{a} \times \bf{p})$.</p>
-<p>As a result, the coordinates of $\bf{p}_\perp$ given these (non-unit)
-axes are $(0,-1)$, so that post rotation, $\bf{p}_\perp^\prime$ will have
+$\mathbf{a} \times (\mathbf{a} \times \mathbf{p})$. This is in fact an expression of
+the negative direction of $\mathbf{p}_\perp$:
+$\mathbf{p}_\perp = -\mathbf{a} \times (\mathbf{a} \times \mathbf{p})$.</p>
+<p>As a result, the coordinates of $\mathbf{p}_\perp$ given these (non-unit)
+axes are $(0,-1)$, so that post rotation, $\mathbf{p}_\perp^\prime$ will have
 coordinates $(\sin \theta, - \cos \theta)$. Projecting these coordiantes
 back into the original space, we have
-$$\bf{p}_\perp^\prime = \sin \theta (\bf{a} \times \bf{p}) + \cos \theta \bf{p}_\perp$$
-Reconstructing the rotated point $\bf{p}^\prime$, we obtain:
-$$\bf{p}^\prime = (\bf{a} \cdot \bf{p}) \bf{a} + \sin \theta (\bf{a} \times \bf{p}) +  \cos \theta (\bf{p} - (\bf{a} \cdot \bf{p}) \bf{a}))$$
+$$\mathbf{p}_\perp^\prime = \sin \theta (\mathbf{a} \times \mathbf{p}) + \cos \theta \mathbf{p}_\perp$$
+Reconstructing the rotated point $\mathbf{p}^\prime$, we obtain:
+$$\mathbf{p}^\prime = (\mathbf{a} \cdot \mathbf{p}) \mathbf{a} + \sin \theta (\mathbf{a} \times \mathbf{p}) +  \cos \theta (\mathbf{p} - (\mathbf{a} \cdot \mathbf{p}) \mathbf{a}))$$
 which is often rearranged to group terms:
-$$\bf{p}^\prime = \cos \theta \bf{p} + \sin \theta (\bf{a} \times \bf{p}) + (1-\cos \theta) (\bf{a} \cdot \bf{p}) \bf{a}.$$</p>
+$$\mathbf{p}^\prime = \cos \theta \mathbf{p} + \sin \theta (\mathbf{a} \times \mathbf{p}) + (1-\cos \theta) (\mathbf{a} \cdot \mathbf{p}) \mathbf{a}.$$</p>
 <p>Although this formula gives an expression for the transform, we can also
 rearrange terms to express it as a matrix. We will use the cross-product
 matrix notation
-$$\hat{\bf{v}} = 
+$$\hat{\mathbf{v}} = 
 \begin{bmatrix} 0 &amp; -v_z &amp; v_y \\ v_z &amp; 0 &amp; -v_x \\ -v_y &amp; v_x &amp; 0 \end{bmatrix}, \label{eq:CrossProductMatrix}$$
 so called because
-$\hat{\bf{v}} \bf{w} = \bf{v} \times \bf{w}$.</p>
+$\hat{\mathbf{v}} \mathbf{w} = \mathbf{v} \times \mathbf{w}$.</p>
 
 </div>
 </div>
@@ -13827,14 +13827,14 @@ $\hat{\bf{v}} \bf{w} = \bf{v} \times \bf{w}$.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Hence we can express the term $\bf{a} \times \bf{p} = \hat{\bf{a}} \bf{p}$
+<p>Hence we can express the term $\mathbf{a} \times \mathbf{p} = \hat{\mathbf{a}} \mathbf{p}$
 as a matrix multiplication. Also, we can express the term
-$\bf{p} - (\bf{a} \cdot \bf{p}) \bf{a} = - \bf{a} \times (\bf{a} \times \bf{p}) = -\hat{\bf{a}}^2 \bf{p}$,</p>
+$\mathbf{p} - (\mathbf{a} \cdot \mathbf{p}) \mathbf{a} = - \mathbf{a} \times (\mathbf{a} \times \mathbf{p}) = -\hat{\mathbf{a}}^2 \mathbf{p}$,</p>
 $$
 \begin{split}
-\bf{p}^\prime &amp;= \cos \theta \bf{p} + \sin \theta (\bf{a} \times \bf{p}) + (1-\cos \theta) (\bf{a} \cdot \bf{p}) \bf{a} - \bf{p}) + (1-\cos \theta) \bf{p} \\
- &amp;=\bf{p} + \sin \theta \hat{\bf{a}} \bf{p} + (1-\cos\theta) \hat{\bf{a}}^2 \bf{p} \\
- &amp;= (I + \sin \theta \hat{\bf{a}} + (1-\cos\theta) \hat{\bf{a}}^2 ) \bf{p}
+\mathbf{p}^\prime &amp;= \cos \theta \mathbf{p} + \sin \theta (\mathbf{a} \times \mathbf{p}) + (1-\cos \theta) (\mathbf{a} \cdot \mathbf{p}) \mathbf{a} - \mathbf{p}) + (1-\cos \theta) \mathbf{p} \\
+ &amp;=\mathbf{p} + \sin \theta \hat{\mathbf{a}} \mathbf{p} + (1-\cos\theta) \hat{\mathbf{a}}^2 \mathbf{p} \\
+ &amp;= (I + \sin \theta \hat{\mathbf{a}} + (1-\cos\theta) \hat{\mathbf{a}}^2 ) \mathbf{p}
 \end{split}$$
 </div>
 </div>
@@ -13844,13 +13844,13 @@ $$
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The parenthesized term is the rotation matrix
 corresponding to the axis-angle representation:
-$$R_{aa}(\bf{a},\theta) = 
-I + \sin \theta \hat{\bf{a}} + (1-\cos\theta) \hat{\bf{a}}^2.$$</p>
+$$R_{aa}(\mathbf{a},\theta) = 
+I + \sin \theta \hat{\mathbf{a}} + (1-\cos\theta) \hat{\mathbf{a}}^2.$$</p>
 <p>For rotation vector representation we simply convert to axis-angle form
 and use the formula above.
-$$R_m(\bf{m}) = R_{aa}(\bf{m} / \| \bf{m} \|, \| \bf{m} \|)$$</p>
+$$R_m(\mathbf{m}) = R_{aa}(\mathbf{m} / \| \mathbf{m} \|, \| \mathbf{m} \|)$$</p>
 <h3 id="Converting-from-a-rotation-matrix">Converting from a rotation matrix<a class="anchor-link" href="#Converting-from-a-rotation-matrix">&#182;</a></h3><p>To convert back from a rotation matrix $R$ to axis-angle representation,
-we can calculate the entries of $R_{aa}(\bf{a},\theta)$ and invert the
+we can calculate the entries of $R_{aa}(\mathbf{a},\theta)$ and invert the
 equation to match the entries of $R$: $$R = 
 \begin{bmatrix}
 r_{11} &amp; r_{12} &amp; r_{13} \\
@@ -13858,8 +13858,8 @@ r_{21} &amp; r_{22} &amp; r_{23} \\
 r_{31} &amp; r_{32} &amp; r_{33} 
 \end{bmatrix} = 
 \begin{bmatrix}
-\cos\theta  I + \sin \theta \hat{\bf{a}} + (1-\cos\theta ) \bf{a} \bf{a}^T
-\end{bmatrix}$$ where we have used the fact that $$\hat{\bf{a}}^2 =</p>
+\cos\theta  I + \sin \theta \hat{\mathbf{a}} + (1-\cos\theta ) \mathbf{a} \mathbf{a}^T
+\end{bmatrix}$$ where we have used the fact that $$\hat{\mathbf{a}}^2 =</p>
 \begin{bmatrix}
 0 &amp; -a_z &amp; a_y \\
 a_z &amp; 0 &amp; -a_x \\
@@ -13870,18 +13870,18 @@ a_z &amp; 0 &amp; -a_x \\
 a_x a_y &amp; -a_x^2 - v_z^2 &amp; a_y a_z \\
 a_x a_z &amp; a_y a_z &amp; -a_x^2 - a_y^2
 \end{bmatrix}
-= \bf{a} \bf{a}^T - I.$$ Taking the trace of $R$, we get
-$$tr(R) = 3 \cos \theta + (1-\cos \theta) tr(\bf{a} \bf{a}^T) = 3 \cos \theta + (1 - \cos\theta) (\bf{a} \cdot \bf{a}) = 1 + 2 \cos \theta.$$
+= \mathbf{a} \mathbf{a}^T - I.$$ Taking the trace of $R$, we get
+$$tr(R) = 3 \cos \theta + (1-\cos \theta) tr(\mathbf{a} \mathbf{a}^T) = 3 \cos \theta + (1 - \cos\theta) (\mathbf{a} \cdot \mathbf{a}) = 1 + 2 \cos \theta.$$
 Hence, we have the relationship:
 $$\theta = \cos^{-1} \left(\frac{tr(R)-1}{2}\right)
 \label{eq:RotationAbsoluteAngle}$$ which gives the *absolute angle* of a
 rotation matrix. This is also significant because it is the minimal
 angle needed to rotate from the identity matrix to $R$, and hence is a
 useful pseudo-norm for 3D rotations.</p>
-<p>Next, we can determine $\bf{a}$ using the off-diagonal components of the
+<p>Next, we can determine $\mathbf{a}$ using the off-diagonal components of the
 matrix. We see that the difference
 $r_{12} - r_{21} = -a_z \sin \theta + (1-\cos \theta) a_x a_y - (a_z \sin \theta + (1-\cos \theta) a_x a_y) = -2 a_z \sin \theta$,
-canceling out the contribution of the matrix $\bf{a} \bf{a}$ since it is
+canceling out the contribution of the matrix $\mathbf{a} \mathbf{a}$ since it is
 symmetric. Hence if $\sin \theta \neq 0$, we can determine
 $$
 \begin{split}
@@ -13892,7 +13892,7 @@ a_z &amp;=  (r_{21}-r_{12}) / 2 \sin \theta.
 the case where $\theta = 0$, in which case $R$ is an identity matrix and
 any axis will do, or $\theta = \pi$, and more work is needed to
 determine the true axis of rotation. In this case, $\cos \theta = -1$,
-so $R = -I + 2 \bf{a} \bf{a}^T$. We can then determine, up to sign,
+so $R = -I + 2 \mathbf{a} \mathbf{a}^T$. We can then determine, up to sign,
 $a_x = \pm \sqrt{(r_{11} + 1)/2}$, $a_y = \pm \sqrt{(r_{22} + 1)/2}$,
 and $a_z = \pm \sqrt{(r_{33} + 1)/2}$, with the signs of each element
 (up to a sign of the entire vector) determined by the off-diagonal
@@ -13906,7 +13906,7 @@ extrapolation or interpolation because further rotations flip the sign
 of the axis. Both axis-angle and rotation vector representations share
 the same singularity, and in the latter case, this means that opposed
 points on the surface of the ball
-$\{ \bf{m}\in \mathbb{R}^3 \, |\, \|\bf{m}\| \leq \pi \}$ represent
+$\{ \mathbf{m}\in \mathbb{R}^3 \, |\, \|\mathbf{m}\| \leq \pi \}$ represent
 identical rotations.</p>
 <p>Observe that the set of rotation vector representations that maps
 one-to-one to SO(3) is a sort of "half-open, half-closed" ball in
@@ -13914,20 +13914,20 @@ $\mathbb{R}^3$. Like the rotation angle representation of a 2D rotation,
 this set is not topologically equivalent to SO(3) due to the
 wrapping-around effect.</p>
 <h3 id="Inversion">Inversion<a class="anchor-link" href="#Inversion">&#182;</a></h3><p>One of the advantages of axis-angle representation is that inversion is
-very simple. The inverse of a rotation $(\bf{a},\theta)$ is simply
-$(-\bf{a},\theta)$, or, if negative rotations are allowed,
-$(\bf{a},-\theta)$. Equivalently, the inverse of a rotation vector
-representation is simply its negative $R_m(\bf{m})^{-1} = R_m(-\bf{m})$.</p>
+very simple. The inverse of a rotation $(\mathbf{a},\theta)$ is simply
+$(-\mathbf{a},\theta)$, or, if negative rotations are allowed,
+$(\mathbf{a},-\theta)$. Equivalently, the inverse of a rotation vector
+representation is simply its negative $R_m(\mathbf{m})^{-1} = R_m(-\mathbf{m})$.</p>
 <h3 id="Geodesic-scaling">Geodesic scaling<a class="anchor-link" href="#Geodesic-scaling">&#182;</a></h3><p>One of the key advantages of axis-angle representation is that it
 conveniently represents the geodesic curve from the identity rotation to
 any given rotation. If $R_1$ is a given rotation matrix with axis-angle
-form $(\bf{a},\theta)$, then the geodesic interpolation from $I$ to $R_1$
-is given by the curve $$R(s) = R_{aa}(\bf{a},s\theta)$$ where at $s=0$
+form $(\mathbf{a},\theta)$, then the geodesic interpolation from $I$ to $R_1$
+is given by the curve $$R(s) = R_{aa}(\mathbf{a},s\theta)$$ where at $s=0$
 the result is the identity, and at $s=1$ the result is $R_1$.</p>
 <h3 id="Geodesic-interpolation">Geodesic interpolation<a class="anchor-link" href="#Geodesic-interpolation">&#182;</a></h3><p>We apply the geodesic scaling operation to produce geodesic
 interpolation between two rotations. Given an initial rotation $R_0$ and
 a final rotation $R_1$, we may perform the interpolation
-$$R(s) = R_0 R_{aa}(\bf{a},s\theta)$$ where $(\bf{a},\theta)$ is the axis
+$$R(s) = R_0 R_{aa}(\mathbf{a},s\theta)$$ where $(\mathbf{a},\theta)$ is the axis
 angle representation of the relative rotation $R_0^T R_1$. (Verify that
 $R(0) = R_0$ and $R(1) = R_1$.)</p>
 <p>Because of its common utility, it may be useful to consider representing this
@@ -13981,12 +13981,12 @@ $|q| = \sqrt{q_0^2 + q_1^2 + q_2^2 + q_3^2} = 1$ defines a unit
 quaternion. Unit quaternions have the special property that their
 inverse is simply the negation of their imaginary components:
 $q^{-1} = q_0 - i q_1 - j q_2 - k q_3$.</p>
-<p>Given a 3D point $\bf{p} = (x,y,z)$ and its representation as a
+<p>Given a 3D point $\mathbf{p} = (x,y,z)$ and its representation as a
 quaternion $p = (0,x,y,z)$, there is an operation called the
 <em>conjugation</em> of $p$ by a unit quaternion $q$ so that the result gives a
 rotated point $p^\prime = (0,x^\prime,y^\prime,z^\prime)$:
 $$p^\prime = q p q^{-1}.$$ More specifically, the quaternion is related
-to axis-angle representation $(\bf{a},\theta)$ using the conversion
+to axis-angle representation $(\mathbf{a},\theta)$ using the conversion
 $(q_0,q_1,q_2,q_3) = ( \cos (\theta / 2), \sin (\theta / 2) a_x, \sin (\theta / 2) a_y, \sin (\theta / 2) a_z)$.
 Also, the rotation matrix defined by a quaternion is given by:
 $$R_q(q) = \left[
@@ -14056,11 +14056,11 @@ disadvantages.</p>
 </tr>
 <tr>
 <td style="text-align:center">Axis-angle</td>
-<td style="text-align:center">3 + 1 parameters $(\bf{a},\theta)$, in range $S_2 \times [0,\pi)$ with 1 d.o.f. removed via unit vector constraint $|V\bf{a}| = 1$.</td>
+<td style="text-align:center">3 + 1 parameters $(\mathbf{a},\theta)$, in range $S_2 \times [0,\pi)$ with 1 d.o.f. removed via unit vector constraint $|V\mathbf{a}| = 1$.</td>
 </tr>
 <tr>
 <td style="text-align:center">Rot. vector</td>
-<td style="text-align:center">3 parameters $\bf{m}$, in range $| \bf{m} | \leq \pi$.</td>
+<td style="text-align:center">3 parameters $\mathbf{m}$, in range $| \mathbf{m} | \leq \pi$.</td>
 </tr>
 <tr>
 <td style="text-align:center">Quaternion</td>
@@ -14084,7 +14084,7 @@ disadvantages.</p>
 </tr>
 <tr>
 <td style="text-align:center">Rot. vector</td>
-<td style="text-align:center">Double representation at $| \bf{m} | = \pi$.</td>
+<td style="text-align:center">Double representation at $| \mathbf{m} | = \pi$.</td>
 </tr>
 <tr>
 <td style="text-align:center">Quaternion</td>
@@ -14104,11 +14104,11 @@ disadvantages.</p>
 </tr>
 <tr>
 <td style="text-align:center">Axis-angle</td>
-<td style="text-align:center">$(-\bf{a},\theta)$</td>
+<td style="text-align:center">$(-\mathbf{a},\theta)$</td>
 </tr>
 <tr>
 <td style="text-align:center">Rot. vector</td>
-<td style="text-align:center">$-\bf{m}$</td>
+<td style="text-align:center">$-\mathbf{m}$</td>
 </tr>
 <tr>
 <td style="text-align:center">Quaternion</td>
@@ -14198,9 +14198,9 @@ representation?</p>
 <li><p>Derive a method to compute the average of two 3D rotation matrices.
 (Use the hint given in problem 1.)</p>
 </li>
-<li><p>For the cross-product matrix function $\hat{\bf{v}}$ given by
+<li><p>For the cross-product matrix function $\hat{\mathbf{v}}$ given by
 ($\ref{eq:CrossProductMatrix}$), show that
-$R \hat{\bf{v}} R^T = \hat{R\bf{v}}$.</p>
+$R \hat{\mathbf{v}} R^T = \hat{R\mathbf{v}}$.</p>
 </li>
 <li><p>Consider a distance function $d(R_A,R_B)$ between two matrices,
 defined as the absolute angle of $R_A^T R_B$ (as given by
@@ -14266,13 +14266,13 @@ not? (Hint: consider what it means to be a geodesic.)</p>
 
  
  
-<div id="69e467fc-ef78-46e7-88a5-86884763c3a1"></div>
+<div id="a8dd586b-7379-459d-848b-65a7813b362e"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#69e467fc-ef78-46e7-88a5-86884763c3a1');
+var element = $('#a8dd586b-7379-459d-848b-65a7813b362e');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "2097d9d0cc2e4d2593dcda3278e845a6"}
+{"version_major": 2, "model_id": "2097d9d0cc2e4d2593dcda3278e845a6", "version_minor": 0}
 </script>
 </div>
 
