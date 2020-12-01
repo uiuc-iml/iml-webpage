@@ -13496,9 +13496,10 @@ grow without bound,</p>
 </ul>
 <p>A <em>stable point</em> is a state $x$ such that for some neighborhood
 of $x$, the ODE is convergent toward $x$. A necessary condition for a
-point to be stable is $f(x) = 0$, and points that satisfy this criteria
-are known as <em>equilibrium points</em>. All stable points are equilibria, but
-the converse is not true.</p>
+point to be stable is that it is an <em>equilibrium point</em>.</p>
+<blockquote><p><strong>Equilibrium point</strong>. For a continuous time dynamical system, a state $x$ such that $\dot{x} = f(x) = 0$.  For a discrete time dynamical system, a state that satisfies $x = f(x)$.</p>
+</blockquote>
+<p>All stable points are equilibria, but the converse is not true. For example, in the system $\dot{x} = x$, $x=0$ is an equilibrium point, but it is not stable.  Through inspection, observe that $x(t) = c e^t$  is a solution to this differential equation.  Hence, a tiny perturbation $x(0) = \epsilon$ would yield the solution trajectory $x(t) = \epsilon e^t$, which grows without bound as $t$ grows.</p>
 <p>The trajectories derived from Euler integration can be divergent even when the underlying system itself is stable or convergent.  As an example, consider the damped harmonic oscillator system $$\ddot{x} = -10x - \dot{x}$$.</p>
 <p>With the initial condition $x(0)=1$, $\dot{x}(0)=0$, the solution trajectory is $x(t) = e^{-t/2}\cos(\omega t)$ with $\omega=\sqrt{10-1/2^2}$.  But see what happens when this is integrated using Euler's method:</p>
 
@@ -13747,59 +13748,62 @@ respectively, and the pole is assumed to have all of its mass
 concentrated at a point distance $L$ away from the pin.</p>
 <p>In <a href="RobotDynamics.html">Chapter 14</a>, we shall derive the equations
 of motion for the cart-pole system to be the second-order system of
-equations: $$
+equations:</p>
+$$
 \begin{aligned}
 (m_1+m_2) \ddot{q_1} -\frac{m_2 L}{2} \ddot{q}_2  \sin q_2 - \frac{m_2 L}{2} \dot{q}_2^2  \cos q_2 = u_1 \\
 -\frac{m_2 L}{2} \ddot{q}_1  \sin q_2 + \frac{m_2 L^2}{4} \ddot{q}_2 + m_2 g \cos q_2 = u_2
-\end{aligned}$$ where $g$ is the gravitational constant. Notice here
+\end{aligned}$$<p>where $g$ is the gravitational constant. Notice here
 that the accelerations $\ddot{q}_1$ and $\ddot{q}_2$ are coupled, in
 that they appear in both equations. Solving this system of equations, we
-obtain a solution: $$
+obtain a solution:</p>
+$$
 \begin{bmatrix}{\ddot{q}_1}\\{\ddot{q}_2}\end{bmatrix} = 
 \frac{1}{d} 
 \begin{bmatrix}
 \frac{m_2 L^2}{4} &amp; \frac{m_2 L}{2} \sin q_2 \\
 \frac{m_2 L}{2} \sin q_2 &amp; m_1+m_2 
-\end{bmatrix}</p>
-\begin{bmatrix}{u_1 + \frac{m_2 L}{2} \dot{q}_2^2 \cos q_2}\\{u_2-m_2 g \cos q_2}\end{bmatrix}$$
-with $d= \frac{m_1 m_2 L^2}{4}+\frac{m_2^2 L^2}{4} \cos^2 q_2$. For any
-given choice of $u_1$ and $u_2$, this can then be integrated to obtain
-solution trajectories.
+\end{bmatrix}
 
-The cart-pole system is highly sensitive to the behavior of the cart.
-[Fig. 4](#fig:CartpoleSpin) displays the behavior of the swing-up
+\begin{bmatrix}{u_1 + \frac{m_2 L}{2} \dot{q}_2^2 \cos q_2}\\{u_2-m_2 g \cos q_2}\end{bmatrix}$$<p>with $d= \frac{m_1 m_2 L^2}{4}+\frac{m_2^2 L^2}{4} \cos^2 q_2$. For any
+given choice of $u_1$ and $u_2$, this can then be integrated to obtain
+solution trajectories.</p>
+<p>The cart-pole system is highly sensitive to the behavior of the cart.
+<a href="#fig:CartpoleSpin">Fig. 4</a> displays the behavior of the swing-up
 problem under 1.5 sinusoidal movements of the cart with amplitude 0.5.
 Each plot shows a slighly different period. In this setup, the pole
 swings over the upright position only for periods in approximately the
 range $[1.12,1.29]$. There is another range of periods where the pole is
-swung about the upright position in the range $[1.32,1.39]$.
-
-*************
-
-|Period 1.288s | Period 1.5s |
-|----|----|
-| ![fig:CartpoleSpin](figures/control/cartpole_spin.svg) | ![fig:CartpoleSpin2](figures/control/cartpole_nospin.svg) |
-
-&lt;div class="figcaption"&gt;&lt;a name="fig:CartpoleSpin"&gt;Figure 4&lt;/a&gt;
+swung about the upright position in the range $[1.32,1.39]$.</p>
+<hr>
+<table>
+<thead><tr>
+<th>Period 1.288s</th>
+<th>Period 1.5s</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="figures/control/cartpole_spin.svg" alt="fig:CartpoleSpin"></td>
+<td><img src="figures/control/cartpole_nospin.svg" alt="fig:CartpoleSpin2"></td>
+</tr>
+</tbody>
+</table>
+<div class="figcaption"><a name="fig:CartpoleSpin">Figure 4</a>
     Behavior of the cart pole problem as a function of time. Slightly
 changing the period of the cart's movement from 1.288 s to 1.5 s fails
 to swing the pendulum past the upright position. A good swing-up
 controller might use a period of 1.288 and then switch to a stabilizing
 controller around
 $t=2$.
-    &lt;/div&gt;
-
-*************
-
-### Dubins car
-
-A Dubins car model approximates the mobility of a standard 2-axle car
+    </div><hr>
+<h3 id="Dubins-car">Dubins car<a class="anchor-link" href="#Dubins-car">&#182;</a></h3><p>A Dubins car model approximates the mobility of a standard 2-axle car
 moving on a flat surface, ignoring accelerations. In this model,
 $(p_x,p_y)$ is the center of its rear axle, $\theta$ is its heading, and
 $L$ is the distance between the front and rear axles. The control
 $u=(v,\phi)$ specifies the velocity $v$ and the steering angle of the
 front wheels $\phi$. The dynamics of this system are given as follows:
-$$<p>\dot{x} \equiv 
+$$\dot{x} \equiv 
 \begin{bmatrix}{\dot{p}_x}\\{\dot{p}_y}\\{\dot{\theta}}\end{bmatrix} = f(x,u) = 
 \begin{bmatrix}{v \cos \theta}\\{v \sin \theta}\\{\frac{v}{L}\tan \phi}\end{bmatrix}$$
 Note that the velocity vector is always parallel to the heading
