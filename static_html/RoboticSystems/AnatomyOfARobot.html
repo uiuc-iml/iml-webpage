@@ -13210,7 +13210,14 @@ $( document ).ready(function(){
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Section-I.-INTRODUCTION">Section I. INTRODUCTION<a class="anchor-link" href="#Section-I.-INTRODUCTION">&#182;</a></h1><h1 id="Chapter-2.-Anatomy-of-a-Robot">Chapter 2. Anatomy of a Robot<a class="anchor-link" href="#Chapter-2.-Anatomy-of-a-Robot">&#182;</a></h1>
+<h1 id="Section-I.-INTRODUCTION">Section I. INTRODUCTION<a class="anchor-link" href="#Section-I.-INTRODUCTION">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Chapter-2.-Anatomy-of-a-Robot">Chapter 2. Anatomy of a Robot<a class="anchor-link" href="#Chapter-2.-Anatomy-of-a-Robot">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -13271,6 +13278,13 @@ internal structures, the range of possible robot designs is endless.</p>
 researchers invent new materials, fabrication strategies, circuits,
 computers, sensors, and actuation devices. Indeed, keeping up with the
 state-of-the-art can be exhausting!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Links-and-Joints">Links and Joints<a class="anchor-link" href="#Links-and-Joints">&#182;</a></h2><p>Like the bones of an animal, a robot's links offer structural support
 and protection of internal parts. Most often, some sort of metal is used
 to provide strong structural support, although some robots use other
@@ -13306,6 +13320,13 @@ elephant trunks. For flexible links and soft robots, the traditional
 link-and-joint modeling framework that we will cover in depth in this
 book does not directly apply. Instead, more complex continuum mechanics
 models should be used to analyze and predict their behavior.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Sensors">Sensors<a class="anchor-link" href="#Sensors">&#182;</a></h2><p>Sensors are devices that measure some physical quantities of the world and encode the signals into electrical (typically digital) form.  There are many kinds of sensors, and more are being invented every year.  Common sensor types in robotics are given below.</p>
 <table>
 <thead><tr>
@@ -13343,6 +13364,13 @@ models should be used to analyze and predict their behavior.</p>
 </table>
 <p>Most of the time, sensors are mounted to a link of the robot, and move while the robot moves.  The raw data produced by the sensor is often not particularly useful in itself (e.g., cameras will give you pixel colors rather than object identities), and perception algorithms must process this data into meaningful quantities.  It is important to build accurate models of the physics behind the sensor (and methods for "inverting" these physics) in order to help a robot correlate sensor signals into an understanding of the physical world.</p>
 <p>The position and orientation of the sensor on the link is extremely important to be able to make sense of sensor data. A laser sensor may be saying that an obstacle is 1m away, but is the obstacle ahead, behind, to the left, or above the robot?  How close is too close before the robot ends up colliding?  We will look into this issue further  when we discuss calibration.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Actuators-and-Transmissions">Actuators and Transmissions<a class="anchor-link" href="#Actuators-and-Transmissions">&#182;</a></h2><p>An actuator is a mechanism that generates a force / torque given electrical signals; a transmission is a mechanism that applies an actuator's forces / torques to the robot's links.  Most commonly on industrial robots, actuators are electric motors while the transmissions are some sort of gearing system (e.g., gearbox).  On mobile robots, the transmissions from actuators to the ground are actually the wheels (or tracks).  It is also common to think of (and purchase) the actuator and transmission as a unit, such as with servomotors.</p>
 <p>Common actuator types include:</p>
 <ul>
@@ -13412,6 +13440,13 @@ referred to as a <em>cognitive architecture</em>.</p>
 <p>(The terminology used in this chapter is highly influenced by Chapter 2
 in Stuart and Russell's excellent textbook <em>Artificial Intelligence: a
 Modern Approach</em>.)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Sense-plan-act-framework">Sense-plan-act framework<a class="anchor-link" href="#Sense-plan-act-framework">&#182;</a></h3><p>A cognitive architecture resides in the robot's mind, which controls the
 robot's body, which interacts with the outside world. The body and
 external world form the information processing <em>environment</em> of the
@@ -13484,6 +13519,13 @@ auto-calibration of a robot's sensors to correct for sensor drift, or large,
 such as reinforcement learning to adapt the robot's behavior according to
 observed outcomes.  Section VI discusses machine learning, calibration, and
 reinforcement learning techniques to be used in such architectures.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Perception,-planning,-and-control;-hierarchical-architectures">Perception, planning, and control; hierarchical architectures<a class="anchor-link" href="#Perception,-planning,-and-control;-hierarchical-architectures">&#182;</a></h3><p>The Plan component of the Sense-Plan-Act framework above can typically be broken down into three components:</p>
 <ul>
 <li><p><em>Perception</em>.  From sensor data and memory of the past, construct a representation of all the knowledge the robot has available about itself and its surroundings.  When there is uncertainty, either construct a best guess, or explicitly model how much uncertainty is available.</p>
@@ -13496,24 +13538,18 @@ reinforcement learning techniques to be used in such architectures.</p>
 <p>In a complex intelligent robot, such as an autonomous vehicle, these components are individually quite sophisticated.  To optimize the behavior of each component requires deep knowledge, skills, and effort on the part of its engineering team.</p>
 <p>Although these components are described as though they would be separate stages of a pipeline, they actually interact at multiple levels based on the timing requirements of behavioral decisions.  The planning component is usually broken down so that mission-level decisions are made at the highest layer, which are then broken into subtasks that should be achieved on the order of seconds to minutes, which are then finally broken down into continuous reference motions at sub-second granularity.  In some sense, the control component is the lowest level of the planning hierarchy.</p>
 <p>The perception component may also be hierarchical as well. Some sensor signals, like joint encoder values, are processed minimally to be used by the controller.  Others, like vision data, are processed with computationally expensive, relatively slow operations like map-building and object recognition so that mission planning can make significant decisions about the robot's behavior.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="The-end-to-end-approach">The end-to-end approach<a class="anchor-link" href="#The-end-to-end-approach">&#182;</a></h3><p>In contrast to the perception-planning-control pipeline, the philosophy of <em>end-to-end</em> behavior attempts to compress the entire Plan component into a single monolithic function.  Because robot behavior is usually too complex to tune by hand, this philosophy is usually approached via the perspective of <em>end-to-end learning</em>, where the robot itself adjusts the behavior of the Plan component to achieve better outcomes.  Recently, this is becoming more a plausible approach given the success of deep neural networks in computer vision and related machine learning fields.</p>
 <p>However, there is still a long way to go before end-to-end robots are practical, and in fact there are <em>no commercially-significant robots in the world today that are developed using the end-to-end approach</em>.  Why might this be the case?  One may be that human scientists and engineers have developed exceptionally precise models for robot behavior that can't be matched using model-free approaches.  Another reason may be that the development process for the classical pipeline does a better job of exploiting the ingenuity of human engineering teams by imposing clear roles, responsibilities, and performance metrics for each component.  Indeed, it is very hard to determine why a system built entirely on machine learning made a mistake, which makes debugging and development much more difficult.  A final reason could be that the machine learning community simply does not yet have the right model for robotic cognition, and some breakthrough awaits just around the corner!  (Personally speaking, I enjoy the robot engineering process, and hope for the sake of myself, my colleagues, and my students that this latter scenario does not occur any time soon.)</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
 </div>
     </div>
   </div>

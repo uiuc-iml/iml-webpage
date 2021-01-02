@@ -13225,10 +13225,7 @@ $( document ).ready(function(){
 
 
 <div id='latex_user_defs'>
-        $\newcommand{\V}[1]{\mathbf #1}$
-$\newcommand{\M}[1] {#1}$
-$\newcommand{\Reals} { \mathbb{R} }$
-
+        
 </div>
 
 
@@ -13240,14 +13237,14 @@ $\newcommand{\Reals} { \mathbb{R} }$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Section-II.-MODELING">Section II. MODELING<a class="anchor-link" href="#Section-II.-MODELING">&#182;</a></h1><h1 id="Chapter-7.-Representing-Geometry">Chapter 7. Representing Geometry<a class="anchor-link" href="#Chapter-7.-Representing-Geometry">&#182;</a></h1>
+<h1 id="Section-II.-MODELING">Section II. MODELING<a class="anchor-link" href="#Section-II.-MODELING">&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>So far we have described methods for reasoning about a robot's spatial
+<h1 id="Chapter-7.-Representing-Geometry">Chapter 7. Representing Geometry<a class="anchor-link" href="#Chapter-7.-Representing-Geometry">&#182;</a></h1><p>So far we have described methods for reasoning about a robot's spatial
 reference frames, but have not yet considered the <em>geometric content</em> of
 those frames, such as the shape and size of the physical structure of
 each link. Certainly, it would be wise to consider these geometries when
@@ -13263,6 +13260,13 @@ come from a variety of fields, including computer-aided design (CAD),
 computational geometry, computer graphics, and scientific visualization
 --- and hence this survey only scratches the surface of the vast variety
 of geometric representations and calculations.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Example-applications">Example applications<a class="anchor-link" href="#Example-applications">&#182;</a></h2><p>Geometry is used pervasively throughout in robotics, including:</p>
 <ul>
 <li><p>Mechanism design</p>
@@ -13338,6 +13342,13 @@ bottleneck. But, if they are too simple to faithfully represent the
 robot's geometry, then the computed solution may either miss a collision
 (the geometric model is optimistically small) or fail to find valid
 solutions (the geometric model is conservatively large).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Geometry-representations">Geometry representations<a class="anchor-link" href="#Geometry-representations">&#182;</a></h2><p>A geometry $G$ is considered to be some region of space
 $G \subset \mathbb{R}^2$ or $\mathbb{R}^3$ depending on whether we are
 considering planar or 3D robots. Geometry representations can be
@@ -13368,6 +13379,13 @@ outside. Point-based representations are widely used to represent raw
 data from 3D sensors like lidar and depth cameras. Geometric primitives
 are preferred when speed of geometric operations is prioritized over
 fidelity.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Geometric-primitives">Geometric primitives<a class="anchor-link" href="#Geometric-primitives">&#182;</a></h3><p>Primitives are the simplest form of geometric representation, and are
 compact, mathematically convenient, and lend themselves to fast
 geometric operations: exact calculations can be calculated in constant
@@ -13404,6 +13422,13 @@ that $x_i \in [l_i,u_i]$ for $i=1,2,3$.</p>
 <p>These representations are not unique, and are chosen by convention. For
 example, the origin of a box may be chosen to be its center point rather
 than a corner.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Surface-representations">Surface representations<a class="anchor-link" href="#Surface-representations">&#182;</a></h3><p>Surface representations (also known as <em>boundary representations</em>, or
 b-reps) store the boundary of a geometry $\partial G$ without explicitly
 representing its interior / exterior.</p>
@@ -16444,6 +16469,12 @@ value $&gt; \tau$ are truncated.</p>
 <li><p><strong>Attenuation / reflectance map</strong>: a function $f : \mathbb{R}^d \rightarrow [0,1]$
 indicates how much a point in space interferes with light, sound, or other signal.</p>
 </li>
+<li><p><strong>Height field / topograpic map</strong>: Sort of a cross between a surface and volume representation,
+height fields store a 2D function $f(x,y)$ that indicates the height of the surface at the point $(x,y)$.
+This defines a 3D volume over $(x,y,z)$ such that $z &gt; f(x,y)$ indicates empty 
+space, $z=f(x,y)$ indicates the surface, and $z &lt; f(x,y)$ indicates the interior.  Frequently used by
+mobile robots to represent terrain.</p>
+</li>
 </ul>
 <p>The computational representation of the function itself can also vary, including but not limited to:</p>
 <ul>
@@ -16607,6 +16638,13 @@ only need about 25,000 elements to represent the same object.</p>
 space complexity of volumetric representation to nearly $O(1/h^2)$, but
 at the expense of increased complexity of implementing geometric
 operations.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Representing-rigid-poses-and-movement">Representing rigid poses and movement<a class="anchor-link" href="#Representing-rigid-poses-and-movement">&#182;</a></h3><p>Because it is so common to represent objects as rigid bodies, it is much easier to model the movement of an object as the movement of an rigid body frame, rather than to explicitly modify the geometry itself.  This <em>implicit transformation</em> approach is used ubiquitously in robotics, visualization, and computer graphics.  Specifically, we imagine the object to have a local <em>reference frame</em>, and define a <em>local geometry</em> $G_L \subset R^3$ in the local coordinates.  The object's <em>pose</em> is a transformation $T$ from the reference frame to the world frame. As the object moves, $T$ changes, but the local geometry data remains static.</p>
 <p>Hence, we can represent the set of points contained by the object $G(t) \subset R^3$ at time $t$ given only the pose $T(t)$.  The two representations are:</p>
 <ul>
@@ -16635,11 +16673,25 @@ contained within a geometry $G$.</li>
 <li>Overlap region estimation: If $A$ and $B$ overlap, return a representation of the area or volume of overlap. Used mainly in physics simulation, manipulation, and legged locomotion.</li>
 </ul>
 <p>In this book, we describe inside-outside tests and collision detection in more detail for a small number of geometry representations.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Inside-outside-(containment)-tests">Inside-outside (containment) tests<a class="anchor-link" href="#Inside-outside-(containment)-tests">&#182;</a></h3><p>Inside-outside testing is a straightforward operation for
 primitives and volumetric representations, but not as straightforward
 for surface representations.  Note that for a implicitly transformed geometry
 $G=(G_L,T)$, this becomes a problem of determining whether the local
 coordinates of the point are within the local geometry: $T^{-1}\mathbf{x} \in G_L$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Geometric-primitive-containment-testing">Geometric primitive containment testing<a class="anchor-link" href="#Geometric-primitive-containment-testing">&#182;</a></h4><p>For primitives like spheres, containment can be tested directly from the
 mathematical expression of the primitive. For example, a ball with
 center $\mathbf{c}$ and radius $r$ is defined by:
@@ -16650,6 +16702,13 @@ coordinates lie in the axis-aligned box
 $[0,w] \times [0,h] \times [0,d]$; hence the test for whether a
 world-space point lies inside is simply the test:
 $$T^{-1} \mathbf{x} \in [0,w] \times [0,h] \times [0,d].$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Volumetric-containment-testing">Volumetric containment testing<a class="anchor-link" href="#Volumetric-containment-testing">&#182;</a></h4><p>Volumetric representations also lend themselves to fast containment
 testing. Implicit surfaces, including SDFs and TSDFs, simply require
 evaluating the sign of $f(\mathbf{x})$.
@@ -16658,6 +16717,13 @@ grid coordinates using Eq. $(\ref{eq:PointToGridIndices})$ and
 then retrieving the contents of the identified grid
 cell. Octrees containment testing is typically logarithmic in the number
 of grid cells.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Surface-containment-testing">Surface containment testing<a class="anchor-link" href="#Surface-containment-testing">&#182;</a></h4><p>Surface representations are more challenging since there is no explicit
 representation of the object's interior. If it is known that a surface
 representation is watertight, then it is possible to <em>count</em> the number
@@ -16673,6 +16739,13 @@ counting the number of times a ray, eminating from the point, intersects the sur
 subtlety when the ray lies directly tangential to the surface and/or
 passes through an edge of the mesh (<a href="#fig:InsideOutside">Fig. 5</a>, right).
 These must be handled when developing a robust algorithm.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Collision-detection-between-primitives">Collision detection between primitives<a class="anchor-link" href="#Collision-detection-between-primitives">&#182;</a></h3><p>Collisions between geometric primitives can be computed through
 closed-form O(1) expressions. We shall give a couple of useful definitions here.</p>
 <p><strong>Sphere vs sphere</strong>. Two spheres with centers $\mathbf{c}_1$ and $\mathbf{c}_2$ and
@@ -16721,6 +16794,13 @@ if $a \in [c,d]$, $b \in [c,d]$, $c \in [a,b]$, or $d \in [a,b]$.</p>
 <p><img src="figures/modeling/primitive_collisions.svg" alt="fig:Collisions"></p>
 <div class="figcaption"><a name="fig:Collisions">Figure 6</a>.
 Primitive collision detection, showing (a) sphere vs sphere, (b) sphere vs line segment, with the closest point on the segment's supporting line indicated with a red circle, (c) line segment vs line segment, with the intersection of supporting lines indicated with a red circle, and (d) AABB vs AABB, showing overlap in one dimension but not the other. </div><hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Separation-principle-for-convex-objects">Separation principle for convex objects<a class="anchor-link" href="#Separation-principle-for-convex-objects">&#182;</a></h3><p>It is somewhat more challenging to determine whether triangles intersect
 each other, or two non-aligned boxes intersect each other. However, we
 can use a general <em>separation principle</em> that holds between all convex
@@ -16747,6 +16827,13 @@ For many shapes we can define a finite number of directions
 $\mathbf{n}_1,\ldots,\mathbf{n}_k$ such that failure to find a separation along
 all directions proves that a the geometries do not overlap. Examples
 are as follows.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Collision-detection-between-convex-polygons-in-2D">Collision detection between convex polygons in 2D<a class="anchor-link" href="#Collision-detection-between-convex-polygons-in-2D">&#182;</a></h4><p>Suppose convex polygons $A$ and $B$ are respectively given by points
 $\mathbf{a}_1,\ldots,\mathbf{a}_m$ and $\mathbf{b}_1,\ldots,\mathbf{b}_n$, listed in
 counter-clockwise order. Then, the $i$'th edge of $A$ has an outward
@@ -16765,6 +16852,13 @@ the polygon. This test fails, however, when one polygon is contained
 within another. Hence, to be certain that a polygon does not overlap the
 interior of another, we can follow the test by determining whether any
 point of A lies within B, and vice versa.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Collision-detection-detween-convex-polytopes-in-3D">Collision detection detween convex polytopes in 3D<a class="anchor-link" href="#Collision-detection-detween-convex-polytopes-in-3D">&#182;</a></h4><p>3D convex polytopes consist of vertices, edges, and faces. Each edge is
 bordered by two vertices and two faces, and each face is bordered by
 some number of edges and an equal number of vertices. The approach of
@@ -16835,6 +16929,13 @@ Observe that if $A$ or $B$ move just a little bit, the closest points
 are likely to be on the same features or on nearby features. Hence, by
 keeping track of the closest points and features over time, each update
 can be quite fast. In practice, updates are typically $O(1)$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Bounding-volume-hierarchies">Bounding volume hierarchies<a class="anchor-link" href="#Bounding-volume-hierarchies">&#182;</a></h3><p>For more complex, non-convex representations like triangle meshes, the
 approach of checking each pair of primitives defining the objects is
 prohibitively expensive. Instead, hierarchical geometric data structures
@@ -16862,6 +16963,13 @@ given model and then reused during collision detection.</p>
 <div class="figcaption"><a name="fig:bounding_volume_hierarchy">Figure 9</a>.
     A bounding volume hierarchy for a 2D W-shaped object, with circles as bounding volumes.  The leaf nodes contain individual line segments.
     </div><hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="BVH-representation-and-computation">BVH representation and computation<a class="anchor-link" href="#BVH-representation-and-computation">&#182;</a></h4><p>A BVH is a hierarchical data structure $H$ defined with respect to the local frame
 of each geometry (recall the implicit representation $G=(G_L,T)$).  The contents of a 
 leaf node $N$ are a portion of $G_L$, such as the lowest-level primitives of a triangle mesh
@@ -16904,6 +17012,13 @@ deformations, the BVs can be recomputed in bottom-up fashion to reflect the new 
 transformation.  However, if the change is drastic, then the BVH should be computed from scratch. For example,
 if a straight rope gets tied into a bow, then an optimal BVH for the bow would group together the parts
 of the rope that are knotted.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="BVH-queries">BVH queries<a class="anchor-link" href="#BVH-queries">&#182;</a></h4><p>To check collision between two BVHs $H_A$ and $H_B$, the following operations are
 performed recursively, starting at the root BVs.</p>
 <ol>
@@ -16926,6 +17041,13 @@ will need to be checked anyway.) One such heuristic is to start with the
 child with the greatest volume of overlap with the un-split BV.</p>
 <p>Other proximity queries, like distance queries and ray casting, can also be
 greatly accelerated by BVHs.  These are left as exercises for the reader.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Performance">Performance<a class="anchor-link" href="#Performance">&#182;</a></h4><p>The BVH approach has been extremely successful in practice, and is
 implemented in several widely used collision detection
 packages, such as PQP and FCL. Computational performance is generally
@@ -16938,6 +17060,13 @@ highly overlapping, then the heuristic will likely lead the search to
 find a collision quickly, and typically takes logarithmic time. The most
 expensive case is when the objects have many primitives that are very
 close to colliding, but not quite.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Broad-phase-collision-detection">Broad phase collision detection<a class="anchor-link" href="#Broad-phase-collision-detection">&#182;</a></h3><p>The above discussions applied only to pairs of geometries. If $n$
 objects are moving simultaneously, then it may be quite expensive to
 check all $n(n-1)/2$ pairs ($O(n^2)$ time). The process of eliminating
@@ -16997,6 +17126,13 @@ is typical in the URDF files used in ROS (<a href="#fig:vis_coll_geometry">Fig. 
 <div class="figcaption"><a name="fig:vis_coll_geometry">Figure 11</a>. 
     Visualization geometry for robots may be stored separately from the collision detection geometry, and may contain more details to improve the quality of visualization.
     </div><hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Rasterization">Rasterization<a class="anchor-link" href="#Rasterization">&#182;</a></h3><p>The basic operation performed by commodity graphics cards is known as
 <em>rasterization</em>, in which triangles are drawn, pixel by pixel, into the
 image shown on a computer screen.  The most common frameworks for doing
@@ -17020,6 +17156,13 @@ and Three.js provide such functionality in a relatively easy-to-enable manner.
 But designing such pipelines from scratch, e.g., using OpenGL or DirectX, is
 an advanced subject studied in computer graphics, and is beyond the scope of
 this book.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Volumetric-rendering">Volumetric rendering<a class="anchor-link" href="#Volumetric-rendering">&#182;</a></h3><p>The most common method for visualizing volumetric geometries is to
 convert the volume to a surface representation and use rasterization
 techniques. However, it is worth mentioning some other methods for
@@ -17033,6 +17176,13 @@ scattering, and self-shadowing can be simulated using these techniques.</p>
 <p><em>Volumetric texturing</em> methods treat the volume as a 3D texture and
 rasterize slices through the volume. This approach makes advanced use of
 modern GPUs to obtain faster frame rates than ray-casting methods.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Point-cloud-visualization">Point cloud visualization<a class="anchor-link" href="#Point-cloud-visualization">&#182;</a></h3><p>Point clouds can be somewhat challenging to visualize sensibly because
 the data is distributed with non-uniform sparsity, with missing patches
 due to occlusion, and spurious noise. If color information is
@@ -17077,6 +17227,13 @@ conversions between representations. It is also often necessary to
 perform modifications to an existing representation for purposes of
 computational efficiency, or limitations of storage / transmission
 channels.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Surface-to-triangle-mesh">Surface to triangle mesh<a class="anchor-link" href="#Surface-to-triangle-mesh">&#182;</a></h3><p>Alternate surface representations are often converted to triangle meshes
 for visualization, collision queries, and compatibility. Parameterized
 surfaces can be converted to triangle meshes by defining a grid in
@@ -17087,6 +17244,13 @@ Subdivision surfaces maintain a polygonal mesh, and by performing
 recursive subdivision and smoothing operations, the mesh is
 progressively modified toward a limiting smooth surface. The recursion
 stops when a desired resolution level is met.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Volume-to-surface">Volume to surface<a class="anchor-link" href="#Volume-to-surface">&#182;</a></h3><p>Implicit surfaces are typically converted to triangle meshes by the
 <em>marching cubes</em> algorithm . First, if the implicit function is not
 already in grid form, a grid containing the geometry is defined and the
@@ -17107,10 +17271,24 @@ axis-aligned.</p>
 <div class="figcaption"><a name="fig:MarchingCubes">Figure 13</a>. 
     TODO
     </div><hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Surface-to-volume">Surface to volume<a class="anchor-link" href="#Surface-to-volume">&#182;</a></h3><p>It is typically harder to convert between surface and volume
 representations due to subtle resolution issues, and furthermore when a
 surface is non-watertight it is not even clear what an appropriate
 volume should be.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="From-surface-to-distance-field">From surface to distance field<a class="anchor-link" href="#From-surface-to-distance-field">&#182;</a></h4><p>In the watertight surface case, the <em>fast marching method</em> (FMM) can be
 used to produce a signed distance field. The first step of FMM is to
 define a grid containing the surface, and identify all of the surface
@@ -17142,6 +17320,13 @@ The major caveat with this algorithm is that the initial determination
 of inside and outside vertices is sensitive to the grid resolution, and
 if there are features of the surface smaller than the grid cell size,
 this may lead to an inconsistent propagation of inside / outside cells.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Implicit-surface-fitting">Implicit surface fitting<a class="anchor-link" href="#Implicit-surface-fitting">&#182;</a></h4><p>Another class of volumetric construction methods attempts to fit an
 implicit surface function to the surface data. In one common form, an
 implicit function can be defined as a sum of $N$ <em>radial basis
@@ -17182,6 +17367,13 @@ with large $N$. More advanced approaches have been developed to overcome
 these issues, such as using basis functions that lead to a sparse
 matrix, or fitting many local implicit surfaces over local regions and
 then combining their results.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Space-carving">Space carving<a class="anchor-link" href="#Space-carving">&#182;</a></h4><p>Space carving techniques will be described in more detail when we
 discuss 3D mapping, but here we shall give a short overview. The idea is
 start with a fully occupied occupancy grid, and then to imagine taking
@@ -17195,6 +17387,13 @@ possible to modify the method slightly to define an approximate signed
 distance function. It should be noted, however, that space carving
 methods do not faithfully represent objects with interior cavities or
 deep holes that are difficult to see from a distant exterior view.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Point-cloud-to-surface">Point cloud to surface<a class="anchor-link" href="#Point-cloud-to-surface">&#182;</a></h3><p>Point clouds can be converted to surfaces in a few ways, but this
 operation is not trivial because it is not immediately clear simply from
 the coordinates of a set of points whether they belong to the same
@@ -17216,6 +17415,13 @@ $\alpha$-shapes, Delaunay triangulations, and the Voronoi diagram. These
 methods generally assume that the sampling of points on the surface is
 sufficiently dense so that, loosely speaking, surface elements are
 smaller than non-surface elements.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Simplification">Simplification<a class="anchor-link" href="#Simplification">&#182;</a></h3><p>Geometry can be simplified in a number of ways for improved
 computational performance and compact storage / transmission. Point
 clouds and volumetric representations can be downsampled or averaged to
@@ -17226,6 +17432,13 @@ Clustering methods break the mesh into pieces and then replaces the
 pieces with simplified re-meshed geometry. A mesh could also be
 converted into a volumetric representation of a given resolution, and
 then the surface could be extracted.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Software">Software<a class="anchor-link" href="#Software">&#182;</a></h2><p>There are many software libraries for handling geometric computations, including:</p>
 <ul>
 <li><p>Low-level rasterization: <a href="https://opengl.org/">OpenGL</a> (C, with bindings for other languages), <a href="https://en.wikipedia.org/wiki/DirectX">DirectX</a> (C++), <a href="https://www.khronos.org/webgl/wiki/Main_Page">WebGL</a> (Javascript, based on OpenGL)</p>

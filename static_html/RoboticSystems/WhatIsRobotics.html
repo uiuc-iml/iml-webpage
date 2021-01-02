@@ -13202,10 +13202,7 @@ $( document ).ready(function(){
 
 
 <div id='latex_user_defs'>
-        $\newcommand{\V}[1]{\mathbf #1}$
-$\newcommand{\M}[1] {#1}$
-$\newcommand{\Reals} { \mathbb{R} }$
-
+        
 </div>
 
 
@@ -13282,7 +13279,14 @@ should suffice for the purposes of this book.</p>
 <hr>
 <p><a name="#footnote1"></a>
 <sup>[1]</sup>: Presumably, by time of publication, self-driving cars are not yet widely commercially available.</p>
-<h2 id="How-to-Develop-a-Robot">How to Develop a Robot<a class="anchor-link" href="#How-to-Develop-a-Robot">&#182;</a></h2><p>A roboticist is a thinker, not a tinkerer. Although many students begin
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="How-to-develop-a-robot">How to develop a robot<a class="anchor-link" href="#How-to-develop-a-robot">&#182;</a></h2><p>A roboticist is a thinker, not a tinkerer. Although many students begin
 tinkering with robots at a relatively young age, this process is not
 usually the best way to develop a robot that performs a task well.
 Robotics is a more <em>deliberate</em> way of reaching the end goal that is
@@ -13389,18 +13393,37 @@ algorithms, and programming languages used in robotics.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Abstractions">Abstractions<a class="anchor-link" href="#Abstractions">&#182;</a></h2><blockquote><p><strong>System</strong> (n). A thing of such complexity that a human can only begin to comprehend it using cartoons.</p>
+</blockquote>
+<p>This statement, although tongue-in-cheek, is actually fairly
+accurate.  A system is composed of many interacting parts, each of which is individually complex,
+and it would take ages to understand deeply how everything works and interacts. 
+The "cartoons" referred to above are known (especially in the computing world)
+as <strong>abstractions</strong>.  An abstraction is a "black box" with inputs and outputs
+that performs some understandable function, which lets you ignore, to some
+extent, what goes on "under the hood".</p>
+<p>For example, to a first approximation, the basic function of a car is to
+turn on when a key is turned in the ignition, steer when the steering wheel is turned,
+accelerate when the accelerator is pressed, and decelerate when the brake is pressed.
+This is the implied <em>contract</em> that the abstraction of a car makes with to a user; 
+it makes little difference what type of material the tires are made of, the amount of wear
+on the brake pads, the function of the differential, whether the engine's fuel air mixture
+is controlled by computer or carburetor, whether the car's chassis was welded by robot or by human, or even whether the motor is an electric or combustion engine.  It can generally be assumed that driving the car will take you from point A to point B, assuming that A and B are connected by roads and that we know how to operate a car.  But a car is an incredibly complex machine, comprised of tens of thousands of mechanical parts, and modern cars have millions of lines of computer code.  We don't have to understand each of these little components; the car just works as a transportation device.  This is the cartoon we tell ourselves, and most of the time the car operates just as the cartoon tells us.</p>
+<p>Ah, you say, but what if the car is out of gas, or a tire is flat, or a family of bears has broken into your car and set up a den in the back seat?  Well, these areas in which the cartoon "breaks down".  This is also known as a <em>leaky abstraction</em>, because some factors that were unspecified in our abstract, assumed contract have "leaked" into the black box to cause unexpected or undesirable behavior.  A famous software engineering principle states that <a href="https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/">"all abstractions are, to some extent, leaky"</a>.  This certainly holds true for robotics as well.</p>
+<p>The development of a robot will certainly generate many interacting components, each of which performs a complex mechanical or software function.  Due to this complexity, multiple engineers will work on multiple components, and the only way to tractably comprehend the entire system is through abstraction.  A good engineer will properly <em>label</em> their component and <em>summarize</em> its function in an easy to understand manner.  E.g., the perception module gives the identity and location of all of the interesting things in view of the robot's cameras; the planning module waits for an instruction from a user and then plans a motion to act as requested; the controller module executes a current motion, and updates the motion whenever the planner requests it; the UI module shows the user the state of the robot, performs speech recognition, and translates words into recognized commands.  Moreover, she will <em>document</em> the components' specifications in a way that other engineers can use it in a predictable manner.</p>
+<p>An important function of abstractions is that they let us swap <strong>implementations</strong> of what goes on "under the hood".  We will describe several IK solvers, motion planners, trajectory optimizers, state estimators, and object recognizers.  All of them, although they may perform the same intended function, will differ in terms of performance characteristics (e.g., for algorithms, computational complexity, failure rates, network usage; for hardware, speed, strength, noise, and power consumption).  Different versions of an algorithm's code will also be swappable, and may have vastly different performance characteristics.  For example, 3D mapping on a GPU is orders of magnitude faster than doing it on a CPU.  It is a general rule that there will be many potential implementations of a given robot component, and more will be developed every year. A good architect of a robotic system will need to research and understand the state-of-the-art and plan how the system is developed to optimize the trade-offs between performance, resource usage, and implementation difficulty.</p>
+<p>A major goal of this book is to aid in the process of systems engineering by:</p>
+<ol>
+<li>Defining standard abstractions used in robotics</li>
+<li>Describing where these abstractions leak, why they leak, and what can be done to plug the leaks to the extent possible</li>
+<li>Presenting multiple implementations, and explain their performance characteristics</li>
+</ol>
 
-    </div>
 </div>
 </div>
-
 </div>
     </div>
   </div>

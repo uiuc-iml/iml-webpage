@@ -13225,10 +13225,7 @@ $( document ).ready(function(){
 
 
 <div id='latex_user_defs'>
-        $\newcommand{\V}[1]{\mathbf #1}$
-$\newcommand{\M}[1] {#1}$
-$\newcommand{\Reals} { \mathbb{R} }$
-
+        
 </div>
 
 
@@ -13315,7 +13312,7 @@ that SO(2) is fundamentally not equivalent because its elements do not
 <em>behave</em> like numbers on the interval when discussing continuity and
 proximity, as shown in <a href="#fig:TopologyRotation2D">Fig. 1</a>.</p>
 <hr>
-<p><img src="figures/modeling/topology_rotation_2d.png" alt="fig:TopologyRotation2D"></p>
+<p><img src="figures/modeling/topology_rotation_2d.svg" alt="fig:TopologyRotation2D"></p>
 <div class="figcaption"><a name="fig:TopologyRotation2D">Figure 1</a>. Top: The topology of the
 space of 2D rotations is homeomorphic to a
 circle, but not an interval. Although there is a one-to-one mapping
@@ -13325,6 +13322,13 @@ shortest path between the two marked points on the circle (solid arrow)
 wraps around $2\pi$, which is a discontinuous path on the interval. The
 shortest continuous path on the interval (dashed arrow) results in a
 longer path on the circle.</div><hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Basics-concepts-in-topology">Basics concepts in topology<a class="anchor-link" href="#Basics-concepts-in-topology">&#182;</a></h3><p>The topology of a space describes the connectedness of paths through it.
 Paths in a space $\mathcal{X}$ are continuous functions
 $x(s) : [0,1] \rightarrow \mathcal{X}$. Two spaces are topologically
@@ -13351,6 +13355,13 @@ usually wanted is the <em>shortest</em> path between those angles. As a result,
 rotational interpolation either requires specifying the direction of
 rotation, or instead requires examining and minimizing the distance
 traveled both CW and CCW.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Geodesic-distance-and-interpolation">Geodesic distance and interpolation<a class="anchor-link" href="#Geodesic-distance-and-interpolation">&#182;</a></h3><p>The path between two points in a space with minimum distance is known as
 a <em>geodesic</em>. Geodesics are the most direct route between two points on
 a space, and in Cartesian spaces are simply straight lines. The
@@ -13385,12 +13396,10 @@ that produces the angular displacement of $\theta_2$ from $\theta_1$
 with minimum absolute value, and whose value is positive for CCW
 displacement and negative for CW displacement.</p>
 <p>The geodesic between two angles is an interpolation among the signed
-angular distance:
-$$\theta(s) = (\theta_1 + s \cdot diff(\theta_2,\theta_1)) \mod (2\pi).$$
-The geodesic distance on $SO(2)$ is absolute angular distance, which is
-simply the absolute value of the signed distance
-$$d(\theta_1,\theta_2) = | diff(\theta_2,\theta_1) |.$$</p>
-
+angular distance:</p>
+$$\theta(s) = (\theta_1 + s \cdot diff(\theta_2,\theta_1)) \mod (2\pi).$$<p>The geodesic distance on $SO(2)$ is absolute angular distance, which is
+simply the absolute value of the signed distance</p>
+$$d(\theta_1,\theta_2) = | diff(\theta_2,\theta_1) |.$$
 </div>
 </div>
 </div>
@@ -13410,9 +13419,9 @@ $$d(\theta_1,\theta_2) = | diff(\theta_2,\theta_1) |.$$</p>
 </ul>
 <p>It is also possible to compose multiple spaces with the Cartesian product, such as $S_1 \times S_1$, which is the topology of the torus.  We also use a power notation $S_1 \times S_1 = S_1^2$ to denote repeated applications of the Cartesian product.</p>
 <p>Although we usually use a vector of parameters to describe elements of these spaces, this representation (in $\mathbb{R}^n$) does not capture their connectivity perfectly.  The vector representation will have deficiencies in having double representations of the same object, infinite representations of the same object (singularities), and in interpolation, which may not produce geodesics.</p>
-<p>Let us first consider a simpler example that will illustrate several of the issues we will come across when representing 3D rotations.  The latitude and longitude representation of the unit sphere (spherical coordinates), where each point has coordinates $$\mathbf{x}(\theta,\phi) = 
-\begin{bmatrix} \cos \theta \cos \phi \\ \sin \theta \cos \phi \\ \sin \phi \end{bmatrix}.$$
-Here $\theta \in [0,2\pi)$ gives the longitude and $\phi \in [-\pi/2,\pi/2]$ gives the latitude.</p>
+<p>Let us first consider a simpler example that will illustrate several of the issues we will come across when representing 3D rotations.  The latitude and longitude representation of the unit sphere (spherical coordinates), where each point has coordinates</p>
+$$\mathbf{x}(\theta,\phi) = 
+\begin{bmatrix} \cos \theta \cos \phi \\ \sin \theta \cos \phi \\ \sin \phi \end{bmatrix}.$$<p>Here $\theta \in [0,2\pi)$ gives the longitude and $\phi \in [-\pi/2,\pi/2]$ gives the latitude.</p>
 <p>Since each point on the sphere can be represented by some $(\theta,\phi)$ pair, this shows that the inherent dimensionality of $S_2$ is no more than 2.
 However, there are two singularities of this representation, namely, the north and south poles (0,0,1) and (0,0,-1), in which a point on the sphere have an infinite number of 2D representations. $\mathbf{x}(\theta,\pi/2) = (0,0,1)$  for any value of $\theta$, and $\mathbf{x}(\theta,-\pi/2) = (0,0,-1)$ for any value of $\theta$.</p>
 <p>The nonlinearity in this mapping also means that as a point approaches and passes either pole, the representation of the point swings wildly.  If $\mathbf{x} = (x,y,z)$, we have the inverse relation $\phi = \sin^{-1} z$, and $\theta = atan2(y,x)$ (which is undefined for $x=y=0$).  Observe the $\theta$ variable in the following plot as the arc gets closer to passing through the pole (blue and black curves):</p>
@@ -13422,10 +13431,10 @@ However, there are two singularities of this representation, namely, the north a
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Code for generating the spherical coordinates plot↔</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title↔</span>
 </pre></div>
 
     </div>
@@ -13468,13 +13477,13 @@ However, there are two singularities of this representation, namely, the north a
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="3D-rotation-matrices">3D rotation matrices<a class="anchor-link" href="#3D-rotation-matrices">&#182;</a></h2><p>Now let us return back to the 3D rotation case. As described before, 3D rotations
-are $3\times 3$ matrices with the following entries: $$R = 
+are $3\times 3$ matrices with the following entries:</p>
+$$R = 
 \begin{bmatrix}
 r_{11} &amp; r_{12} &amp; r_{13} \\
 r_{21} &amp; r_{22} &amp; r_{23} \\
 r_{31} &amp; r_{32} &amp; r_{33} 
-\end{bmatrix}$$</p>
-
+\end{bmatrix}$$
 </div>
 </div>
 </div>
@@ -13503,12 +13512,19 @@ than 3 continuous parameters are needed to represent all possible
 rotations</em>. However, the topology of SO(3) is very different from
 $\mathbb{R}^3$ in that it is bounded rather than infinite, and wraps
 around "in all directions", so to speak.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Axis-aligned-rotations">Axis-aligned rotations<a class="anchor-link" href="#Axis-aligned-rotations">&#182;</a></h3><p>Rotations about individual axis are the most straightforward to compute,
 because the behavior of one axis is unchanged and the other two axes
 undergo a 2D rotation along the orthogonal plane
 (<a href="#fig:AxisAlignedRotations">Fig. 2</a>).</p>
 <hr>
-<p><img src="figures/modeling/axis_aligned_rotations.png" alt="fig:AxisAlignedRotations"></p>
+<p><img src="figures/modeling/axis_aligned_rotations.svg" alt="fig:AxisAlignedRotations"></p>
 <div class="figcaption"><a name="fig:AxisAlignedRotations">Figure 2</a>. Axis-aligned
 rotations.</div><hr>
 <p>First, the matrix for rotation about the $Z$ axis contains a 2D rotation
@@ -13528,23 +13544,22 @@ property maintained by the first two 0 entries of the third column. In
 the $(X,Y)$ plane, the upper $2\times 2$ matrix is identical to a 2D
 rotation matrix.</p>
 <p>The rotation about the $X$ axis is similar, with a 2D rotation matrix
-appearing along the $Y$ and $Z$ axes:
+appearing along the $Y$ and $Z$ axes:</p>
 $$R_X(\theta) = 
 \begin{bmatrix}
 1 &amp; 0 &amp; 0 \\
 0 &amp; \cos \theta  &amp; -\sin \theta  \\
 0 &amp; \sin\theta  &amp; \cos \theta   
-\end{bmatrix}.$$</p>
-<p>Here the $X$ coordinate is preserved while the $Y$
+\end{bmatrix}.$$<p>Here the $X$ coordinate is preserved while the $Y$
 and $Z$ entries perform a 2D rotation.</p>
 <p>Finally, the rotation about the $Y$ axis is similar, but with a sign
-switch of the $\sin$ terms: $$R_Y(\theta) = 
+switch of the $\sin$ terms:</p>
+$$R_Y(\theta) = 
 \begin{bmatrix}
 \cos \theta &amp; 0 &amp; \sin\theta \\
 0 &amp; 1 &amp; 0\\
 -\sin \theta &amp; 0 &amp; \cos \theta   
-\end{bmatrix}.$$</p>
-<p>The reason why the $-\sin \theta$ term switches to
+\end{bmatrix}.$$<p>The reason why the $-\sin \theta$ term switches to
 below the diagonal is that if one were to orient a frame so the $Y$ axis
 points out of the page, and align the $X$ axis to point rightward, the
 $Z$ axis would point downward instead of upward. Instead, the matrix can
@@ -13556,13 +13571,19 @@ directions defining the orthogonal plane is derived from a <em>cyclic</em>
 ordering of the axes: $Y$ follows $X$, $Z$ follows $Y$, and $X$ follows
 $Z$. So, the plane orthogonal to $X$ is $(Y,Z)$, the plane orthogonal to
 $Y$ is $(Z,X)$, and the plane orthogonal to $Z$ is $(X,Y)$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Interpretation">Interpretation<a class="anchor-link" href="#Interpretation">&#182;</a></h3><p>Suppose the rotation is such that the pre-rotation axes $X$, $Y$, and
 $Z$, are rotated to post-rotation axes $X^\prime$, $Y^\prime$, and
 $Z^\prime$, respectively. The first column represents the coordinates of
-$X^\prime$ axis <em>relative to the original frame</em> after rotation
+$X^\prime$ axis <em>relative to the original frame</em> after rotation</p>
 $$\mathbf{x}^\prime = 
-\begin{bmatrix} r_{11} \\ r_{21} \\ r_{31} \end{bmatrix}.$$</p>
-
+\begin{bmatrix} r_{11} \\ r_{21} \\ r_{31} \end{bmatrix}.$$
 </div>
 </div>
 </div>
@@ -13578,6 +13599,13 @@ third column gives $\mathbf{z}^\prime = (r_{13},r_{23},r_{33})$.</p>
 old and new $X$ axis (because it is the dot product between
 $\mathbf{x}^\prime$ and $\mathbf{x} = (1,0,0)$. Similarly, the other diagonal
 elements give the cosine of the angle between the other axes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Operations">Operations<a class="anchor-link" href="#Operations">&#182;</a></h3><p><strong>Applying rotation to a point.</strong> As we have seen before, applying
 rotation to a point (i.e., deriving the coordinates of a rotated point
 in the original coordinate frame) is simply matrix-vector
@@ -13588,6 +13616,13 @@ matrix is the result of applying $R_2$ first and then $R_1$, and is not
 the same as the converse.</p>
 <p><strong>Inversion.</strong> As we have seen above, the inverse rotation matrix is
 simply the matrix transpose.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Discussion">Discussion<a class="anchor-link" href="#Discussion">&#182;</a></h3><p>Properly composing rotations can be confusing due to the convention
 chosen about whether rotation axes are considered fixed to the world
 reference frame, or rotating along with the local reference frame. In
@@ -13601,7 +13636,7 @@ frame</em> to obtain $P^{\prime\prime}$. The result $R_1 R_2 \mathbf{p}$ gives
 the coordinates of $P^{\prime\prime}$ relative to the un-rotated
 reference frame, as shown in <a href="#fig:RotationComposition">Fig. 3</a>.</p>
 <hr>
-<p><img src="figures/modeling/rotation3d_composition.png" alt="fig:RotationComposition"></p>
+<p><img src="figures/modeling/rotation3d_composition.svg" alt="fig:RotationComposition"></p>
 <div class="figcaption"><a name="fig:RotationComposition">Figure 3</a>. The composition $R_1\cdot R_2$
 of two rotation matrices corresponds to
 first performing $R_2$, then performing $R_1$. This means that the
@@ -13626,8 +13661,8 @@ answer:</p>
 </li>
 </ol>
 <p>This answer is incorrect, and is also the answer that would have been
-obtained through composing the matrices:
-$$R_X(90^\circ) R_Z(90^\circ) \mathbf{p} + \mathbf{t}$$ Instead, the key problem
+obtained through composing the matrices:</p>
+$$R_X(90^\circ) R_Z(90^\circ) \mathbf{p} + \mathbf{t}$$<p>Instead, the key problem
 is that after the first rotation, the local $X$ axis has rotated along
 with the body, and is no longer equivalent to the $X$ axis in world
 coordinates! Instead, it is aligned with the world's $Y$ axis. The
@@ -13644,13 +13679,20 @@ world $Y$ axis.</p>
 </li>
 </ol>
 <p>It is also confusing that the correct result is also obtained by
-switching the order of the rotations!
-$$R_Z(90^\circ) R_X(90^\circ) \mathbf{p} + \mathbf{t}.$$ The reason why this
+switching the order of the rotations!</p>
+$$R_Z(90^\circ) R_X(90^\circ) \mathbf{p} + \mathbf{t}.$$<p>The reason why this
 switched order works is that in the first rotation about $X$, the local
 and world $X$ axis are aligned. The second rotation about $Z$ is
 performed with respect to the world $Z$ axis, which is also equivalent
 to $B$'s original $Z$ axis. In general, intrinsic rotations are composed
 in reverse order to extrinsic rotations.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Euler-angles">Euler angles<a class="anchor-link" href="#Euler-angles">&#182;</a></h2><p>Euler angles are a three-parameter representation of rotations
 $(\phi,\theta,\psi)$, and are derived from the definitions of $R_X$,
 $R_Y$, and $R_Z$ above. They are one of the oldest rotation
@@ -13661,27 +13703,27 @@ rotations. The order in which axes are chosen is a matter of convention.</p>
 <h3 id="Conventions">Conventions<a class="anchor-link" href="#Conventions">&#182;</a></h3><p>For example, the <em>roll-pitch-yaw</em> convention often used in aerospace
 assumes that a vehicle's roll angle is about its $X$ axis, pitch is
 about its $Y$ axis, and yaw is about its $Z$ axis
-(<a href="#fig:RollPitchYaw">Fig. 4</a>), with the composite rotation given by:
-$$R_{rpy}(\phi,\theta,\psi) = R_Z(\phi) R_Y(\theta) R_X(\psi)$$ Notice
+(<a href="#fig:RollPitchYaw">Fig. 4</a>), with the composite rotation given by:</p>
+$$R_{rpy}(\phi,\theta,\psi) = R_Z(\phi) R_Y(\theta) R_X(\psi)$$<p>Notice
 that the order of rotation axes is $Z$, $Y$, $X$, and this is also known
 as $ZYX$ convention. (Note that in order of application, this applies
 roll (X) first, then pitch (Y), then yaw (Z).)</p>
 <hr>
-<p><img src="figures/modeling/roll_pitch_yaw.png" alt="fig:RollPitchYaw"></p>
+<p><img src="figures/modeling/roll_pitch_yaw.svg" alt="fig:RollPitchYaw"></p>
 <div class="figcaption"><a name="fig:RollPitchYaw">Figure 4.</a>
 Roll-pitch-yaw convention consists of a roll about the vehicle's
 forward direction, a pitch about its leftward direction, and a yaw
 around its upward direction.</div><hr>
-<p>There are a multitude of other conventions possible, each of the form
+<p>There are a multitude of other conventions possible, each of the form</p>
 $$R_{ABC}(\phi,\theta,\psi) = R_A(\phi) R_B(\theta) R_C(\psi)
-\label{eq:EulerAngles}$$ where $A$, $B$, and $C$ are one of $X$, $Y$, or
+\label{eq:EulerAngles}$$<p>where $A$, $B$, and $C$ are one of $X$, $Y$, or
 $Z$. To be a valid convention, the span of possible results from the
 convention must span the range of possible rotation matrices, and this
 means that no two subsequent axes may be the same, e.g., $XXY$ is not
 permissible, since two combined rotations about one axis are equivalent
 to a single rotation about that axis. However, $A$ and $C$ may indeed be
-the same, for example, in $ZYZ$ convention:
-$$R_{ZYZ}(\phi,\theta,\psi) = R_Z(\phi) R_Y(\theta) R_Z(\psi)$$ Here the
+the same, for example, in $ZYZ$ convention:</p>
+$$R_{ZYZ}(\phi,\theta,\psi) = R_Z(\phi) R_Y(\theta) R_Z(\psi)$$<p>Here the
 intervening $Y$ rotation modifies the axis by which one of the $R_Z$
 terms rotates, and can in fact span all rotation matrices.</p>
 <h3 id="Conversion-between-matrices">Conversion between matrices<a class="anchor-link" href="#Conversion-between-matrices">&#182;</a></h3><p>Conversion from Euler angles to rotation matrices is a straightforward
@@ -13692,19 +13734,20 @@ trigonometry.</p>
 <p>First, for the given convention we would begin by equating the matrix
 terms to the sine and cosine terms of the computed rotation matrix,
 e.g., for roll-pitch-yaw convention:</p>
-$$
-R_{rpy} =  
+<p>R<em>{rpy} =<br>
 \begin{bmatrix}
-r_{11} &amp; r_{12} &amp; r_{13} \\
-r_{21} &amp; r_{22} &amp; r_{23} \\
-r_{31} &amp; r_{32} &amp; r_{33} 
+r</em>{11} &amp; r<em>{12} &amp; r</em>{13} \
+r<em>{21} &amp; r</em>{22} &amp; r<em>{23} \
+r</em>{31} &amp; r<em>{32} &amp; r</em>{33} 
 \end{bmatrix} = 
 \begin{bmatrix}
-c_1 c_2  &amp; c_1 s_2 s_3 - s_1 c_3 &amp; s_1 s_3 + c_1 s_2 c_3 \\
-s_1 c_2  &amp; c_1 c_3 + s_1 s_2 s_3 &amp;  s_1 s_2 c_3 - c_1 s_3 \\
-- s_2    &amp; c_2 s_3               &amp; c_2 c_3  
-\end{bmatrix}
-$$<p>where we use the shorthand $c_1 = \cos \phi$,
+c_1 c_2  &amp; c_1 s_2 s_3 - s_1 c_3 &amp; s_1 s_3 + c_1 s_2 c_3 \
+s_1 c_2  &amp; c_1 c_3 + s_1 s_2 s_3 &amp;  s_1 s_2 c_3 - c_1 s_3 \</p>
+<ul>
+<li>s_2    &amp; c_2 s_3               &amp; c_2 c_3<br>
+\end{bmatrix}</li>
+</ul>
+<p>where we use the shorthand $c_1 = \cos \phi$,
 $s_1 = \sin \phi$, $c_2 = \cos \theta$, $s_2 = \sin \theta$,
 $c_3 = \cos \psi$, and $s_3 = \sin \psi$.</p>
 <p>The simplest term is in the lower left corner, so we find one of the two
@@ -13764,7 +13807,7 @@ given unit axis
 (<a href="#fig:AxisAngleRotation">Fig. 5</a>). Perhaps it is a surprising fact
 that every rotation can be represented in this form!</p>
 <hr>
-<p><img src="figures/modeling/axis_angle_rotation.png" alt="fig:AxisAngleRotation"></p>
+<p><img src="figures/modeling/axis_angle_rotation.svg" alt="fig:AxisAngleRotation"></p>
 <div class="figcaption"><a name="fig:AxisAngleRotation">Figure 5</a>. Any
     rotation matrix (bold) can be represented by a rotation of some angle about
     some axis.</div><hr>
@@ -13784,6 +13827,13 @@ referred to many names in the literature, including Rodrigues
 parameters, exponential coordinates, or angular velocity. (It will
 become extremely useful when we discuss the derivative of rotation
 matrices in the context of the angular velocity of rigid bodies.)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Converting-to-rotation-matrix">Converting to rotation matrix<a class="anchor-link" href="#Converting-to-rotation-matrix">&#182;</a></h3><p>To convert from axis-angle form to rotation matrices, we use <em>Rodrigues'
 formula</em>. The derivation of Rodrigues' formula starts by decomposing a
 rotated point into its coordinate about the axis $\mathbf{a}$ and its
@@ -13807,19 +13857,27 @@ $\mathbf{p}_\perp = -\mathbf{a} \times (\mathbf{a} \times \mathbf{p})$.</p>
 <p>As a result, the coordinates of $\mathbf{p}_\perp$ given these (non-unit)
 axes are $(0,-1)$, so that post rotation, $\mathbf{p}_\perp^\prime$ will have
 coordinates $(\sin \theta, - \cos \theta)$. Projecting these coordiantes
-back into the original space, we have
-$$\mathbf{p}_\perp^\prime = \sin \theta (\mathbf{a} \times \mathbf{p}) + \cos \theta \mathbf{p}_\perp$$
-Reconstructing the rotated point $\mathbf{p}^\prime$, we obtain:
-$$\mathbf{p}^\prime = (\mathbf{a} \cdot \mathbf{p}) \mathbf{a} + \sin \theta (\mathbf{a} \times \mathbf{p}) +  \cos \theta (\mathbf{p} - (\mathbf{a} \cdot \mathbf{p}) \mathbf{a}))$$
-which is often rearranged to group terms:
-$$\mathbf{p}^\prime = \cos \theta \mathbf{p} + \sin \theta (\mathbf{a} \times \mathbf{p}) + (1-\cos \theta) (\mathbf{a} \cdot \mathbf{p}) \mathbf{a}.$$</p>
-<p>Although this formula gives an expression for the transform, we can also
+back into the original space, we have</p>
+$$\mathbf{p}_\perp^\prime = \sin \theta (\mathbf{a} \times \mathbf{p}) + \cos \theta \mathbf{p}_\perp$$<p>Reconstructing the rotated point $\mathbf{p}^\prime$, we obtain:</p>
+$$\mathbf{p}^\prime = (\mathbf{a} \cdot \mathbf{p}) \mathbf{a} + \sin \theta (\mathbf{a} \times \mathbf{p}) +  \cos \theta (\mathbf{p} - (\mathbf{a} \cdot \mathbf{p}) \mathbf{a}))$$<p>which is often rearranged to group terms:</p>
+$$\mathbf{p}^\prime = \cos \theta \mathbf{p} + \sin \theta (\mathbf{a} \times \mathbf{p}) + (1-\cos \theta) (\mathbf{a} \cdot \mathbf{p}) \mathbf{a}.$$<p>Although this formula gives an expression for the transform, we can also
 rearrange terms to express it as a matrix. We will use the cross-product
-matrix notation
-$$\hat{\mathbf{v}} = 
-\begin{bmatrix} 0 &amp; -v_z &amp; v_y \\ v_z &amp; 0 &amp; -v_x \\ -v_y &amp; v_x &amp; 0 \end{bmatrix}, \label{eq:CrossProductMatrix}$$
-so called because
-$\hat{\mathbf{v}} \mathbf{w} = \mathbf{v} \times \mathbf{w}$.</p>
+matrix operator notation</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$\hat{\mathbf{v}} =
+
+\begin{bmatrix}
+0 &amp; -v_z &amp; v_y \\
+v_z &amp; 0 &amp; -v_x \\
+-v_y &amp; v_x &amp; 0
+\end{bmatrix}, \label{eq:CrossProductMatrix}$$<p>so called because</p>
+<p>$\hat{\mathbf{v}} \mathbf{w} = \mathbf{v} \times \mathbf{w}$.</p>
 
 </div>
 </div>
@@ -13843,15 +13901,21 @@ $$
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The parenthesized term is the rotation matrix
-corresponding to the axis-angle representation:
+corresponding to the axis-angle representation:</p>
 $$R_{aa}(\mathbf{a},\theta) = 
-I + \sin \theta \hat{\mathbf{a}} + (1-\cos\theta) \hat{\mathbf{a}}^2.$$</p>
-<p>For rotation vector representation we simply convert to axis-angle form
-and use the formula above.
-$$R_m(\mathbf{m}) = R_{aa}(\mathbf{m} / \| \mathbf{m} \|, \| \mathbf{m} \|)$$</p>
+I + \sin \theta \hat{\mathbf{a}} + (1-\cos\theta) \hat{\mathbf{a}}^2.$$<p>For rotation vector representation we simply convert to axis-angle form
+and use the formula above.</p>
+$$R_m(\mathbf{m}) = R_{aa}(\mathbf{m} / \| \mathbf{m} \|, \| \mathbf{m} \|)$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Converting-from-a-rotation-matrix">Converting from a rotation matrix<a class="anchor-link" href="#Converting-from-a-rotation-matrix">&#182;</a></h3><p>To convert back from a rotation matrix $R$ to axis-angle representation,
 we can calculate the entries of $R_{aa}(\mathbf{a},\theta)$ and invert the
-equation to match the entries of $R$: $$R = 
+equation to match the entries of $R$:</p>
+$$R = 
 \begin{bmatrix}
 r_{11} &amp; r_{12} &amp; r_{13} \\
 r_{21} &amp; r_{22} &amp; r_{23} \\
@@ -13859,22 +13923,23 @@ r_{31} &amp; r_{32} &amp; r_{33}
 \end{bmatrix} = 
 \begin{bmatrix}
 \cos\theta  I + \sin \theta \hat{\mathbf{a}} + (1-\cos\theta ) \mathbf{a} \mathbf{a}^T
-\end{bmatrix}$$ where we have used the fact that $$\hat{\mathbf{a}}^2 =</p>
+\end{bmatrix}$$<p>where we have used the fact that</p>
+$$\hat{\mathbf{a}}^2 = 
+
 \begin{bmatrix}
 0 &amp; -a_z &amp; a_y \\
 a_z &amp; 0 &amp; -a_x \\
 -a_y &amp; a_x  0
-\end{bmatrix}<p>^2 = 
+\end{bmatrix}^2 = 
 \begin{bmatrix}
 -a_z^2 - a_y^2 &amp; a_x a_y &amp; a_x a_z \\
 a_x a_y &amp; -a_x^2 - v_z^2 &amp; a_y a_z \\
 a_x a_z &amp; a_y a_z &amp; -a_x^2 - a_y^2
 \end{bmatrix}
-= \mathbf{a} \mathbf{a}^T - I.$$ Taking the trace of $R$, we get
-$$tr(R) = 3 \cos \theta + (1-\cos \theta) tr(\mathbf{a} \mathbf{a}^T) = 3 \cos \theta + (1 - \cos\theta) (\mathbf{a} \cdot \mathbf{a}) = 1 + 2 \cos \theta.$$
-Hence, we have the relationship:
+= \mathbf{a} \mathbf{a}^T - I.$$<p>Taking the trace of $R$, we get</p>
+$$tr(R) = 3 \cos \theta + (1-\cos \theta) tr(\mathbf{a} \mathbf{a}^T) = 3 \cos \theta + (1 - \cos\theta) (\mathbf{a} \cdot \mathbf{a}) = 1 + 2 \cos \theta.$$<p>Hence, we have the relationship:</p>
 $$\theta = \cos^{-1} \left(\frac{tr(R)-1}{2}\right)
-\label{eq:RotationAbsoluteAngle}$$ which gives the *absolute angle* of a
+\label{eq:RotationAbsoluteAngle}$$<p>which gives the <em>absolute angle</em> of a
 rotation matrix. This is also significant because it is the minimal
 angle needed to rotate from the identity matrix to $R$, and hence is a
 useful pseudo-norm for 3D rotations.</p>
@@ -13882,13 +13947,13 @@ useful pseudo-norm for 3D rotations.</p>
 matrix. We see that the difference
 $r_{12} - r_{21} = -a_z \sin \theta + (1-\cos \theta) a_x a_y - (a_z \sin \theta + (1-\cos \theta) a_x a_y) = -2 a_z \sin \theta$,
 canceling out the contribution of the matrix $\mathbf{a} \mathbf{a}$ since it is
-symmetric. Hence if $\sin \theta \neq 0$, we can determine
+symmetric. Hence if $\sin \theta \neq 0$, we can determine</p>
 $$
 \begin{split}
 a_x &amp;=  (r_{32}-r_{23}) / 2 \sin \theta \\
 a_y &amp;=  (r_{13}-r_{31}) / 2 \sin \theta \\
 a_z &amp;=  (r_{21}-r_{12}) / 2 \sin \theta.
-\end{split}$$ In the case where $\sin \theta = 0$, we could either have
+\end{split}$$<p>In the case where $\sin \theta = 0$, we could either have
 the case where $\theta = 0$, in which case $R$ is an identity matrix and
 any axis will do, or $\theta = \pi$, and more work is needed to
 determine the true axis of rotation. In this case, $\cos \theta = -1$,
@@ -13922,12 +13987,13 @@ representation is simply its negative $R_m(\mathbf{m})^{-1} = R_m(-\mathbf{m})$.
 conveniently represents the geodesic curve from the identity rotation to
 any given rotation. If $R_1$ is a given rotation matrix with axis-angle
 form $(\mathbf{a},\theta)$, then the geodesic interpolation from $I$ to $R_1$
-is given by the curve $$R(s) = R_{aa}(\mathbf{a},s\theta)$$ where at $s=0$
+is given by the curve</p>
+$$R(s) = R_{aa}(\mathbf{a},s\theta)$$<p>where at $s=0$
 the result is the identity, and at $s=1$ the result is $R_1$.</p>
 <h3 id="Geodesic-interpolation">Geodesic interpolation<a class="anchor-link" href="#Geodesic-interpolation">&#182;</a></h3><p>We apply the geodesic scaling operation to produce geodesic
 interpolation between two rotations. Given an initial rotation $R_0$ and
-a final rotation $R_1$, we may perform the interpolation
-$$R(s) = R_0 R_{aa}(\mathbf{a},s\theta)$$ where $(\mathbf{a},\theta)$ is the axis
+a final rotation $R_1$, we may perform the interpolation</p>
+$$R(s) = R_0 R_{aa}(\mathbf{a},s\theta)$$<p>where $(\mathbf{a},\theta)$ is the axis
 angle representation of the relative rotation $R_0^T R_1$. (Verify that
 $R(0) = R_0$ and $R(1) = R_1$.)</p>
 <p>Because of its common utility, it may be useful to consider representing this
@@ -13950,7 +14016,8 @@ component of a point $(p,q)$ rotated by $\theta$. A long search in the
 rotations yielded the quaternion representation.</p>
 <p>Quaternions $(q_0,q_1,q_2,q_3)$ are composed of 1 real coordinate $q_0$
 and three imaginary coordinates $q_1$, $q_2$, and $q_3$ that represent a
-complex number $$q = q_0 + i q_1 + j q_2 + k q_3$$ where $i$, $j$, and
+complex number</p>
+$$q = q_0 + i q_1 + j q_2 + k q_3$$<p>where $i$, $j$, and
 $k$ are imaginary numbers defined such that</p>
 <ul>
 <li><p>$i^2 = j^2 = k^2 = -1$</p>
@@ -13964,8 +14031,8 @@ $k$ are imaginary numbers defined such that</p>
 </ul>
 <p>Note that these multiplication rules are non-symmetric. The product of
 two quaternions is a non-symmetric operation that is defined by applying
-standard distributive laws and the above rules:
-$$</p>
+standard distributive laws and the above rules:</p>
+\begin{equation}
 \begin{split}
 q p  = &amp; (q_0 + i q_1 + j q_2 + k q_3) (p_0 + i p_1 + j p_2 + k p_3) \\
  = &amp; q_0 (p_0 + i p_1 + j p_2 + k p_3) + i q_1 (p_0 + i p_1 + j p_2 + k p_3) + \\
@@ -13974,9 +14041,9 @@ q p  = &amp; (q_0 + i q_1 + j q_2 + k q_3) (p_0 + i p_1 + j p_2 + k p_3) \\
    &amp; j q_2  p_0 + j i q_2 p_1 + j^2 q_2 p_2 + j k q_2 p_3 + k q_3 p_0 + k i  q_3 p_1 +  k j  q_3 p_2 + k^2  q_3 p_3 \\
  = &amp; (q_0 p_0 - q_1 p_1 - q_2 p_2 - q_3 p_3) + i (q_0 p_1 + q_1 p_0 + q_2 p_3 - q_3 p_2) + \\
    &amp; j (q_0 p_2 + q_2 p_0 - q_1 p_3 + q_3 p_1) + k (q_0 p_3 + q_3 p_0 + q_1 p_2 -  q_2 p_1)
-\end{split}<p>\label{eq:QuaternionMultiplication}
-$$
-Norms are defined as usual so that
+\end{split}
+\label{eq:QuaternionMultiplication}
+\end{equation}<p>Norms are defined as usual so that
 $|q| = \sqrt{q_0^2 + q_1^2 + q_2^2 + q_3^2} = 1$ defines a unit
 quaternion. Unit quaternions have the special property that their
 inverse is simply the negation of their imaginary components:
@@ -13984,21 +14051,20 @@ $q^{-1} = q_0 - i q_1 - j q_2 - k q_3$.</p>
 <p>Given a 3D point $\mathbf{p} = (x,y,z)$ and its representation as a
 quaternion $p = (0,x,y,z)$, there is an operation called the
 <em>conjugation</em> of $p$ by a unit quaternion $q$ so that the result gives a
-rotated point $p^\prime = (0,x^\prime,y^\prime,z^\prime)$:
-$$p^\prime = q p q^{-1}.$$ More specifically, the quaternion is related
+rotated point $p^\prime = (0,x^\prime,y^\prime,z^\prime)$:</p>
+$$p^\prime = q p q^{-1}.$$<p>More specifically, the quaternion is related
 to axis-angle representation $(\mathbf{a},\theta)$ using the conversion
 $(q_0,q_1,q_2,q_3) = ( \cos (\theta / 2), \sin (\theta / 2) a_x, \sin (\theta / 2) a_y, \sin (\theta / 2) a_z)$.
-Also, the rotation matrix defined by a quaternion is given by:
+Also, the rotation matrix defined by a quaternion is given by:</p>
 $$R_q(q) = \left[
 \begin{array}{ccc}
 2 (q_0^2 + q_1^2 ) - 1 &amp; 2 (q_1 q_2 - q_0 q_3)  &amp; 2 (q_1 q_3 + q_0 q_2) \\
 2(q_1 q_2 + q_0 q_3 )  &amp; 2 (q_0^2 + q_2^2 ) - 1 &amp; 2 (q_2 q_3 - q_0 q_1) \\
 2(q_1 q_2 - q_0 q_3 )  &amp; 2 (q_2 q_3 + q_0 q_1)  &amp; 2 (q_0^2 + q_3^2 ) - 1
-\end{array}\right].$$</p>
-<h3 id="Double-cover-of-4-sphere">Double cover of 4 sphere<a class="anchor-link" href="#Double-cover-of-4-sphere">&#182;</a></h3><p>Quaternions are similar to points on a 4-D unit sphere, but they have
+\end{array}\right].$$<h3 id="Double-cover-of-4-sphere">Double cover of 4 sphere<a class="anchor-link" href="#Double-cover-of-4-sphere">&#182;</a></h3><p>Quaternions are similar to points on a 4-D unit sphere, but they have
 the property that a quaternion and its negative produce equivalent
-rotations. This can be easily seen from the conjugation equation:
-$$p^\prime = q p q^{-1} = (-q) p (-q)^{-1}.$$ As a result, the space of
+rotations. This can be easily seen from the conjugation equation:</p>
+$$p^\prime = q p q^{-1} = (-q) p (-q)^{-1}.$$<p>As a result, the space of
 rotations could be thought of as a 4-D sphere except warped so that
 points on the opposite sides of the sphere are mapped to the same
 rotation. This representation makes certain operations, like
@@ -14020,9 +14086,8 @@ element of $p$ is flipped. (This step is specific to quaternion rotation
 interpolation, and skipped for general slerp on spheres.)</p>
 <p>Next, the angle $\theta$ between the two quaternions is computed
 according to $\theta = \cos^{-1} (q \cdot p)$. Finally, the interpolated
-quaternion is given by
-$$r(s) = \frac{\sin ((1-s) \theta)}{\sin \theta} q + \frac{\sin (s \theta)}{\sin \theta} p.$$
-It can be shown that this is a geodesic and interpolates across the
+quaternion is given by</p>
+$$r(s) = \frac{\sin ((1-s) \theta)}{\sin \theta} q + \frac{\sin (s \theta)}{\sin \theta} p.$$<p>It can be shown that this is a geodesic and interpolates across the
 great circle at constant velocity.</p>
 
 </div>
@@ -14198,9 +14263,10 @@ representation?</p>
 <li><p>Derive a method to compute the average of two 3D rotation matrices.
 (Use the hint given in problem 1.)</p>
 </li>
-<li><p>For the cross-product matrix function $\hat{\mathbf{v}}$ given by
+<li><p>For the cross-product matrix operator $\hat{\mathbf{v}}$ given by
 ($\ref{eq:CrossProductMatrix}$), show that
-$R \hat{\mathbf{v}} R^T = \hat{R\mathbf{v}}$.</p>
+$R \hat{\mathbf{v}} R^T = \hat{(R\mathbf{v})}$ (here the hat-operator
+is applied to the entire vector $R\mathbf{v}$.</p>
 </li>
 <li><p>Consider a distance function $d(R_A,R_B)$ between two matrices,
 defined as the absolute angle of $R_A^T R_B$ (as given by
@@ -14215,98 +14281,6 @@ not? (Hint: consider what it means to be a geodesic.)</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Interactive-examples">Interactive examples<a class="anchor-link" href="#Interactive-examples">&#182;</a></h2><p>The following interactive examples require Klampt-jupyter-extension and Klamp't to be installed on your system.  Instructions can be found at
-<a href="https://github.com/krishauser/Klampt-jupyter-extension">https://github.com/krishauser/Klampt-jupyter-extension</a>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Comparing-3D-rotation-representations">Comparing 3D rotation representations<a class="anchor-link" href="#Comparing-3D-rotation-representations">&#182;</a></h3><p>Use the sliders to observe how the chosen parameters affect the corresponding rotation matrix.</p>
-<p>Notes:</p>
-<ul>
-<li><p>The axis of axis-angle rotations is specified with spherical coordinates $(\phi,\psi)$.</p>
-</li>
-<li><p>The quaternion components $(q_0,q_1,q_2,q_3)$ are labeled $(q_w,q_x,q_y,q_z)$. The sliders let you change the $q_x, q_y, q_z$ components, while the $q_w$ component is given by $\sqrt{1 - q_x^2 - q_y^2 - q_z^2}$.</p>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Code for the interactive example (run me!)↔</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-
- 
- 
-<div id="a8dd586b-7379-459d-848b-65a7813b362e"></div>
-<div class="output_subarea output_widget_view ">
-<script type="text/javascript">
-var element = $('#a8dd586b-7379-459d-848b-65a7813b362e');
-</script>
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "model_id": "2097d9d0cc2e4d2593dcda3278e845a6", "version_minor": 0}
-</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
 </div>
     </div>
   </div>

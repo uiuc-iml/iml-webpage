@@ -13202,10 +13202,7 @@ $( document ).ready(function(){
 
 
 <div id='latex_user_defs'>
-        $\newcommand{\V}[1]{\mathbf #1}$
-$\newcommand{\M}[1] {#1}$
-$\newcommand{\Reals} { \mathbb{R} }$
-
+        
 </div>
 
 
@@ -13243,21 +13240,29 @@ use mathematical tools to find a closed-form expression of the minimum.
 When this is possible, such a solution can be very valuable because it
 can be evaluated quickly on a computer or can be used in further
 mathematical transformations.</p>
-<h4 id="Existence-and-necessary-conditions-of-a-minimum">Existence and necessary conditions of a minimum<a class="anchor-link" href="#Existence-and-necessary-conditions-of-a-minimum">&#182;</a></h4><p>The minimum of $f$ over a domain $S$ is a value $m$ such that $m=f(c)$
-for some value $c \in S$ and that $m \leq f(x)$. If such a value exists,
-we write: $$m = \min_{x \in S} f(x)$$</p>
-<h4 id="Argument-of-the-minimum">Argument of the minimum<a class="anchor-link" href="#Argument-of-the-minimum">&#182;</a></h4><p>We may also be interested in obtaining the x-values $c$ that attains
-this minimum. This is known as an <em>argument of the minimum</em> (or arg min)
-$$c = \arg\min_{x \in S} f(x).$$ Since a function may attain its minimum
+<h4 id="Existence-and-necessary-conditions-of-a-minimum">Existence and necessary conditions of a minimum<a class="anchor-link" href="#Existence-and-necessary-conditions-of-a-minimum">&#182;</a></h4><blockquote><p>The <strong>minimum</strong> of $f$ over a domain $S$ is a value $m$ such that $m=f(c)$
+for some value $c \in S$ and that $m \leq f(x)$. If such a value exists, we write: $$m = \min_{x \in S} f(x)$$</p>
+</blockquote>
+<p>We may also be interested in obtaining the x-values $c$ that attains
+this minimum.</p>
+<blockquote><p>The <strong>argument of the minimum</strong> (or <strong>arg min</strong>) is a point $c$ for which $f(c) = \min_{x \in S} f(x)$.  We write $c = \arg\min_{x \in S} f(x).$</p>
+</blockquote>
+<p>Since a function may attain its minimum
 at multiple points, the $\arg\min$ is technically a set of points. It
 may also be an empty set if the minimum is not defined, e.g.
 $\arg \min_{x \in \mathbb{R}} x$.</p>
-<h4 id="Local-minima-and-critical-points">Local minima and critical points<a class="anchor-link" href="#Local-minima-and-critical-points">&#182;</a></h4><p>A value $x$ for which $f$ obtains its maximum over some open interval
+<p>Similar conditions define the <strong>maximum</strong> and <strong>arg max</strong>.</p>
+<h4 id="Local-minima-and-critical-points">Local minima and critical points<a class="anchor-link" href="#Local-minima-and-critical-points">&#182;</a></h4><p>A value $x$ for which $f$ obtains its minimum (or maximum) over some open interval
 containing $x$ is known as a <em>local minimum</em> (or maximum) of $f$. If $f$
 is differentiable, then one condition for local optimality is that the
-derivative of $f$ vanishes at $x$ (Figure 1). In other words, if $f$
+derivative of $f$ vanishes at $x$ (<a href="#fig:critical_points">Figure 1</a>). In other words, if $f$
 attains a minimum (or maximum) at $x$ over the interval $(a,b)$, then
 $f^\prime(x) = 0$.</p>
+<hr>
+<p><img src="figures/appendix/critical_points.svg" alt="fig:critical_points">
+<br></p>
+<div class="figcaption"><a name="fig:critical_points">Figure 1</a>.  Critical points are points where the derivative of a function is zero.  They can include local minima, local maxima, and inflection points.
+</div><hr>
 <p>To prove this fact, we will prove the contrapositive: if $x \in (a,b)$
 is a point where $f^\prime(x) = L \neq 0$, then $x$ is not a local
 minimum. Using the definition of a limit,
@@ -13443,17 +13448,6 @@ $S = S_1 \times \cdots \times S_n$. In each iteration, each of the
 attributes $s_i$ is locally optimized in $S_i$ using a single step of
 steepest descent. These sweeps continue until convergence or a
 termination condition is reached.</p>
-<h3 id="Random-restarts">Random restarts<a class="anchor-link" href="#Random-restarts">&#182;</a></h3><p>Local optimization techniques are not guaranteed to find the global
-minimum unless it can be proven that the function under question has
-only a single minimum or that the initial guess is within the <em>basin of
-attraction</em> of the global minimum. Moreover, hard optimization problems
-are often riddled with local minima. Nevertheless it is possible to
-improve the chance of finding a global minimum by performing many local
-optimizations with randomly chosen initial points, and picking the
-locally optimized point with the lowest $f$ value. This strategy is
-known as steepest descent with random restarts. Quantifying the
-probability that random restarts find a global minimum is left as an
-exercise.</p>
 <h3 id="Newton's-method">Newton's method<a class="anchor-link" href="#Newton's-method">&#182;</a></h3><p>TODO: Describe newton's method and quasi newton methods.</p>
 
 </div>
@@ -13483,7 +13477,7 @@ closed, or not bounded, or when the function is discontinuous.</p>
 <li>Determine all critical points of $f$ in the open interval $(a,b)$.  Let these be called $x_1,\ldots,x_k$.</li>
 <li>Return $min f(a), f(b), f(x_1), \ldots, f(x_k)$.</li>
 </ol>
-<h4 id="Lagrange-multipliers">Lagrange multipliers<a class="anchor-link" href="#Lagrange-multipliers">&#182;</a></h4><p>Let us now consider the multi-dimensional constrained optimization case with only equality constraints, i.e., $min_x f(x)$ such that $h(x)=0$.  The minimum may not be a critical point of $f$, because most critical points are very unlikely to satisfy $h(x)=0$.  If we are to consider the set of points (a manifold) that satisfies $h(x)=0$, the conditions for optimality state that we cannot move <em>along this manifold</em> without reducing the value of $f(x)$.  This is made more precisely with the condition of <em>Lagrange multipliers</em>.</p>
+<h4 id="Lagrange-multipliers">Lagrange multipliers<a class="anchor-link" href="#Lagrange-multipliers">&#182;</a></h4><p>Let us now consider the multi-dimensional constrained optimization case with only equality constraints, i.e., $min_x f(x)$ such that $h(x)=0$.  The minimum may not be a critical point of $f$, because most critical points are very unlikely to satisfy $h(x)=0$.  If we are to consider the set of points (a manifold) that satisfies $h(x)=0$, the conditions for optimality state that we cannot move <em>along this manifold</em> without reducing the value of $f(x)$.  This is made more precisely with the concept of <em>Lagrange multipliers</em>.</p>
 <p>More precisely, the Lagrange multipliers give us a way to define a critical point in an equality-constrained setting, which is a necessary condition for a point to be optimal. Specifically, we define a vector of Lagrange multipliers $\lambda \in \mathbb{R}^p$.  The condition states if $x^\star$ is a minimizer of the equality-constrained optimization, then there exists some $\lambda^\star$ satisfying:</p>
 $$\nabla f(x^\star) + \lambda^{\star T} \nabla h(x^\star) = 0 $$<p>This, along with the condition $h(x^\star) == 0$, gives a way to characterize all critical points on the manifold.</p>
 <p>It is clearer to understand what this means in the case of a single constraint $p=1$.  Then $\lambda$ is a scalar, and $\nabla h(x^\star)$ is a gradient vector perpendicular to the surface $h(x)=0$ at $x^\star$.  The Lagrange condition becomes</p>
@@ -13536,9 +13530,49 @@ Cx = d. \\
 \end{gathered}$$<p>In both cases, the two classes of techniques that are most often used are active-set methods and interior-point methods.  Briefly speaking, active set methods iterate on a subset of inequality constraints that may be solved to equality.  With only equality constraints active, the minimizing direction of a LP or QP can be computed efficiently.  Interior point methods convert the inequality and equality constraints into <em>barrier functions</em> that penalize violation of constraints.  These penalties are incorporated into the objective function, which is then addressed using unconstrained optimization techniques.</p>
 <p>For QPs solvers to converge to a unique minimum, $P$ must either be <a href="LinearAlgebra.html#Positive-definiteness">positive semi-definite</a> or, for some solvers, strictly positive definite.  This is because for non-positive-definite matrices, the objective function is not convex, and there exist suboptimal local optima on the feasible set boundary.</p>
 <p>Professional-grade LP and QP software is widely available, highly reliable, and scales to thousands and even millions of variables and constraints. Example software packages include GLPK, Gurobi, and CVXOPT.  In order to get optimal scalability to large problems, the A, C, and P matrices ought to be representable using <em>sparse matrices</em> (that is, $m\times n$ matrices in which the number of nonzero entries is $O(m+n)$ rather than $O(mn)$), and a package that can exploit sparsity should be employed.</p>
-<h3 id="Nonlinear-programming">Nonlinear programming<a class="anchor-link" href="#Nonlinear-programming">&#182;</a></h3><p>In nonlinear programming (NLP), the $f$, $g$, and $h$ functions may be nonlinear.  Problems of this form can be solved to a local optimum using sequential quadratic programming (SQP) or interior-point methods.</p>
-<p>Note that due to nonlinearity, there is no guarantee of finding a global optimum, and moreover there is no guarantee that these methods will even find a point in the feasible set $ \{ x \,|\, g(x) \leq 0, h(x) = 0\}$.</p>
-<p>Software for solving such problems are available in SNOPT, IPOPT, Matlab's <code>fmincon</code> function, and Scipy's <code>minimize</code> (<a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize.html">https://docs.scipy.org/doc/scipy/reference/optimize.minimize.html</a>) function.  Although LP and QP problems are subsumed by the class of NLP problems, general NLP solvers are usually not as fast or reliable as special-purpose solvers.</p>
+<h3 id="Nonlinear-programming">Nonlinear programming<a class="anchor-link" href="#Nonlinear-programming">&#182;</a></h3><p>In nonlinear programming (NLP), the $f$, $g$, and $h$ functions may be nonlinear.  Problems of this form can be solved to a local optimum using sequential quadratic programming (SQP) or interior-point methods.  Like gardient descent, these techniques are given an initial guess $x_0$, and iteratively attempt to reduce the objective function. The challenge in nonlinear programming is that these algorithms must trade off reducing the objective function versus reducing constraint violations, and there is a vast literature on effective methods for doing so.</p>
+<p>For the purposes of discussion, we introduce one of the simplest NLP approaches, the <em>penalty method</em>.  The idea is to define an unconstrained optimization problem whose minimum is close to the minimum of the constrained problem. For simplicity, let us only assume that only equality constraints $h$ are present. We can then define a penalty-augmented objective function
+$$f_\mu(x) = f(x) + \mu\|h(x)\|^2 $$
+with $\mu &gt; 0$ some parameter.  With this objective, we can see that as $\mu$ grows large, the cost of $x$ violating the constraint $h(x)=0$ also grows larger.  So, if we solve an optimization problem with $\mu \gg 1$, then the optimal point $x_\mu^\star$ should have a low constraint violation value.  Moreover, as $\mu \rightarrow \infty$, $x_\mu^\star$ approaches the optimizer of the original NLP.  However, if $\mu$ is large then the  $\mu\|h(x)\|^2$ term dominates the $f$ term, so a gradient-based optimization will have a hard time making progress in reducing $f(x)$.  A better idea is to start with a lower value of $\mu$, run an unconstrained optimizer for some number of steps, and then increase $\mu$.  This then continues until $\mu$ is sufficiently large.</p>
+<p>Note that due to nonlinearity, there is no guarantee of finding a global optimum, and moreover there is no guarantee that these methods will even find a point in the feasible set $ \{ x \,|\, g(x) \leq 0, h(x) = 0\}$.  There are some <em>feasible</em> optimization techniques that will, if given an initial guess in the feasible set, keep all of the subsequent iterates in the feasible set.  An example is the <em>log barrier</em> method.  In this case, assume that only inequality constraints $g$ are present.  We can define a barrier-augmented objective function
+$$f_\mu(x) = f(x) + \mu\sum_{i=1}^m\log (-g_i(x))$$
+that rises to infinity at the boundaries of the feasible set, and is undefined outside of the feasible set.  In a manner similar to the penalty method, we can use unconstrained optimization to optimize the barrier-augmented function, and its minimum is guaranteed to be inside the feasible set.  As we then shrink $\mu$ toward 0, the effect of the log-barrier decreases, and the optimal value $x_\mu^\star$ approaches the optimum of the original NLP.</p>
+<p>Neither the penalty method nor the log barrier method are extremely reliable or efficient in themselves, but variants do form the basis for more reliable solvers such as interior point and augmented Lagrangian methods.
+Robust software for solving NLPs are available in SNOPT, IPOPT, Matlab's <code>fmincon</code> function, and <a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize.html">Scipy's minimize</a> function.  For best results, it is important to provide not only the functions $f$, $g$, and $h$ but also functions to evaluate their gradients (specifically, Jacobian matrices in the case of $g$ and $h$).  If gradient functions are not available, the optimizer will fall back to slower finite difference approximations.</p>
+<p>Although LP and QP problems are subsumed by the class of NLP problems, general NLP solvers are usually not as fast or reliable as special-purpose solvers.  Nevertheless, modern NLP solvers can solve problems with hundreds or thousands of variables and constraints within seconds.</p>
+<h2 id="Global-optimization">Global optimization<a class="anchor-link" href="#Global-optimization">&#182;</a></h2><p>Because gradient-based and NLP solvers are only <em>local methods</em> that use local information to help seek local optima, there is no guarantee that they will find a global optimum.  (An exception is the class of convex problems, of which LP and QP are common examples.)  Hence, to get a suitable solution, they must be provided with good initial guesses that are relatively close to an optimum.  But for problems in which we wish to find a global optimum and do not have sufficient prior information about the location of the optimum, global optimization techniques must be used.</p>
+<h4 id="Random-restarts">Random restarts<a class="anchor-link" href="#Random-restarts">&#182;</a></h4><p>The global minimum is said to have a <em>basin of attraction</em> of initial points for which a local optimization method will converge to the minimum.  Hard optimization problems are often riddled with local minima, and the basin of attraction will be small.  But for easier problems, <em>random restarts</em> is a simple method for improving the chance of finding a global minimum in a probabilistic sense.</p>
+<p>The idea is simple: randomly sample $N$ initial points, and perform a local optimization starting from each initial point. Then, pick the locally optimized point with the best $f$ value. 
+If the basin of attraction of the global optimum is large, then running a local optimizer multiple times from random seeds has a high chance of finding at least one result near the global optimum. Quantifying the
+probability that random restarts find a global minimum is left as an exercise.</p>
+<h4 id="Exhaustive-methods">Exhaustive methods<a class="anchor-link" href="#Exhaustive-methods">&#182;</a></h4><p>Another class of approaches exhaustively tests points in the optimization domain $D$.  Typically, $D$ is taken to be a box in $n$-D space.  <em>Brute-force sampling</em> generates a set of points in a grid or via random sampling, and then evaluates the objective function.  For settings in which the objective function is complex and it is not necessary to have a highly refined objective function value, this may be an effective strategy.  (It's certainly the easiest thing to try!)</p>
+<p>More sophisticated methods will use information from neighboring points, with the underlying assumption that the function is smooth in some sense, to avoid testing areas of the optimization domain that have no chance to contain an optimum.  One example is the DIRECT unconstrained optimization algorithm, which subdivides the optimization domain into progressively smaller rectangles.  It stops considering rectangles if it is know that they do not possibly contain an optimal value.  It does so using a <em>Lipschitz condition</em>
+$$\|f(x) - f(y)\| \leq K\|x-y\|,$$
+which states that the function values are relatively consistent across neighborhoods.  If such a condition holds, we can determine that if we have evaluated a point $x$ and obtained a suboptimal value that is worse than the best found so far ($f(x) \gg f_{best}$), then we do not have to examine a region around $x$ because it is clearly suboptimal.  Specifically, for any point $y$ within a radius $r=(f(x) - f_{best})/K$ of $x$, there is no chance that $f(y)$ is less than $f_{best}$.</p>
+<p>Exhaustive methods are very straightforward to use, and can accept challenging "black-box" objective functions that are nonsmooth.  However, they suffer from the <a href="MotionPlanningHigherDimensions.html#Grid-Search-and-the-Curse-of-Dimensionality">curse of dimensionality</a> and tend to degrade quickly in performance in problems of higher dimension (even a 4- or 5-D optimization problem can take hours).</p>
+<h4 id="Branch-and-bound-methods">Branch-and-bound methods<a class="anchor-link" href="#Branch-and-bound-methods">&#182;</a></h4><p>Branch-and-bound (BNB) methods are global methods that use an auxiliary <em>bounding function</em>, custom-defined for a given objective function, to aggressively prune out regions of the space in which there is no chance for an optimum to exist. (The DIRECT algorithm is an example of an BNB method, but one with a relatively simple and loose bound.)</p>
+<p>The idea is that along with the function $f$ and the optimization domain $D$, for some problems it is possible to derive a bounding function $f_{min}(S)$ that computes a lower bound on the value $f(x)$ over all of the subset $S\subseteq D$.  That is:</p>
+$$f_{min}(S) \leq \min_{x \in S} f(x).$$<p>Armed with this bound, we can start to address the problem of whether subsets of $D$ might provide better values than the best value $f_{best}$ found so far.  If a subset $S$ under consideration has a higher lower bound than $f_{best}$, that is, $f_{min}(S) \geq f_{best}$, then there is no chance for a point $x\in S$ to be the optimum. Hence, $S$ can be pruned from consideration.  It is preferred that the bound should be as tight as possible so that the algorithm can prune as much of the domain as possible.</p>
+<p>Although BNB methods could be defined over many domains and subset shapes, in the case of unconstrained optimization it is typical to consider the shape of each subset $S$ to be boxes $S = [a_1,b_1]\times \cdots \times [a_n,b_n]$.  A BNB method would then proceed as follows:</p>
+<ol>
+<li><em>Initialization</em>: Initialize a queue, starting with the initial domain $D$.  Set $f_{best}\gets \infty$.</li>
+<li><em>Evaluate</em>: Pick a subset $S$ from the queue and evaluate $f(x)$ for some $x \in S$. Maintain the best function value found so far $f_{best} = \min (f_{best}, f(x))$.</li>
+<li><em>Branch</em>:  Subdivide $S$ into subsets. For example, we could break $S$ along its longest edge into boxes $S_1$ and $S_2$. </li>
+<li><em>Bound</em>: Apply the bound to each subset.  If $f_{min}(S_i) \geq f_{best}$, prune it for consideration. Otherwise, add $S_i$ to the queue, and repeat from step 2.</li>
+</ol>
+<p>This will then proceed until the subsets are sufficiently small, or some maximum number of iterations is reached.  Typically, subsets will be sorted in the queue in order of increasing $f_{min}$.</p>
+<p>Now, it remains to be asked. Where do bounds come from?  In some cases, this can be done through careful mathematical analysis.  In other cases, it may be possible to use an <em>interval arithmetic</em> approach.  The idea of interval arithmetic is that for functions $f(x)$ composed of a variety of basic arithmetic and trigonometric operations, we can perform those same operations on a set of intervals rather than single points. Specifically, if $x_1 \in [a_1,b_1]$ and $x_2 \in [a_2,b_2]$, then we can determine various elementary rules like</p>
+<ul>
+<li>$x_1 + x_2 \in [a_1 + a_2, b_1 + b_2]$</li>
+<li>$x_1 - x_2 \in [a_1 - b_2, b_1 - a_2]$</li>
+<li>$x_1 * x_2 \in [\min(a_1 a_2,a_1 b_2,b_1 a_2,b_1 b_2), \max(a_1 a_2,a_1 b_2,b_1 a_2,b_1 b_2)]$</li>
+<li>$x_1^2 \in [a_1^2,b_1^2]$ if $a_1 \geq 0$, $[b_1^2,a_1^2]$ if $b_1 \leq 0$, and $[0,\max(a_1^2,b_1^2)]$ otherwise.</li>
+<li>etc...</li>
+</ul>
+<p>By replacing each of the standard floating-point operations in $f(x_1,\ldots,x_n)$ with their corresponding interval arithmetic operations, we can determine an interval $[c,d]$ such that  $f([a_1,b_1],\ldots,[a_n,b_n]) \in [c,d]$. Software packages that implement robust interval arithmetic are available for various languages.</p>
+<p>It should be noted, however, that an implementer must take some care to write his/her operations such that interval arithmetic bounds are tight. For example, $x_1^2$ is much tighter than $x_1 * x_1$ if the interval $[a_1,b_1]$ contains 0.  Also, divisions are tricky because loose bounds in the denominator can cause the output interval to be extremely loose. In an extreme case, dividing by an interval that contains 0 yields an unbounded interval!</p>
+<h4 id="Metaheuristic-optimization">Metaheuristic optimization<a class="anchor-link" href="#Metaheuristic-optimization">&#182;</a></h4><p>TODO:</p>
+<p>Simulated annealing, evolutionary algorithms, Bayesian optimization.</p>
 
 </div>
 </div>

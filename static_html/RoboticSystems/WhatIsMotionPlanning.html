@@ -13202,10 +13202,7 @@ $( document ).ready(function(){
 
 
 <div id='latex_user_defs'>
-        $\newcommand{\V}[1]{\mathbf #1}$
-$\newcommand{\M}[1] {#1}$
-$\newcommand{\Reals} { \mathbb{R} }$
-
+        
 </div>
 
 
@@ -13432,9 +13429,23 @@ Over the course of execution, the robot's state will trace out an <em>executed p
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Heuristic-methods">Heuristic methods<a class="anchor-link" href="#Heuristic-methods">&#182;</a></h2><p>As a counterpoint to the more principled approaches that we will begin to study in the next chapter and beyond, it is worth mentioning two heuristic methods that are often used in practice.  By "heuristic" it is meant that these methods are often useful to achieve satisfactory performance, but offer no guarantees about optimality or success.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Behavior-scripting">Behavior scripting<a class="anchor-link" href="#Behavior-scripting">&#182;</a></h3><p>In behavior scripting, the control signal sent to the robot's actuators is a direct function of its input sensor signals, which is programmed as a body of procedural code; e.g., a set of arithmetic operations and if-else statements.  This programmed logic becomes the body of the "planner", which does not actually explicitly plan anything. Behavior scripting has the appeal in that it provides novices with an easy pathway to start experimenting with robot behaviors.  For example, to follow a black line on a sheet of white paper, two brightness sensors can be used, one to the left and the other to the right of the line.  If the left sensor reads "black", turn the wheel more to the left and reduce the forward velocity.  If the right sensor reads "black", turn the wheel more to the right and reduce the forward velocity.  Otherwise, turn the wheel toward center, and increase the forward velocity.  Properly tuned, this behavior will do a reasonable job at following lines that are not too curved at a slow speed.</p>
 <p>A more complex behavior script can include some notion of memory that is maintained from step to step, such as a list of objects seen or past actions taken.  A common form of memory is used in a <em>state machine</em>, where the behavior switches between discrete modes depending on the sensor input or past actions taken.  In a pure state machine, the only thing that needs to be remembered is the index of the current state. State machines will be discussed in more detail in <a href="RobotControl.html#State-machines">Chapter 16</a>.</p>
 <p>With a bit of ingenuity (and a great deal of testing and tuning), engineers can produce behavior scripts that encode sophisticated behavior.  There is some degree of pride in crafting such behaviors, with the intelligence of the engineer manifesting itself in the appearance of intelligent behavior.  However, the challenge of this approach is that as the problem domain becomes more complex, the complexity of the program's logic (and the corresponding difficulty of programming good behavior) tends to grow exponentially.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Generate-and-score">Generate-and-score<a class="anchor-link" href="#Generate-and-score">&#182;</a></h3><p>A straightforward way of performing motion planning is a three step process:</p>
 <ol>
 <li><em>Generate</em> a set of $N$ paths $p_1,\ldots,p_N$, each of which starts from the robot's current state $x$.</li>
@@ -13449,7 +13460,7 @@ Over the course of execution, the robot's state will trace out an <em>executed p
 <div class="figcaption"><a name="fig:GenerateAndScore">Figure 4</a>. 
     A generate-and-score approach for a mobile robot may use a set of local motion primitives, defined in the robot's local frame (<em>egocentric</em> coordinates).  The scoring function will check collisions with each primitive, and will choose to execute the primitive that makes the most progress toward the target (restricted to its collision-free subpath).
     </div><hr>
-<p>This approach can be very computationally light, and even effective at solving some simpler problems.  However, because the generated paths usually do not reach all the way to the goal, this approach assumes that the problem requires minimal amounts of long-range deliberation. For example, consider the problem where the robot must exit a room before making progress to the goal.  Because the robot must sacrifice progress before making progress, it will be incredibly unlikely to find a path out of the first room, either using random paths or motion primitives.  This is known as a <em>local minimum</em>, which will be a reoccurring issue throughout robotics (and other fields of engineering as well).</p>
+<p>This approach can be very computationally light, and even effective at solving some simpler problems.  However, because the generated paths usually do not reach all the way to the goal, this approach assumes that the problem requires minimal amounts of long-range deliberation. For example, consider the problem where the robot must exit a room before making progress to the goal.  Because the robot must sacrifice progress before making progress, it will be incredibly unlikely to find a path out of the first room, either using random paths or motion primitives.  This is known as a <em>local minimum</em>, which will be a reoccurring issue throughout robotics.</p>
 
 </div>
 </div>
@@ -13458,7 +13469,14 @@ Over the course of execution, the robot's state will trace out an <em>executed p
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Representations-of-paths">Representations of paths<a class="anchor-link" href="#Representations-of-paths">&#182;</a></h2><p>A path is a continuous curve</p>
-$$y : [0,1] \rightarrow \mathcal{C}$$<p>interpolating between initial and goal configurations $q_I = y(0)$ and $q_G = y(1)$.  There are as many ways to represent paths as there are ways to encode functions, but in robotics we typically use a handful of representations.</p>
+$$y : [0,1] \rightarrow \mathcal{C}$$<p>interpolating between initial and goal configurations $q_I = y(0)$ and $q_G = y(1)$.  There are as many ways to represent paths as there are ways to encode functions, but in robotics we typically use a handful of representations.  The most common variants are described here.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Piecewise-linear-paths">Piecewise-linear paths<a class="anchor-link" href="#Piecewise-linear-paths">&#182;</a></h3><p>For most of the motion planning chapters, we assume that a path is represented as a
 piecewise-linear curve, or for non-Euclidean configuration spaces, a
 piecewise-geodesic curve in C-space.</p>
@@ -14189,39 +14207,41 @@ $$
 \mathbf{t}_0 &amp;= \left. \frac{d}{du} poly(C_i;u) \right|_{u=0} \\
 \mathbf{t}_1 &amp;= \left. \frac{d}{du} poly(C_i;u) \right|_{u=1} 
 \end{split}
-$$<p>Letting the coefficients $C_i =(\mathbf{a},\mathbf{b},\mathbf{c},\mathbf{t})$, we have 
-$$ poly(C_i;u) = \mathbf{a} + u \mathbf{b} + u^2 \mathbf{c} + u^3 \mathbf{t} $$
-$$ \frac{d}{du} poly(C_i;u) = \mathbf{b} + 2 u \mathbf{c} + 3 u^2 \mathbf{t} $$
-so immediately, we see that $\mathbf{a} = \mathbf{m}_0$ and $\mathbf{b} = \mathbf{t}_0$.  We now need to solve for $\mathbf{c}$ and $\mathbf{t}$ such that the linear equations
-$$\mathbf{m}_1 = \mathbf{m}_0 + \mathbf{t}_0 + \mathbf{c} + \mathbf{t}$$
-and
-$$\mathbf{t}_1 = \mathbf{t}_0 + 2 \mathbf{c} + 3 \mathbf{t}$$
-hold.  To do so we rearrange the above into the matrix equation
+$$<p>Letting the coefficients $C_i =(\mathbf{a},\mathbf{b},\mathbf{c},\mathbf{t})$, we have</p>
+$$ poly(C_i;u) = \mathbf{a} + u \mathbf{b} + u^2 \mathbf{c} + u^3 \mathbf{t} $$$$ \frac{d}{du} poly(C_i;u) = \mathbf{b} + 2 u \mathbf{c} + 3 u^2 \mathbf{t} $$<p>so immediately, we see that $\mathbf{a} = \mathbf{m}_0$ and $\mathbf{b} = \mathbf{t}_0$.  We now need to solve for $\mathbf{c}$ and $\mathbf{t}$ such that the linear equations</p>
+$$\mathbf{m}_1 = \mathbf{m}_0 + \mathbf{t}_0 + \mathbf{c} + \mathbf{t}$$<p>and</p>
+$$\mathbf{t}_1 = \mathbf{t}_0 + 2 \mathbf{c} + 3 \mathbf{t}$$<p>hold.  To do so we rearrange the above into the matrix equation</p>
 $$
 \begin{bmatrix}\mathbf{m}_1 - \mathbf{m}_0 - \mathbf{t}_0 \\
 \mathbf{t}_1 - \mathbf{t}_{0}
-\end{bmatrix} =</p>
+\end{bmatrix} =
+
 \begin{bmatrix}
 1 &amp; 1 \\
 2 &amp; 3
-\end{bmatrix}\begin{bmatrix} \mathbf{c} \\ \mathbf{t} \end{bmatrix}<p>$$
-Which has the solution via 2x2 matrix inversion
+\end{bmatrix}
+
+\begin{bmatrix} \mathbf{c} \\ \mathbf{t} \end{bmatrix} $$<p>Which has the solution via 2x2 matrix inversion</p>
 $$
-\begin{bmatrix} \mathbf{c} \\ \mathbf{t} \end{bmatrix} =</p>
+\begin{bmatrix} \mathbf{c} \\ \mathbf{t} \end{bmatrix} = 
+
 \begin{bmatrix}
 1 &amp; 1 \\
 2 &amp; 3
-\end{bmatrix}<p>^{-1}</p>
+\end{bmatrix}^{-1}
+
 \begin{bmatrix}\mathbf{m}_1 - \mathbf{m}_0 - \mathbf{t}_0 \\
 \mathbf{t}_1 - \mathbf{t}_{0}
-\end{bmatrix}<p>=</p>
+\end{bmatrix} = 
+
 \begin{bmatrix}
 3 &amp; -1 \\
 -2 &amp; 1
-\end{bmatrix}\begin{bmatrix}\mathbf{m}_1 - \mathbf{m}_0 - \mathbf{t}_0 \\
+\end{bmatrix}
+
+\begin{bmatrix}\mathbf{m}_1 - \mathbf{m}_0 - \mathbf{t}_0 \\
 \mathbf{t}_1 - \mathbf{t}_{0}
-\end{bmatrix}<p>. $$
-(Check that the inverse is correct by inspection.) In other words, $\mathbf{c} = - 3\mathbf{m}_0 + 3 \mathbf{m}_1 - 2\mathbf{t}_0 - \mathbf{t}_1$ and $\mathbf{t} =  2\mathbf{m}_0 -2 \mathbf{m}_1 + \mathbf{t}_0 + \mathbf{t}_1$.</p>
+\end{bmatrix} . $$<p>(Check that the inverse is correct by inspection.) In other words, $\mathbf{c} = - 3\mathbf{m}_0 + 3 \mathbf{m}_1 - 2\mathbf{t}_0 - \mathbf{t}_1$ and $\mathbf{t} =  2\mathbf{m}_0 -2 \mathbf{m}_1 + \mathbf{t}_0 + \mathbf{t}_1$.</p>
 <p>Another convenient way of expressing the segment is:</p>
 $$poly(C_i;u) = (2u^3 - 3u^2 + 1) \mathbf{m}_0 + (-2u^3 + 3u^3) \mathbf{m}_1 + (u^3 - 2u^2 + u)\mathbf{t}_0 + (u^3 - u^2) \mathbf{t}_1.$$<h4 id="Quintic-Hermite-splines">Quintic Hermite splines<a class="anchor-link" href="#Quintic-Hermite-splines">&#182;</a></h4><p>The quintic Hermite spline defines control points to include milestones and their 1st and second derivatives. The interpolation scheme enforce continuity of first and second derivatives (C2 continuity).</p>
 

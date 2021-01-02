@@ -13202,10 +13202,7 @@ $( document ).ready(function(){
 
 
 <div id='latex_user_defs'>
-        $\newcommand{\V}[1]{\mathbf #1}$
-$\newcommand{\M}[1] {#1}$
-$\newcommand{\Reals} { \mathbb{R} }$
-
+        
 </div>
 
 
@@ -13262,6 +13259,8 @@ rotate in place.</p>
 <h2 id="Bug-algorithms">Bug algorithms<a class="anchor-link" href="#Bug-algorithms">&#182;</a></h2><p>Bug algorithms are simple, clever planning methods that do not actually need a map of obstacles to work!  The only pieces of information needed on-board the robot are 1) a way to determine the robot's current location $X$ and goal location $G$, 2) a contact sensor, and 3) a bit of memory.  By studying how the robot would behave in certain maps, this give us a sense of how to analyze the performance of planners.</p>
 <p>The inspiration for bug algorithms comes from the <em>right-hand rule</em> for solving mazes. If you are in a maze, a sure-fire way not to get lost is to find a wall, face a direction so that the wall is on your right, and walk along the wall while keeping it immediately to your right.  By following this process, only two possibilities may result: 1) you exit the maze, or 2) you return to the point at which you first touched the wall.  If you return to the starting point, the wall makes a closed circuit, so the next step should be to find a new portion of wall that you did not touch, and apply the right-hand rule again for that new wall.  Using this approach, you are guaranteed to explore the entire maze.  (There is no significance to right vs left; you can just as easily apply a <em>left-hand rule</em>.)</p>
 <p>The first method we will study is called Bug 1.  Unlike the case of a maze, in planning we know which direction we would need to take to reach the goal.  So, Bug 1 proceeds as follows:</p>
+<hr>
+<p><a name="alg:Bug1">**Algorithm Bug 1**</a></p>
 <ol>
 <li><p>Move in a straight line path toward $G$.</p>
 </li>
@@ -13272,6 +13271,7 @@ rotate in place.</p>
 <li><p>This continues until the wall no longer is pointing against the straight line from $X$ toward $G$.  Once this occurs, continue from Step 1.</p>
 </li>
 </ol>
+<hr>
 <p>It is important to note that in Step 4, this determination is done only locally.  It does not examine the overall shape of the obstacle to see if the straight line does not overlap the obstacle, only locally whether taking the direction $G-X$ leads the robot into free space.</p>
 <hr>
 <p><img src="figures/planning/bug0.svg" alt="fig:Bug0"></p>
@@ -13281,6 +13281,8 @@ left when it hits an obstacle, and proceeds to hug the wall, and 3) continues to
     whenever it can.
 </div><hr>
 <p>The second method is called Bug 2, and is a little more complex.  Here, we shall add some memory to the robot.</p>
+<hr>
+<p><a name="alg:Bug2">**Algorithm Bug 2**</a></p>
 <ol>
 <li><p>Move in a straight line path toward $G$.</p>
 </li>
@@ -13294,9 +13296,11 @@ left when it hits an obstacle, and proceeds to hug the wall, and 3) continues to
 </li>
 </ol>
 <hr>
+<p>Fig. 2 shows how this algorithm works.</p>
+<hr>
 <p><img src="figures/planning/bug2.svg" alt="fig:Bug2"></p>
 <div class="figcaption"><a name="fig:Bug2">Figure 2</a>.
-    The Bug 2 algorithm that remembers the line from the start to the
+    The Bug 2 algorithm remembers the line from the start to the
 goal, and circumnavigates an obstacle until it meets the line again at a
 closer point to the goal.
 </div><hr>

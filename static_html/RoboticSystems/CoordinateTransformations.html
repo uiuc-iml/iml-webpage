@@ -13191,7 +13191,7 @@ $( document ).ready(function(){
 
   
         // toc2
-        var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {}, "toc_section_display": true, "toc_window_display": true};
+        var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {"height": "calc(100% - 180px)", "left": "10px", "top": "150px", "width": "335.188px"}, "toc_section_display": true, "toc_window_display": true};
         // fire the main function with these parameters
         require(['nbextensions/toc2/toc2'], function (toc2) {
             toc2.table_of_contents(cfg);
@@ -13202,10 +13202,7 @@ $( document ).ready(function(){
 
 
 <div id='latex_user_defs'>
-        $\newcommand{\V}[1]{\mathbf #1}$
-$\newcommand{\M}[1] {#1}$
-$\newcommand{\Reals} { \mathbb{R} }$
-
+        
 </div>
 
 
@@ -13217,7 +13214,14 @@ $\newcommand{\Reals} { \mathbb{R} }$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Section-II.-MODELING">Section II. MODELING<a class="anchor-link" href="#Section-II.-MODELING">&#182;</a></h1><h1 id="Chapter-3.-Coordinates-and-Transformations">Chapter 3. Coordinates and Transformations<a class="anchor-link" href="#Chapter-3.-Coordinates-and-Transformations">&#182;</a></h1><style>
+<h1 id="Section-II.-MODELING">Section II. MODELING<a class="anchor-link" href="#Section-II.-MODELING">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Chapter-3.-Coordinates-and-Transformations">Chapter 3. Coordinates and Transformations<a class="anchor-link" href="#Chapter-3.-Coordinates-and-Transformations">&#182;</a></h1><style>
 div.figcaption {    
     text-align: center;
     margin-left:1em;
@@ -13259,6 +13263,13 @@ taken a course in linear algebra and can refresh themselves on basic
 definitions. Appendix 1 reviews the standard vector and matrix notation,
 conventions, and basic identities that will be used throughout this
 book.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Vectors-and-coordinates">Vectors and coordinates<a class="anchor-link" href="#Vectors-and-coordinates">&#182;</a></h2><p>Vectors extend concepts that are familiar to us from working with real
 numbers $\mathbb{R}$ to other spaces of interest. They also succinctly
 represent collections of real numbers that have a common meaning like
@@ -13277,6 +13288,13 @@ change depending on their manner of interpretation, such as a chosen
 frame of reference. This section will present common operations in 2D
 and 3D, and follow it with a discussion about the importance of
 separating meaning from representation.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="2D-coordinate-frames">2D coordinate frames<a class="anchor-link" href="#2D-coordinate-frames">&#182;</a></h3><p>In the "layman's definition", an $n$-dimensional <em>vector</em> $\mathbf{x}$ is a
 tuple of real numbers $\mathbf{x}=(x_1,\ldots,x_n) \in \mathbb{R}^n$. For now, we
 will work in $\mathbb{R}^2$. We will use boldface notation only temporarily
@@ -13308,7 +13326,7 @@ $$
 parenthetical and column vector notations are equivalent and
 interchangeable.</p>
 <hr>
-<p><img src="figures/modeling/coordinate_axes_2d.png" alt="fig:Coordinates2D"></p>
+<p><img src="figures/modeling/coordinate_axes_2d.svg" alt="fig:Coordinates2D"></p>
 <div class="figcaption"><a name="fig:Coordinates2D">Figure 1.</a> A point $P$ in the plane (a) has no numerical representation until we
 define a reference coordinate frame (b), which has origin point $O$ and
 orthogonal coordinate axes $X$ and $Y$. Its coordinates
@@ -13322,19 +13340,34 @@ coordinates does not define a position. A physical position is only
 defined by coordinates <em>in reference to a certain coordinate frame</em>. The
 frame will often be left implicit, or spoken of as the reference frame
 of the coordinates.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="3D-coordinate-frames">3D coordinate frames<a class="anchor-link" href="#3D-coordinate-frames">&#182;</a></h3><p>The situation in 3D space is similar, except that we represent a 3D
 position $P$ with a 3-element vector $\mathbf{p}=(p_x, p_y, p_z)$ that gives
 its coordinates relative to axes $X$, $Y$, and $Z$ and offset from an
 origin $O$ in 3D space where the axes cross. The parenthetical notation
-is equivalent to the column vector form:
-$$\mathbf{p} = 
-\begin{bmatrix} p_x \\ p_y \\ p_z \end{bmatrix}.$$</p>
-<p>In 3D the coordinate frame consists of the origin $O$ and the mutually
+is equivalent to the column vector form:</p>
+$$
+  \mathbf{p} = 
+\begin{bmatrix} p_x \\ p_y \\ p_z \end{bmatrix}.
+$$<p>In 3D the coordinate frame consists of the origin $O$ and the mutually
 orthogonal axes $X$, $Y$, and $Z$. In this book we will use
 <em>right-handed coordinate convention</em> in which the axes can be envisioned
 in the layout of the first three fingers of the right hand, suitably
 arranged at $90^\circ$ right angles. $X$ axis corresponds to the thumb,
 $Y$ axis corresponds to the index finger, and $Z$ axis corresponds to the middle finger.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Directional-quantities">Directional quantities<a class="anchor-link" href="#Directional-quantities">&#182;</a></h3><p>Vectors are also used to represent <em>directional quantities</em>, such as a
 displacement, direction, or derivative. A <em>displacement</em> is a difference
 between points, e.g., $\mathbf{q}-\mathbf{p}$ gives the amount that would need to
@@ -13342,13 +13375,15 @@ be moved in both the $X$ and $Y$ direction to move from $P$ to $Q$,
 where $\mathbf{q}$ gives the coordinates of $Q$ relative to the same
 reference frame. It has both a direction and a magnitude. In contrast, a
 <em>direction</em> does not have magnitude, and is a unit vector. The direction
-from $P$ to $Q$ is given by $$\frac{\mathbf{q}-\mathbf{p}}{\|\mathbf{q}-\mathbf{p}\|}.$$ In
-2D, a direction can also be given as an angle $\theta \in [0,2\pi)$ rad,
+from $P$ to $Q$ is given by</p>
+$$
+    \frac{\mathbf{q}-\mathbf{p}}{\|\mathbf{q}-\mathbf{p}\|}.
+$$<p>In 2D, a direction can also be given as an angle $\theta \in [0,2\pi)$ rad,
 with the convention that the angle measures the counter-clockwise
 direction from the $X$ axis. The corresponding unit vector is
 $(\cos(\theta),\sin(\theta))$.</p>
 <hr>
-<p><img src="figures/modeling/directional_quantities.png" alt="fig:DirectionalQuantities"></p>
+<p><img src="figures/modeling/directional_quantities.svg" alt="fig:DirectionalQuantities"></p>
 <div class="figcaption">
 <a name="fig:DirectionalQuantities">Figure 2</a>. Directional quantities arise from displacements (a), directions (b),
 and derivatives of paths (c).
@@ -13360,11 +13395,20 @@ $(p_x(t),p_y(t))$.</p>
 <em>coordinates of directional quantities do not vary with respect to the
 choice of origin</em>. However, coordinates of both positions and directions
 are affected by the choice of coordinate axes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Geometric-operations">Geometric operations<a class="anchor-link" href="#Geometric-operations">&#182;</a></h3><p>The coordinates of a point $\mathbf{p}$ after translation by a displacement
 $\mathbf{d}$ can be computed by vector addition $\mathbf{p} + \mathbf{d}$.
 Interpolation and extrapolation between points $\mathbf{p}$, $\mathbf{q}$ is
-specified by the equation $$\mathbf{x}(u) = (1-u)\mathbf{p} + u\mathbf{q}$$ for
-$u \in \mathbb{R}$. This equation starts at $\mathbf{x}(0) = \mathbf{p}$ at $u=0$, and
+specified by the equation</p>
+$$
+    \mathbf{x}(u) = (1-u)\mathbf{p} + u\mathbf{q}
+$$<p>for $u \in \mathbb{R}$. This equation starts at $\mathbf{x}(0) = \mathbf{p}$ at $u=0$, and
 ends at $\mathbf{x}(1)=\mathbf{q}$ at $u=1$. Extrapolation can be obtained with
 $u &lt; 0$ or $u &gt; 1$, as shown in <a href="#fig:LineEquation">Figure 4.a</a>.</p>
 <hr>
@@ -13381,10 +13425,13 @@ orthogonal direction to $\mathbf{p}=(p_x,p_y)$, which has the same magnitude
 but is rotated 90$^\circ$ clockwise. The line through the origin passing
 through $\mathbf{p}$ can be expressed in the form of all solutions $\mathbf{x}$ to
 the equation $\mathbf{x} \cdot \mathbf{p}^\perp = 0$. Similarly, the line through
-points $P$ and $Q$ can be expressed as the equation
-$$\mathbf{x} \cdot (\mathbf{p} - \mathbf{q})^\perp = \mathbf{p} \cdot (\mathbf{p} - \mathbf{q})^\perp$$
-Another expression of lines is the following: $$\mathbf{x} \cdot \mathbf{n} = c$$
-Where $\mathbf{n}$ is orthogonal to the direction of the line and
+points $P$ and $Q$ can be expressed as the equation</p>
+$$
+    \mathbf{x} \cdot (\mathbf{p} - \mathbf{q})^\perp = \mathbf{p} \cdot (\mathbf{p} - \mathbf{q})^\perp
+$$<p>Another expression of lines is the following:</p>
+$$
+    \mathbf{x} \cdot \mathbf{n} = c
+$$<p>Where $\mathbf{n}$ is orthogonal to the direction of the line and
 $c = \mathbf{p} \cdot \mathbf{n}$ for any point $\mathbf{p}$ on the line.
 (<a href="#fig:LineEquation">Fig. 4.b.</a>)</p>
 <p>This definition is known as the <em>plane equation</em>, which generalizes
@@ -13411,11 +13458,20 @@ and scaling are represented by matrix / vector operations. Changes of
 coordinate frames are also matrix / vector operations. As a result,
 transformation matrices are stored and operated on ubiquitously in
 robotics.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Linear-transformations">Linear transformations<a class="anchor-link" href="#Linear-transformations">&#182;</a></h3><p>A <em>linear transformation</em> is one that can be represented as a matrix
-operation $$\mathbf{y} = A\mathbf{x}$$ where $\mathbf{x} \in \mathbb{R}^m$,
+operation</p>
+$$\mathbf{y} = A\mathbf{x}$$<p>where $\mathbf{x} \in \mathbb{R}^m$,
 $\mathbf{y} \in \mathbb{R}^n$, and A is an $m \times n$ matrix. In particular, in
-2D, this operation takes the form
+2D, this operation takes the form</p>
 $$
+
 \begin{bmatrix}q_x \\ q_y \end{bmatrix} = 
 \begin{bmatrix}
 a &amp; b \\
@@ -13425,8 +13481,8 @@ c &amp; d
 \begin{bmatrix}
 a p_x + b p_y\\
 c p_x + d p_y
-\end{bmatrix}$$.</p>
-<p>In 3D, a linear transformation takes the form</p>
+\end{bmatrix}.
+$$<p>In 3D, a linear transformation takes the form</p>
 
 </div>
 </div>
@@ -13434,7 +13490,8 @@ c p_x + d p_y
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-$$ 
+$$
+
 \begin{bmatrix}
 q_x \\
 q_y \\
@@ -13455,8 +13512,8 @@ p_z
 a_{11} p_x + a_{12} p_y + a_{13} p_z \\
 a_{21} p_x + a_{22} p_y + a_{23} p_z \\
 a_{31} p_x + a_{32} p_y + a_{33} p_z 
-\end{bmatrix}$$<p>.</p>
-
+\end{bmatrix}.
+$$
 </div>
 </div>
 </div>
@@ -13482,28 +13539,30 @@ obtained by walking $p_x$ units from the origin in the direction of
 $X^\prime$, and then $p_y$ units in the direction of $Y^\prime$
 (<a href="#fig:Rotation2D">Fig. 5</a>). Hence, to determine its coordinates in the
 original reference frame, we can use the fact that the coordinates of
-$X^\prime$ and $Y^\prime$ are known:
-$$\mathbf{p}^\prime = p_x \mathbf{x}^\prime + p_y \mathbf{y}^\prime = 
+$X^\prime$ and $Y^\prime$ are known:</p>
+$$
+\mathbf{p}^\prime = p_x \mathbf{x}^\prime + p_y \mathbf{y}^\prime = 
 \begin{bmatrix}
 p_x \cos \theta - p_y \sin \theta \\ 
 p_x \sin \theta + p_y \cos \theta
-\end{bmatrix}.$$</p>
-<hr>
-<p><img src="figures/modeling/rotation2d.png" alt="fig:Rotation2D">
-<img src="figures/modeling/rotation2d_2.png" alt="fig:Rotation2D2"></p>
+\end{bmatrix}.
+$$<hr>
+<p><img src="figures/modeling/rotation2d.svg" alt="fig:Rotation2D">
+<img src="figures/modeling/rotation2d_2.svg" alt="fig:Rotation2D2"></p>
 <div class="figcaption"><a name="fig:Rotation2D">Figure 5</a>. Rotating at an angle $\theta$ about the origin to achieve a new point
 $P^\prime$ (a). To calculate the coordinates of $P^\prime$ (b), we first
 obtain the coordinates of transformed axes $X^\prime$ and $Y^\prime$
 (c,d) and then use the parallelogram rule (e).</div><hr>
 <p>A more compact and convenient way of writing this is with a matrix
 equation $$\mathbf{p}^\prime = R(\theta) \mathbf{p}$$ with the rotation matrix
-given by
-$$R(\theta) = 
+given by</p>
+$$
+R(\theta) = 
 \begin{bmatrix}
 \cos \theta &amp; -\sin \theta \\ 
 \sin \theta &amp; \cos \theta
-\end{bmatrix}.$$</p>
-<p>There are several useful properties of such matrices:</p>
+\end{bmatrix}.
+$$<p>There are several useful properties of such matrices:</p>
 <ol>
 <li><p>The matrix composition
 $R(\theta_1) R(\theta_2) = R(\theta_1 + \theta_2)$ gives the
@@ -13515,19 +13574,21 @@ $\theta$.</p>
 </li>
 <li><p>Due to the identities $\cos(-\theta) = \cos(\theta)$ and
 $\sin(-\theta) = - \sin(\theta)$, the operation of rotating about
-$-\theta$ is equivalent to a matrix transpose:
-$$R(-\theta) = 
+$-\theta$ is equivalent to a matrix transpose:</p>
+<p>$$
+R(-\theta) = 
 \begin{bmatrix}
 \cos \theta &amp; \sin \theta \\ 
 -\sin \theta &amp; \cos \theta
-\end{bmatrix} = R(\theta)^T.$$</p>
+\end{bmatrix} = R(\theta)^T.
+$$</p>
 </li>
-<li><p>Moreover, the transpose is equivalent to the matrix inverse:
-$$R(-\theta) = R(\theta)^T = R(\theta)^{-1}.$$ In other words,
-rotation matrices are orthogonal.</p>
+<li><p>Moreover, the transpose is equivalent to the matrix inverse:</p>
+<p>$$R(-\theta) = R(\theta)^T = R(\theta)^{-1}.$$</p>
+<p>In other words, rotation matrices are orthogonal.</p>
 </li>
-<li><p>Vector norms are invariant under rotation:
-$$\| R(\theta) \mathbf{x} \| = \| \mathbf{x} \|.$$</p>
+<li><p>Vector norms are invariant under rotation:</p>
+<p>$$\| R(\theta) \mathbf{x} \| = \| \mathbf{x} \|.$$</p>
 </li>
 <li><p>The rotation matrix is only dependent on the argument's value modulo
 $2\pi$.</p>
@@ -13560,7 +13621,7 @@ let us describe some of their properties.</p>
 <p>A rotation in 3D can be represented by a matrix equation
 $$\mathbf{p}^\prime = R \mathbf{p}$$ with $R$ a $3\times 3$ rotation matrix.</p>
 <hr>
-<p><img src="figures/modeling/rotation3d.png" alt="fig:Coordinates3D2"></p>
+<p><img src="figures/modeling/rotation3d.svg" alt="fig:Coordinates3D2"></p>
 <div class="figcaption"><a name="fig:Coordinates3D2">Figure 6</a>. After a rotation, the coordinates of the transformed point
 (relative to the original axes) are determined via a matrix
 multiplication with the rotation matrix $R$.</div><hr>
@@ -13586,15 +13647,16 @@ $SO(3)$.</p>
 3 columns as the coordinates of each of the coordinate axes after
 rotation. In other words, when a coordinate frame rotates by matrix $R$
 about the origin, the entries of the rotation matrix can be interpreted
-as:
-$$R = 
-\begin{bmatrix} x_x &amp; y_x &amp; z_x \\ x_y &amp; y_y &amp; z_y \\ x_z &amp; y_z &amp; z_z \end{bmatrix}$$
-where $(x_x,x_y,x_z)$ give the coordinates of the
+as:</p>
+$$
+  R = 
+\begin{bmatrix} x_x &amp; y_x &amp; z_x \\ x_y &amp; y_y &amp; z_y \\ x_z &amp; y_z &amp; z_z \end{bmatrix}
+$$<p>where $(x_x,x_y,x_z)$ give the coordinates of the
 new $X$ axis in the old frame, $(y_x,y_y,y_z)$ gives the coordinates of
 the new $Y$ axis, and $(z_x,z_y,z_z)$ gives the coordinates of the new
 $Z$ axis.</p>
 <hr>
-<p><img src="figures/modeling/coordinate_axes_3d.png" alt="fig:Coordinates3D"></p>
+<p><img src="figures/modeling/coordinate_axes_3d.svg" alt="fig:Coordinates3D"></p>
 <div style="text-align:center"><a name="fig:Coordinates3D2">Figure 7</a>. A 3D rotation is encoded by a $3\times 3$ matrix whose columns
 give the coordinates of the rotated axes $\mathit{relative}$ to the original
 axes. </div><hr>
@@ -13611,23 +13673,39 @@ to the old reference frame are given by $R \mathbf{p}$.</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Scaling">Scaling<a class="anchor-link" href="#Scaling">&#182;</a></h3><p>Axis-aligned scaling in 2D about the origin can be represented as a
-linear transform with matrix $$S(s_x,s_y) = 
-\begin{bmatrix}s_x &amp; 0 \\ 0 &amp; s_y \end{bmatrix}$$
-where $s_x$ is the scaling about the $X$ direction and $s_y$ is the
+linear transform with matrix</p>
+$$
+  S(s_x,s_y) = 
+\begin{bmatrix}s_x &amp; 0 \\ 0 &amp; s_y \end{bmatrix}
+$$<p>where $s_x$ is the scaling about the $X$ direction and $s_y$ is the
 scaling about the $Y$ direction. If $s_x = s_y$ this is known as a
 uniform scaling.</p>
 <p>This definition can be generalized to $n$-D space using an $n$-D scaling
 vector $\mathbf{s}$ which determines the scaling in each direction by mapping
-to the diagonal of an $n \times n$ matrix.. $$S(\mathbf{s}) = diag(\mathbf{s})$$</p>
+to the diagonal of an $n \times n$ matrix:</p>
+$$
+  S(\mathbf{s}) = diag(\mathbf{s}).
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Compositions-of-linear-transformations">Compositions of linear transformations<a class="anchor-link" href="#Compositions-of-linear-transformations">&#182;</a></h3><p>When performing two linear transformations one after another, the
 results are determined via matrix multiplication. Suppose that
 $T_1(\mathbf{x})$ and $T_2(\mathbf{x})$ are both linear transformations with
 matrices $A$ and $B$, respectively. When performing the operation of
 $T_2$ first to obtain $\mathbf{y} = T_2(\mathbf{x})$, then performing $T_1$ to
-obtain $\mathbf{z}=T_1(\mathbf{y})$, the ultimate result is:
-$$\mathbf{z} = T_1(T_2(\mathbf{x}))$$ where it should be noted that $T_1$ appears
+obtain $\mathbf{z}=T_1(\mathbf{y})$, the ultimate result is:</p>
+$$
+\mathbf{z} = T_1(T_2(\mathbf{x}))
+$$<p>where it should be noted that $T_1$ appears
 first in the equation even though it is performed after $T_2$. Expanding
-this into matrix products, $$\mathbf{z} = A B \mathbf{x}$$ holding for all values
+this into matrix products,</p>
+$$
+  \mathbf{z} = A B \mathbf{x}
+$$<p>holding for all values
 of $\mathbf{x}$. As a result, the function composition $T_1 \circ T_2$ is
 also a linear transformation with matrix $AB$.</p>
 <p>Using composition we can derive other useful transformations, like
@@ -13636,14 +13714,21 @@ coordinates by value $s$ in a direction $\mathbf{v}$, where $\mathbf{v}$ is a un
 vector. We can think of this as first rotating by an angle $\theta$ so
 that the $X$ axis is aligned with $\mathbf{v}$, then performing an
 axis-aligned scaling, then rotating back to the original coordinate
-frame: $$A = R(-\theta) S(s,1) R(\theta)$$ It so happens that
-$$R(\theta) = 
-\begin{bmatrix}v_x &amp; v_y \\ -v_y &amp; v_x \end{bmatrix}$$ performs the rotation that
-we desire. As a result we can compute: $$
+frame:</p>
+$$
+    A = R(-\theta) S(s,1) R(\theta).
+$$<p>It so happens that</p>
+$$
+    R(\theta) = 
+\begin{bmatrix}v_x &amp; v_y \\ -v_y &amp; v_x \end{bmatrix}
+$$<p>performs the rotation that
+we desire. As a result we can compute:</p>
+$$
+
 \begin{aligned}
 A &amp; = \begin{bmatrix}v_x &amp; -v_y \\ v_y &amp; v_x \end{bmatrix} \begin{bmatrix}s &amp; 0 \\ 0 &amp; 1 \end{bmatrix} \begin{bmatrix}v_x &amp; v_y \\ -v_y &amp; v_x \end{bmatrix} = \begin{bmatrix}v_x &amp; -v_y \\ v_y &amp; v_x \end{bmatrix} \begin{bmatrix}sv_x &amp; sv_y \\ -v_y &amp; v_x \end{bmatrix} \\
-  &amp; = \begin{bmatrix}s v_x^2 + v_y^2 &amp; s v_x v_y - v_y v_x \\ s v_x v_y - v_x v_y &amp; s v_y^2 + v_x^2 \end{bmatrix} = I + (s-1)\begin{bmatrix}v_x^2 &amp; v_x v_y \\ v_x v_y &amp; v_y^2\end{bmatrix}\end{aligned}$$</p>
-<p>Note that due to the non-symmetricity of matrix multiplication, order of
+  &amp; = \begin{bmatrix}s v_x^2 + v_y^2 &amp; s v_x v_y - v_y v_x \\ s v_x v_y - v_x v_y &amp; s v_y^2 + v_x^2 \end{bmatrix} = I + (s-1)\begin{bmatrix}v_x^2 &amp; v_x v_y \\ v_x v_y &amp; v_y^2\end{bmatrix}\end{aligned}
+$$<p>Note that due to the non-symmetricity of matrix multiplication, order of
 transformation matters: a rotation followed by a scaling is not
 necessarily the same as a scaling followed by a rotation. However, with
 a little inspection, we can derive the following symmetric compositions:</p>
@@ -13659,6 +13744,13 @@ symmetry does not generally hold in 3D!)</p>
 <li><p>Two axis-aligned scalings.</p>
 </li>
 </ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Rigid-transformations">Rigid transformations<a class="anchor-link" href="#Rigid-transformations">&#182;</a></h3><p>Rigid transformations in two dimensions have two properties:</p>
 <ol>
 <li><p>The distance between two points do not change after being
@@ -13669,8 +13761,10 @@ in 3D, the orientation and volume of any tetrahedron does not
 change.</p>
 </li>
 </ol>
-<p>The form of all rigid transforms is a rotation $R$ followed by an arbitrary translation $\mathbf{t}$: $$T(\mathbf{x}) = R \mathbf{x} + \mathbf{t}$$
-Which can be thought of applying a <em>rotation about the origin first</em>,
+<p>The form of all rigid transforms is a rotation $R$ followed by an arbitrary translation $\mathbf{t}$:</p>
+$$
+    T(\mathbf{x}) = R \mathbf{x} + \mathbf{t}
+$$<p>Which can be thought of applying a <em>rotation about the origin first</em>,
 and then a <em>translation second</em>. Proving that all rigid transforms have
 this form will be left as an exercise.</p>
 <p>It is also possible to interpret rigid transforms as rotation about an
@@ -13686,16 +13780,32 @@ related by $\mathbf{t} = \mathbf{c} - R\mathbf{c}$, and $\mathbf{c}  = (I - R)^{
 <p>The set of rigid transformations is called the <em>special Euclidean group</em>
 $SE(2)$ in 2D, and $SE(3)$ in 3D. Repeated application of rigid
 transformations also produce a rigid transformation. Given two rigid
-transforms $$T_1(\mathbf{x}) = R_1\mathbf{x} + \mathbf{t_1}$$ and
-$$T_2(\mathbf{x}) = R_2\mathbf{x} + \mathbf{t_2}$$ then the composite transform
+transforms</p>
+$$
+    T_1(\mathbf{x}) = R_1\mathbf{x} + \mathbf{t_1}
+$$<p>and</p>
+$$
+    T_2(\mathbf{x}) = R_2\mathbf{x} + \mathbf{t_2}
+$$<p>then the composite transform
 $T_1 \circ T_2$ is the operation of performing $T_2$ first, then $T_1$.
 If we let $\mathbf{y} = T_2(\mathbf{x})$, and $\mathbf{z} = T_1(\mathbf{y})$, then we
-obtain:
-$$\mathbf{z} = T_1(T_2(\mathbf{x})) = R_1 (R_2\mathbf{x} + \mathbf{t_2}) + \mathbf{t_1}.$$ By the
-distributive property of matrix multiplication, we have
-$$\mathbf{z} = R_1 R_2\mathbf{x} + R_1 \mathbf{t_2} + \mathbf{t_1}.$$ This is simply a rigid
+obtain:</p>
+$$
+\mathbf{z} = T_1(T_2(\mathbf{x})) = R_1 (R_2\mathbf{x} + \mathbf{t_2}) + \mathbf{t_1}.
+$$<p>By the
+distributive property of matrix multiplication, we have</p>
+$$
+\mathbf{z} = R_1 R_2\mathbf{x} + R_1 \mathbf{t_2} + \mathbf{t_1}.
+$$<p>This is simply a rigid
 transform with rotation matrix $R_1 R_2$ and translation by
 $(R_1 \mathbf{t_2} + \mathbf{t_1})$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Inverse-transformations">Inverse transformations<a class="anchor-link" href="#Inverse-transformations">&#182;</a></h3><p>Not all transformations have inverses, but rotations, translations,
 rigid transformations, and many linear transformations do. As described
 before, the inverse of a rotation matrix is simply its transpose.
@@ -13707,6 +13817,13 @@ rigid transformation: $$\label{eq:RigidTransformInverse}
 T_{(R,\mathbf{t})} ^{-1} = T_{(R^{T},-R^{T} \mathbf{t})}$$ where
 $T_{(R,\mathbf{t})}(\mathbf{x}) = R \mathbf{x} + \mathbf{t}$. Proof of this equation will be
 left as an exercise.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Rigid-movement">Rigid movement<a class="anchor-link" href="#Rigid-movement">&#182;</a></h3><p>Rigid transformations are used to represent movement of rigid bodies in
 space. If, in 2D the origin of a body moves by translation $\mathbf{t}$ in
 its original reference frame and rotates by angle $R = R(\theta)$,
@@ -13755,15 +13872,15 @@ applying the inverse transform.</p>
 transforms. Suppose $A$ and $B$ are two coordinate frames, where $A$ is
 represented with respect to the world frame by a rotation matrix $R_A$
 and translation $\mathbf{t}_A$, and $B$ is represented by $R_B$ and
-$\mathbf{t}_B$. Then given the coordinates $\mathbf{p}_A$ of some point $P$
+$\mathbf{t}_B$. Then given the coordinates $\mathbf{p}^A$ of some point $P$
 relative to $A$, we can determine $P$'s coordinates relative to
-$\mathbf{p}_B$ in two steps. First, we calculate its world coordinates:
-$$\mathbf{p}_W = R_A \mathbf{p}_A + \mathbf{t}_A$$ And then we perform the inverse of
+$\mathbf{p}^B$ in two steps. First, we calculate its world coordinates:
+$$\mathbf{p}^W = R_A \mathbf{p}^A + \mathbf{t}_A$$ And then we perform the inverse of
 $B$ coordinates to world coordinate to obtain its coordinates with
-respect to $B$: $$\mathbf{p}_B = R_B^T (\mathbf{p}_W - \mathbf{t}_B).$$</p>
+respect to $B$: $$\mathbf{p}^B = R_B^T (\mathbf{p}^W - \mathbf{t}_B).$$</p>
 <p>This transform can be calculated for all points by the composition of
 the transform from $A \rightarrow W$ and then $W \rightarrow B$:
-$$\mathbf{p}_B = R_B^T R_A \mathbf{p}_A + R_B^T(\mathbf{t}_A - \mathbf{t}_B).$$</p>
+$$\mathbf{p}^B = R_B^T R_A \mathbf{p}^A + R_B^T(\mathbf{t}_A - \mathbf{t}_B).$$</p>
 
 </div>
 </div>
@@ -13820,6 +13937,13 @@ coordinate systems.</p>
 coordinate representation of an object from its physical meaning. It
 will also describe some common pitfalls when working with coordinates,
 and tools to help reduce the risk of making calculation errors.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="An-illustrative-example">An illustrative example<a class="anchor-link" href="#An-illustrative-example">&#182;</a></h3><p>Let us start with a running example where a point $P$ is drawn on a
 sheet of graph paper $G$. Some physical position is taken as the
 origin $O$ by convention, as are the axes $X$ and $Y$ which are attached
@@ -13856,17 +13980,24 @@ directions (remember, $O$, $P$, $X$, and $Y$ are not themselves vectors,
 they are elements of thought with a physical meaning).</p>
 <p>Luckily, we can do this more formally if we define $O$, $X$, and $Y$
 with reference so some other <em>privileged coordinate frame</em>, which we
-will call the <em>world frame</em> $W$. If we let $\mathbf{p}_W$, $\mathbf{o}_W$,
-$\mathbf{x}_W$, and $\mathbf{y}_W$ be the coordinates of $P$, $O$, $X$, and $Y$
+will call the <em>world frame</em> $W$. If we let $\mathbf{p}^W$, $\mathbf{o}^W$,
+$\mathbf{x}^W$, and $\mathbf{y}^W$ be the coordinates of $P$, $O$, $X$, and $Y$
 with respect to $W$, then we indeed have the relationship between their
-coordinates $\mathbf{p}_W = \mathbf{o}_W + p_x \mathbf{x}_W + p_y \mathbf{y}_W$. Moreover,
-$\mathbf{x}_W \cdot (\mathbf{p}_W - \mathbf{o}_W) = p_x$, and
-$\mathbf{y}_W \cdot (\mathbf{p}_W - \mathbf{o}_W) = p_y$. An important fact is that
+coordinates $\mathbf{p}^W = \mathbf{o}^W + p_x \mathbf{x}^W + p_y \mathbf{y}^W$. Moreover,
+$\mathbf{x}^W \cdot (\mathbf{p}^W - \mathbf{o}^W) = p^x$, and
+$\mathbf{y}^W \cdot (\mathbf{p}^W - \mathbf{o}^W) = p^y$. An important fact is that
 <em>these equations hold regardless of the choice of world frame</em>. Hence we
 can conclude that it is reasonable to casually state that
 $P = O + p_x X + p_y Y$, $X \cdot (P - O) = p_x$, and
 $Y \cdot (P - O) = p_y$ without regards to choosing a particular value
 of $W$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Directional-quantities">Directional quantities<a class="anchor-link" href="#Directional-quantities">&#182;</a></h3><p>Next, let us illustrate how the coordinates of directional quantities
 transform. As an illustration, let us go back in time and add a second
 point $Q$ on the paper, and consider the line segment $\overline{PQ}$.
@@ -13886,6 +14017,13 @@ cancels out when performing the difference. Using the same world
 coordinates trick as performed above, we can also say in casual
 shorthand that $D = d_x X + d_y Y$, $D = Q - P$, $d_x = D \cdot X$, and
 $d_y = D \cdot Y$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Associating-physical-meaning-to-operations-on-coordinates">Associating physical meaning to operations on coordinates<a class="anchor-link" href="#Associating-physical-meaning-to-operations-on-coordinates">&#182;</a></h3><p>The main distinction between positions and directions is that the choice
 of origin does not affect how directions are represented. However, both
 are affected by the choice of coordinate axes. Hence, when performing
@@ -13970,6 +14108,13 @@ meaningful, nor are the following types of operations:</p>
 </table>
 <p>Finally, dot products and norms are meaningful only when performed on
 directional quantities.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Working-with-coordinates">Working with coordinates<a class="anchor-link" href="#Working-with-coordinates">&#182;</a></h3><p>When working with different coordinate representations, it is easy to
 make mistakes in calculations. Below are some common pitfalls.</p>
 <p>Mistaken coordinate conventions include:</p>
@@ -13987,40 +14132,46 @@ incorrect base frame.</p>
 <li><p>Applying a coordinate transform to a quantity not represented with
 respect to the source frame.</p>
 </li>
+<li><p>Operating on the wrong units (e.g., a frame's translation is expressed in <em>m</em> while the point's coordinates are expressed in <em>mm</em>)</p>
+</li>
 </ol>
 <p>To guard against these mistakes, it is common practice to indicate
 frames of reference with letters and annotate variables with their frame
-of reference. As an example, this book indicates the frame of reference
-of each coordinate variable in its subscript, e.g. $\mathbf{p}_A$ denotes a
+of reference.  The superscript/subscript convention used by this book is
+popular amongst many authors.  In this convention, we indicate the frame
+of reference of each coordinate variable in its superscript, e.g. $\mathbf{p}^A$ denotes a
 point expressed in frame $A$. A coordinate transform from frame
-$A \rightarrow B$ is expressed in the form $T_{A\rightarrow B}$. By
-convention, a coordinate transform $T_A$ is equivalent to a transform
-from $A$ to the world frame $W$: $T_A \equiv T_{A \rightarrow W}$. With
-this annotation, the following rules apply:</p>
+$A$ to frame $B$ is expressed in the form $T_A^B$.  Think about it
+this way:</p>
+<blockquote><p>$F$ in <em>superscript</em>: Coordinates should be interpreted as "relative to $F$".</p>
+<p>$F$ in <em>subscript</em>: Coordinates should be interpreted as "describing the transform of frame $F$".</p>
+</blockquote>
+<p>In this convention, <em>superscripts and subscripts must cancel
+out for the equation to make sense</em>.  Specifically, the following rules apply:</p>
 <ol>
 <li><p>When applying a transform to a coordinate, the subscript of the
-transform's source frame must match the point's reference frame. For
-example, $\mathbf{p}_B = T_{A\rightarrow B}\mathbf{p}_A$ is allowed but
-$T_{B\rightarrow A}\mathbf{p}_A$ is illegal.</p>
+transform's source frame must match the point's superscript (reference
+frame). For example, $\mathbf{p}^B = T_A^B\mathbf{p}^A$ is allowed but
+$T_B^A \mathbf{p}_B$ is illegal.</p>
 </li>
 <li><p>When composing two transforms, the source frame of the second frame
 must match the destination of the first frame. For example,
-$T_{A\rightarrow C} = T_{B \rightarrow C} T_{A\rightarrow B}$ is
-allowed but $T_{A\rightarrow B} T_{B \rightarrow C}$ is illegal.</p>
+$T_A^C = T_B^C T_A^B$ is
+allowed but $T_A^B T_B^C$ is illegal.</p>
 </li>
 <li><p>When inverting a transform, the order of frames swaps: e.g.
-$T_{A\rightarrow B}^{-1} = T_{B\rightarrow A}$.</p>
+$(T_A^B)^{-1} = T_B^A$.</p>
+</li>
+<li><p>When adding or subtracting coordinates, their superscripts must match!
+For example, $\mathbf{a}^W - \mathbf{b}^W$ is the displacement between
+two points expressed in the world frame, but $\mathbf{a}^W - \mathbf{b}^C$
+is an illegal operation.</p>
 </li>
 </ol>
-<p>Another popular annotation used by some authors is a
-superscript/subscript notation, in which the reference frame of a
-coordinate and the destination frame of a transform are indicated as a
-superscript, while the source frame of a transform is indicated as a
-subscript. For example, $\mathbf{p}^B = T_A^{B}\mathbf{p}^A$ expresses the
-coordinate transform of point $\mathbf{p}$ from frame $A$ to $B$, and
-$T_A^C = T_B^C T_A^B$ expresses the composition of two coordinate
-transforms. In this convention, superscripts and subscripts must cancel
-out for the equation to make sense.</p>
+<p>By convention, a coordinate without a superscript is assumed to be associated
+with the world frame $W$: $\mathbf{p} \equiv \mathbf{p}^W$.  Moreover,a
+coordinate transform $T_A$ is equivalent to a transform
+from $A$ to $W$: $T_A \equiv T_A^W$.</p>
 <p>Matrix expressions are similar to standard expressions regarding real
 numbers in that addition and subtraction are equivalent, multiplication
 is nearly equivalent, and inverses give an approximation of division.
@@ -14040,6 +14191,13 @@ non-square matrix is invertible).</p>
 <li><p>Performing operations on matrices of incompatible size.</p>
 </li>
 </ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Coordinate-management">Coordinate management<a class="anchor-link" href="#Coordinate-management">&#182;</a></h3><p>It is essential when working with coordinates to understand 1) which
 coordinate frame is being used, 2) what unit is being used for
 measurement, and 3) do the coordinates represent a position or
@@ -14123,9 +14281,11 @@ $\| R(\theta) \mathbf{x} \| = \| \mathbf{x} \|$. Use this fact to prove that
 distance is preserved under rigid transforms.</p>
 </li>
 <li><p>Prove that all length-preserving transforms in 2D are either
-rotations or rotations followed by a mirroring transform:
-$$T(\mathbf{x}) = 
-\begin{bmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} \mathbf{x}.$$</p>
+rotations or rotations followed by a mirroring transform:</p>
+<p>$$
+T(\mathbf{x}) = 
+\begin{bmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} \mathbf{x}.
+$$</p>
 </li>
 <li><p>Produce the transform (i.e., rotation matrix $R$ and translation $\mathbf{t}$) that
 rotates any point $\mathbf{x}$ by $45^\circ$ about the point $(1,0)$.</p>
@@ -14187,6 +14347,11 @@ reference frame.</p>
 and <code>Direction</code>, respectively, whose reference frames are now the
 given frame, and whose coordinates are expressed correctly relative
 to the new frame.</p>
+</li>
+<li><p>Extend the coordinate management system of exercise 12 to also include
+<strong>units</strong> that should be specified to the <code>Point</code>, <code>Direction</code>, and <code>Frame</code>
+structure upon construction. Implement support for <code>'m'</code>, <code>'mm'</code>, <code>'cm'</code> and <code>'km'</code>
+arguments indicating meters, millimeters, centimeters, and kilometers.</p>
 </li>
 </ul>
 

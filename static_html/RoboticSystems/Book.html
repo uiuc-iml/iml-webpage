@@ -13118,7 +13118,14 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Robotic-Systems-(draft)">Robotic Systems (draft)<a class="anchor-link" href="#Robotic-Systems-(draft)">&#182;</a></h1><p>Kris Hauser</p>
 <p>University of Illinois at Urbana-Champaign</p>
-<p>Last update: 11/11/2020</p>
+<p>Last update: 12/28/2020</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Table-of-Contents">Table of Contents<a class="anchor-link" href="#Table-of-Contents">&#182;</a></h1><ul>
 <li><p><a href="Preface.html">Preface</a> <strong>90% complete</strong></p>
 </li>
@@ -13190,25 +13197,121 @@ div#notebook {
 <ul>
 <li><a href="NumericalErrors.html">B.1. Numerical errors</a></li>
 <li><a href="MatrixComputations.html">B.2. Matrix computations</a> <strong>20% complete</strong></li>
-<li><a href="Optimization.html">B.3. Optimization</a> <strong>text 80% complete, needs figures</strong></li>
+<li><a href="Optimization.html">B.3. Optimization</a> <strong>text 90% complete, figures 10% complete</strong></li>
 </ul>
 </li>
-<li><p>Appendix C. Computational methods</p>
+<li><p>Appendix C. Computational Methods</p>
 <ul>
 <li><a href="DataStructures.html">C.1. Data structures</a></li>
 <li><a href="GraphSearch.html">C.2. Graph search</a></li>
 </ul>
 </li>
 </ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="About">About<a class="anchor-link" href="#About">&#182;</a></h1><p>This book is a work in progress!  The source material is my lecture notes from courses at Indiana University, Duke University, and University of Illinois at Urbana-Champaign, which are progressively being converted to Jupyter Notebook and HTML format.</p>
 <p>The conversion tools that I am using may create broken matrix equations, links, references, or incorrectly formatted figures.  I am trying to correct them as I go, but I may miss some.  If you notice anything that needs correcting, please email me at <a href="mailto:kkhauser@illinois.edu">kkhauser@illinois.edu</a>.  Or better yet, make the corrections in the notebook directly and <a href="https://help.github.com/articles/about-pull-requests/">issue a Git pull request</a>.</p>
-<h1 id="Enabling-the-interactive-Jupyter-Notebook">Enabling the interactive Jupyter Notebook<a class="anchor-link" href="#Enabling-the-interactive-Jupyter-Notebook">&#182;</a></h1><p>The book comes in HTML, PDF, and Jupyter Notebook formats, and the latter format contains in-browser examples that you can visualize and edit live in your browser.  Follow these steps to enable this format:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Options-for-Working-with-Jupyter-Notebook">Options for Working with Jupyter Notebook<a class="anchor-link" href="#Options-for-Working-with-Jupyter-Notebook">&#182;</a></h1><p>The book comes in <a href="https://motion.cs.illinois.edu/RoboticSystems/">HTML</a> and Jupyter Notebook formats, and running the full Jupyter Notebook provides the most complete experience, with inline quizzes and code examples that you can visualize and edit live in your browser.</p>
+<p>There are three routes to running the Jupyter notebooks:</p>
+<ul>
+<li><a href="https://mybinder.org">Binder</a></li>
+<li><a href="https://colab.research.google.com">Google Colab</a></li>
+<li>Local Jupyter installation</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Running-on-Binder">Running on Binder<a class="anchor-link" href="#Running-on-Binder">&#182;</a></h3><p><a href="https://mybinder.org/">Binder</a> is a very nice service that we've pre-configured to have all dependencies needed to run this book.  Just click here:</p>
+<p><a href="https://mybinder.org/v2/gh/krishauser/RoboticSystemsBook-binder/main?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fkrishauser%252FRoboticSystemsBook%26urlpath%3Dtree%252FRoboticSystemsBook%252FBook.html%26branch%3Dmaster"><img src="https://mybinder.org/badge_logo.svg" alt="Binder"></a></p>
+<p>That's it!</p>
+<p><em>Binder pros</em>:</p>
+<ul>
+<li>Stupidly easy to start.</li>
+<li>Runs everywhere.</li>
+<li>Almost completely full-featured; runs interactive Klamp't visualizations.</li>
+<li>Integrates nicely with Github; automatically gets updates to the Github repo.</li>
+</ul>
+<p><em>Binder cons</em>:</p>
+<ul>
+<li>Relative slow boot time (10&ndash;20s).</li>
+<li>Equation numbering is broken.</li>
+<li>Can't easily save / restore your work &ndash; you will need to manually Download or Save to Browser Storage.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Running-on-Google-Colab">Running on Google Colab<a class="anchor-link" href="#Running-on-Google-Colab">&#182;</a></h3><p>I am progressively updating the book to be compatible with Google Colab, and this is the second-easiest way to get started.  Just click on the following link:</p>
+<p><a href="https://colab.research.google.com/github/krishauser/RoboticSystemsBook/blob/master/Book.html">https://colab.research.google.com/github/krishauser/RoboticSystemsBook/blob/master/Book.html</a></p>
+<p><em>Colab pros</em>:</p>
+<ul>
+<li>Runs everywhere</li>
+<li>Integrates nicely with Github; automatically gets updates to the Github repo.</li>
+<li>Klamp't can output static visualizations of 3D worlds and animations</li>
+</ul>
+<p><em>Colab cons</em>:</p>
+<ul>
+<li>Equations are not numbered and cross-references don't work. </li>
+<li>The Table of Contents feature only works with cells that start with a header. These are being updated slowly...</li>
+<li>Need to run extra code to enable Klamp't visualizations.</li>
+<li>Klamp't visualization windows are not interactive due to Colab incompatibility with custom IPython widgets.</li>
+</ul>
+<p><em>Colab installation</em>:</p>
+<p>No installation needed.</p>
+<p>To run interactive quizzes and code, at the top of each notebook you will need to add a code cell containing the following code:</p>
+
+<pre><code>!git clone --depth 1 https://github.com/krishauser/RoboticSystemsBook
+%cd RoboticSystemsBook
+import rsbook_code
+%cd ..
+!pip install klampt</code></pre>
+<p>which will import the code examples for this book and install Klampt.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Jupyter-Notebook-installation-on-local-machine">Jupyter Notebook installation on local machine<a class="anchor-link" href="#Jupyter-Notebook-installation-on-local-machine">&#182;</a></h3><p><a href="https://jupyter.org/">Jupyter Notebook</a> is the native source of this book, and installing this on your machine will allow you to run truly interactive examples.</p>
+<p><em>Jupyter pros</em></p>
+<ul>
+<li>Runs interactive Klamp't windows.</li>
+<li>All features supported.</li>
+<li>Can switch to native OpenGL visualization for more features, if desired.</li>
+<li>Closer to production robotics code.</li>
+</ul>
+<p><em>Jupyter cons</em></p>
+<ul>
+<li>Need to install on your local machine.</li>
+<li>Need to fiddle with Jupyter notebook extensions to get everything to work properly.</li>
+</ul>
+<p><em>Jupyter Installation</em>:</p>
 <ol>
 <li><p>Install software for running the notebook:</p>
 <ul>
 <li><a href="https://git-scm.com/download">Git</a></li>
-<li>Python 3.4+ and <a href="http://jupyter.org">Jupyter Notebook</a>, or a Python distribution like Anaconda.</li>
-<li><a href="https://github.com/krishauser/Klampt">Klamp't</a> 0.8.3+ Python API.</li>
+<li>Python 3.5+ and <a href="http://jupyter.org">Jupyter Notebook</a>, or a Python distribution like Anaconda.</li>
+<li><a href="https://github.com/krishauser/Klampt">Klamp't</a> 0.8.5+ Python API.</li>
 <li><a href="http://github.com/krishauser/Klampt-jupyter-extension">Klampt-jupyter-extension</a> for live Klamp't windows.</li>
 <li><a href="https://github.com/ipython-contrib/jupyter_contrib_nbextensions">jupyter_contrib_nbextensions</a> for LaTeX and table of content support. </li>
 </ul>
@@ -13221,7 +13324,17 @@ div#notebook {
 <p>To install Klampt-jupyter-extension, run</p>
 <div class="highlight"><pre><span></span>git clone https://github.com/krishauser/Klampt-jupyter-extension.git
 <span class="nb">cd</span> Klampt-jupyter-extension
-sudo make jupyter
+make install-user
+<span class="nb">cd</span> ..
+</pre></div>
+<p>Next, to enable the best reading experience, we will install the <code>jupyter_contrib_nbextensions</code> package and enable the "(some) LaTeX environments for Jupyter", "Table of Contents", and "Codefolding" Jupyter Notebook plugins.  To do so, run</p>
+<div class="highlight"><pre><span></span>pip install jupyter_contrib_nbextensions
+jupyter contrib nbextension install --user
+jupyter nbextension <span class="nb">enable</span> --py widgetsnbextension
+jupyter nbextension <span class="nb">enable</span> codefolding/main
+jupyter nbextension <span class="nb">enable</span> latex_envs/latex_envs
+jupyter nbextension <span class="nb">enable</span> toc2/main
+jupyter nbextension <span class="nb">enable</span> equation-numbering/main
 </pre></div>
 <ol>
 <li>Download the book source from Github:</li>
@@ -13229,17 +13342,24 @@ sudo make jupyter
 <div class="highlight"><pre><span></span>git clone https://github.com/krishauser/RoboticSystemsBook
 </pre></div>
 <ol>
-<li>Run Jupyter Notebook using the console command:</li>
+<li>Run Jupyter Notebook from the RoboticSystemsBook directory using the console command:</li>
 </ol>
-<div class="highlight"><pre><span></span>jupyter notebook
+<div class="highlight"><pre><span></span><span class="nb">cd</span> RoboticSystemsBook
+jupyter notebook
 </pre></div>
 <p>This will launch a web browser interface to Jupyter.</p>
 <ol>
-<li><p>The first time you install, please choose the <code>nbextension</code> tab from the Home screen, and enable the "(some) LaTeX environments for Jupyter", "Table of Contents", and "Codefolding" plugins.  This will lead to the best reading experience.</p>
-</li>
-<li><p>Open the Jupyter Notebook files in the <code>RoboticSystemsBook</code> folder (this page is named <code>Book.html</code>). Happy reading!</p>
-</li>
+<li>Open the Jupyter Notebook files to browse (this page is named <code>Book.html</code>). Happy reading!</li>
 </ol>
+<p>(Note: you must run Jupyter in the <code>RoboticSystemsBook</code> folder to have access to the interactive quizzes and exercises, which use code in the <code>rsbook_code</code> folder)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Known-issues">Known issues<a class="anchor-link" href="#Known-issues">&#182;</a></h1><p>Jupyter Notebook LaTeX rendering uses MathJAX inside Markdown, which occasionally has trouble rendering complex equations.  If you see stray code like <code>= \begin{equation}</code> etc, this is a <a href="https://github.com/jupyter/notebook/issues/2865">known rendering problem</a> with multiple matrices.</p>
 
 </div>
 </div>

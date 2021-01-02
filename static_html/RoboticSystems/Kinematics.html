@@ -13202,10 +13202,7 @@ $( document ).ready(function(){
 
 
 <div id='latex_user_defs'>
-        $\newcommand{\V}[1]{\mathbf #1}$
-$\newcommand{\M}[1] {#1}$
-$\newcommand{\Reals} { \mathbb{R} }$
-
+        
 </div>
 
 
@@ -13469,22 +13466,37 @@ design, or it can be computed in a software library in microseconds for
 tasks like motion prediction, collision detection, or rendering.</p>
 <p>We shall only describe forward kinematics for serial and articulated
 robots; methods for parallel robots will be covered in the next chapter.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="2D-forward-kinematics-for-a-serial-robot">2D forward kinematics for a serial robot<a class="anchor-link" href="#2D-forward-kinematics-for-a-serial-robot">&#182;</a></h3><p>First, let us derive the forward kinematics for an $n$R serial robot.
 There are $n$ links $l_1,\ldots,l_n$, with the 1st link attached to the
 world by a revolute joint, and the remaining $n-1$ links attached to the
 prior link by a revolute joint. Assume that at the 0 position, the
-links' coordinate frames are defined by their reference transforms to
-the world coordinate system: $$T_1^{ref}, T_2^{ref},\ldots, T_n^{ref}.$$
+links' coordinate frames are defined by their reference transforms:
+$$T_{1,ref}, T_{2,ref},\ldots, T_{n,ref}$$
+each expressed as relative to the world coordinate system.
 To make notation more convenient we shall represent these by $3\times 3$
 matrices in homogeneous coordinates. We shall also assume that each
 joint $j_1,\ldots,j_n$ is placed at the origin of the frame of $l_i$,
 and each joint angle $q_i$ gives the angle of link $l_i$ <em>relative</em> to
 its parent link, not in absolute heading.</p>
-<h4 id="Deriving-the-general-purpose-formula">Deriving the general-purpose formula<a class="anchor-link" href="#Deriving-the-general-purpose-formula">&#182;</a></h4><p>When the first joint rotates by angle $q_1$, the frame of the first link $T_1(q_1)$ is changed. $T_1(q_1)$ can be derived by observing how a point $X$ attached to $l_i$ would be moved. Let $\mathbf{x}_1$ be the coordinates of this point relative to the link's frame (augmented with a 1, in homogeneous coordinates).</p>
-<p>First, observe that relative to $l_1$'s reference frame, $X$ has coordinates $R(q_1)\mathbf{x}_1$ because the link was rotated about the origin:
-$$\mathbf{x}_1^{ref} = R(q_{1}) \mathbf{x}_{1} = 
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Deriving-the-general-purpose-formula">Deriving the general-purpose formula<a class="anchor-link" href="#Deriving-the-general-purpose-formula">&#182;</a></h4><p>When the first joint rotates by angle $q_1$, the frame of the first link $T_1(q_1)$ is changed. $T_1(q_1)$ can be derived by observing how a point $X$ attached to $l_i$ would be moved. Let $\mathbf{x}^1$ be the coordinates of this point relative to the link's frame (augmented with a 1, in homogeneous coordinates).</p>
+<p>First, observe that relative to $l_1$'s reference frame, $X$ has coordinates $R(q_1)\mathbf{x}^1$ because the link was rotated about the origin:
+$$\mathbf{x}^{1,ref} = R(q_{1}) \mathbf{x}^{1} = 
 \begin{bmatrix} {\cos q_1} &amp; {-\sin q_1} &amp; {0} \\ {\sin q_1} &amp; {\cos q_1} &amp; {0} \\ 0 &amp; 0 &amp; 1 
-\end{bmatrix}.$$</p>
+\end{bmatrix} \mathbf{x}^{1}.$$</p>
 
 </div>
 </div>
@@ -13493,53 +13505,60 @@ $$\mathbf{x}_1^{ref} = R(q_{1}) \mathbf{x}_{1} =
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Next, we can convert coordinates in $l_1$'s
-reference frame to the world via multiplication by $T_1^{ref}$ to obtain
-the final value of $X$'s world coordinates, $\mathbf{x}_W$:
-$$\mathbf{x}_W = T_1^{ref} R(q_1) \mathbf{x}_1.$$ We can now define
-$T_1(q_1) \equiv T_1^{ref} R(q_1)$ as the frame of link 1.</p>
+reference frame to the world via multiplication by $T_{1,ref}$ to obtain
+the final value of $X$'s world coordinates, $\mathbf{x}^W$:
+$$\mathbf{x}^W = T_{1,ref} R(q_1) \mathbf{x}^1.$$ We can now define
+$T_1(q_1) \equiv T_{1,ref} R(q_1)$ as the frame of link 1.</p>
 <p>Let us proceed to link 2, which moves in space as a function of both
 $q_1$ and $q_2$. Imagine $X$ now be a point attached to link 2, and let
-$\mathbf{x}_2$ be its coordinates with respect to the link's frame. Due to
+$\mathbf{x}^2$ be its coordinates with respect to the link's frame. Due to
 the serial nature of the chain, we can imagine first rotating link 2 by
 angle $q_2$ and then rotating link 1 by angle $q_1$. To perform this
 operation, let us proceed with the following order of transformations:</p>
 <ol>
 <li><p>Rotate link 2, i.e, converts from link 2's moved frame to link 2's
-reference frame: $\mathbf{x}_2 \rightarrow \mathbf{x}_2^{ref}$,</p>
+reference frame: $\mathbf{x}^2 \rightarrow \mathbf{x}^{2,ref}$,</p>
 </li>
 <li><p>Change coordinates to link 1, i.e., convert from link 2's reference
-frame to link 1's moved frame: $\mathbf{x}_2^{ref} \rightarrow \mathbf{x}_1$,</p>
+frame to link 1's moved frame: $\mathbf{x}^{2,ref} \rightarrow \mathbf{x}^1$,</p>
 </li>
 <li><p>Apply link 1's transform, i.e., rotate link 1 and perform the change
-of coordinates to the world frame: $V{x}_1 \rightarrow V{x}_W$.</p>
+of coordinates to the world frame: $\mathbf{x}^1 \rightarrow \mathbf{x}^W$.</p>
 </li>
 </ol>
 <p>As before the first transform consists of a rotation about the origin:
-$$\mathbf{x}_2^{ref} = R(q_2) \mathbf{x}_2.$$ Next, we convert to link 1's
+$$\mathbf{x}^{2,ref} = R(q_2) \mathbf{x}^2.$$ Next, we convert to link 1's
 coordinates. Note that those coordinates will be the same whether link 1
 is rotated or not, since the entire substructure after link 1 rotates in
 unison. As a result we can perform this change of coordinates at the
 reference configuration, which yields the following formula:
-$$\mathbf{x}_1 = (T_1^{ref})^{-1} T_2^{ref} \mathbf{x}_2^{ref}$$ which first
+$$\mathbf{x}^1 = (T_{1,ref})^{-1} T_{2,ref} \mathbf{x}^{2,ref}$$ which first
 changes from $T_2$'s reference frame to the world, then back to $T_1$'s
 reference frame.</p>
 <p>Finally, the third step is simply an application of $T_1(q_1)$ as
-before: $$\mathbf{x}_W = T_1(q_1) \mathbf{x}_1.$$ Putting this all together, we
+before: $$\mathbf{x}^W = T_1(q_1) \mathbf{x}^1.$$ Putting this all together, we
 obtain the equation:
-$$\mathbf{x}_W = T_1(q_1) (T_1^{ref})^{-1} T_2^{ref} R(q_2) \mathbf{x}_2 = T_2(q_1,q_2) \mathbf{x}_2$$
-where $T_2(q_1,q_2) = T_1(q_1) (T_1^{ref})^{-1} T_2^{ref} R(q_2)$.</p>
+$$\mathbf{x}^W = T_1(q_1) (T_{1,ref})^{-1} T_{2,ref} R(q_2) \mathbf{x}^2 = T_2(q_1,q_2) \mathbf{x}^2$$
+where $T_2(q_1,q_2) = T_1(q_1) (T_{1,ref})^{-1} T_{2,ref} R(q_2)$.</p>
 <p>Repeating this step down the chain, we find the following recursive
 equation holds for $i &gt; 1$:
-$$T_{i}(q_1,\ldots,q_i) = T_{i-1}(q_1,\ldots,q_{i-1}) (T_{i-1}^{ref})^{-1} T_i^{ref} R(q_i).$$
-This can be simplified further by assuming the reference <em>parent
+$$T_{i}(q_1,\ldots,q_i) = T_{i-1}(q_1,\ldots,q_{i-1}) (T_{i-1,ref})^{-1} T_{i,ref} R(q_i).$$
+This can be simplified further by assuming the <em>reference parent
 transforms</em> are given by the relative transforms
-$T_{i\rightarrow i-1}^{ref} \equiv (T_{i-1}^{ref})^{-1} T_i^{ref}$. The
+$T_{i,ref}^{i-1,ref} \equiv (T_{i-1,ref})^{-1} T_{i,ref}$. Then, the
 simplified equation is:
-$$T_{i}(q) = T_{i-1}(q) T_{i\rightarrow i-1}^{ref} R(q_i).
+$$T_{i}(q) = T_{i-1}(q) T_{i,ref}^{i-1,ref} R(q_i).
 \label{eq:RecursiveForwardKinematics}$$ Reading this equation from right
 to left, the three steps described above become clear: 1) rotate about
 the joint, 2) convert to the coordinates of the parent link, 3)
 transform by the parent's transform.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Canonical-examples">Canonical examples<a class="anchor-link" href="#Canonical-examples">&#182;</a></h4><p>Let us now work out an example analytically. By judiciously choosing
 reference frames, a canonical planar $n$R robot is defined by link
 lengths $L_1,\ldots, L_{n-1}$ giving the distance between subsequent
@@ -13550,7 +13569,7 @@ parent along the $x$ axis. We will also define an end effector point at
 distance $L_n$ from the origin of the $n$th joint, also translated along
 the $x$ axis.</p>
 <p>With this convention, we have the reference transforms given by:</p>
-$$T_{i\rightarrow i-1}^{ref} = 
+$$T_{i,ref}^{i-1,ref} = 
 \begin{bmatrix}
 1 &amp; 0 &amp; L_{i-1} \\
 0 &amp; 1 &amp; 0 \\
@@ -13633,10 +13652,17 @@ joint to the world, denoted by $p[i] = W$.</p>
 <p>The modification to
 ($\ref{eq:RecursiveForwardKinematics}$) is simple. Rather than using
 the prior index in the recursive formula, we use the parent index:
-$$T_{i}(q) = T_{p[i]}(q) T_{i\rightarrow p[i]}^{ref} R(q_i)
+$$T_{i}(q) = T_{p[i]}(q) T_{i,ref}^{p[i],ref} R(q_i)
 \label{eq:RecursiveForwardKinematicsBranched}$$ if $p[i] \neq W$ and
-$$T_{i}(q) = T_{i}^{ref} R(q_i)
+$$T_{i}(q) = T_{i,ref} R(q_i)
 \label{eq:RecursiveForwardKinematicsBase}$$ otherwise.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Handling-2D-prismatic-joints">Handling 2D prismatic joints<a class="anchor-link" href="#Handling-2D-prismatic-joints">&#182;</a></h3><p>To handle prismatic joints in 2D, we must modify the forward kinematics
 to replace the rotations $R(q_i)$ with a translation that depend on
 $q_i$. In addition to link lengths, we will also need to define the axis
@@ -13694,7 +13720,7 @@ $i=1,\ldots,n$, the following kinematic parameters:</p>
 <ul>
 <li><p>The parent index $p[i]$.</p>
 </li>
-<li><p>The reference transform $T_{i\rightarrow p[i]}^{ref}$</p>
+<li><p>The reference transform $T_{i,ref}^{p[i],ref}$</p>
 </li>
 <li><p>An indicator variable $z_i$ which is 1 if the joint is revolute, and
 0 if the joint is prismatic.</p>
@@ -13704,7 +13730,7 @@ $i=1,\ldots,n$, the following kinematic parameters:</p>
 </li>
 </ul>
 <p>Then, the forward kinematics are defined by:
-$$T_{i}(q) = T_{p[i]}(q) T_{i\rightarrow p[i]}^{ref} L_{z_i,\mathbf{a}_i}(q_i)
+$$T_{i}(q) = T_{p[i]}(q) T_{i,ref}^{p[i],ref} L_{z_i,\mathbf{a}_i}(q_i)
 \label{eq:RecursiveForwardKinematicsGeneralized}$$ where $T_{W}(q)$ is
 the identity and $L_{z_i,\mathbf{a}_i}(q_i)$ is the local joint transform
 $$L_{z,\mathbf{a}}(q) =</p>
@@ -13739,6 +13765,13 @@ $$L_{1,\mathbf{a}}(q_i) = \left[
 \end{array}\right].$$ (This <em>block matrix</em> representation indicates that
 the upper-left $3\times 3$ matrix is replaced by the rotation matrix
 derived from the axis-angle parameterization $R_{aa}$.)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Examples">Examples<a class="anchor-link" href="#Examples">&#182;</a></h3><p>Consider a 2RP spherical manipulator whose first axis rotates about the
 $z$ axis, the second about the $y$ axis, and the prismatic joint
 translates about the $x$ axis. All reference frames are aligned with the
@@ -13753,7 +13786,7 @@ configuration variable $q_3$ to be the distance of the end effector to
 the shoulder. (Generalizing to other coordinate conventions simply
 requires adding the right
 offsets.</div><hr>
-<p>With this definition, $T_{i\rightarrow p[i]}^{ref} = I$ for each link.
+<p>With this definition, $T_{i,ref}^{p[i],ref} = I$ for each link.
 So, the transform of the third link is given by $$T_3(q) = 
 \left[
 \begin{array}{ccc|c}
@@ -13841,11 +13874,18 @@ axis. The reason is that rotations about the $y$ axis rotate CCW about
 the $(z,x)$ plane, not the $(x,z)$ plane. To change the interpretation
 so that $q_2$ measures the elevation angle, the second axis of rotation
 could be rotated so that $\mathbf{a}_2 = (0,-1,0)$, or equivalently, that the
-reference transform $T_2^{ref}$ rotates $\pi$ radians about either the
+reference transform $T_{2,ref}$ rotates $\pi$ radians about either the
 $x$ or $z$ axis.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Kinematics-conventions">Kinematics conventions<a class="anchor-link" href="#Kinematics-conventions">&#182;</a></h3><p>As we defined the layout of a robot's kinematic structure above, we
 store the following parameters for each link $i=1,\ldots,n$: parents
-$p[i]$, reference relative transforms $T_{i\rightarrow p[i]}^{ref}$,
+$p[i]$, reference relative transforms $T_{i,ref}^{p[i],ref}$,
 joint types $z_i$, and translational or rotational axes $\mathbf{a}_i$ .</p>
 <p>However, our 2RP example showed that there are multiple choices of
 frames and axes that define the exact same robot dimensions. In fact,
@@ -13859,6 +13899,13 @@ robot's reference frame by choosing a <em>convention</em>. We have already seen
 a convention where we have chosen to place joint axes at the origin of
 the child frame; in general, the joint could have been placed
 arbitrarily in space.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Planar-robot-convention">Planar robot convention<a class="anchor-link" href="#Planar-robot-convention">&#182;</a></h4><p>We have also seen the standard convention for 2D planar robots in the
 $n$R example, in which we chose to align the reference frame with the
 $x$ axis. Here, by a change of world frame and zero positions, we need
@@ -13872,6 +13919,13 @@ $\mathbf{a}_i = (\cos \theta_i, \sin \theta_i)$.</p>
 <p>As a result, a minimum set of kinematic parameters for a 2D robot are
 the link lengths $L_1,\ldots,L_n$ and the headings of any translational
 axes $\theta_i$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Denavit-Hartenberg-convention">Denavit-Hartenberg convention<a class="anchor-link" href="#Denavit-Hartenberg-convention">&#182;</a></h4><p><em>Denavit-Hartenberg convention</em> is a well-known minimal parameter
 convention for 3D serial robot kinematics. In this convention, joint
 axes are always aligned to the $z$ axis of each child link, and the
@@ -13881,6 +13935,13 @@ the purposes of robot design and forward kinematics calculations, but
 due to the minimal number of parameters used (4 per link) it remains
 popular for robot structure optimization problems, like in robot
 calibration.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="A-single-pass-forward-kinematics-algorithm">A single-pass forward kinematics algorithm<a class="anchor-link" href="#A-single-pass-forward-kinematics-algorithm">&#182;</a></h3><p>Forward kinematics can be computed through a single pass through the
 links, and for typical robots (at most hundreds of links), this process
 can be performed in a matter of microseconds.</p>
@@ -13909,6 +13970,13 @@ $T_i(q)$ using the stored value of $T_{p[i]}(q)$.</p>
 <hr>
 <p>After the algorithm is complete, all link frames $T_1,\ldots,T_N$ are calculated with
 respect to the world frame.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Robot-kinematic-definition-files">Robot kinematic definition files<a class="anchor-link" href="#Robot-kinematic-definition-files">&#182;</a></h3><p>Although deriving a closed-form symbolic expression for forward
 kinematics is helpful for some purposes, it is often more convenient and
 less error-prone to let a software package calculate forward kinematics
@@ -17061,225 +17129,9 @@ sparsely is this shape sampled?</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Interactive-examples">Interactive examples<a class="anchor-link" href="#Interactive-examples">&#182;</a></h2><p>The following interactive examples require Klampt-jupyter-extension and Klamp't to be installed on your system.  Instructions can be found at
-<a href="https://github.com/krishauser/Klampt-jupyter-extension">https://github.com/krishauser/Klampt-jupyter-extension</a></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2R-planar-robot">2R planar robot<a class="anchor-link" href="#2R-planar-robot">&#182;</a></h3><p>This example lets you manipulate the configuration of a simple 2R robot to observe how the frames of its links change as joint values change.  The coordinates of the end effector point (1,0,0) are also updated.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Code for the interactive example (run me!)↔</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-
- 
- 
-<div id="9a8d0317-46bb-4826-8596-068c66280de8"></div>
-<div class="output_subarea output_widget_view ">
-<script type="text/javascript">
-var element = $('#9a8d0317-46bb-4826-8596-068c66280de8');
-</script>
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "model_id": "61e8655c53b44a51ab15308db68f9817", "version_minor": 0}
-</script>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-
- 
- 
-<div id="b1a142a1-9c69-489e-b6af-38acb2c7fe9e"></div>
-<div class="output_subarea output_widget_view ">
-<script type="text/javascript">
-var element = $('#b1a142a1-9c69-489e-b6af-38acb2c7fe9e');
-</script>
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "model_id": "35f4523a58f0459186ecae980023cf80", "version_minor": 0}
-</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="RP-planar-robot">RP planar robot<a class="anchor-link" href="#RP-planar-robot">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Code for the interactive example (run me!)↔</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-
- 
- 
-<div id="99825f0b-4b9e-49fc-92f6-3b192a1251b5"></div>
-<div class="output_subarea output_widget_view ">
-<script type="text/javascript">
-var element = $('#99825f0b-4b9e-49fc-92f6-3b192a1251b5');
-</script>
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "model_id": "196c6be6b60d491bb97a71977cfc042b", "version_minor": 0}
-</script>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-
- 
- 
-<div id="aeff62d2-3675-4373-ac84-78f3c22551d8"></div>
-<div class="output_subarea output_widget_view ">
-<script type="text/javascript">
-var element = $('#aeff62d2-3675-4373-ac84-78f3c22551d8');
-</script>
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "model_id": "e93672f553f34d37b1a2d1c2c1b9ddbf", "version_minor": 0}
-</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="6DOF-industrial-manipulator">6DOF industrial manipulator<a class="anchor-link" href="#6DOF-industrial-manipulator">&#182;</a></h3>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Code for the interactive example (run me!)↔</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-
- 
- 
-<div id="904625f6-52cc-49be-9f83-369fd89b312e"></div>
-<div class="output_subarea output_widget_view ">
-<script type="text/javascript">
-var element = $('#904625f6-52cc-49be-9f83-369fd89b312e');
-</script>
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "model_id": "43250ce4c34d49e3a5024ac1aa335888", "version_minor": 0}
-</script>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-
- 
- 
-<div id="8f52a32d-b1a1-4655-a597-b7799f34beaf"></div>
-<div class="output_subarea output_widget_view ">
-<script type="text/javascript">
-var element = $('#8f52a32d-b1a1-4655-a597-b7799f34beaf');
-</script>
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "model_id": "528531b8620645ae876e385aef87e6b0", "version_minor": 0}
-</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
