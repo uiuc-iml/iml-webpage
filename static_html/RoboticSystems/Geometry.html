@@ -13368,8 +13368,9 @@ from $\partial G$.</p>
 </li>
 </ul>
 <hr>
+<p><a name="fig:Geometries"></a></p>
 <p><img src="figures/modeling/geometries.png" alt="fig:Geometries"></p>
-<div class="figcaption"><a name="fig:Geometries">Figure 1</a>.
+<div class="figcaption"><b>Figure 1</b>.
 The four main classes of geometry representations: (a) geometric primitives, in this case a box with given position, orientation, and dimensions, (b) surface representations, in this case a triangle mesh, (c) volumetric representations, here showing a cutaway view, and (d) point-based representations.</div><hr>
 <p>There are a number of tradeoffs involved in choosing representations. In
 general, surface representations are most widely used for visualization
@@ -13390,7 +13391,7 @@ fidelity.</p>
 compact, mathematically convenient, and lend themselves to fast
 geometric operations: exact calculations can be calculated in constant
 ($O(1)$) time. (For more information about Big-O notation, consult
-<a href="GraphsAndSearch.html#sec:Big-o-notation">Appendix C.1.</a>) However, they are the least flexible
+<a href="GraphsAndSearch.ipynb#sec:Big-o-notation">Appendix C.1.</a>) However, they are the least flexible
 representation and do not represent most real geometries with high
 fidelity.</p>
 <p>Common primitives include points, line segments, triangles, spheres,
@@ -13444,6 +13445,7 @@ is a <strong>polygonal chain</strong>.</p>
 <p>It is important to note that in order to represent a solid surface, the edges of neighboring triangles in the mesh should be coincident, so that most vertices will be represented in several triangles.  To save on storage space / representational complexity, triangle meshes are often represented as a vertex list $\mathbf{v}_1,\ldots,\mathbf{v}_M$ and a triangle index list $(i_{a1},i_{b1},i_{c1}),\ldots,(i_{aN},i_{bN},i_{cN})$, where the index triple $(i_{ak},i_{bk},i_{ck})$ indicates that the $k$'th triangle is composed of vertices $\mathbf{v}_{i_{ak}},\mathbf{v}_{i_{bk}},\mathbf{v}_{i_{ck}}$. 
 For example, the cube in <a href="#fig:Cube">Fig. 2</a> represents a solid, but only the vertices and triangles of the surface are represented.</p>
 <hr>
+<p><a name="fig:Cube"></a></p>
 
 </div>
 </div>
@@ -13486,7 +13488,7 @@ For example, the cube in <a href="#fig:Cube">Fig. 2</a> represents a solid, but 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="figcaption"><a name="fig:Cube">Figure 2</a>.
+<div class="figcaption"><b>Figure 2</b>.
 A cube is represented by an indexed triangle mesh, given by 8 vertices and 12 triangles.</div><hr>
 <p>The visualization below loads a triangle mesh from disk, and visualizes it using WebGL. Try spinning it by dragging on it with the left mouse button, and translating it by dragging with the right mouse button.</p>
 
@@ -16499,8 +16501,9 @@ Evaluation is $O(1)$.</p>
 </ul>
 <p>Some 2D examples are illustrated in <a href="#fig:Volumetric">Fig. 3</a>.</p>
 <hr>
+<p><a name="fig:Volumetric"></a></p>
 <p><img src="figures/modeling/volumetric.svg" alt="fig:Volumetric"></p>
-<div class="figcaption"><a name="fig:Volumetric">Figure 3</a>.
+<div class="figcaption"><b>Figure 3</b>.
 Volumetric data can be intrepreted and represented in various ways.  Three popular interpretations &mdash; occupancy grids, SDFs and TSDFs &mdash; can be represented as dense, hierarchical, or sparse grids.  Examples are drawn in 2D.</div><hr>
 <p>Various combinations of value types and representations
 are useful for certain tasks. Popular representations include:</p>
@@ -16557,6 +16560,7 @@ return to the topic of 3D mapping. Knowledge about the camera's position
 and orientation in space is required to correlate the 2D image to 3D
 points in a global reference frame.</p>
 <hr>
+<p><a name="fig:RGBD"></a></p>
 
 </div>
 </div>
@@ -16599,7 +16603,7 @@ points in a global reference frame.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="figcaption"><a name="fig:RGBD">Figure 4</a>.
+<div class="figcaption"><b>Figure 4</b>.
     A color and depth image captured by an RGB-D camera, from the Cornell RGBD Dataset. The corresponding point cloud can be seen in <a href="#Point-cloud-visualization">Section 4.3</a>.</div><hr>
 <p>Both point clouds and depth images will be, in general, imperfect
 representations of geometry due to sensor noise, occlusion, and limited
@@ -16731,8 +16735,9 @@ of intersections between the surface and a ray whose origin is $\mathbf{x}$
 and direction is arbitrary. If the number of intersections is odd, then
 the point is inside; otherwise it is outside.</p>
 <hr>
+<p><a name="fig:InsideOutside"></a></p>
 <p><img src="figures/modeling/inside_outside.svg" alt="fig:InsideOutside"></p>
-<div class="figcaption"><a name="fig:InsideOutside">Figure 5</a>.
+<div class="figcaption"><b>Figure 5</b>.
 Left: Inside-outside testing for a point in an arbitrary surface can (normally) be determined by
 counting the number of times a ray, eminating from the point, intersects the surface. If this count is odd, the point is inside, while if it is even, the point is outside.  Right: special care must be taken at corner cases, such as when multiple surface primitives intersect the ray, or when the surface is tangent to the ray.</div><hr>
 <p>There is, however, some
@@ -16791,8 +16796,9 @@ overdetermined system is unlikely to have a solution.)</p>
 axis-wise intervals overlap. Two intervals $[a,b]$ and $[c,d]$ overlap
 if $a \in [c,d]$, $b \in [c,d]$, $c \in [a,b]$, or $d \in [a,b]$.</p>
 <hr>
+<p><a name="fig:Collisions"></a></p>
 <p><img src="figures/modeling/primitive_collisions.svg" alt="fig:Collisions"></p>
-<div class="figcaption"><a name="fig:Collisions">Figure 6</a>.
+<div class="figcaption"><b>Figure 6</b>.
 Primitive collision detection, showing (a) sphere vs sphere, (b) sphere vs line segment, with the closest point on the segment's supporting line indicated with a red circle, (c) line segment vs line segment, with the intersection of supporting lines indicated with a red circle, and (d) AABB vs AABB, showing overlap in one dimension but not the other. </div><hr>
 
 </div>
@@ -16808,8 +16814,9 @@ objects. The principle, illustrated in <a href="#fig:separating_plane">Fig. 5</a
 <p><em>If $A$ and $B$ are convex objects, $A$ and $B$ overlap if and only if
 there does not exists a plane separating them.</em></p>
 <hr>
-<p><img src="figures/modeling/separating_plane.png" alt="fig:separating_plane"></p>
-<div class="figcaption"><a name="fig:separating_plane">Figure 7</a>.
+<p><a name="fig:separating_plane"></a>
+<img src="figures/modeling/separating_plane.png" alt="fig:separating_plane"></p>
+<div class="figcaption"><b>Figure 7</b>.
     Illustrating the separation principle for 2D objects (left) and 3D objects (right).
     </div><hr>
 <p>We can use this fact as follows. Let $\mathbf{n}$ be some direction in space.
@@ -16910,8 +16917,9 @@ vertex.</p>
 move, then $\mathbf{x}_A$ and $\mathbf{x}_B$ are closest points, and the algorithm
 is done.</p>
 <hr>
+<p><a name="fig:GJK"></p>
 <p><img src="figures/modeling/gjk.svg" alt="fig:GJK"></p>
-<div class="figcaption"><a name="fig:GJK">Figure 8</a>. Illustrating steps of the GJK algorithm. The current points are moved walked incrementally toward one another, respecting the constraints of the currently active feature. The active features for each point are highlighted in blue.
+<div class="figcaption"><b>Figure 8</b>. Illustrating steps of the GJK algorithm. The current points are moved walked incrementally toward one another, respecting the constraints of the currently active feature. The active features for each point are highlighted in blue.
 </div><hr>
 <p>Although $A$ and $B$ may have $m$ and $n$ faces, respectively, polytopes
 usually have a constant number of edges per face and faces per vertex.
@@ -16959,8 +16967,9 @@ hierarchical data structure (a tree) with the top level bounding volume
 leaves) containing individual primitives. The BVH is precomputed for a
 given model and then reused during collision detection.</p>
 <hr>
-<p><img src="figures/modeling/bounding_volume_hierarchy.svg" alt="fig:bounding_volume_hierarchy"></p>
-<div class="figcaption"><a name="fig:bounding_volume_hierarchy">Figure 9</a>.
+<p><a name="fig:bounding_volume_hierarchy"></a>
+<img src="figures/modeling/bounding_volume_hierarchy.svg" alt="fig:bounding_volume_hierarchy"></p>
+<div class="figcaption"><b>Figure 9</b>.
     A bounding volume hierarchy for a 2D W-shaped object, with circles as bounding volumes.  The leaf nodes contain individual line segments.
     </div><hr>
 
@@ -17092,8 +17101,9 @@ query sizes.  For example, <a href="#fig:broadphase">Fig. 10</a> shows an
 application to crowd simulation, in which each agent only needs to consider
 interacting with agents within some "proximity radius".</p>
 <hr>
-<p><img src="figures/modeling/broadphase.svg" alt="fig:broadphase"></p>
-<div class="figcaption"><a name="fig:broadphase">Figure 10</a>. 
+<p><a name="fig:broadphase"></a>
+<img src="figures/modeling/broadphase.svg" alt="fig:broadphase"></p>
+<div class="figcaption"><b>Figure 10</b>. 
     Broad phase collision detection / proximity for crowds (disks) with a "proximity radius" (dotted lines).  Left:  Yellow objects have sufficiently close proximity so that the proximity radius of object A overlaps the disk of object B. Red objects collide.  Right: a grid data structure can be constructed so that an object's disk is added to each grid cells that the disk overlaps (shaded grey). The cells overlapped by a query proximity disk (bold) are highlighted in blue, and in this case only three disks, excluding the query object, need checking for collision.
     </div><hr>
 
@@ -17110,20 +17120,11 @@ visualization geometries separately from the geometries used for
 collision detection to make collision detection queries faster; this
 is typical in the URDF files used in ROS (<a href="#fig:vis_coll_geometry">Fig. 11</a>).</p>
 <hr>
-<table>
-<thead><tr>
-<th>(a) High-resolution visualization geometry</th>
-<th>(b) Lower-resolution collision geometry</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><img src="figures/modeling/hubo_visualization_geometry.png" alt="fig:hubo_vis"></td>
-<td><img src="figures/modeling/hubo_collision_geometry.png" alt="fig:hubo_col"></td>
-</tr>
-</tbody>
-</table>
-<div class="figcaption"><a name="fig:vis_coll_geometry">Figure 11</a>. 
+<p><a name="fig:vis_coll_geometry"></a>
+| (a) High-resolution visualization geometry | (b) Lower-resolution collision geometry
+|---------------------------------------------------------------|--------------------------------------------------------|
+|<img src="figures/modeling/hubo_visualization_geometry.png" alt="fig:hubo_vis"> | <img src="figures/modeling/hubo_collision_geometry.png" alt="fig:hubo_col"> |</p>
+<div class="figcaption"><b>Figure 11</b>. 
     Visualization geometry for robots may be stored separately from the collision detection geometry, and may contain more details to improve the quality of visualization.
     </div><hr>
 
@@ -17192,6 +17193,7 @@ particularly when viewed from oblique angles, will look fairly strange,
 and will display portions of the objects that should be hidden from
 view (<a href="#fig:point_cloud">Fig. 12</a>).</p>
 <hr>
+<p><a name="fig:point_cloud"></a></p>
 <table>
 <thead><tr>
 <th>(a) A point cloud, from a similar vantage point to the camera</th>
@@ -17205,7 +17207,7 @@ view (<a href="#fig:point_cloud">Fig. 12</a>).</p>
 </tr>
 </tbody>
 </table>
-<div class="figcaption"><a name="fig:point_cloud">Figure 12</a>. 
+<div class="figcaption"><b>Figure 12</b>. 
     A point cloud of an office scene from an RGB-D camera, from the Cornell RGBD Dataset. Away from the original camera's vantage point, the data is difficult to interpret.
     </div><hr>
 <p>A variety of techniques have been developed to make point cloud

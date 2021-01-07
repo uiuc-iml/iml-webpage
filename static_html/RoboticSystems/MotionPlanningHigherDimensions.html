@@ -13266,7 +13266,7 @@ F &amp; \text{ if $q$ is in the forbidden region}
 \end{array} \right.$$ A planner can then call this subroutine to probe
 whether a configuration is feasible. Since this will be called thousands
 or millions of times, fast planning in high-dimensional spaces requires
-efficient collision tests as described in <a href="Geometry.html#Collision-Queries">Chapter 7</a>.</p>
+efficient collision tests as described in <a href="Geometry.ipynb#Collision-Queries">Chapter 7</a>.</p>
 <p>Often, we will also need to check whether a <em>motion</em> is feasible as
 well, usually a short segment of a path $\overline{pq}$ between
 configurations $p,q \in \mathcal{C}$. The process is called a
@@ -13657,7 +13657,7 @@ tends to be more pronounced with incremental PRM is used, or fewer
 neighbors are connected. We shall see strategies to address the
 jerkiness of PRM paths when discussing <a href="#Optimizing-probabilistic-roadmaps">optimizing roadmaps</a> and <a href="#Shortcutting">shortcutting</a>.</p>
 <h4 id="Analysis-of-visibility-and-performance">Analysis of visibility and performance<a class="anchor-link" href="#Analysis-of-visibility-and-performance">&#182;</a></h4><p>The running time of PRM is composed of $N$ configuration collision checks, $kn$ edge collision checks (for the $k$-nearest-neighbor variant), and $n$ nearest neighbor querie-.  Let's assume the likelihood of finding a sampling a configuration is constant and nonzero, and that configuration and edge collision checks are $O(1)$. Assuming brute-force nearest-neighbor queries, the overall running time is $O(n^2)$.  However, using <a href="#Nearest-neighbor-queries">more sophisticated nearest-neighbor queries</a>, this can be reduced to $O(n \log n)$.</p>
-<p>The basic PRM and incremental PRM algorithms have been shown to be <a href="WhatIsMotionPlanning.html#Completeness-and-optimality">probabilistically complete</a> under relatively mild conditions. This implies that the likelihood that the roadmap connects the start and goal (assuming they are connected in $\mathcal{F}$) approaches 1 as more milestones are added to the roadmap.  But how quickly do they converge?
+<p>The basic PRM and incremental PRM algorithms have been shown to be <a href="WhatIsMotionPlanning.ipynb#Completeness-and-optimality">probabilistically complete</a> under relatively mild conditions. This implies that the likelihood that the roadmap connects the start and goal (assuming they are connected in $\mathcal{F}$) approaches 1 as more milestones are added to the roadmap.  But how quickly do they converge?
 A key factor in the theoretical analysis (and empirical performance) of a PRM are the <em>visibility properties</em> of the free space.  Using the language of unfavorable / favorable visibility properties, we can mathematically formalize the intuitive notions of a "narrow passage" and "wide passage".  To do this, we will need to introduce several definitions.</p>
 <p>First, we define a <em>measure</em> $\mu(X)$ that assigns any free space subset $X \subseteq \mathcal{F}$ a nonnegative scalar.  Measures have a whole host of requirements, but intuitively, $\mu(X)$ measures the volume of $X$.  (Note that if $X$ has lower dimension than $\mathcal{C}$, then $\mu(X)=0$; such sets include points, lines, etc.)</p>
 <p>Next, we define the visibility sets.</p>
@@ -13831,7 +13831,7 @@ of milestones near the boundaries of obstacles, since low-visibility
 regions will certainly be located near obstacles. The method actually
 draws two samples: one $q_1$ at random, and the second $q_2$ from a
 multivariate Gaussian distribution (see
-<a href="Probability.html#Multivariate-Gaussians">Appendix A.3.</a>) centered at $q_1$ and with
+<a href="Probability.ipynb#Multivariate-Gaussians">Appendix A.3.</a>) centered at $q_1$ and with
 standard deviation $\sigma$. Then, <em>only if exactly one of the samples
 is feasible</em>, that sample is kept. Otherwise, both are thrown out. This
 ensures that the segment between $q_1$ and $q_2$ straddles the boundary
@@ -14071,7 +14071,7 @@ outperform RRT* (or PRM*)!</p>
 <h4 id="k-d-trees">k-d trees<a class="anchor-link" href="#k-d-trees">&#182;</a></h4><p>A <em>$k$-d tree</em> data structure is a spatial hierarchy that recursively divides a Cartesian space $\mathbb{R}^k$ into regions by splitting each region by a hyperplane.  <em>The $k$ here refers to the number of dimensions in the space, not the $k$ in the kNN query.  In the following, let us revert back to our original notation where dimensionality is denoted $d$.</em>  Each hyperplane is aligned to one of the $d$ primary axes.  An illustration of a k-d tree is shown below.</p>
 <p>TODO: k-d tree illustration.</p>
 <p>More formally, the binary tree $T_{kd}$ is composed of nodes $N$.  Each leaf node contains a list of contained points <code>pts</code>, and each non-leaf node contains a split dimension <code>dim</code> and split value <code>value</code>.  Non-leaf nodes have exactly two children $C^-$, and $C^+$, and all points $q \in \mathbb{R}^d$ such that $q_{dim} &lt; value$ belong to the <em>negative</em> child $C^-$, while points such that $q_{dim} \geq value$ belong to the <em>positive</em> child $C^+$.</p>
-<p>We will describe how to query for the closest point (NN), with the kNN and near queries implemented similarly. We traverse the tree in a branch-and-bound manner similar to the <a href="Geometry.html#Bounding-volume-hierarchies">bounding volume hierarchy</a> approach.  Let's assume the Euclidean distance is used.  We maintain a closest point $p_{close}$, initialized by picking a point from $P$ at random.  We proceed examining nodes $N$ recursively starting from $N=root(T_{kd})$. Psuedocode is below:</p>
+<p>We will describe how to query for the closest point (NN), with the kNN and near queries implemented similarly. We traverse the tree in a branch-and-bound manner similar to the <a href="Geometry.ipynb#Bounding-volume-hierarchies">bounding volume hierarchy</a> approach.  Let's assume the Euclidean distance is used.  We maintain a closest point $p_{close}$, initialized by picking a point from $P$ at random.  We proceed examining nodes $N$ recursively starting from $N=root(T_{kd})$. Psuedocode is below:</p>
 <hr>
 <p><a name="alg:KDTreeNN">Algorithm KDTree-NN-recurse($q,N,p_{close}$)</a></p>
 <ol>
@@ -14341,12 +14341,12 @@ each collocation point are enforced:
 $$h(\theta) = 
 \begin{bmatrix}{g(y_\theta(s_1))} \\ {\vdots} \\ {g(y_\theta(s_M))} \end{bmatrix} \leq 0.$$
 The resulting problem is a constrained optimization problem
-(<a href="Optimization.html#Constrained-Optimization">Appendix B.3.</a>), which can be solved using a
+(<a href="Optimization.ipynb#Constrained-Optimization">Appendix B.3.</a>), which can be solved using a
 nonlinear program solver, like Sequential Quadratic Programming (SQP).
 Efficient implementations will take advantage of sparseness in the
 constraint Jacobian.</p>
 <p>Another alternative lets us use unconstrained optimizations
-(<a href="Optimization.html#Unconstrained-Optimization">Appendix B.3.</a>) by converting hard
+(<a href="Optimization.ipynb#Unconstrained-Optimization">Appendix B.3.</a>) by converting hard
 constraints to penalties in the objective function. In this approach we
 defining a penalty function for violating constraints:
 $$f_{pen}(\theta) = \sum_{j=1}^M \max(g(y_\theta(s_j)), 0).$$ Then by

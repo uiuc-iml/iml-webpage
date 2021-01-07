@@ -13695,7 +13695,7 @@ $$\overline{\mathbf{x}}_{N-1} = \frac{1}{N-1} \sum_{i=1}^{N-1} \mathbf{x}^{(i)})
 to derive $\sum_{i=1}^{N-1} \mathbf{x}^{(i)} = (N-1)\overline{\mathbf{x}}_{N-1}$, we can replace this in the above expression to get
 $$\overline{\mathbf{x}}_N = \frac{1}{N} \mathbf{x}^{(N)} + \frac{N-1}{N} \overline{\mathbf{x}}_{N-1}.$$
 This is simply a linear interpolation $1/N$ of the way from $\mathbf{x}^{(N)}$ to $\overline{\mathbf{x}}_{N-1}$.</p>
-<p>Let us apply this to rotations using the SO(3) <a href="3DRotations.html#Geodesic-interpolation">geodesic interpolation discussed in Chapter 4</a>.  Let us denote $\overline{R}_k$ as the average of the first $k$ rotations defined in the following sense.  The base case is $\overline{R}_1 = R^{(1)}$.  For $k&gt;1$, define
+<p>Let us apply this to rotations using the SO(3) <a href="3DRotations.ipynb#Geodesic-interpolation">geodesic interpolation discussed in Chapter 4</a>.  Let us denote $\overline{R}_k$ as the average of the first $k$ rotations defined in the following sense.  The base case is $\overline{R}_1 = R^{(1)}$.  For $k&gt;1$, define
 $$\overline{R}_k = SO3interp(R^{(k)},\overline{R}_{k-1},1/k).$$
 Then, $\overline{R}_N$ is an estimate of the average rotation.</p>
 <p>This procedure does have a drawback in that the order of rotation samples in the dataset affects the final result.  To obtain even better results, this procedure can continue multiple passes through the dataset (with $k$ continually increasing), as though the dataset were duplicated some number of times. In the limit of an infinite number of passes, this procedure will converge regardless of the order of the dataset.</p>
@@ -13740,13 +13740,13 @@ Then, $\overline{R}_N$ is an estimate of the average rotation.</p>
 
  
  
-<div id="761713b9-42d3-4f11-8461-7fd80dbe8646"></div>
+<div id="3c77e6c0-6585-4a83-afbd-4cce58271845"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#761713b9-42d3-4f11-8461-7fd80dbe8646');
+var element = $('#3c77e6c0-6585-4a83-afbd-4cce58271845');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "1d390b910b574629b1e4e92d5669f8d6", "version_minor": 0, "version_major": 2}
+{"model_id": "1d390b910b574629b1e4e92d5669f8d6", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -13762,13 +13762,13 @@ var element = $('#761713b9-42d3-4f11-8461-7fd80dbe8646');
 
  
  
-<div id="23a3525c-04c9-43c4-a8d4-dc4a1a0ac09e"></div>
+<div id="a9a8687c-8114-4b95-abf3-2c42628e7bc1"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#23a3525c-04c9-43c4-a8d4-dc4a1a0ac09e');
+var element = $('#a9a8687c-8114-4b95-abf3-2c42628e7bc1');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "ea0e5d860fed40f8a229847a85c0b5d5", "version_minor": 0, "version_major": 2}
+{"model_id": "ea0e5d860fed40f8a229847a85c0b5d5", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 

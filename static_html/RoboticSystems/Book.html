@@ -13150,7 +13150,7 @@ div#notebook {
 <li><a href="GeometricMotionPlanning.html">Chapter 9. Motion planning in simple geometric spaces</a> </li>
 <li><a href="MotionPlanningHigherDimensions.html">Chapter 10. Motion planning in higher dimensions</a> <strong>text complete, figures 80% complete</strong></li>
 <li><a href="PlanningWithDynamicsAndUncertainty.html">Chapter 11. Planning with dynamics and uncertainty</a> <strong>text 95% complete, figures 70% complete</strong></li>
-<li><a href="AdvancedTopicsInPlanning.html">Chapter 12. Advanced topics in planning</a> <strong>incomplete</strong></li>
+<li><a href="AdvancedTopicsInPlanning.html">Chapter 12. Advanced topics in planning</a> <strong>15% complete</strong></li>
 </ul>
 </li>
 <li><p>Section IV. Dynamics and Control</p>
@@ -13226,9 +13226,9 @@ div#notebook {
 <h1 id="Options-for-Working-with-Jupyter-Notebook">Options for Working with Jupyter Notebook<a class="anchor-link" href="#Options-for-Working-with-Jupyter-Notebook">&#182;</a></h1><p>The book comes in <a href="https://motion.cs.illinois.edu/RoboticSystems/">HTML</a> and Jupyter Notebook formats, and running the full Jupyter Notebook provides the most complete experience, with inline quizzes and code examples that you can visualize and edit live in your browser.</p>
 <p>There are three routes to running the Jupyter notebooks:</p>
 <ul>
-<li><a href="https://mybinder.org">Binder</a></li>
-<li><a href="https://colab.research.google.com">Google Colab</a></li>
-<li>Local Jupyter installation</li>
+<li><a href="#Running-on-Binder">Binder</a></li>
+<li><a href="#Running-on-Google-Colab">Google Colab</a></li>
+<li><a href="#Jupyter-Notebook-installation-on-local-machine">Local Jupyter installation</a></li>
 </ul>
 
 </div>
@@ -13238,7 +13238,7 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Running-on-Binder">Running on Binder<a class="anchor-link" href="#Running-on-Binder">&#182;</a></h3><p><a href="https://mybinder.org/">Binder</a> is a very nice service that we've pre-configured to have all dependencies needed to run this book.  Just click here:</p>
-<p><a href="https://mybinder.org/v2/gh/krishauser/RoboticSystemsBook-binder/main?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fkrishauser%252FRoboticSystemsBook%26urlpath%3Dtree%252FRoboticSystemsBook%252FBook.html%26branch%3Dmaster"><img src="https://mybinder.org/badge_logo.svg" alt="Binder"></a></p>
+<p><a href="https://mybinder.org/v2/gh/krishauser/RoboticSystemsBook-binder/main?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fkrishauser%252FRoboticSystemsBook%26urlpath%3Dtree%252FRoboticSystemsBook%252FBook.ipynb%26branch%3Dmaster"><img src="https://mybinder.org/badge_logo.svg" alt="Binder"></a></p>
 <p>That's it!</p>
 <p><em>Binder pros</em>:</p>
 <ul>
@@ -13250,7 +13250,6 @@ div#notebook {
 <p><em>Binder cons</em>:</p>
 <ul>
 <li>Relative slow boot time (10&ndash;20s).</li>
-<li>Equation numbering is broken.</li>
 <li>Can't easily save / restore your work &ndash; you will need to manually Download or Save to Browser Storage.</li>
 </ul>
 
@@ -13261,7 +13260,7 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Running-on-Google-Colab">Running on Google Colab<a class="anchor-link" href="#Running-on-Google-Colab">&#182;</a></h3><p>I am progressively updating the book to be compatible with Google Colab, and this is the second-easiest way to get started.  Just click on the following link:</p>
-<p><a href="https://colab.research.google.com/github/krishauser/RoboticSystemsBook/blob/master/Book.html">https://colab.research.google.com/github/krishauser/RoboticSystemsBook/blob/master/Book.html</a></p>
+<p><a href="https://colab.research.google.com/github/krishauser/RoboticSystemsBook/blob/master/Book.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a></p>
 <p><em>Colab pros</em>:</p>
 <ul>
 <li>Runs everywhere</li>
@@ -13271,19 +13270,19 @@ div#notebook {
 <p><em>Colab cons</em>:</p>
 <ul>
 <li>Equations are not numbered and cross-references don't work. </li>
-<li>The Table of Contents feature only works with cells that start with a header. These are being updated slowly...</li>
-<li>Need to run extra code to enable Klamp't visualizations.</li>
+<li>Need to insert / run extra code cells to enable interactive quizzes and code.</li>
 <li>Klamp't visualization windows are not interactive due to Colab incompatibility with custom IPython widgets.</li>
+<li>The Table of Contents feature only works with cells that start with a header. These are being updated slowly...</li>
 </ul>
 <p><em>Colab installation</em>:</p>
 <p>No installation needed.</p>
-<p>To run interactive quizzes and code, at the top of each notebook you will need to add a code cell containing the following code:</p>
-
-<pre><code>!git clone --depth 1 https://github.com/krishauser/RoboticSystemsBook
-%cd RoboticSystemsBook
-import rsbook_code
-%cd ..
-!pip install klampt</code></pre>
+<p>To run interactive quizzes and code, you will need to insert and run a code cell containing the following code:</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">cd</span> <span class="o">~</span>
+<span class="o">!</span><span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">depth</span> <span class="mi">1</span> <span class="nl">https</span><span class="p">:</span><span class="c1">//github.com/krishauser/RoboticSystemsBook</span>
+<span class="o">%</span><span class="n">cd</span> <span class="n">RoboticSystemsBook</span>
+<span class="n">import</span> <span class="n">rsbook_code</span>
+<span class="o">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">klampt</span>
+</pre></div>
 <p>which will import the code examples for this book and install Klampt.</p>
 
 </div>
@@ -13302,8 +13301,7 @@ import rsbook_code
 </ul>
 <p><em>Jupyter cons</em></p>
 <ul>
-<li>Need to install on your local machine.</li>
-<li>Need to fiddle with Jupyter notebook extensions to get everything to work properly.</li>
+<li>Need to install on your local machine.  Possible compability issues with other Python installs, e.g., Anaconda.</li>
 </ul>
 <p><em>Jupyter Installation</em>:</p>
 <ol>
@@ -13349,7 +13347,7 @@ jupyter notebook
 </pre></div>
 <p>This will launch a web browser interface to Jupyter.</p>
 <ol>
-<li>Open the Jupyter Notebook files to browse (this page is named <code>Book.html</code>). Happy reading!</li>
+<li>Open the Jupyter Notebook files to browse (this page is named <code>Book.ipynb</code>). Happy reading!</li>
 </ol>
 <p>(Note: you must run Jupyter in the <code>RoboticSystemsBook</code> folder to have access to the interactive quizzes and exercises, which use code in the <code>rsbook_code</code> folder)</p>
 
@@ -13359,7 +13357,7 @@ jupyter notebook
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Known-issues">Known issues<a class="anchor-link" href="#Known-issues">&#182;</a></h1><p>Jupyter Notebook LaTeX rendering uses MathJAX inside Markdown, which occasionally has trouble rendering complex equations.  If you see stray code like <code>= \begin{equation}</code> etc, this is a <a href="https://github.com/jupyter/notebook/issues/2865">known rendering problem</a> with multiple matrices.</p>
+<h1 id="Known-issues">Known issues<a class="anchor-link" href="#Known-issues">&#182;</a></h1><p>Jupyter Notebook LaTeX rendering uses MathJAX inside Markdown, which occasionally has trouble rendering complex equations.  If you see stray code like <code>= \begin{equation}</code> etc, this is a <a href="https://github.com/jupyter/notebook/issues/2865">known rendering problem</a> with multiple matrices.  It seems like this problem is more prevalent in static HTML and Colab; try opening the book in a native Jupyter Notebook or on Binder if these rendering issues prevent you from understanding the equation.</p>
 
 </div>
 </div>
