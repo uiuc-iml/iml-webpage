@@ -1,27 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"/>
-
-<!-- javascript from CDN for conversion -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js"></script>
-
-    
-
-
-<script type="text/x-mathjax-config">
-// make sure that equations numbers are enabled
-MathJax.Hub.Config({ TeX: { equationNumbers: {
-    autoNumber: "AMS", // All AMS equations are numbered
-    useLabelIds: true, // labels as ids
-    // format the equation number - uses an offset eqNumInitial (default 0)
-    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
-    } } 
-});
-</script>
-
-
-
-<meta charset="utf-8" />
+<head><meta charset="utf-8" />
 
 <title>LinearAlgebra</title>
 
@@ -13129,27 +13108,12 @@ div#notebook {
         }
     });
     </script>
-    <!-- End of mathjax configuration -->
+    <!-- End of mathjax configuration --></head>
 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
-
-<!-- stylesheet from CDN -->
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="https://rawgit.com/jfbercher/jupyter_latex_envs/master/src/latex_envs/static/latex_envs.css">
-
-<!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css"> 
-
-<!-- Load mathjax 
-<script src="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/latex_envs/thmsInNb4.js"></script>
--->
-<script type="text/javascript"  src="https://rawgit.com/jfbercher/jupyter_latex_envs/master/src/latex_envs/static/thmsInNb4.js"> </script>
-
-<!-- for toc2 -->
 <link rel="stylesheet" type="text/css" href="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/toc2/main.css">
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13159,54 +13123,14 @@ div#notebook {
 <script>
 $( document ).ready(function(){
 
-        //Value of configuration variables, some taken from the notebook's metada. 
-        eqNum = 0; // begins equation numbering at eqNum+1
-        eqLabelWithNumbers = "True"=="True" ? true : false; //if true, label equations with equation numbers; 
-                                       //otherwise using the tag specified by \label
-        conversion_to_html = false;
-        current_cit=1;
-        cite_by='key';  //only number and key are supported
-        //var document={}
-        document.bibliography={};
+            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {}, "toc_section_display": true, "toc_window_display": true};
 
-        // Read environment map config
-        initmap();
-        // Read user envs config, if specified
-        
-                environmentMap = $.extend(true,{}, environmentInitialMap)        
-        
-
-        // fire the main function with these parameters
-        var html_to_analyse = $('body').html()
-        var html_converted = thmsInNbConv(marked,html_to_analyse);
-        html_converted = html_converted.replace(/%[\S\t ]*<\/p>/gm,"</p>")
-        $('body').html(html_converted)
-        // Show/hide anchors
-        var labels_anchors = "False"=="True" ? true : false;
-        $('.latex_label_anchor').toggle(labels_anchors)
-        // Number all environments
-        report_style_numbering = "False"=="True" ? true : false;
-        reset_counters();
-        renumberAllEnvs();
-
-  
-        // toc2
-        var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {}, "toc_section_display": true, "toc_window_display": true};
-        // fire the main function with these parameters
-        require(['nbextensions/toc2/toc2'], function (toc2) {
-            toc2.table_of_contents(cfg);
-        });
+            // fire the main function with these parameters
+            require(['nbextensions/toc2/toc2'], function (toc2) {
+                toc2.table_of_contents(cfg);
+            });
     });
-
-</script></head>
-
-
-<div id='latex_user_defs'>
-        
-</div>
-
-
-
+</script>
 <body>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
@@ -13241,9 +13165,7 @@ $$\mathbf{x} \cdot \mathbf{y} = \sum_{i=1}^n x_i y_i.$$</p>
 <blockquote><p><strong>Orthogonal vectors</strong>. Two vectors whose dot product is identically zero are called
 <em>orthogonal</em>.</p>
 </blockquote>
-<p>For example, $\mathbf{e}_{i} \cdot \mathbf{e}_{j} = 0$ for any pair $i\neq j$, and so $\mathbf{e}_{i}$ and $\mathbf{e}_{j}$ are orthogonal.  Also, $
-\begin{bmatrix}1 \\ 2 \end{bmatrix} \cdot 
-\begin{bmatrix} -6 \\ 3 \end{bmatrix} = 0$, so these vectors are orthogonal as well.</p>
+<p>For example, $\mathbf{e}_{i} \cdot \mathbf{e}_{j} = 0$ for any pair $i\neq j$, and so $\mathbf{e}_{i}$ and $\mathbf{e}_{j}$ are orthogonal.  Also, $\begin{bmatrix}1 \\ 2 \end{bmatrix} \cdot \begin{bmatrix} -6 \\ 3 \end{bmatrix} = 0$, so these vectors are orthogonal as well.</p>
 <blockquote><p><strong>Norms</strong>. A norm describes some notion of vector magnitude. The standard Euclidean
 norm $\|\cdot\|$ is defined as $\|\mathbf{x}\|=\sqrt{\mathbf{x} \cdot \mathbf{x}}$.</p>
 </blockquote>
@@ -13272,16 +13194,14 @@ vector space to an $m$-dimensional one. It is given by an $m\times n$
 array of real numbers. Usually matrices are denoted as uppercase letters
 (e.g., $A, B, C$), with the entry in the $i$'th row and $j$'th column
 denoted in the subscript $\cdot_{i,j}$, or when it is unambiguous,
-$\cdot_{ij}$ (e.g., $A_{1,2}, A_{12}$). $$A = \left[ 
-\begin{array}{ccc}
+$\cdot_{ij}$ (e.g., $A_{1,2}, A_{12}$). $$A = \left[ \begin{array}{ccc}
 A_{1,1} &amp; \cdots &amp; A_{1,n} \\
 \dots &amp;   &amp; \dots \\
 A_{m,1} &amp; \cdots &amp; A_{m,n}
 \end{array}\right]$$</p>
 <h3 id="Matrix-Vector-Product">Matrix-Vector Product<a class="anchor-link" href="#Matrix-Vector-Product">&#182;</a></h3><p>An $m\times n$ matrix $A$ transforms vectors $\mathbf{x} =(x_1,\ldots,x_n)$
 into $m$-dimensional vectors $\mathbf{y} = (y_1,\ldots,y_m) = A\mathbf{x}$ as
-follows: $$
-\begin{split}
+follows: $$\begin{split}
 y_1 = \sum_{j=1}^n A_{1j} x_j \\
 \ldots \\
 y_m = \sum_{j=1}^n A_{mj} x_j \\
@@ -13323,19 +13243,16 @@ multiplication <em>is not symmetric</em>, that is $AB \neq BA$ in general.</p>
 in a $n\times 1$ matrix $x$ (denoted in lowercase), we can turn the
 matrix-vector $\mathbf{y}=A\mathbf{x}$ into the matrix product $y = A x$. Here, if
 $A$ is an $m\times n$ matrix, then $y$ is an $m\times 1$ matrix.
-$$\left[
-\begin{array}{c}
+$$\left[\begin{array}{c}
 y_1 \\
 \dots \\
 y_m \end{array}\right]
- = \left[ 
-\begin{array}{ccc}
+ = \left[ \begin{array}{ccc}
 A_{1,1} &amp; \cdots &amp; A_{1,n} \\
 \dots &amp;   &amp; \dots \\
 A_{m,1} &amp; \cdots &amp; A_{m,n}
 \end{array}\right]
-\left[
-\begin{array}{c}
+\left[\begin{array}{c}
 x_1 \\
 \dots \\
 x_n \end{array}\right]$$ Hence, there is a one-to-one correspondence
@@ -13461,4 +13378,8 @@ $$\mathbf{x}^T A \mathbf{x} \geq 0 \text{ for all }\mathbf{x}\in \mathbb{R}^n.$$
     </div>
   </div>
 </body>
+
+ 
+
+
 </html>

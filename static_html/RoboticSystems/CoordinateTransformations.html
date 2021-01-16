@@ -1,27 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"/>
-
-<!-- javascript from CDN for conversion -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js"></script>
-
-    
-
-
-<script type="text/x-mathjax-config">
-// make sure that equations numbers are enabled
-MathJax.Hub.Config({ TeX: { equationNumbers: {
-    autoNumber: "AMS", // All AMS equations are numbered
-    useLabelIds: true, // labels as ids
-    // format the equation number - uses an offset eqNumInitial (default 0)
-    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
-    } } 
-});
-</script>
-
-
-
-<meta charset="utf-8" />
+<head><meta charset="utf-8" />
 
 <title>CoordinateTransformations</title>
 
@@ -13129,27 +13108,12 @@ div#notebook {
         }
     });
     </script>
-    <!-- End of mathjax configuration -->
+    <!-- End of mathjax configuration --></head>
 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
-
-<!-- stylesheet from CDN -->
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="https://rawgit.com/jfbercher/jupyter_latex_envs/master/src/latex_envs/static/latex_envs.css">
-
-<!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css"> 
-
-<!-- Load mathjax 
-<script src="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/latex_envs/thmsInNb4.js"></script>
--->
-<script type="text/javascript"  src="https://rawgit.com/jfbercher/jupyter_latex_envs/master/src/latex_envs/static/thmsInNb4.js"> </script>
-
-<!-- for toc2 -->
 <link rel="stylesheet" type="text/css" href="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/toc2/main.css">
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13159,50 +13123,14 @@ div#notebook {
 <script>
 $( document ).ready(function(){
 
-        //Value of configuration variables, some taken from the notebook's metada. 
-        eqNum = 0; // begins equation numbering at eqNum+1
-        eqLabelWithNumbers = "True"=="True" ? true : false; //if true, label equations with equation numbers; 
-                                       //otherwise using the tag specified by \label
-        conversion_to_html = false;
-        current_cit=1;
-        cite_by='key';  //only number and key are supported
-        //var document={}
-        document.bibliography={};
+            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {"height": "calc(100% - 180px)", "left": "10px", "top": "150px", "width": "335.188px"}, "toc_section_display": true, "toc_window_display": false};
 
-        // Read environment map config
-        initmap();
-        // Read user envs config, if specified
-        
-                environmentMap = $.extend(true,{}, environmentInitialMap)        
-        
-
-        // fire the main function with these parameters
-        var html_to_analyse = $('body').html()
-        var html_converted = thmsInNbConv(marked,html_to_analyse);
-        html_converted = html_converted.replace(/%[\S\t ]*<\/p>/gm,"</p>")
-        $('body').html(html_converted)
-        // Show/hide anchors
-        var labels_anchors = "False"=="True" ? true : false;
-        $('.latex_label_anchor').toggle(labels_anchors)
-        // Number all environments
-        report_style_numbering = "False"=="True" ? true : false;
-        reset_counters();
-        renumberAllEnvs();
-
-  
-        // toc2
-        var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {"height": "calc(100% - 180px)", "left": "10px", "top": "150px", "width": "335.188px"}, "toc_section_display": true, "toc_window_display": false};
-        // fire the main function with these parameters
-        require(['nbextensions/toc2/toc2'], function (toc2) {
-            toc2.table_of_contents(cfg);
-        });
+            // fire the main function with these parameters
+            require(['nbextensions/toc2/toc2'], function (toc2) {
+                toc2.table_of_contents(cfg);
+            });
     });
-
-</script></head>
-
-
-
-
+</script>
 <body>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
@@ -13308,8 +13236,7 @@ will also represent vectors in column vector form:</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 $$
-\mathbf{p} = 
-\begin{bmatrix}p_x \\
+\mathbf{p} = \begin{bmatrix}p_x \\
 p_y \end{bmatrix}
 $$
 </div>
@@ -13349,8 +13276,7 @@ its coordinates relative to axes $X$, $Y$, and $Z$ and offset from an
 origin $O$ in 3D space where the axes cross. The parenthetical notation
 is equivalent to the column vector form:</p>
 $$
-  \mathbf{p} = 
-\begin{bmatrix} p_x \\ p_y \\ p_z \end{bmatrix}.
+  \mathbf{p} = \begin{bmatrix} p_x \\ p_y \\ p_z \end{bmatrix}.
 $$<p>In 3D the coordinate frame consists of the origin $O$ and the mutually
 orthogonal axes $X$, $Y$, and $Z$. In this book we will use
 <em>right-handed coordinate convention</em> in which the axes can be envisioned
@@ -13467,14 +13393,10 @@ $$\mathbf{y} = A\mathbf{x}$$<p>where $\mathbf{x} \in \mathbb{R}^m$,
 $\mathbf{y} \in \mathbb{R}^n$, and A is an $m \times n$ matrix. In particular, in
 2D, this operation takes the form</p>
 $$
-
-\begin{bmatrix}q_x \\ q_y \end{bmatrix} = 
-\begin{bmatrix}
+\begin{bmatrix}q_x \\ q_y \end{bmatrix} = \begin{bmatrix}
 a &amp; b \\
 c &amp; d
-\end{bmatrix} 
-\begin{bmatrix}p_x \\ p_y \end{bmatrix} = 
-\begin{bmatrix}
+\end{bmatrix} \begin{bmatrix}p_x \\ p_y \end{bmatrix} = \begin{bmatrix}
 a p_x + b p_y\\
 c p_x + d p_y
 \end{bmatrix}.
@@ -13487,24 +13409,20 @@ $$<p>In 3D, a linear transformation takes the form</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 $$
-
 \begin{bmatrix}
 q_x \\
 q_y \\
 q_z 
-\end{bmatrix} = 
-\begin{bmatrix} 
+\end{bmatrix} = \begin{bmatrix} 
 a_{11} &amp; a_{12} &amp; a_{13} \\ 
 a_{21} &amp; a_{22} &amp; a_{23} \\ 
 a_{31} &amp; a_{32} &amp; a_{33} 
 \end{bmatrix} 
-\cdot 
-\begin{bmatrix}
+\cdot \begin{bmatrix}
 p_x \\
 p_y \\
 p_z 
-\end{bmatrix} = 
-\begin{bmatrix}
+\end{bmatrix} = \begin{bmatrix}
 a_{11} p_x + a_{12} p_y + a_{13} p_z \\
 a_{21} p_x + a_{22} p_y + a_{23} p_z \\
 a_{31} p_x + a_{32} p_y + a_{33} p_z 
@@ -13537,8 +13455,7 @@ $X^\prime$, and then $p_y$ units in the direction of $Y^\prime$
 original reference frame, we can use the fact that the coordinates of
 $X^\prime$ and $Y^\prime$ are known:</p>
 $$
-\mathbf{p}^\prime = p_x \mathbf{x}^\prime + p_y \mathbf{y}^\prime = 
-\begin{bmatrix}
+\mathbf{p}^\prime = p_x \mathbf{x}^\prime + p_y \mathbf{y}^\prime = \begin{bmatrix}
 p_x \cos \theta - p_y \sin \theta \\ 
 p_x \sin \theta + p_y \cos \theta
 \end{bmatrix}.
@@ -13553,8 +13470,7 @@ obtain the coordinates of transformed axes $X^\prime$ and $Y^\prime$
 equation $$\mathbf{p}^\prime = R(\theta) \mathbf{p}$$ with the rotation matrix
 given by</p>
 $$
-R(\theta) = 
-\begin{bmatrix}
+R(\theta) = \begin{bmatrix}
 \cos \theta &amp; -\sin \theta \\ 
 \sin \theta &amp; \cos \theta
 \end{bmatrix}.
@@ -13572,8 +13488,7 @@ $\theta$.</p>
 $\sin(-\theta) = - \sin(\theta)$, the operation of rotating about
 $-\theta$ is equivalent to a matrix transpose:</p>
 <p>$$
-R(-\theta) = 
-\begin{bmatrix}
+R(-\theta) = \begin{bmatrix}
 \cos \theta &amp; \sin \theta \\ 
 -\sin \theta &amp; \cos \theta
 \end{bmatrix} = R(\theta)^T.
@@ -13645,8 +13560,7 @@ rotation. In other words, when a coordinate frame rotates by matrix $R$
 about the origin, the entries of the rotation matrix can be interpreted
 as:</p>
 $$
-  R = 
-\begin{bmatrix} x_x &amp; y_x &amp; z_x \\ x_y &amp; y_y &amp; z_y \\ x_z &amp; y_z &amp; z_z \end{bmatrix}
+  R = \begin{bmatrix} x_x &amp; y_x &amp; z_x \\ x_y &amp; y_y &amp; z_y \\ x_z &amp; y_z &amp; z_z \end{bmatrix}
 $$<p>where $(x_x,x_y,x_z)$ give the coordinates of the
 new $X$ axis in the old frame, $(y_x,y_y,y_z)$ gives the coordinates of
 the new $Y$ axis, and $(z_x,z_y,z_z)$ gives the coordinates of the new
@@ -13671,8 +13585,7 @@ to the old reference frame are given by $R \mathbf{p}$.</p>
 <h3 id="Scaling">Scaling<a class="anchor-link" href="#Scaling">&#182;</a></h3><p>Axis-aligned scaling in 2D about the origin can be represented as a
 linear transform with matrix</p>
 $$
-  S(s_x,s_y) = 
-\begin{bmatrix}s_x &amp; 0 \\ 0 &amp; s_y \end{bmatrix}
+  S(s_x,s_y) = \begin{bmatrix}s_x &amp; 0 \\ 0 &amp; s_y \end{bmatrix}
 $$<p>where $s_x$ is the scaling about the $X$ direction and $s_y$ is the
 scaling about the $Y$ direction. If $s_x = s_y$ this is known as a
 uniform scaling.</p>
@@ -13715,12 +13628,10 @@ $$
     A = R(-\theta) S(s,1) R(\theta).
 $$<p>It so happens that</p>
 $$
-    R(\theta) = 
-\begin{bmatrix}v_x &amp; v_y \\ -v_y &amp; v_x \end{bmatrix}
+    R(\theta) = \begin{bmatrix}v_x &amp; v_y \\ -v_y &amp; v_x \end{bmatrix}
 $$<p>performs the rotation that
 we desire. As a result we can compute:</p>
 $$
-
 \begin{aligned}
 A &amp; = \begin{bmatrix}v_x &amp; -v_y \\ v_y &amp; v_x \end{bmatrix} \begin{bmatrix}s &amp; 0 \\ 0 &amp; 1 \end{bmatrix} \begin{bmatrix}v_x &amp; v_y \\ -v_y &amp; v_x \end{bmatrix} = \begin{bmatrix}v_x &amp; -v_y \\ v_y &amp; v_x \end{bmatrix} \begin{bmatrix}sv_x &amp; sv_y \\ -v_y &amp; v_x \end{bmatrix} \\
   &amp; = \begin{bmatrix}s v_x^2 + v_y^2 &amp; s v_x v_y - v_y v_x \\ s v_x v_y - v_x v_y &amp; s v_y^2 + v_x^2 \end{bmatrix} = I + (s-1)\begin{bmatrix}v_x^2 &amp; v_x v_y \\ v_x v_y &amp; v_y^2\end{bmatrix}\end{aligned}
@@ -13852,10 +13763,8 @@ represented by the coordinates of $O$, $X$, and $Y$ in some privileged
 $\mathbf{y} = (y_{1},y_{2})$ relative to $W$, then the world coordinates of
 any point $P$ such that $\mathbf{p}$ is its coordinates in the frame $F$ can
 be calculated by the rigid transform
-$$\mathbf{p}_W = 
-\begin{bmatrix}x_{1} &amp; y_{1} \\ x_{2} &amp; y_{2} \end{bmatrix} \mathbf{p} + \mathbf{t}.$$ Hence,
-by storing $R = 
-\begin{bmatrix}x_{1} &amp; y_{1} \\ x_{2} &amp; y_{2} \end{bmatrix}$ and $\mathbf{t}$ we can
+$$\mathbf{p}_W = \begin{bmatrix}x_{1} &amp; y_{1} \\ x_{2} &amp; y_{2} \end{bmatrix} \mathbf{p} + \mathbf{t}.$$ Hence,
+by storing $R = \begin{bmatrix}x_{1} &amp; y_{1} \\ x_{2} &amp; y_{2} \end{bmatrix}$ and $\mathbf{t}$ we can
 perform this calculation for any point in $F$. (We remark that the matrix
 is a rotation because $X$ and $Y$ are both orthogonal and $Y$ is
 $90^\circ$ ccw from $X$.) The information stored for a 3D coordinate
@@ -13890,14 +13799,11 @@ compactly represents the distinction between positional and directional
 quantities. The idea is to augment every point with a 3rd <em>homogeneous
 coordinate</em>, which is 1 if it is positional and 0 if it is directional.
 This operation is denoted with the operator $\hat{\cdot}$:
-$$\hat{\mathbf{p}} = 
-\begin{bmatrix} p_x \\ p_y \\ 1 \end{bmatrix}$$
-$$\hat{\mathbf{v}} = 
-\begin{bmatrix} v_x \\ v_y \\ 0 \end{bmatrix}$$ Then, a 2D rigid
+$$\hat{\mathbf{p}} = \begin{bmatrix} p_x \\ p_y \\ 1 \end{bmatrix}$$
+$$\hat{\mathbf{v}} = \begin{bmatrix} v_x \\ v_y \\ 0 \end{bmatrix}$$ Then, a 2D rigid
 transformation of both positions and directions is represented uniformly
 by a $3\times 3$ matrix multiplication:
-$${T(\hat {\mathbf{x}})} = 
-\begin{bmatrix}
+$${T(\hat {\mathbf{x}})} = \begin{bmatrix}
 \cos \theta &amp; -\sin \theta &amp; t_x \\
 \sin \theta &amp; \cos \theta &amp; t_y \\
 0 &amp; 0 &amp; 1 
@@ -14279,8 +14185,7 @@ distance is preserved under rigid transforms.</p>
 <li><p>Prove that all length-preserving transforms in 2D are either
 rotations or rotations followed by a mirroring transform:</p>
 <p>$$
-T(\mathbf{x}) = 
-\begin{bmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} \mathbf{x}.
+T(\mathbf{x}) = \begin{bmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} \mathbf{x}.
 $$</p>
 </li>
 <li><p>Produce the transform (i.e., rotation matrix $R$ and translation $\mathbf{t}$) that
@@ -14408,4 +14313,8 @@ arguments indicating meters, millimeters, centimeters, and kilometers.</p>
     </div>
   </div>
 </body>
+
+ 
+
+
 </html>

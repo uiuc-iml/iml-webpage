@@ -1,27 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"/>
-
-<!-- javascript from CDN for conversion -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js"></script>
-
-    
-
-
-<script type="text/x-mathjax-config">
-// make sure that equations numbers are enabled
-MathJax.Hub.Config({ TeX: { equationNumbers: {
-    autoNumber: "AMS", // All AMS equations are numbered
-    useLabelIds: true, // labels as ids
-    // format the equation number - uses an offset eqNumInitial (default 0)
-    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
-    } } 
-});
-</script>
-
-
-
-<meta charset="utf-8" />
+<head><meta charset="utf-8" />
 
 <title>Calculus</title>
 
@@ -13129,27 +13108,12 @@ div#notebook {
         }
     });
     </script>
-    <!-- End of mathjax configuration -->
+    <!-- End of mathjax configuration --></head>
 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
-
-<!-- stylesheet from CDN -->
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="https://rawgit.com/jfbercher/jupyter_latex_envs/master/src/latex_envs/static/latex_envs.css">
-
-<!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css"> 
-
-<!-- Load mathjax 
-<script src="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/latex_envs/thmsInNb4.js"></script>
--->
-<script type="text/javascript"  src="https://rawgit.com/jfbercher/jupyter_latex_envs/master/src/latex_envs/static/thmsInNb4.js"> </script>
-
-<!-- for toc2 -->
 <link rel="stylesheet" type="text/css" href="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/toc2/main.css">
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13159,54 +13123,14 @@ div#notebook {
 <script>
 $( document ).ready(function(){
 
-        //Value of configuration variables, some taken from the notebook's metada. 
-        eqNum = 0; // begins equation numbering at eqNum+1
-        eqLabelWithNumbers = "True"=="True" ? true : false; //if true, label equations with equation numbers; 
-                                       //otherwise using the tag specified by \label
-        conversion_to_html = false;
-        current_cit=1;
-        cite_by='key';  //only number and key are supported
-        //var document={}
-        document.bibliography={};
+            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {}, "toc_section_display": true, "toc_window_display": true};
 
-        // Read environment map config
-        initmap();
-        // Read user envs config, if specified
-        
-                environmentMap = $.extend(true,{}, environmentInitialMap)        
-        
-
-        // fire the main function with these parameters
-        var html_to_analyse = $('body').html()
-        var html_converted = thmsInNbConv(marked,html_to_analyse);
-        html_converted = html_converted.replace(/%[\S\t ]*<\/p>/gm,"</p>")
-        $('body').html(html_converted)
-        // Show/hide anchors
-        var labels_anchors = "False"=="True" ? true : false;
-        $('.latex_label_anchor').toggle(labels_anchors)
-        // Number all environments
-        report_style_numbering = "False"=="True" ? true : false;
-        reset_counters();
-        renumberAllEnvs();
-
-  
-        // toc2
-        var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {}, "toc_section_display": true, "toc_window_display": true};
-        // fire the main function with these parameters
-        require(['nbextensions/toc2/toc2'], function (toc2) {
-            toc2.table_of_contents(cfg);
-        });
+            // fire the main function with these parameters
+            require(['nbextensions/toc2/toc2'], function (toc2) {
+                toc2.table_of_contents(cfg);
+            });
     });
-
-</script></head>
-
-
-<div id='latex_user_defs'>
-        
-</div>
-
-
-
+</script>
 <body>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
@@ -13388,8 +13312,7 @@ specifically that:
 $$\nabla_{c\mathbf{d}} f(\mathbf{a}) = c \nabla_{\mathbf{d}} f(\mathbf{a})$$ and
 $$\nabla_{\mathbf{d}+\mathbf{e}_{i}} f(\mathbf{a}) = \nabla_{\mathbf{d}} f(\mathbf{a}) + \nabla_{\mathbf{e}_{i}} f(\mathbf{a})$$
 for any scalar $c$, vectors $\mathbf{d}$, $\mathbf{d}_{1}$, and $\mathbf{d}_{2}$.</p>
-<p>First, scaling: $$
-\begin{split}
+<p>First, scaling: $$\begin{split}
 \nabla_{c\mathbf{d}} f(\mathbf{a}) &amp;= \lim_{h\rightarrow 0} \frac{f(\mathbf{a} + ch\mathbf{d})-f(\mathbf{a})}{h} \\
     &amp;= c \lim_{h\rightarrow 0} \frac{f(\mathbf{a} + ch\mathbf{d})-f(\mathbf{a})}{ch} \\
     &amp;= c \lim_{(ch)\rightarrow 0} \frac{f(\mathbf{a} + ch\mathbf{d})-f(\mathbf{a})}{ch} \\
@@ -13401,8 +13324,7 @@ $$\nabla_{\mathbf{d}_{1}+\mathbf{d}_{2}} f(\mathbf{a}) = \lim_{h\rightarrow 0} \
 <p>Now let $g_h(x) = f(\mathbf{a}+h\mathbf{d}_{1} + x\mathbf{d}_{2})$ and evaluate the Taylor
 expansion of $g_h(x)$ around $x=0$:
 $$g_h(x) = f(\mathbf{a}+h\mathbf{d}_{1}) + g_h^\prime(x)|_{x=0} x + O(x^2)$$</p>
-<p>So $$
-\begin{split}
+<p>So $$\begin{split}
 \nabla_{\mathbf{d}_{1}+\mathbf{d}_{2}} f(\mathbf{a}) &amp;= \lim_{h\rightarrow 0} \frac{1}{h}[f(\mathbf{a}+h\mathbf{d}_{1}) + g_h^\prime(0) h + O(h^2) - f(\mathbf{a})] \\
 &amp;= \lim_{h\rightarrow 0} \left(\frac{1}{h}[f(\mathbf{a}+h\mathbf{d}_{1}) - f(\mathbf{a}) + O(h^2)] + g_h^\prime(0) \right)\\
 &amp;= \nabla_{\mathbf{d}_{1}} f(\mathbf{a}) + \lim_{h\rightarrow 0} g_h^\prime(x)|_{x=0}.
@@ -13410,8 +13332,7 @@ $$g_h(x) = f(\mathbf{a}+h\mathbf{d}_{1}) + g_h^\prime(x)|_{x=0} x + O(x^2)$$</p>
 $\lim_{h\rightarrow 0} g_h^\prime(x)|_{x=0}$ is identically
 $\nabla_{\mathbf{d}_{2}}f(\mathbf{a})$.</p>
 <p>Returning to the original question, we use linearity of the directional
-derivative to obtain $$
-\begin{split}
+derivative to obtain $$\begin{split}
 (\nabla f(\mathbf{a})) \cdot \mathbf{d} &amp;= \sum_{i=1}^n d_{i} \nabla_{\mathbf{e}_{i}}f(\mathbf{a}) \\
 &amp;= \sum_{i=1}^n \nabla_{d_i \mathbf{e}_{i}}f(\mathbf{a}) \\
 &amp;= \nabla {\sum_{i=1}^n d_i \mathbf{e}_{i}}f(\mathbf{a}) \\
@@ -13473,4 +13394,8 @@ points</em> because in two dimensional scalar fields they look like saddles.</p>
     </div>
   </div>
 </body>
+
+ 
+
+
 </html>

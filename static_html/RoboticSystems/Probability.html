@@ -1,27 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"/>
-
-<!-- javascript from CDN for conversion -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js"></script>
-
-    
-
-
-<script type="text/x-mathjax-config">
-// make sure that equations numbers are enabled
-MathJax.Hub.Config({ TeX: { equationNumbers: {
-    autoNumber: "AMS", // All AMS equations are numbered
-    useLabelIds: true, // labels as ids
-    // format the equation number - uses an offset eqNumInitial (default 0)
-    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
-    } } 
-});
-</script>
-
-
-
-<meta charset="utf-8" />
+<head><meta charset="utf-8" />
 
 <title>Probability</title>
 
@@ -13129,27 +13108,12 @@ div#notebook {
         }
     });
     </script>
-    <!-- End of mathjax configuration -->
+    <!-- End of mathjax configuration --></head>
 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
-
-<!-- stylesheet from CDN -->
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="https://rawgit.com/jfbercher/jupyter_latex_envs/master/src/latex_envs/static/latex_envs.css">
-
-<!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css"> 
-
-<!-- Load mathjax 
-<script src="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/latex_envs/thmsInNb4.js"></script>
--->
-<script type="text/javascript"  src="https://rawgit.com/jfbercher/jupyter_latex_envs/master/src/latex_envs/static/thmsInNb4.js"> </script>
-
-<!-- for toc2 -->
 <link rel="stylesheet" type="text/css" href="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/toc2/main.css">
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13159,54 +13123,14 @@ div#notebook {
 <script>
 $( document ).ready(function(){
 
-        //Value of configuration variables, some taken from the notebook's metada. 
-        eqNum = 0; // begins equation numbering at eqNum+1
-        eqLabelWithNumbers = "True"=="True" ? true : false; //if true, label equations with equation numbers; 
-                                       //otherwise using the tag specified by \label
-        conversion_to_html = false;
-        current_cit=1;
-        cite_by='key';  //only number and key are supported
-        //var document={}
-        document.bibliography={};
+            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {}, "toc_section_display": true, "toc_window_display": true};
 
-        // Read environment map config
-        initmap();
-        // Read user envs config, if specified
-        
-                environmentMap = $.extend(true,{}, environmentInitialMap)        
-        
-
-        // fire the main function with these parameters
-        var html_to_analyse = $('body').html()
-        var html_converted = thmsInNbConv(marked,html_to_analyse);
-        html_converted = html_converted.replace(/%[\S\t ]*<\/p>/gm,"</p>")
-        $('body').html(html_converted)
-        // Show/hide anchors
-        var labels_anchors = "False"=="True" ? true : false;
-        $('.latex_label_anchor').toggle(labels_anchors)
-        // Number all environments
-        report_style_numbering = "False"=="True" ? true : false;
-        reset_counters();
-        renumberAllEnvs();
-
-  
-        // toc2
-        var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {}, "toc_section_display": true, "toc_window_display": true};
-        // fire the main function with these parameters
-        require(['nbextensions/toc2/toc2'], function (toc2) {
-            toc2.table_of_contents(cfg);
-        });
+            // fire the main function with these parameters
+            require(['nbextensions/toc2/toc2'], function (toc2) {
+                toc2.table_of_contents(cfg);
+            });
     });
-
-</script></head>
-
-
-<div id='latex_user_defs'>
-        
-</div>
-
-
-
+</script>
 <body>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
@@ -13351,8 +13275,7 @@ the conditional distribution $P(X|Y)$ knowing $P(Y|X)$ and $P(X)$. The
 distribution of $P(Y)$ can be derived using marginalization, and we can
 obtain
 $$P(X|Y) = \frac{P(Y|X)P(X)}{P(Y)} = \frac{P(Y|X)P(X)}{\sum_{x\in Val(X)} P(Y,x)} = \frac{P(Y|X)P(X)}{\sum_{x \in Val(X)} P(Y|x)P(x)}.$$
-or in long-hand notation, $$
-\begin{aligned}
+or in long-hand notation, $$\begin{aligned}
 P(X=x|Y=y) &amp;= \frac{P(Y=y|X=x)P(X=x)}{P(Y=y)} = \frac{P(Y=y|X=x)P(X=x)}{\sum_{x^\prime \in Val(X)} P(Y=y,X=x^\prime)} \\
 &amp;= \frac{P(Y=y|X=x)P(X=x)}{\sum_{x^\prime \in Val(X)} P(Y=y|X=x^\prime)P(X=x^\prime)}.
 \end{aligned}$$ (Note that the summation index in the denominator is
@@ -13418,12 +13341,10 @@ distribution and the Gaussian (aka normal) distribution.</p>
 to each value $x$ in the range, and 0 everywhere else.</p>
 </blockquote>
 <p>In such a case we say $X \sim U(a,b)$, and the pdf of this distribution is:
-$$f(x) = \left\{ 
-\begin{array}{ll} \frac{1}{b-a} &amp; \text{if }a\leq x \leq b \\
+$$f(x) = \left\{ \begin{array}{ll} \frac{1}{b-a} &amp; \text{if }a\leq x \leq b \\
 0 &amp; \text{otherwise} \end{array}\right.$$ We also denote this function
 as $U(x; a,b)$. The cdf of this distribution is
-$$F(x) = \left\{ 
-\begin{array}{ll} \frac{x-a}{b-a} &amp; \text{if }a\leq x \leq b \\
+$$F(x) = \left\{ \begin{array}{ll} \frac{x-a}{b-a} &amp; \text{if }a\leq x \leq b \\
 0 &amp; \text{if }a&lt;x \\
 1 &amp; \text{if }b&gt;x \end{array}\right.$$ Using the notation of the
 <em>Heaviside function</em> $H(x) = I[x \geq 0]$, we can say more succinctly
@@ -13551,8 +13472,7 @@ differently. We can still apply
 $$G(y) = P(Y \leq y) = \int_{-\infty}^{\infty} I[x^2 \leq y] f(x) dx$$
 which can be split into two parts in which $h$ is monotonic. Performing
 a flip in the integration range for the negatively decreasing part, we
-obtain: $$
-\begin{aligned}
+obtain: $$\begin{aligned}
 G(y) &amp;= \int_{-\infty}^{0} I[x^2 \leq y] f(x) dx + \int_{0}^{\infty} I[x^2 \leq y] f(x) dx \\
 &amp; = \int_{-\sqrt y}^{0} f(x) dx + \int_{0}^{\sqrt y} f(x) dx \\
 &amp; = (F(0) - F(-\sqrt y)) + (F(\sqrt y) - F(0)) = F(\sqrt y)-F(-\sqrt y).
@@ -13562,14 +13482,12 @@ $X$ and $Y$, we must consider <em>all</em> the ways that the sum $z=x+y$ can be
 formed. Via marginalization,
 $$F(z) = P(Z\leq z) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} I[x+y\leq z] P(X=x,Y=y) dx dy.$$
 If $X$ and $Y$ are independent, then we can simplify the double integral
-into a single integral over either $X$ or $Y$: $$
-\begin{aligned}
+into a single integral over either $X$ or $Y$: $$\begin{aligned}
 F(z) = P(Z\leq z) &amp;= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} I[x+y\leq z] P(X=x)P(Y=y) dx dy \\
 &amp;= \int_{-\infty}^{\infty} P(X\leq z-y)P(Y=y) dy %\\
 %&amp;= \int_{-\infty}^{\infty} P(Y\leq z-x)P(X=x) dx.
 \end{aligned}$$ Another way to express this is with the pdf, which is
-the derivative of the cdf: $$
-\begin{aligned}
+the derivative of the cdf: $$\begin{aligned}
 f(z) = \frac{d F}{d z}(z) 
 &amp;= \int_{-\infty}^{\infty} P(X=z-y)P(Y=y) dy %\\
 %&amp;= \int_{-\infty}^{\infty} P(Y=z-x)P(X=x) dx.
@@ -13577,8 +13495,7 @@ f(z) = \frac{d F}{d z}(z)
 <p>This is not so easy to compute in general; for example, the sum of two
 uniformly distributed random variables $X$ and $Y$ on the range $[0,1]$
 has the pdf $P(X+Y = z) = 0$ for $z \leq 0$ and $z \geq 0$, and for all
-other $z$ $$
-\begin{aligned}
+other $z$ $$\begin{aligned}
 P(X+Y \leq z) &amp;= \int_{-\infty}^{\infty} P(X=z-y)P(Y=y) dy \\
 &amp; = \int_{0}^{1} P(X = z-y) dy \\
 &amp; = \int_{0}^{1} (I[z\geq y]-I[z\geq y+1]) dy \\
@@ -13588,8 +13505,7 @@ function in the first integral is always active. If $z &lt; 1$, then
 $z &lt; y+1$ and the indicator function in the second integral is never
 active. Hence, if $z &lt; 1$,
 $$P(X+Y = z) = \int_0^1 I[z \geq y]dy = \int_0^z 1 dy = z$$ and for
-$z \geq 1$, $$
-\begin{aligned}
+$z \geq 1$, $$\begin{aligned}
 P(X+Y = z) &amp;= \int_0^1 I[z \geq y]dy - \int_0^1 I[z \geq y+1] \\
 &amp; = \int_0^1 1 dy - \int_0^{z-1} 1 dy = 1 - (z-1) = 2-z.
 \end{aligned}$$</p>
@@ -13639,15 +13555,12 @@ $$\Sigma_{ij} = Cov[X_i,X_j].$$<p>$\Sigma$ must be symmetric positive definite a
 entries define the variance of individual elements of $\mathbf{x}$, while the
 off-diagonals determine how much it is skewed.</p>
 <p>For example, consider a 2D Gaussian with mean
-$\mathbf{\mu} = 
-\begin{bmatrix} \mu_{1} \\ \mu_{2} \end{bmatrix}$</p>
+$\mathbf{\mu} = \begin{bmatrix} \mu_{1} \\ \mu_{2} \end{bmatrix}$</p>
 <p>and covariance</p>
-$$\Sigma = 
-\begin{bmatrix}\Sigma_1 &amp; \Sigma_{12} \\ \Sigma_{12} &amp; \Sigma_{2} \end{bmatrix}.$$<p>If $\Sigma_{12} = 0$, then $X_1$ and $X_2$ are independent, with respective
+$$\Sigma = \begin{bmatrix}\Sigma_1 &amp; \Sigma_{12} \\ \Sigma_{12} &amp; \Sigma_{2} \end{bmatrix}.$$<p>If $\Sigma_{12} = 0$, then $X_1$ and $X_2$ are independent, with respective
 distributions $X_1 \sim N(\mu_1,\Sigma_1)$ and
 $X_2 \sim N(\mu_2,\Sigma_2)$. Otherwise, the marginal distributions stay
-the same: $$
-\begin{aligned}
+the same: $$\begin{aligned}
 P(X_1=x) &amp;= N(x;\mu_1,\Sigma_1) \\
 P(X_2=x) &amp;= N(x;\mu_2,\Sigma_2)\end{aligned}$$ but the joint
 distribution is skewed. If $\Sigma_{12} &gt; 0$, it is skewed in the upper
@@ -13659,17 +13572,10 @@ proof; the proofs are left as exercise for the interested reader.</p>
 <h4 id="Stacking-of-multivariate-Gaussians">Stacking of multivariate Gaussians<a class="anchor-link" href="#Stacking-of-multivariate-Gaussians">&#182;</a></h4><p>Independent multivariate Gaussian variables can be stacked according to
 the following rule. If $\mathbf{X} \sim N(\mathbf{\mu}_X,\Sigma_X)$ and
 $\mathbf{Y} \sim N(\mathbf{\mu}_Y,\Sigma_Y)$ are independent, then
-$$\mathbf{Z} = 
-\begin{bmatrix}\mathbf{X} \\ \mathbf{Y} \end{bmatrix} \sim N\left(
-\begin{bmatrix}\mathbf{\mu}_X \\ \mathbf{\mu}_Y \end{bmatrix}, 
-\begin{bmatrix}\Sigma_X &amp; 0 \\ 0 &amp; \Sigma_Y \end{bmatrix}\right)$$
+$$\mathbf{Z} = \begin{bmatrix}\mathbf{X} \\ \mathbf{Y} \end{bmatrix} \sim N\left(\begin{bmatrix}\mathbf{\mu}_X \\ \mathbf{\mu}_Y \end{bmatrix}, \begin{bmatrix}\Sigma_X &amp; 0 \\ 0 &amp; \Sigma_Y \end{bmatrix}\right)$$
 where the mean and covariance matrix are written in block-matrix form.</p>
-<h4 id="Marginalization-of-multivariate-Gaussians">Marginalization of multivariate Gaussians<a class="anchor-link" href="#Marginalization-of-multivariate-Gaussians">&#182;</a></h4><p>If $\mathbf{Z} = 
-\begin{bmatrix}\mathbf{X} \\ \mathbf{Y} \end{bmatrix}$ is Gaussian:
-$$\mathbf{Z} = 
-\begin{bmatrix}\mathbf{X} \\ \mathbf{Y} \end{bmatrix} \sim N\left( 
-\begin{bmatrix}\mathbf{\mu}_X \\ \mathbf{\mu}_Y \end{bmatrix}, 
-\begin{bmatrix} \Sigma_X &amp; \Sigma_{XY} \\ \Sigma_{YX} &amp; \Sigma_Y\end{bmatrix} \right)$$
+<h4 id="Marginalization-of-multivariate-Gaussians">Marginalization of multivariate Gaussians<a class="anchor-link" href="#Marginalization-of-multivariate-Gaussians">&#182;</a></h4><p>If $\mathbf{Z} = \begin{bmatrix}\mathbf{X} \\ \mathbf{Y} \end{bmatrix}$ is Gaussian:
+$$\mathbf{Z} = \begin{bmatrix}\mathbf{X} \\ \mathbf{Y} \end{bmatrix} \sim N\left( \begin{bmatrix}\mathbf{\mu}_X \\ \mathbf{\mu}_Y \end{bmatrix}, \begin{bmatrix} \Sigma_X &amp; \Sigma_{XY} \\ \Sigma_{YX} &amp; \Sigma_Y\end{bmatrix} \right)$$
 then the marginal distribution of $\mathbf{X}$ is
 $\mathbf{X} \sim N(\mathbf{\mu}_X,\Sigma_X)$, and the marginal
 distribution of $\mathbf{y}$ is $\mathbf{Y} \sim N(\mathbf{\mu}_Y,\Sigma_Y)$.</p>
@@ -13688,26 +13594,19 @@ $\mathbf{X} \sim N(\mathbf{\mu},\Sigma)$, then for any appropriately
 sized matrix $A$ and vector $\mathbf{b}$, $$A\mathbf{X}+\mathbf{b} \sim N(A\mathbf{\mu}+\mathbf{b},A\Sigma A^T).$$ 
 More specifically, $\mathbf{X}$ and $A\mathbf{X}+\mathbf{b}$ are jointly distributed
 according to:
-$$
-\begin{bmatrix}\mathbf{X} \\ A\mathbf{X}+\mathbf{b} \end{bmatrix} \sim N\left(
-\begin{bmatrix}\mathbf{\mu} \\ A\mathbf{\mu}+\mathbf{b} \end{bmatrix},
-\begin{bmatrix}\Sigma &amp; \Sigma A^T \\ A\Sigma &amp; A\Sigma A^T\end{bmatrix}\right).$$</p>
+$$\begin{bmatrix}\mathbf{X} \\ A\mathbf{X}+\mathbf{b} \end{bmatrix} \sim N\left(\begin{bmatrix}\mathbf{\mu} \\ A\mathbf{\mu}+\mathbf{b} \end{bmatrix},\begin{bmatrix}\Sigma &amp; \Sigma A^T \\ A\Sigma &amp; A\Sigma A^T\end{bmatrix}\right).$$</p>
 <h4 id="Sum-of-multivariate-Gaussians">Sum of multivariate Gaussians<a class="anchor-link" href="#Sum-of-multivariate-Gaussians">&#182;</a></h4><p>The sum of independent multivariate Gaussians is also Gaussian, which
 can be derived by stacking and linear transformation rule. If
 $\mathbf{X} \sim N(\mathbf{\mu}_X,\Sigma_X)$ and
 $\mathbf{Y} \sim N(\mathbf{\mu}_Y,\Sigma_Y)$ are independent $n$-D
 Gaussian variables, then
-$$\mathbf{Z} = \mathbf{X}+\mathbf{Y} = [I_n \quad I_n]
-\begin{bmatrix}\mathbf{X} \\ \mathbf{Y} \end{bmatrix} = N(\mathbf{\mu}_X+\mathbf{\mu}_Y,\Sigma_X+\Sigma_Y)$$
+$$\mathbf{Z} = \mathbf{X}+\mathbf{Y} = [I_n \quad I_n]\begin{bmatrix}\mathbf{X} \\ \mathbf{Y} \end{bmatrix} = N(\mathbf{\mu}_X+\mathbf{\mu}_Y,\Sigma_X+\Sigma_Y)$$
 where $[I_n \quad I_n]$ is the horizontal block matrix of two identity
 matrices.</p>
 <h4 id="Conditioning-of-multivariate-Gaussians">Conditioning of multivariate Gaussians<a class="anchor-link" href="#Conditioning-of-multivariate-Gaussians">&#182;</a></h4><p>Conditional distributions of multivariate Gaussians are also Gaussian.
 Specifically, if $Val(\mathbf{X}) = \mathbb{R}^n$ and
 $Val(\mathbf{Y}) = \mathbb{R}^m$ are jointly Gaussian, that is,
-$$
-\begin{bmatrix}{\mathbf{X}} \\ {\mathbf{Y}} \end{bmatrix} \sim N\left(
-\begin{bmatrix}{\mathbf{\mu}_X} \\ {\mathbf{\mu}_Y} \end{bmatrix},
-\begin{bmatrix}{\Sigma_X}&amp;{\Sigma_{XY}} \\ {\Sigma_{XY}^T}&amp;{\Sigma_Y} \end{bmatrix}\right),$$
+$$\begin{bmatrix}{\mathbf{X}} \\ {\mathbf{Y}} \end{bmatrix} \sim N\left(\begin{bmatrix}{\mathbf{\mu}_X} \\ {\mathbf{\mu}_Y} \end{bmatrix},\begin{bmatrix}{\Sigma_X}&amp;{\Sigma_{XY}} \\ {\Sigma_{XY}^T}&amp;{\Sigma_Y} \end{bmatrix}\right),$$
 then the conditional distribution of $\mathbf{X}$ given that $\mathbf{Y}=\mathbf{y}$ is
 also Gaussian:
 $$P(\mathbf{x}|\mathbf{y}) = N\left( \mathbf{x};\mathbf{\mu}_X+\Sigma_{XY}\Sigma_Y^{-1}(\mathbf{y}-\mathbf{\mu}_Y),\Sigma_X - \Sigma_{XY}\Sigma_Y^{-1}\Sigma_{XY}^T \right)
@@ -13717,8 +13616,7 @@ does not. Observe also that if $\mathbf{X}$ and $\mathbf{Y}$ are independent
 ($\Sigma_{XY}=0$), then knowing the value of $\mathbf{Y}$ does not change the
 marginal distribution of $\mathbf{X}$.</p>
 <p><a href="#fig:GaussianMarginalization">Fig. 2</a>, right illustrates conditioning
-on a zero-mean Gaussian with $$\Sigma=
-\begin{bmatrix}{0.25}&amp;{0.3} \\ {0.3}&amp;{1} \end{bmatrix}$$ at
+on a zero-mean Gaussian with $$\Sigma=\begin{bmatrix}{0.25}&amp;{0.3} \\ {0.3}&amp;{1} \end{bmatrix}$$ at
 $x_1=1$. According to
 ($\ref{eq:GaussianConditioning}$), the mean of $x_2$ becomes
 $0.3\cdot 0.25^{-1} \cdot 1 = 1.2$, and its variance becomes
@@ -13743,4 +13641,8 @@ $1 - 0.3\cdot 0.25^{-1} \cdot 0.3 = 0.64$.</p>
     </div>
   </div>
 </body>
+
+ 
+
+
 </html>

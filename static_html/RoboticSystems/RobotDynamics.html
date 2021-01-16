@@ -1,27 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"/>
-
-<!-- javascript from CDN for conversion -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js"></script>
-
-    
-
-
-<script type="text/x-mathjax-config">
-// make sure that equations numbers are enabled
-MathJax.Hub.Config({ TeX: { equationNumbers: {
-    autoNumber: "AMS", // All AMS equations are numbered
-    useLabelIds: true, // labels as ids
-    // format the equation number - uses an offset eqNumInitial (default 0)
-    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
-    } } 
-});
-</script>
-
-
-
-<meta charset="utf-8" />
+<head><meta charset="utf-8" />
 
 <title>RobotDynamics</title>
 
@@ -13129,27 +13108,12 @@ div#notebook {
         }
     });
     </script>
-    <!-- End of mathjax configuration -->
+    <!-- End of mathjax configuration --></head>
 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
-
-<!-- stylesheet from CDN -->
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="https://rawgit.com/jfbercher/jupyter_latex_envs/master/src/latex_envs/static/latex_envs.css">
-
-<!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css"> 
-
-<!-- Load mathjax 
-<script src="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/latex_envs/thmsInNb4.js"></script>
--->
-<script type="text/javascript"  src="https://rawgit.com/jfbercher/jupyter_latex_envs/master/src/latex_envs/static/thmsInNb4.js"> </script>
-
-<!-- for toc2 -->
 <link rel="stylesheet" type="text/css" href="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/toc2/main.css">
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13159,50 +13123,14 @@ div#notebook {
 <script>
 $( document ).ready(function(){
 
-        //Value of configuration variables, some taken from the notebook's metada. 
-        eqNum = 0; // begins equation numbering at eqNum+1
-        eqLabelWithNumbers = "True"=="True" ? true : false; //if true, label equations with equation numbers; 
-                                       //otherwise using the tag specified by \label
-        conversion_to_html = false;
-        current_cit=1;
-        cite_by='key';  //only number and key are supported
-        //var document={}
-        document.bibliography={};
+            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {}, "toc_section_display": true, "toc_window_display": true};
 
-        // Read environment map config
-        initmap();
-        // Read user envs config, if specified
-        
-                environmentMap = $.extend(true,{}, environmentInitialMap)        
-        
-
-        // fire the main function with these parameters
-        var html_to_analyse = $('body').html()
-        var html_converted = thmsInNbConv(marked,html_to_analyse);
-        html_converted = html_converted.replace(/%[\S\t ]*<\/p>/gm,"</p>")
-        $('body').html(html_converted)
-        // Show/hide anchors
-        var labels_anchors = "False"=="True" ? true : false;
-        $('.latex_label_anchor').toggle(labels_anchors)
-        // Number all environments
-        report_style_numbering = "False"=="True" ? true : false;
-        reset_counters();
-        renumberAllEnvs();
-
-  
-        // toc2
-        var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {}, "toc_section_display": true, "toc_window_display": true};
-        // fire the main function with these parameters
-        require(['nbextensions/toc2/toc2'], function (toc2) {
-            toc2.table_of_contents(cfg);
-        });
+            // fire the main function with these parameters
+            require(['nbextensions/toc2/toc2'], function (toc2) {
+                toc2.table_of_contents(cfg);
+            });
     });
-
-</script></head>
-
-
-
-
+</script>
 <body>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
@@ -13237,30 +13165,22 @@ manipulator along its local $x$ axis. Let us assume for simplicity that
 $c_2^L = 0$.</p>
 <p>Via forward kinematics, the world-space coordinates of each center of
 mass are given by: $$c_1(q) = R(\theta) c_1^L$$
-$$c_2(q) = R(\theta) 
-\begin{bmatrix}r \\ 0 \end{bmatrix} = 
-\begin{bmatrix}{r \cos \theta}\\{r \sin \theta}\end{bmatrix}.$$
+$$c_2(q) = R(\theta) \begin{bmatrix}r \\ 0 \end{bmatrix} = \begin{bmatrix}{r \cos \theta}\\{r \sin \theta}\end{bmatrix}.$$
 By differentiation, the velocities of each center of mass are
-$$v_1(q) = \dot{\theta} 
-\begin{bmatrix}0&amp;-1\\1&amp;0\end{bmatrix} c_1(q)$$ and
-$$v_2(q) = \dot{\theta} 
-\begin{bmatrix}0&amp;-1\\1&amp;0\end{bmatrix} c_2(q) = 
-\begin{bmatrix}{-r \dot{\theta} \sin \theta + \dot{r}\sin \theta} \\ {r \dot{\theta} \cos \theta + \dot{r}\cos \theta} \end{bmatrix}.$$
+$$v_1(q) = \dot{\theta} \begin{bmatrix}0&amp;-1\\1&amp;0\end{bmatrix} c_1(q)$$ and
+$$v_2(q) = \dot{\theta} \begin{bmatrix}0&amp;-1\\1&amp;0\end{bmatrix} c_2(q) = \begin{bmatrix}{-r \dot{\theta} \sin \theta + \dot{r}\sin \theta} \\ {r \dot{\theta} \cos \theta + \dot{r}\cos \theta} \end{bmatrix}.$$
 The angular velocity of each link are
 $\omega_1 = \omega_2 = \dot{\theta}$.</p>
 <p>Overall, the kinetic energy of link 1 is the sum of linear and angular
-kinetic energy terms: $$
-\begin{aligned}
+kinetic energy terms: $$\begin{aligned}
 K_1(q,\dot{q}) 
 &amp;= \frac{1}{2}m_1 \|v_1(q)\|^2 + \frac{1}{2}H_1 \omega_1^2 \\
 &amp;= \frac{1}{2}m_1\dot{\theta}^2 \left\| \begin{bmatrix}0&amp;-1\\1&amp;0\end{bmatrix}  c_1(q) \right\|^2 + \frac{1}{2} H_1 \dot{\theta}^2  = \frac{1}{2} \dot{\theta}^2 (H_1 + m_1 \| c_1^L \|^2)
 \end{aligned}$$ where we observe that $\theta$ does not affect the norm
 of the c.o.m.'s velocity. (This can also be derived from the
 orthogonality of $R(\theta)$ and skew symmetry of
-$
-\begin{bmatrix}0&amp;-1\\1&amp;0\end{bmatrix}$.)</p>
-<p>For link 2, we obtain: $$
-\begin{aligned}
+$\begin{bmatrix}0&amp;-1\\1&amp;0\end{bmatrix}$.)</p>
+<p>For link 2, we obtain: $$\begin{aligned}
 K_2(q,\dot{q})
 &amp;= \frac{1}{2} m_2 \| v_1(q) \|^2 + \frac{1}{2} \omega_2^2 H_2 \\
 &amp;= \frac{1}{2} m_2 ((-r \dot{\theta} \sin \theta + \dot{r}\sin \theta)^2 + (r \dot{\theta} \cos \theta + \dot{r}\cos \theta)^2) + \frac{1}{2} \dot{\theta}^2 H_2.
@@ -13269,41 +13189,32 @@ $\cos^2 x + \sin^2 x = 1$ to obtain $$K_2(q,\dot{q}) =
 \frac{1}{2} \dot{\theta}^2 (H_2 + m_2 r^2) + \frac{1}{2} m_2 \dot{r}^2.$$</p>
 <p>With $K(q,\dot{q}) = K_1(q,\dot{q}) + K_2(q,\dot{q})$ we first calculate
 the term $\frac{\partial K}{\partial \dot{q}}$:
-$$\frac{\partial K}{\partial \dot{q}} = 
-\begin{bmatrix}{\frac{\partial K}{\partial \dot{\theta}}}\\{\frac{\partial K}{\partial \dot{r}}}\end{bmatrix} =</p>
-\begin{bmatrix}{\dot{\theta}(H_1 + m_1\|c_1^L\|^2 + H_2 + m_2 r^2)}\\{m_2 \dot{r}}\end{bmatrix}<p>.$$
+$$\frac{\partial K}{\partial \dot{q}} = \begin{bmatrix}{\frac{\partial K}{\partial \dot{\theta}}}\\{\frac{\partial K}{\partial \dot{r}}}\end{bmatrix} = 
+\begin{bmatrix}{\dot{\theta}(H_1 + m_1\|c_1^L\|^2 + H_2 + m_2 r^2)}\\{m_2 \dot{r}}\end{bmatrix}.$$
 Now, let us define the constant $\bar{H} = H_1 + m_1\|c_1^L\|^2 + H_2$,
 and take the derivative with respect to time to obtain the term
 $\frac{d}{dt}(\frac{\partial K}{\partial \dot{q}})$ in the Lagrangian:
-$$\frac{d}{dt}(\frac{\partial K}{\partial \dot{q}}) = 
-\begin{bmatrix}{\ddot{\theta}(\bar{H} + m_2 r^2) + 2 \dot{r} \dot{\theta} m_2 r}\\{m_2 \ddot{r}}\end{bmatrix}$$
+$$\frac{d}{dt}(\frac{\partial K}{\partial \dot{q}}) = \begin{bmatrix}{\ddot{\theta}(\bar{H} + m_2 r^2) + 2 \dot{r} \dot{\theta} m_2 r}\\{m_2 \ddot{r}}\end{bmatrix}$$
 where we must apply the product rule to the term proportional to
 $\dot{\theta} r^2$.</p>
 <p>Proceeding to the $\frac{\partial K}{\partial q}$ term, we see no
 dependence of $K_1$ on $q$, but a dependence of $K_2$ on $r$ to obtain
-$$\frac{\partial K}{\partial q} = 
-\begin{bmatrix}{0}\\{m_2 \dot{\theta}^2 r}\end{bmatrix}.$$</p>
+$$\frac{\partial K}{\partial q} = \begin{bmatrix}{0}\\{m_2 \dot{\theta}^2 r}\end{bmatrix}.$$</p>
 <p>The last term in the Lagrangian dynamics equation is the derivative of
 potential energy $P(q) = mgh = mgr\sin \theta$:
-$$\frac{\partial P}{\partial q} = mg 
-\begin{bmatrix}{r \cos \theta}\\{\sin \theta}\end{bmatrix}.$$
-Overall, we have the dynamic equations: $$
-\begin{aligned}
+$$\frac{\partial P}{\partial q} = mg \begin{bmatrix}{r \cos \theta}\\{\sin \theta}\end{bmatrix}.$$
+Overall, we have the dynamic equations: $$\begin{aligned}
 (\bar{h}+m_2 r^2)\ddot{\theta} + 2 \dot{r}\dot{\theta} m_2 r + m g r \cos \theta &amp;= u_1 \\
 m_2 \ddot{r} - m_2 \dot{\theta}^2 r + mg \sin \theta &amp;= u_2 
 \end{aligned}$$ where $u_1$ is the torque on the first link, and $u_2$
 is the force on the second.</p>
 <p>Let us now determine the standard form of the dynamics. First, we can
 determine the $B$ matrix by matching terms that depend on $\ddot{q}$:
-$$B(q)\ddot{q} = 
-\begin{bmatrix}{\ddot{\theta}(\bar{H}+m_2r^2)}\\{m_2 \ddot{r}}\end{bmatrix} = 
-\begin{bmatrix}{\bar{H}+m_2r^2}&amp;{0}\\{0}&amp;{m_2} \end{bmatrix}\ddot{q}.$$
+$$B(q)\ddot{q} = \begin{bmatrix}{\ddot{\theta}(\bar{H}+m_2r^2)}\\{m_2 \ddot{r}}\end{bmatrix} = \begin{bmatrix}{\bar{H}+m_2r^2}&amp;{0}\\{0}&amp;{m_2} \end{bmatrix}\ddot{q}.$$
 The velocity-dependent terms go into $C$:
-$$C(q,\dot{q}) = 
-\begin{bmatrix}{2 m_2 r \dot{r} \dot{\theta}}\\{-m_2 r \dot{\theta}^2}\end{bmatrix}$$
+$$C(q,\dot{q}) = \begin{bmatrix}{2 m_2 r \dot{r} \dot{\theta}}\\{-m_2 r \dot{\theta}^2}\end{bmatrix}$$
 Finally, the generalized gravity vector $G$ contains all other terms:
-$$G(q) = mg 
-\begin{bmatrix}{r \cos \theta}\\{\sin \theta}\end{bmatrix}.$$</p>
+$$G(q) = mg \begin{bmatrix}{r \cos \theta}\\{\sin \theta}\end{bmatrix}.$$</p>
 <h3 id="Effective-inertia">Effective inertia<a class="anchor-link" href="#Effective-inertia">&#182;</a></h3><p>In many applications we may wish to convert between joint space dynamics
 and workspace dynamics. This concept of effective inertial lets us
 answer questions like or "How much force would the robot apply to an
@@ -13377,4 +13288,8 @@ more energetically efficient to keep the elbows straight.</p>
     </div>
   </div>
 </body>
+
+ 
+
+
 </html>

@@ -1,27 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"/>
-
-<!-- javascript from CDN for conversion -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js"></script>
-
-    
-
-
-<script type="text/x-mathjax-config">
-// make sure that equations numbers are enabled
-MathJax.Hub.Config({ TeX: { equationNumbers: {
-    autoNumber: "AMS", // All AMS equations are numbered
-    useLabelIds: true, // labels as ids
-    // format the equation number - uses an offset eqNumInitial (default 0)
-    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
-    } } 
-});
-</script>
-
-
-
-<meta charset="utf-8" />
+<head><meta charset="utf-8" />
 
 <title>MotionPlanningHigherDimensions</title>
 
@@ -13129,27 +13108,12 @@ div#notebook {
         }
     });
     </script>
-    <!-- End of mathjax configuration -->
+    <!-- End of mathjax configuration --></head>
 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
-
-<!-- stylesheet from CDN -->
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="https://rawgit.com/jfbercher/jupyter_latex_envs/master/src/latex_envs/static/latex_envs.css">
-
-<!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css"> 
-
-<!-- Load mathjax 
-<script src="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/latex_envs/thmsInNb4.js"></script>
--->
-<script type="text/javascript"  src="https://rawgit.com/jfbercher/jupyter_latex_envs/master/src/latex_envs/static/thmsInNb4.js"> </script>
-
-<!-- for toc2 -->
 <link rel="stylesheet" type="text/css" href="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/toc2/main.css">
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13159,50 +13123,14 @@ div#notebook {
 <script>
 $( document ).ready(function(){
 
-        //Value of configuration variables, some taken from the notebook's metada. 
-        eqNum = 0; // begins equation numbering at eqNum+1
-        eqLabelWithNumbers = "True"=="True" ? true : false; //if true, label equations with equation numbers; 
-                                       //otherwise using the tag specified by \label
-        conversion_to_html = false;
-        current_cit=1;
-        cite_by='key';  //only number and key are supported
-        //var document={}
-        document.bibliography={};
+            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {"height": "772px", "left": "1px", "top": "103px", "width": "324px"}, "toc_section_display": true, "toc_window_display": true};
 
-        // Read environment map config
-        initmap();
-        // Read user envs config, if specified
-        
-                environmentMap = $.extend(true,{}, environmentInitialMap)        
-        
-
-        // fire the main function with these parameters
-        var html_to_analyse = $('body').html()
-        var html_converted = thmsInNbConv(marked,html_to_analyse);
-        html_converted = html_converted.replace(/%[\S\t ]*<\/p>/gm,"</p>")
-        $('body').html(html_converted)
-        // Show/hide anchors
-        var labels_anchors = "False"=="True" ? true : false;
-        $('.latex_label_anchor').toggle(labels_anchors)
-        // Number all environments
-        report_style_numbering = "False"=="True" ? true : false;
-        reset_counters();
-        renumberAllEnvs();
-
-  
-        // toc2
-        var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {"height": "772px", "left": "1px", "top": "103px", "width": "324px"}, "toc_section_display": true, "toc_window_display": true};
-        // fire the main function with these parameters
-        require(['nbextensions/toc2/toc2'], function (toc2) {
-            toc2.table_of_contents(cfg);
-        });
+            // fire the main function with these parameters
+            require(['nbextensions/toc2/toc2'], function (toc2) {
+                toc2.table_of_contents(cfg);
+            });
     });
-
-</script></head>
-
-
-
-
+</script>
 <body>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
@@ -13259,8 +13187,7 @@ collision status of a robot is queried for a given configuration: in
 other words, we can test whether $q\in \mathcal{C}O$ for a specific
 configuration $q$, but we do not have a representation of any points on
 $\partial \mathcal{C}O$. Specifically, the user of a planner defines a
-subroutine as follows: $$Feasible(q) = \left\{ 
-\begin{array}{ll}
+subroutine as follows: $$Feasible(q) = \left\{ \begin{array}{ll}
 T &amp; \text{ if $q$ is in the free space} \\
 F &amp; \text{ if $q$ is in the forbidden region}
 \end{array} \right.$$ A planner can then call this subroutine to probe
@@ -13273,8 +13200,7 @@ configurations $p,q \in \mathcal{C}$. The process is called a
 <em>visibility query</em> in the case of a straight line path, and can be a
 user-defined subroutine or performed by the planner. The query is specified as
 follows:</p>
-$$Visible(p,q) = \left\{
-\begin{array}{ll}
+$$Visible(p,q) = \left\{\begin{array}{ll}
 T &amp; \text{ if $\overline{pq}$ is completely inside the free space} \\
 F &amp; \text{ if $\overline{pq}$ intersects the forbidden region}
 \end{array} \right.$$<p>In general the process of checking motions for collision is known as
@@ -14246,8 +14172,7 @@ The repulsive force is chosen to grow larger (typically toward infinity)
 as the robot gets closer to the obstacle. Some limiting distance
 $\rho_0$ is typically chosen where the effect of an obstacle drops off
 to 0. One such function is the following:
-$$P_{rep}(q) = \left\lbrace 
-\begin{array}{ll} 
+$$P_{rep}(q) = \left\lbrace \begin{array}{ll} 
 \frac{1}{2}k_{rep}(1/\rho(q) - 1/\rho_0)^2  &amp;  \text{If }\rho(q) \leq \rho_0\\
 0 &amp; \text{If }\rho(q) &gt; \rho_0
 \end{array}\right.$$ Here $\rho(q)$ is a function that measures the
@@ -14258,8 +14183,7 @@ we must be able to calculate distance rather than just Boolean collision
 detection.)</p>
 <p>The force acting on the particle is the negated gradient of each
 potential: $$f_{att}(q) = -k_{att} (q - q_g)$$ and
-$$f_{rep}(q) = \left\lbrace 
-\begin{array}{ll} 
+$$f_{rep}(q) = \left\lbrace \begin{array}{ll} 
 k_{rep} (\frac{1}{\rho(q)} - \frac{1}{\rho_0})\frac{1}{\rho(q)^2} 
 \frac{\partial \rho(q)}{\partial q}  
 &amp;  \text{If }\rho(q) \leq \rho_0\\
@@ -14321,8 +14245,7 @@ spaced.</p>
 <p>Now let us proceed to defining constraints, which we assume are in the
 form $g(q) \leq 0$. At first glance, one might choose to simply enforce
 constraints on the milestones:
-$$h(\theta) = 
-\begin{bmatrix}{g(q_1)} \\ {\vdots} \\ {g(q_{k-1})} \end{bmatrix} \leq 0.$$
+$$h(\theta) = \begin{bmatrix}{g(q_1)} \\ {\vdots} \\ {g(q_{k-1})} \end{bmatrix} \leq 0.$$
 However, this runs the risk of having two milestones on either side of
 an obstacle, with the intermediate segment crossing the obstacle.
 Instead, we must consider the possibility of constraint violations
@@ -14338,8 +14261,7 @@ determined so that the configuration at the collocation point is:
 $$y_\theta(s_j) = q_{i_j-1} + u_j (q_{i_j} - q_{i_j-1}).$$ We then
 define many inequality constraints on $\theta$ so that constraints at
 each collocation point are enforced:
-$$h(\theta) = 
-\begin{bmatrix}{g(y_\theta(s_1))} \\ {\vdots} \\ {g(y_\theta(s_M))} \end{bmatrix} \leq 0.$$
+$$h(\theta) = \begin{bmatrix}{g(y_\theta(s_1))} \\ {\vdots} \\ {g(y_\theta(s_M))} \end{bmatrix} \leq 0.$$
 The resulting problem is a constrained optimization problem
 (<a href="Optimization.ipynb#Constrained-Optimization">Appendix B.3.</a>), which can be solved using a
 nonlinear program solver, like Sequential Quadratic Programming (SQP).
@@ -14494,4 +14416,8 @@ it works properly compared to a brute-force approach on random datasets.</p>
     </div>
   </div>
 </body>
+
+ 
+
+
 </html>

@@ -1,27 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"/>
-
-<!-- javascript from CDN for conversion -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js"></script>
-
-    
-
-
-<script type="text/x-mathjax-config">
-// make sure that equations numbers are enabled
-MathJax.Hub.Config({ TeX: { equationNumbers: {
-    autoNumber: "AMS", // All AMS equations are numbered
-    useLabelIds: true, // labels as ids
-    // format the equation number - uses an offset eqNumInitial (default 0)
-    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
-    } } 
-});
-</script>
-
-
-
-<meta charset="utf-8" />
+<head><meta charset="utf-8" />
 
 <title>Control</title>
 
@@ -13129,27 +13108,12 @@ div#notebook {
         }
     });
     </script>
-    <!-- End of mathjax configuration -->
+    <!-- End of mathjax configuration --></head>
 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
-
-<!-- stylesheet from CDN -->
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="https://rawgit.com/jfbercher/jupyter_latex_envs/master/src/latex_envs/static/latex_envs.css">
-
-<!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css"> 
-
-<!-- Load mathjax 
-<script src="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/latex_envs/thmsInNb4.js"></script>
--->
-<script type="text/javascript"  src="https://rawgit.com/jfbercher/jupyter_latex_envs/master/src/latex_envs/static/thmsInNb4.js"> </script>
-
-<!-- for toc2 -->
 <link rel="stylesheet" type="text/css" href="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/toc2/main.css">
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13159,54 +13123,14 @@ div#notebook {
 <script>
 $( document ).ready(function(){
 
-        //Value of configuration variables, some taken from the notebook's metada. 
-        eqNum = 0; // begins equation numbering at eqNum+1
-        eqLabelWithNumbers = "True"=="True" ? true : false; //if true, label equations with equation numbers; 
-                                       //otherwise using the tag specified by \label
-        conversion_to_html = false;
-        current_cit=1;
-        cite_by='key';  //only number and key are supported
-        //var document={}
-        document.bibliography={};
+            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {}, "toc_section_display": true, "toc_window_display": true};
 
-        // Read environment map config
-        initmap();
-        // Read user envs config, if specified
-        
-                environmentMap = $.extend(true,{}, environmentInitialMap)        
-        
-
-        // fire the main function with these parameters
-        var html_to_analyse = $('body').html()
-        var html_converted = thmsInNbConv(marked,html_to_analyse);
-        html_converted = html_converted.replace(/%[\S\t ]*<\/p>/gm,"</p>")
-        $('body').html(html_converted)
-        // Show/hide anchors
-        var labels_anchors = "False"=="True" ? true : false;
-        $('.latex_label_anchor').toggle(labels_anchors)
-        // Number all environments
-        report_style_numbering = "False"=="True" ? true : false;
-        reset_counters();
-        renumberAllEnvs();
-
-  
-        // toc2
-        var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {}, "toc_section_display": true, "toc_window_display": true};
-        // fire the main function with these parameters
-        require(['nbextensions/toc2/toc2'], function (toc2) {
-            toc2.table_of_contents(cfg);
-        });
+            // fire the main function with these parameters
+            require(['nbextensions/toc2/toc2'], function (toc2) {
+                toc2.table_of_contents(cfg);
+            });
     });
-
-</script></head>
-
-
-<div id='latex_user_defs'>
-        
-</div>
-
-
-
+</script>
 <body>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
@@ -13364,8 +13288,7 @@ we wish to drive this error toward 0, we could perhaps make $k_P$ very
 large... but there is a better way!</p>
 <p>The <em>integral term</em> is designed to counteract steady state errors
 (<a href="#fig:PID_PI">Fig. 2</a>). It is defined as a function of the <em>integral
-error</em> $I(t)$ as follows: $$
-\begin{gathered}
+error</em> $I(t)$ as follows: $$\begin{gathered}
 u_I = -k_I I(t) \\
 I(t) = \int_0^t (x(t)-x_d(t)) dx 
 \end{gathered}$$ Setting $u = u_P + u_I$ helps handle steady state error
@@ -13475,16 +13398,12 @@ two solutions (to a quadratic equation)
 $$c_1 = d \pm \sqrt{d^2 - b k_I}$$ with $d=\frac{a-bk_P}{2}$. Let us
 call the two solutions $c_1^-$ and $c_1^+$. The resulting general
 solution is: $$x(t) = c_0^- e^{t c_1^-} +c_0^+ e^{t c_1^+}$$ with
-matching initial conditions $$
-\begin{gathered}
+matching initial conditions $$\begin{gathered}
 x(0) = c_0^- + c_0^+ \\
 \dot{x}(0) = (a-bk_P) x(0) + c = c_0^- c_1^- + c_0^+ c_1^+
 \end{gathered}$$ which is a linear system of equations in $c_0^-$ and
 $c_0^+$:
-$$
-\begin{bmatrix}{x(0)}\\{\dot{x}(0)}\end{bmatrix} = 
-\begin{bmatrix}{1}&amp;{1}\\{c_1^-}&amp;{c_1^+}\end{bmatrix} 
-\begin{bmatrix}{c_0^-}\\{c_0^+}\end{bmatrix}.$$
+$$\begin{bmatrix}{x(0)}\\{\dot{x}(0)}\end{bmatrix} = \begin{bmatrix}{1}&amp;{1}\\{c_1^-}&amp;{c_1^+}\end{bmatrix} \begin{bmatrix}{c_0^-}\\{c_0^+}\end{bmatrix}.$$
 This can be solved using matrix inversion except for the case where
 $c_1^- = c_1^+$, which we shall ignore for just a moment. First, let us
 examine whether $x(t)$ converges to 0 as $t \rightarrow \infty$, which
@@ -13510,8 +13429,7 @@ at first, but eventually everything will work out!)</p>
 <p>To derive this, we use the following equation which can be derived via
 Euler's identity: $$e^{(a + bi)t} = e^{at}(\cos (bt) + i \sin (bt)).$$
 Hence, setting $\omega = \sqrt{b K_i - d^2}$ and substituting this into
-the $$
-\begin{aligned}
+the $$\begin{aligned}
 x(t) &amp;= c_0^- e^{t d}(\cos (-\omega t) + i \sin(-\omega t)) + c_0^+ e^{t d} (\cos(\omega t) + i \sin (\omega t)) \\
  &amp;= e^{t d} ((c_0^-+c_0^+) \cos (\omega t) + i (c_0^+-c_0^-) \sin (\omega t))
 \end{aligned}$$ Since the initial condition has 0 imaginary component,
@@ -13533,8 +13451,7 @@ Sec. <a href="#sec:Stability-in-Linear-Time-Invariant-systems">4.1</a>.</p>
 <h3 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h3><p>For a system with measured state $x$ and derivative $\dot{x}$, desired
 setpoint $x_d$ and derivative $\dot{x}_d$ (optional; can be set to 0),
 and fixed control frequency $1/\Delta t$, a PID controller calculates
-the control $u$ using the following update equations: $$
-\begin{gathered}
+the control $u$ using the following update equations: $$\begin{gathered}
 I \gets I + \Delta t (x - x_d) \\
 u \gets -k_P (x - x_d) - k_I I - k_D (\dot{x} - \dot{x}_d).
 \end{gathered}$$ Here $k_P &gt; 0$, $k_I \geq 0$, and $k_D \geq 0$ are the
@@ -13655,19 +13572,15 @@ second-order single-input single-output system
 $\ddot{x} = ax+b\dot{x}+cu$ we build an equivalent 1-input 3-output
 system $y = (I,x,\dot{x})$ such that</p>
 $$
-\dot{y} = 
-\begin{bmatrix}x\\ \dot{x}\\ \ddot{x} \end{bmatrix} =
-
+\dot{y} = \begin{bmatrix}x\\ \dot{x}\\ \ddot{x} \end{bmatrix} =
 \begin{bmatrix}
 0 &amp; 1 &amp; 0 \\
 0 &amp; 0 &amp; 1 \\
 0 &amp; a &amp; b
-\end{bmatrix} y + 
-\begin{bmatrix}0\\0\\c\end{bmatrix} u
+\end{bmatrix} y + \begin{bmatrix}0\\0\\c\end{bmatrix} u
 $$<p>Then, we can define a
 the 3$\times$1 matrix $K$ as
-$$K=
-\begin{bmatrix}k_I &amp; k_P &amp; k_D\end{bmatrix}$$ so that
+$$K=\begin{bmatrix}k_I &amp; k_P &amp; k_D\end{bmatrix}$$ so that
 $u=-Kx$ is the PID control.</p>
 <p>With this form of closed loop control, we can write the velocity of the
 state in terms of a matrix times $x$: $$\dot{x} = Ax - BKx = (A-BK)x.$$
@@ -13744,12 +13657,10 @@ field. However, systems with drift can be rewritten as a driftless LTI
 system in terms of a modified dynamics equation with a state variable
 $y = (x,1)$ augmented by a constant 1:
 $$\dot{y} = \tilde{A} y + \tilde{B} u$$ with
-$$\tilde{A} = 
-\begin{bmatrix}
+$$\tilde{A} = \begin{bmatrix}
 A &amp; c \\
 0_{1\times n} &amp; 0
-\end{bmatrix}$$ and $$\tilde{B} = 
-\begin{bmatrix}{B}\\{0_{1\times m}}\end{bmatrix}$$
+\end{bmatrix}$$ and $$\tilde{B} = \begin{bmatrix}{B}\\{0_{1\times m}}\end{bmatrix}$$
 (using block matrix notation).</p>
 <p>These systems may be stable, but will not be convergent with a control
 of the form $u=-Kx$ because the $n+1$'th dimension has an eigenvalue
@@ -13931,4 +13842,8 @@ $u_{max} = 5 N \cdot m$.</p>
     </div>
   </div>
 </body>
+
+ 
+
+
 </html>

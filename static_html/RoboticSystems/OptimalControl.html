@@ -1,27 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"/>
-
-<!-- javascript from CDN for conversion -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js"></script>
-
-    
-
-
-<script type="text/x-mathjax-config">
-// make sure that equations numbers are enabled
-MathJax.Hub.Config({ TeX: { equationNumbers: {
-    autoNumber: "AMS", // All AMS equations are numbered
-    useLabelIds: true, // labels as ids
-    // format the equation number - uses an offset eqNumInitial (default 0)
-    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
-    } } 
-});
-</script>
-
-
-
-<meta charset="utf-8" />
+<head><meta charset="utf-8" />
 
 <title>OptimalControl</title>
 
@@ -13129,27 +13108,12 @@ div#notebook {
         }
     });
     </script>
-    <!-- End of mathjax configuration -->
+    <!-- End of mathjax configuration --></head>
 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
-
-<!-- stylesheet from CDN -->
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="https://rawgit.com/jfbercher/jupyter_latex_envs/master/src/latex_envs/static/latex_envs.css">
-
-<!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css"> 
-
-<!-- Load mathjax 
-<script src="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/latex_envs/thmsInNb4.js"></script>
--->
-<script type="text/javascript"  src="https://rawgit.com/jfbercher/jupyter_latex_envs/master/src/latex_envs/static/thmsInNb4.js"> </script>
-
-<!-- for toc2 -->
 <link rel="stylesheet" type="text/css" href="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/toc2/main.css">
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13159,55 +13123,14 @@ div#notebook {
 <script>
 $( document ).ready(function(){
 
-        //Value of configuration variables, some taken from the notebook's metada. 
-        eqNum = 0; // begins equation numbering at eqNum+1
-        eqLabelWithNumbers = "True"=="True" ? true : false; //if true, label equations with equation numbers; 
-                                       //otherwise using the tag specified by \label
-        conversion_to_html = false;
-        current_cit=1;
-        cite_by='key';  //only number and key are supported
-        //var document={}
-        document.bibliography={};
+            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {}, "toc_section_display": true, "toc_window_display": true};
 
-        // Read environment map config
-        initmap();
-        // Read user envs config, if specified
-        
-                var data = 
-                environmentMap = $.extend(true,{}, environmentInitialMap,data)
-        
-
-        // fire the main function with these parameters
-        var html_to_analyse = $('body').html()
-        var html_converted = thmsInNbConv(marked,html_to_analyse);
-        html_converted = html_converted.replace(/%[\S\t ]*<\/p>/gm,"</p>")
-        $('body').html(html_converted)
-        // Show/hide anchors
-        var labels_anchors = "False"=="True" ? true : false;
-        $('.latex_label_anchor').toggle(labels_anchors)
-        // Number all environments
-        report_style_numbering = "False"=="True" ? true : false;
-        reset_counters();
-        renumberAllEnvs();
-
-  
-        // toc2
-        var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {}, "toc_section_display": true, "toc_window_display": true};
-        // fire the main function with these parameters
-        require(['nbextensions/toc2/toc2'], function (toc2) {
-            toc2.table_of_contents(cfg);
-        });
+            // fire the main function with these parameters
+            require(['nbextensions/toc2/toc2'], function (toc2) {
+                toc2.table_of_contents(cfg);
+            });
     });
-
-</script></head>
-
-
-<div id='latex_user_defs'>
-        
-</div>
-
-
-
+</script>
 <body>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
@@ -13255,8 +13178,7 @@ accumulated over time, and should be chosen to be nonnegative and to
 penalize certain undesirable states, velocities, or controls. Its units
 are cost units per second.</p>
 <p>The goal of optimal control is to find state and control trajectories
-$x$ and $u$ such that $J(x,u)$ is minimized: $$
-\begin{gathered}
+$x$ and $u$ such that $J(x,u)$ is minimized: $$\begin{gathered}
 x^\star, u^\star = \arg \min_{x,u} J(x,u) \text{ such that} \\
 \dot{x}(t) = f(x(t),u(t)) \text{ for all }t
 \end{gathered}
@@ -13408,15 +13330,13 @@ Hamiltonian, given $\lambda^\star$, $x^\star$, and $t$ fixed, we must
 have that $B^T \lambda^\star + 2 R u^\star = 0$ so that
 $u^\star = \frac{1}{2}R^{-1} B^T \lambda^\star$.</p>
 <p>Now replacing this into 2 and 3, we have a system of ODEs:
-$$
-\begin{split}
+$$\begin{split}
 \dot{x}^\star &amp;= A x^\star + \frac{1}{2} B R^{-1} B^T \lambda^\star \\
 \dot{\lambda}^\star &amp;= - 2 Qx^\star  -A^T \lambda^\star
 \end{split}$$</p>
 <p>Hypothesizing that $\lambda^\star = 2 P x^\star$ and
 multiplying the first equation by $P$, we obtain the system of equations</p>
-$$
-\begin{split}
+$$\begin{split}
 P\dot{x}^\star &amp;=  (PA + P B R^{-1} B^T P )x^\star \\
 2P\dot{x}^\star &amp;= (-2Q  -2A^T P)x^\star.
 \end{split}$$<p></p>
@@ -13450,8 +13370,7 @@ controls.</p>
 <p>Taking the <a href="WhatAreDynamicsAndControl.ipynb#Dubins-car">Dubins car model</a> as an example, 
 we have the state variable
 $(x,y,\theta)\in SO(2)$ and control variable $(v,\phi)$ denoting
-velocity and steering angle: $$
-\begin{split}
+velocity and steering angle: $$\begin{split}
 \dot{x} &amp;= v \cos \theta \\
 \dot{y} &amp;= v \sin \theta \\
 \dot{\theta} &amp;= v/L \tan \phi .
@@ -13558,8 +13477,7 @@ $i \leq k \leq N$. Hence,
 $$\frac{\partial J}{\partial u_i} = \Delta t \frac{\partial L}{\partial u_i} (x_{i-1},u_i,t_i) + \Delta t \sum_{k=i}^{N-1} \frac{\partial L}{\partial x}(x_k,u_{k+1},t_k)\frac{\partial x_k}{\partial u_i} + \frac{\partial \Phi}{\partial x_N}\frac{\partial x_N}{\partial u_i}
 \label{eq:JacobianUi}$$ The expressions for
 $\frac{\partial x_k}{\partial u_i}$ are relatively complex because $x_k$
-is defined recursively assuming that $x_{i-1}$ is known. $$
-\begin{split}
+is defined recursively assuming that $x_{i-1}$ is known. $$\begin{split}
 x_i &amp;= g(x_{i-1},u_i,\Delta t) \\
 x_{i+1} &amp;= g(x_i,u_{i+1},\Delta t) \\
 x_{i+2} &amp;= g(x_{i+1},u_{i+2},\Delta t) \\
@@ -13588,8 +13506,7 @@ $$\frac{\partial J}{\partial x_i} = \Delta t \sum_{k=i}^{N-1} \frac{\partial L}{
 This entire vector can be computed in a single backward pass starting
 from $i=N$ back to $i=1$. Starting with $i=N$, see that
 $$\frac{\partial J}{\partial x_N} = \frac{\partial \Phi }{\partial x_N}$$
-Then, proceeding to $i=N-1$, observe $$
-\begin{split}
+Then, proceeding to $i=N-1$, observe $$\begin{split}
 \frac{\partial J}{\partial x_{N-1}} &amp;= \Delta t \frac{\partial L}{\partial x}(x_{N-1},u_N,t_{N-1}) + \frac{\partial \Phi }{\partial x_N}\frac{\partial x_N}{\partial x_{N-1}} \\
 &amp;=  \Delta t \frac{\partial L}{\partial x}(x_{N-1},u_N,t_{N-1}) + \frac{\partial J}{\partial x_N} \frac{\partial x_N}{\partial x_{N-1}}.
 \end{split}$$ In general, with $i&lt;N$, we have the recursive expression
@@ -13893,12 +13810,9 @@ infinite-horizon or finite-horizon more appropriate for this
 problem? Do the same for the task of balancing on one foot.</p>
 </li>
 <li><p>Recall the point mass double-integrator system:
-$$\dot{x} \equiv 
-\begin{bmatrix}{\dot{p}}\\{\dot{v}}\end{bmatrix} = f(x,u) = 
-\begin{bmatrix}{v}\\{u/M}\end{bmatrix}.$$
+$$\dot{x} \equiv \begin{bmatrix}{\dot{p}}\\{\dot{v}}\end{bmatrix} = f(x,u) = \begin{bmatrix}{v}\\{u/M}\end{bmatrix}.$$
 Express this as an LTI system, and solve for the LQR gain matrix $K$
-with the cost terms $Q=
-\begin{bmatrix}{10}&amp;{0}\\{0}&amp;{1}\end{bmatrix}$ and $R=5$.</p>
+with the cost terms $Q=\begin{bmatrix}{10}&amp;{0}\\{0}&amp;{1}\end{bmatrix}$ and $R=5$.</p>
 </li>
 <li><p>Let $V^*(x)$ denote the infinite-horizon value function (i.e., the cost incurred by the optimal infinite-horizon control starting at $x$).  Now define a finite-horizon optimal control problem with horizon $T$, the same incremental cost $L$, and terminal cost $\Phi(x) = V^*(x)$. Prove that the solution to this finite-horizon optimal control problem is identical to the infinite horizon optimal control problem for all $x$.</p>
 </li>
@@ -13927,4 +13841,8 @@ with the cost terms $Q=
     </div>
   </div>
 </body>
+
+ 
+
+
 </html>
