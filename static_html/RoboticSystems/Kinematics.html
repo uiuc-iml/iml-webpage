@@ -13123,7 +13123,7 @@ div#notebook {
 <script>
 $( document ).ready(function(){
 
-            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {"height": "calc(100% - 180px)", "left": "10px", "top": "150px", "width": "307.188px"}, "toc_section_display": true, "toc_window_display": false};
+            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {"height": "calc(100% - 180px)", "left": "10px", "top": "150px", "width": "307.188px"}, "toc_section_display": true, "toc_window_display": true};
 
             // fire the main function with these parameters
             require(['nbextensions/toc2/toc2'], function (toc2) {
@@ -13373,8 +13373,9 @@ workspace</em> which contains the range of end effector positions reachable
 with the orientation of the end effector held fixed at some useful angle
 (for example, pointing up or down or sideways, depending on the task).</p>
 <h3 id="Examples">Examples<a class="anchor-link" href="#Examples">&#182;</a></h3><hr>
-<p><img src="figures/modeling/2R_workspace.svg" alt="fig:2RWorkspace"></p>
-<div class="figcaption"><a href="fig:2RWorkspace">Figure 1</a>. A 2R manipulator, with joint limits and a second link somewhat shorter than the first has a reachable (position) workspace that is a portion of an annulus (planar donut shape).</div><hr>
+<p><a href="fig:2RWorkspace"></a>
+<img src="figures/modeling/2R_workspace.svg" alt="fig:2RWorkspace"></p>
+<div class="figcaption">Figure 1. A 2R manipulator, with joint limits of $\pm 45^\circ$ for the first joint and $\pm 90^\circ$ for the second, and a second link somewhat shorter than the first. Treating the position of the end effector as the workspace coordinate, the reachable workspace is a portion of an annulus (planar donut shape).</div><hr>
 
 </div>
 </div>
@@ -13677,14 +13678,22 @@ derived from the axis-angle parameterization $R_{aa}$.)</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Examples">Examples<a class="anchor-link" href="#Examples">&#182;</a></h3><p>Consider a 2RP spherical manipulator whose first axis rotates about the
+<h3 id="Examples">Examples<a class="anchor-link" href="#Examples">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="2RP-manipulator">2RP manipulator<a class="anchor-link" href="#2RP-manipulator">&#182;</a></h4><p>Consider a 2RP spherical manipulator whose first axis rotates about the
 $z$ axis, the second about the $y$ axis, and the prismatic joint
 translates about the $x$ axis. All reference frames are aligned with the
 world frame (that is, $L_1=0$ in
 <a href="#fig:2RPManipulator">Fig. 3</a>).</p>
 <hr>
-<p><img src="figures/modeling/2RP.png" alt="fig:2RPManipulator"></p>
-<div class="figcaption"><a name="fig:2RPManipulator">Figure 3</a>
+<p><a name="fig:2RPManipulator"></a>
+<img src="figures/modeling/2RP.png" alt="fig:2RPManipulator"></p>
+<div class="figcaption">Figure 3.
 A spherical manipulator. Without loss of generality, we can consider
 the "shoulder" to be the world origin ($L_1=0$), and the third
 configuration variable $q_3$ to be the distance of the end effector to
@@ -13771,6 +13780,73 @@ so that $q_2$ measures the elevation angle, the second axis of rotation
 could be rotated so that $\mathbf{a}_2 = (0,-1,0)$, or equivalently, that the
 reference transform $T_{2,ref}$ rotates $\pi$ radians about either the
 $x$ or $z$ axis.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="6R-manipulator">6R manipulator<a class="anchor-link" href="#6R-manipulator">&#182;</a></h4><p>Now consider a more typical 6R industrial robot arm, configured with the reference coordinate system as shown in <a href="fig:6RManipulator">Figure 4</a>. (Ignore the gripper degree of freedom.)  The shoulder axes and wrist axes intersect at a common point, indicated by the marked coordinate frames.</p>
+<hr>
+<p><a name="fig:6RManipulator"></a>
+<img src="figures/modeling/6R.svg" alt="fig:6RManipulator"></p>
+<div class="figcaption">Figure 4.
+A typical kinematic configuration for a 6R industrial manipulator. The "shoulder" has 2 degrees of freedom, the "elbow" has 1, and the "wrist" has 3.  
+</div><hr>
+<p>In this definition, the joint axes are aligned to the Z Y Y X Y Z axes, listed from the base to the end effector.  All reference orientations are aligned to the world coordinate frame.  The coordinate frames are also oriented such that positive joint angles turn counterclockwise with respect to their local coordinate frames, and hence we can more specifically list the joint axes as +Z +Y +Y +X +Y +Z.</p>
+<p>Let us place the relative reference transforms so that both of the first 2 link transforms are at the intersection of the shoulder, and the last 3 link transforms are at the intersection of the wrist.  All relative transforms have the identity matrix as their rotation component. Link 1's reference transform shifts by $L_1$ units in the Z direction, link 3 shifts by $L_2$ units in the X direction, and link 4 shifts by $L_3$ units the X direction, while links 2, 5, and 6 induce no translation.</p>
+<p>Ultimately, forward kinematics yields the following transforms of each link:</p>
+$$T_1(q) = 
+\left[\begin{array}{ccc|c}
+  &amp;          &amp;   &amp; 0 \\
+  &amp; R_z(q_1) &amp;   &amp; 0 \\
+  &amp;          &amp;   &amp; L_1 \\
+\hline
+0 &amp; 0 &amp; 0 &amp; 1
+\end{array}\right]
+$$$$T_2(q) = 
+T_1(q) \left[\begin{array}{ccc|c}
+  &amp;          &amp;   &amp; 0 \\
+  &amp; R_y(q_2) &amp;   &amp; 0 \\
+  &amp;          &amp;   &amp; 0 \\
+\hline
+0 &amp; 0 &amp; 0 &amp; 1
+\end{array}\right]
+$$$$T_3(q) = 
+T_2(q) \left[\begin{array}{ccc|c}
+  &amp;          &amp;   &amp; L_2 \\
+  &amp; R_y(q_3) &amp;   &amp; 0 \\
+  &amp;          &amp;   &amp; 0 \\
+\hline
+0 &amp; 0 &amp; 0 &amp; 1
+\end{array}\right]
+$$$$T_4(q) = 
+T_3(q) \left[\begin{array}{ccc|c}
+  &amp;          &amp;   &amp; L_3 \\
+  &amp; R_x(q_4) &amp;   &amp; 0 \\
+  &amp;          &amp;   &amp; 0 \\
+\hline
+0 &amp; 0 &amp; 0 &amp; 1
+\end{array}\right]
+$$$$T_5(q) = 
+T_4(q) \left[\begin{array}{ccc|c}
+  &amp;          &amp;   &amp; 0 \\
+  &amp; R_y(q_5) &amp;   &amp; 0 \\
+  &amp;          &amp;   &amp; 0 \\
+\hline
+0 &amp; 0 &amp; 0 &amp; 1
+\end{array}\right]
+$$$$T_6(q) = 
+T_5(q) \left[\begin{array}{ccc|c}
+  &amp;          &amp;   &amp; 0 \\
+  &amp; R_z(q_6) &amp;   &amp; 0 \\
+  &amp;          &amp;   &amp; 0 \\
+\hline
+0 &amp; 0 &amp; 0 &amp; 1
+\end{array}\right]
+$$<p>To obtain the world-space position of the end effector, we simply apply $T_6(q)$ to the local coordinates of the end effector in link 6's frame:
+$$\mathbf{x}(q) = T_6(q) \begin{bmatrix} L_6 \\ 0 \\ 0 \\ 1 \end{bmatrix}. $$</p>
 
 </div>
 </div>

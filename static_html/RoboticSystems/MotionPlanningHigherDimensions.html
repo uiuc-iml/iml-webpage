@@ -13428,7 +13428,8 @@ roadmap $(V,E)$. The second for loop checks for pairs of "nearby"
 milestones, and adds edges as long as the path between them is
 collision-free.</p>
 <hr>
-<p><a name="alg:PRM">Algorithm Basic-PRM(s,g,N)</a></p>
+<p><a name="alg:PRM"></a>
+<strong>Algorithm Basic-PRM(s,g,N)</strong></p>
 <ol>
 <li>$V \gets \{ s, g \}$.</li>
 <li>$E \gets \{ \}$.</li>
@@ -13507,7 +13508,8 @@ Incremental-PRM using a special data structure to determine each of the
 <em>connected components</em> of the graph.  A connected component consists of
 all milestones that are mutually connected by any path.</p>
 <hr>
-<p><a name="alg:PRM">Algorithm Incremental-PRM(s,g,T)</a></p>
+<p><a name="alg:PRM"></a>
+<strong>Algorithm Incremental-PRM</strong>(s,g,T)</p>
 <ol>
 <li>$V \gets \{ s, g \}$.</li>
 <li>$E \gets \{ \}$.</li>
@@ -13634,7 +13636,8 @@ if the trees are close enough, a connection will be attempted between
 them. If connected, the joined trees contain a unique path from the
 start to the goal.</p>
 <hr>
-<p><a name="alg:RRTConnect">Algorithm RRT-Connect</a></p>
+<p><a name="alg:RRTConnect"></a>
+<strong>Algorithm RRT-Connect</strong></p>
 <ol>
 <li>$T_s \gets \{ s \}$.</li>
 </ol>
@@ -13651,7 +13654,8 @@ start to the goal.</p>
 </ul>
 <hr>
 <hr>
-<p><a name="alg:ExtendTree">Algorithm Extend-Tree$(T,q_{rand},\delta)$</a></p>
+<p><a name="alg:ExtendTree"></a>
+<strong>Algorithm Extend-Tree</strong>$(T,q_{rand},\delta)$</p>
 <ol>
 <li>$q_{near} \gets Nearest(T,q_{rand})$</li>
 <li>$q \gets q_{near} + \min{1,\frac{\delta}{d(q_{rand},q_{near})}}(q_{rand}-q_{near})$</li>
@@ -13852,7 +13856,8 @@ $Pr(\lim_{n\rightarrow \infty} c(n) - c^\star) \neq 0)=0$.</p>
 <li>Extend-Tree sets $c(q) = c(q_{near}) + d(q_{near},q)$, and returns $nil$ if the tree could not be successfully extended.</li>
 </ol>
 <hr>
-<p><a name="alg:RRTStar">Algorithm RRT*</a></p>
+<p><a name="alg:RRTStar"></a>
+<strong>Algorithm RRT*</strong></p>
 <ol>
 <li>$T \gets \{ s \}$..</li>
 </ol>
@@ -13868,7 +13873,8 @@ $Pr(\lim_{n\rightarrow \infty} c(n) - c^\star) \neq 0)=0$.</p>
 </ul>
 <hr>
 <hr>
-<p><a name="alg:RRTStarRewire">Algorithm Rewire$(T,q_{new},n)$</a></p>
+<p><a name="alg:RRTStarRewire"></a>
+<strong>Algorithm Rewire</strong>$(T,q_{new},n)$</p>
 <ol>
 <li>Neighbors $\gets$ Set of $k^\star(n)$-nearest neighbors in $T$, or points in $R^\star(n)$-neighborhood.</li>
 </ol>
@@ -13928,7 +13934,8 @@ outperform RRT* (or PRM*)!</p>
 <p>Note that this is only an approximate method that depends on the resolution $\epsilon$.  If this is too large, then collisions may be missed between checked points $q_{i}$ and $q_{i+1}$ even if both $q_{i}$ and $q_{i+1}$ are feasible.  On the other hand, if $\epsilon$ is too small, then this takes a lot of time.  Precisely, the number of collisions checked is $n = \lceil d(a,b) / \epsilon \rceil$.</p>
 <p>Another issue is the order in which the configurations are checked.  In the worst case, the edge is feasible, and all configurations must be checked for feasibility.  However, if the edge is infeasible, then we can save time by finding an infeasible configuration quickly.  Let us suppose that both $a$ and $b$ are feasible.  Then, in the absence of additional information, the point that is most likely to lead to a collision is the midpoint $(a+b)/2$.  This intuition gives a recursive implementation that is effective in practice:</p>
 <hr>
-<p><a name="alg:Visible-Recurse">Algorithm Visible-Recurse($a,b,\epsilon$)</a></p>
+<p><a name="alg:Visible-Recurse"></a>
+<strong>Algorithm Visible-Recurse</strong>($a,b,\epsilon$)</p>
 <ol>
 <li>If this is the first recursive call, check $a$ and $b$ for collision.  Return false if either $\neg Feasible(a)$ or $\neg Feasible(b)$.</li>
 <li>If $d(a,b) \leq \epsilon$ return true.</li>
@@ -13957,7 +13964,8 @@ outperform RRT* (or PRM*)!</p>
     </div><hr>
 <p>Although this approximate technique is by far the most widely used in practice, <em>exact</em> dynamic collision checking methods are also available.  These methods are based on similar recursions, but use additional information about the clearance of a configuration.  Recall that the clearance $c(q)$ of a configuration is the distance in C-space to the nearest C-obstacle.  If we can show that $d(a,b) \leq c(a)+c(b)$, then we can be certain that $\overline{ab}$ is collision free (<a href="#fig:dynamic-cc">Figure 8.b</a>).  This is because the balls centered at $a$ and $b$ with radii $c(a)$ and $c(b)$, overlap, are in free space, and contain $\overline{ab}$ in their union.  (In most cases, however, we do not have access to an exact clearance function, but this reasoning still works when $c(q)$ is any lower bound on clearance.)  This gives the following exact algorithm:</p>
 <hr>
-<p><a name="alg:Visible-Exact1">Algorithm Visible-Exact1($a,b$)</a></p>
+<p><a name="alg:Visible-Exact1"></a>
+<strong>Algorithm Visible-Exact1</strong>($a,b$)</p>
 <ol>
 <li>If this is the first recursive call, check $a$ and $b$ for collision.  Return false if either $\neg Feasible(a)$ or $\neg Feasible(b)$.</li>
 <li>If $d(a,b) \leq c(a) + c(b)$ return true.</li>
@@ -13971,7 +13979,8 @@ outperform RRT* (or PRM*)!</p>
 <p>For example, consider a 2R robot arm with link lengths $L_1$ and $L_2$, the link geometries are simple line segments, and there are two C-obstacles, one for each link.  The collision constraint for link 1 only depends on $q_1$, and the points on the link are contained within a circle with radius $L_1$.  Moreover, in a movement of $\theta$ radians, the tip of the link moves at most $L_1 \theta$ distance in workspace.  Hence, $$\eta_1(q,q^\prime) = L_1 |q_1 - q^\prime_1 |$$ is a suitable upper bound.  Through similar reasoning, we can show that $$\eta_2(q,q^\prime) = (L_1+L_2) (|q_1 - q^\prime_1 | + |q_2 - q^\prime_2 |)$$ is an upper bound on how far the tip of link 2 moves.  There are general formulas like this for arbitrary articulated robots.  Specifically, $$\eta_k(q,q^\prime) = (R_k + \sum_i^{k-1} L_i) \| (q_1,\ldots,q_k) - (q^\prime_1,\ldots,q_k^\prime)\|_1$$ is a suitable function for all nR robots.</p>
 <p>The following algorithm uses this bound to perform exact collision detection.</p>
 <hr>
-<p><a name="alg:Visible-Exact2">Algorithm Visible-Exact2($a,b$)</a></p>
+<p><a name="alg:Visible-Exact2"></a>
+<strong>Algorithm Visible-Exact2</strong>($a,b$)</p>
 <ol>
 <li>If this is the first recursive call, check $a$ and $b$ for collision.  Return false if either $\neg Feasible(a)$ or $\neg Feasible(b)$.</li>
 <li>If $\eta_i(a,b) \leq c_i(a) + c_i(b)$ for all C-obstacles $i=1,\ldots,N$, return true.</li>
@@ -13999,7 +14008,8 @@ outperform RRT* (or PRM*)!</p>
 <p>More formally, the binary tree $T_{kd}$ is composed of nodes $N$.  Each leaf node contains a list of contained points <code>pts</code>, and each non-leaf node contains a split dimension <code>dim</code> and split value <code>value</code>.  Non-leaf nodes have exactly two children $C^-$, and $C^+$, and all points $q \in \mathbb{R}^d$ such that $q_{dim} &lt; value$ belong to the <em>negative</em> child $C^-$, while points such that $q_{dim} \geq value$ belong to the <em>positive</em> child $C^+$.</p>
 <p>We will describe how to query for the closest point (NN), with the kNN and near queries implemented similarly. We traverse the tree in a branch-and-bound manner similar to the <a href="Geometry.ipynb#Bounding-volume-hierarchies">bounding volume hierarchy</a> approach.  Let's assume the Euclidean distance is used.  We maintain a closest point $p_{close}$, initialized by picking a point from $P$ at random.  We proceed examining nodes $N$ recursively starting from $N=root(T_{kd})$. Psuedocode is below:</p>
 <hr>
-<p><a name="alg:KDTreeNN">Algorithm KDTree-NN-recurse($q,N,p_{close}$)</a></p>
+<p><a name="alg:KDTreeNN"></a>
+<strong>Algorithm KDTree-NN-recurse</strong>($q,N,p_{close}$)</p>
 <ol>
 <li><strong>if</strong> $N$ is a leaf node, <strong>then</strong></li>
 <li>&nbsp;&nbsp;&nbsp;Let <code>pts</code> be the points contained in $N$. </li>
