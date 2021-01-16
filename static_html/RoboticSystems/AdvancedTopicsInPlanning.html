@@ -13261,7 +13261,8 @@ $( document ).ready(function(){
 <p>In other words, to follow the mode sequence $\sigma \rightarrow \sigma^\prime \rightarrow \sigma^{\prime\prime}$ starting from a configuration $q_0$, we must follow at path within $\mathcal{F}_\sigma$ to reach a configuration $q^\prime$ in the transition region $\mathcal{F}_\sigma \cap \mathcal{F}_{\sigma^\prime}$, then follow a path within $F_{\sigma^\prime}$ to reach a configuration $q^{\prime\prime}$ in the transition region $\mathcal{F}_{\sigma^\prime} \cap \mathcal{F}_{\sigma^{\prime\prime}}$.</p>
 <p>This gives rise to a simple algorithm for pick-and-place planning:</p>
 <hr>
-<p><a name="alg:SimplePickAndPlace">**Algorithm Simple Pick-and-Place**</a></p>
+<p><a name="alg:SimplePickAndPlace"></a>
+<strong>Algorithm Simple Pick-and-Place</strong></p>
 <ol>
 <li>Let $q_0=(q_{R,0},A)$ be the current joint configuration of the robot and object.</li>
 <li>Determine candidate grasps $G_1,\ldots,G_N$ for the object</li>
@@ -13408,7 +13409,8 @@ $( document ).ready(function(){
 <p>Third, the infeasible query issue is further compounded if we use only probabilistically-complete C-space planners. Because there is no firm guideline about how long to run the planner, we run the risk of setting the time limit too short to be able to solve a query, but if it is too long then we risk wasting time on infeasible queries.</p>
 <p>The general issue in each of these three settings is that the basic planner <strong>becomes committed to a choice</strong> that may not yield a feasible solution in future steps.  We have dealt with it above by adding more for loops so that earlier choices can be revisited, but as the number of sequential choices grows, this becomes progressively less convenient to implement and less efficient.  Fortunately, there's a general-purpose approach to deal with this situation that can yield probabilistic completeness.  The strategy is inspired by <strong>least-commitment planning</strong> algorithms that solve constraint satisfaction problems (CSPs).  We keep a working set of <em>partial plans</em> that contain components of a complete plan. Let a partial plan be denoted $P$, with $P[c]$ the solution to some component $c$ if the component has been solved, or $nil$ if no solution has been found.  The strategy operates like this:</p>
 <hr>
-<p><a name="alg:LeastCommitmentPlanning"><b>(Meta-)Algorithm Least-Commitment Planning</b></a></p>
+<p><a name="alg:LeastCommitmentPlanning"></a>
+<strong>(Meta-)Algorithm Least-Commitment Planning</strong></p>
 <ol>
 <li>Initialize the working set $W$ to contain an empty partial plan.</li>
 <li><strong>while</strong> no complete path is found, repeat the following:</li>
@@ -13453,7 +13455,8 @@ $( document ).ready(function(){
 <p>We describe a planner, the <em>probabilistic tree of roadmaps</em> that instantiates <a href="#alg:LeastCommitmentPlanning">Least-Commitment Planning</a> to this setting. Starting at $\sigma_0$, the planner explores a <em>tree of modes</em> connected by feasible transition configurations.  It then grows the tree using an RRT-like strategy.  Once a mode sequence that leads to a goal is found, it then begins to plan paths along each mode's free space.  The hypothesis behind this strategy is that the transitions are bottlenecks, and finding a feasible mode sequence leading to the goal is more informative to the success of the planner than C-space motion planning queries.</p>
 <p>In order to implement this strategy, we must define a distance metric $d(\sigma,\sigma^\prime)$ on the space of modes.</p>
 <hr>
-<p><a name="alg:ProbabilisticTreeOfRoadmaps"><b>Algorithm Probabilistic Tree of Roadmaps</b></a></p>
+<p><a name="alg:ProbabilisticTreeOfRoadmaps"></a>
+<strong>Algorithm Probabilistic Tree of Roadmaps</strong></p>
 <ol>
 <li>Initialize the mode tree $\mathcal{T} \gets \{ \sigma_0 \}$.  Attach $q_0$ to $\sigma_0$ as its "transition configuration".</li>
 <li>Initialize the set of feasible mode sequences $G \gets \{ \}$.</li>
