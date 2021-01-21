@@ -13108,7 +13108,18 @@ div#notebook {
         }
     });
     </script>
-    <!-- End of mathjax configuration --></head>
+    
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+<!-- End of mathjax configuration --></head>
 
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 
@@ -15182,13 +15193,13 @@ as you approach the limit?</p>
 
  
  
-<div id="f8bad0ab-3793-468f-8248-b6572f150685"></div>
+<div id="3bb9c582-a9f0-4f83-af40-fcd64917cf78"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#f8bad0ab-3793-468f-8248-b6572f150685');
+var element = $('#3bb9c582-a9f0-4f83-af40-fcd64917cf78');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "08b79ffa8d1e4dfa99e431de34eb9af1"}
+{"version_minor": 0, "version_major": 2, "model_id": "08b79ffa8d1e4dfa99e431de34eb9af1"}
 </script>
 </div>
 
@@ -15204,13 +15215,13 @@ var element = $('#f8bad0ab-3793-468f-8248-b6572f150685');
 
  
  
-<div id="48c8c87c-5131-4de8-9b5d-20d019813bfc"></div>
+<div id="cc7bc297-f161-454e-b639-e42283b9746f"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#48c8c87c-5131-4de8-9b5d-20d019813bfc');
+var element = $('#cc7bc297-f161-454e-b639-e42283b9746f');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "c1c827d1569f497981940a657cfe5088"}
+{"version_minor": 0, "version_major": 2, "model_id": "c1c827d1569f497981940a657cfe5088"}
 </script>
 </div>
 

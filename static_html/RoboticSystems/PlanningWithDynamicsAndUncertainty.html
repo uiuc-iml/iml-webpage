@@ -13131,7 +13131,18 @@ div#notebook {
         }
     });
     </script>
-    <!-- End of mathjax configuration --></head>
+    
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+<!-- End of mathjax configuration --></head>
 
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 
@@ -14135,7 +14146,7 @@ where $x$ is the state of the world, $y$ is an observation, $H$ is the entropy o
  
 
 <script type="application/vnd.jupyter.widget-state+json">
-{"version_major": 2, "version_minor": 0, "state": {}}
+{"version_minor": 0, "version_major": 2, "state": {}}
 </script>
 
 

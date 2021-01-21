@@ -13108,7 +13108,18 @@ div#notebook {
         }
     });
     </script>
-    <!-- End of mathjax configuration --></head>
+    
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+<!-- End of mathjax configuration --></head>
 
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 
@@ -13648,10 +13659,10 @@ Then, $\overline{R}_N$ is an estimate of the average rotation.</p>
 
  
  
-<div id="9ea3226c-c0a7-457a-84ab-b4d3dd82b904"></div>
+<div id="830d27c3-80eb-48f2-a253-23c87e2bdaeb"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#9ea3226c-c0a7-457a-84ab-b4d3dd82b904');
+var element = $('#830d27c3-80eb-48f2-a253-23c87e2bdaeb');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"version_minor": 0, "version_major": 2, "model_id": "1d390b910b574629b1e4e92d5669f8d6"}
@@ -13670,10 +13681,10 @@ var element = $('#9ea3226c-c0a7-457a-84ab-b4d3dd82b904');
 
  
  
-<div id="9674c21c-70fe-4a45-92c0-223277729c69"></div>
+<div id="64e8b0c5-940e-4989-b727-2d1fdd1f06c8"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#9674c21c-70fe-4a45-92c0-223277729c69');
+var element = $('#64e8b0c5-940e-4989-b727-2d1fdd1f06c8');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"version_minor": 0, "version_major": 2, "model_id": "ea0e5d860fed40f8a229847a85c0b5d5"}
