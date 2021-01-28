@@ -130,18 +130,19 @@ function showHide(shID) {
 <li>Planning models are fully decoupled from simulation models, which helps simulate uncertainty.</li>
 </ul>
 
-<p><span class="subheading">Current version</span>: 0.8.5</p>
+<p><span class="subheading">Current version</span>: 0.8.6</p>
 <p><span class="subheading">Languages</span>: C++ and Python</p>
 <p><span class="subheading">Supported platforms</span>: *nix environments, Windows, and Mac OSX.</p>
 
 <div class="subheading">What's new?</div>
-<p>Version 0.8.5 / 0.8.3 introduces:</p>
+<p>Version 0.8.6 / 0.8.3 introduces:</p>
 <ul>
-  <li>0.8.5 is primarily a bug fix of 0.8.3.  The major changes in 0.8.3 are as follows.</li>
+  <li>0.8.6 is primarily a bug fix of 0.8.3.  The major changes in 0.8.3 are as follows.</li>
   <li>Unified Python API for visualization in OpenGL, Jupyter, and HTML output (HTML is compatible with <a href="https://colab.research.google.com/gist/krishauser/1a518571493d2582f8bda908d9db02fb/klamptcolab.ipynb">Google Colab</a>). </li>
   <li>An auto-differentiation Python API for robot kinematics and geometry routines. Compatible with PyTorch. </li>
   <li>New Convex Hull geometry type. </li>
   <li>Python API for optimizing paths with convex hull collision constraints.</li>
+  <li>Custom joints between rigid objects, terrains, and even robots can be added in XML files and via Simulation class.</li>
   <li>Enhancements to the Python visualization module.  One-line visual debugging, the camera can follow an object, and meshes/point clouds can be automatically colorized.</li>
   <li>Other bug fixes and enhancements (see release notes in <a href="https://github.com/krishauser/klampt/">README</a>)</li>
 </ul>
@@ -284,7 +285,7 @@ function showHide(shID) {
   </li>
     <li>
     <a class="Q" href="#" onclick="showHide('A_migrate0.8.5'); return false;">
-    I was using 0.8.1, 0.8.2, or 0.8.3, how do I migrate my code to 0.8.5?
+    I was using 0.8.1, 0.8.2, or 0.8.3, how do I migrate my code to 0.8.6?
     </a>
      <div class="A" id="A_migrate0.8.5">
     <p>C++: no changes.</p>
@@ -320,7 +321,7 @@ function showHide(shID) {
 	<a class="Q" href="#" onclick="showHide('A_motor_constants'); return false;">
 	How do I choose good motor constants for my robot simulation?
 	</a>
-      <div class="A" id="A_motor_constants"><p>This can be done by hand by tuning and "exercising" the robot in simulation.  The SimTest program has a window for tuning constants (Window > Drivers) while the simulation is running; a general strategy is to turn up damping or friction until the robot doesn't oscillate, and then turn up stiffness to track the setpoint similarly to your physical system.  An automatic solution is given by the MotorCalibrate program, which will optimize the constants to match a dataset of sensed and commanded joint angles that you record while exercising the physical robot.  Please consult its documentation for more details, and you may run ./MotorCalibrate Examples/motorcalibrate_baxter.settings as an example.</p></div>
+      <div class="A" id="A_motor_constants"><p>This can be done by hand by tuning and "exercising" the robot in simulation.  The SimTest program has a window for tuning constants (Window > Drivers) while the simulation is running; a general strategy is to turn up damping or friction until the robot doesn't oscillate, and then turn up stiffness to track the setpoint about as well as your physical system does.  An automatic solution is given by the MotorCalibrate program, which will optimize the constants to match a dataset of sensed and commanded joint angles that you record while exercising the physical robot.  Please consult its documentation for more details, and you may run ./MotorCalibrate Examples/motorcalibrate_baxter.settings as an example.</p></div>
   </li>
   <li>
 	<a class="Q" href="#" onclick="showHide('A_sim_faster'); return false;">
