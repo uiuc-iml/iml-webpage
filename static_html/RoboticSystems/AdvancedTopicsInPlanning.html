@@ -13204,7 +13204,12 @@ $( document ).ready(function(){
 <h2 id="Manipulation-planning-and-locomotion-planning">Manipulation planning and locomotion planning<a class="anchor-link" href="#Manipulation-planning-and-locomotion-planning">&#182;</a></h2><p>Although at first glance, manipulation and locomotion may appear to be very different subjects, in many respects they are quite similar.  Because they both involve making and breaking contact with the environment, the dynamics of manipulation and locomotion are actually <em>dual</em> to one another -- in one case, the robot uses contact to move objects, while in the other, the robot uses contact to move itself!  From a planning perspective, they are not so different, and common techniques are needed for both of these settings to address the complication of contact.</p>
 <p>The stereotype we have of robot manipulation is likely pick-and-place manipulation, in which a robot grasps an object to bring it to a desired location. This is indeed an practical and economically relevant task, used pervasively in factory and warehouse settings, but also in futuristic visions of service robots bringing us ice cold beverages on demand. It will serve as a model problem for discussing the primary issues involved in manipulation planning.  However, this is only the tip of the iceberg in terms of manipulation tasks, and we shall try to keep the discussion somewhat generalizable to other settings.  Furthermore, although manipulation and locomotion are duals of one another, the nuanced characteristics of each problem require somewhat specialized study.</p>
 <p>At a high level, the contact problem brings up a critical issue that we have not yet addressed in the planning algorithms discussed so far: how should the robot choose when and where to make contact in order to achieve its goals?   The choice of contact is special compared to simply executing some motion, because at the moment that contact is made or broken, there is a discrete jump in the behavior of the robot-environment system -- for example, either the object is grasped and under the direct influence of the robot, or the object is free and the robot's movement doesn't affect it.  In the control and dynamics literature, this is also known as a <em>hybrid system</em>, in which the dynamics instantaneously jump at certain states.  For the purpose of planning, the states at which contact is made or broken are indeed special states that deserve focused attention. In an abstract sense, they are <em>narrow passages</em> that should be reasoned about carefully. (Is it likely that a random movement of your hands will pick up a pen?)  In order to properly solve these problems, a planner needs to perform simultaneous reasoning both at the level of contact choice as well as configuration-space motion; whether a contact choice can be executed by the robot depends on the reachability characteristics of configuration space, but motion choices are meaningless unless guided by the effects of contact.</p>
-<p>TODO: illustrations of the contact sequence choice problem</p>
+<hr>
+<p><a href="#fig:Equilibrium"></a></p>
+<p>TODO</p>
+<div class="figcaption"><b>Figure 1</b>. 
+    TODO: Illustrate the contact choice problem
+    </div><hr>
 <p>We also need to develop specialized techniques for planning grasps for manipulators and footsteps for a legged robot.  That's where we'll start our discussion.</p>
 
 </div>
@@ -13215,10 +13220,10 @@ $( document ).ready(function(){
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Grasp-planning-and-placement-planning">Grasp planning and placement planning<a class="anchor-link" href="#Grasp-planning-and-placement-planning">&#182;</a></h3><p>The role of a grasp planner is to generate high-quality candidate grasps, and at least one should yield a feasible completion of a manipulation action.  For the purposes of planning, we represent a grasp as follows:</p>
 <blockquote><p><strong>Grasp</strong>: a specification of a gripper's location and finger configuration (if applicable).
-For example, this can include a transform $T_g$ of the gripper base and a configuration $q_f$
-of the gripper's fingers.
-This specification is independent of the rest of the robot.</p>
+For example, this could include a transform $T_g$ of the gripper base and a configuration $q_f$
+of the gripper's fingers.  The specification may include other tasks, such as a rotation constraint about an axis, or auxiliary data, such as the intended contact points or grip strength.</p>
 </blockquote>
+<p>It is important to note two things about a grasp. First, <em>this specification is independent of the rest of the robot</em>.  This allows us to reason about the gripper in isolation rather than concerning ourselves with reachability and paths.  Second, much like a configuration doesn't need to refer to a feasible configuration, <em>the specification does not imply that an object will be successfully picked up</em>.  Rather, our planner will generate possible grasps and predict whether they will be successful.</p>
 <p>To achieve a high-quality grasp, its contact points must be chosen carefully to accomplish the desired task. Contact is not only essential for grasping but for many other interesting tasks in robotics, including pushing, in-hand manipulation, stacking objects, driving wheeled robots at speed, and legged locomotion.  So let's dive into how to mathematically and computationally reason about contact.</p>
 
 </div>
@@ -13227,8 +13232,13 @@ This specification is independent of the rest of the robot.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Contact-modeling">Contact modeling<a class="anchor-link" href="#Contact-modeling">&#182;</a></h4><p>At a microscopic level, contact is a very complex phenomon involving deformation, surface roughness, and intermolecular forces like adhesion.  On the other hand, at the macroscopic level, contact between rigid objects can be modeled in a fairly simple fashion: the objects do not interpenetrate, and forces result when they touch.  For computational purposes, we usually model contact as a collection of <em>point contacts</em> with various constraints on how they apply forces.  Although in physics simulation we will treat contacts as existing only at a moment in time, in this chapter we will consider persistent contact and how they affect the range of possible motions of an object.</p>
-<p>TODO: illustrate contact models and contact patches</p>
+<h4 id="Contact-modeling">Contact modeling<a class="anchor-link" href="#Contact-modeling">&#182;</a></h4><p>At a microscopic level, contact is a complex phenomon involving deformation, surface roughness, and intermolecular forces like adhesion.  On the other hand, at the macroscopic level, contact between rigid objects can be modeled in a fairly simple fashion: the objects do not interpenetrate, and forces result when they touch.  For computational purposes, we usually model contact as a collection of <em>point contacts</em> with various constraints on how they apply forces (<a href="#fig:Contact">Fig. 2</a>).  Although in physics simulation we will treat contacts as existing only at a moment in time, in this chapter we will consider persistent contact and how they affect the range of possible motions of an object.</p>
+<hr>
+<p><a href="#fig:Contact"></a></p>
+<p><img src="figures/modeling/contact.svg" alt="#fig:Contact"></p>
+<div class="figcaption"><b>Figure 2</b>. 
+    Although contact consists of many microscopic interactions over a continuous area (left), it can be modeled relatively accurately as a finite set of contact points, in this case, two points with Coulomb friction (right).
+    </div><hr>
 <p>A <strong>frictionless point contact</strong> between objects $A$ and $B$ consists of a point $\mathbf{p}$ and a normal $\mathbf{n}$. A typical convention is that $\mathbf{n}$ points from $A$ toward $B$.  The contact force $f$ yields a force vector $\mathbf{f} = f\mathbf{n}$ which is applied to $A$, and the negative force $-\mathbf{f}$ is applied to $B$.</p>
 <p>$f$ must satisfy a {\em unilateral constraint} $f\geq 0$.  Moreover, to avoid further penetration, the post-contact velocities of the objects must be such that $(\mathbf{p}_B - \mathbf{p}_A)^T \mathbf{n} \geq 0$, where $\mathbf{p}_A$ is the contact point as though it were attached to $A$, and $\mathbf{p}_B$ is the contact point as though it were attached to $B$.</p>
 <p>A <strong>Coulomb friction model</strong> makes the assumption that the component of the contact force orthogonal to the normal is bounded by a constant times the force in the normal direction.  Specifically, let $f_\parallel = \mathbf{n}^T \mathbf{f}$ be the normal component of the force.  The orthogonal component of the force is $\mathbf{f}_\perp = \mathbf{f} - f_\parallel \mathbf{n}$.  The Coulomb model states that:</p>
@@ -13249,8 +13259,48 @@ $$ \| \mathbf{f}_\perp \| \leq \mu f_\parallel $$<p>with $\mu \geq 0$ the fricti
 <li>Torque balance: $\sum_{i=1}^M (\mathbf{p}_i - \mathbf{c})\times \mathbf{f}_i = 0$, where $\mathbf{c}$ is O's center of mass.</li>
 <li>Coulomb friction: $\| \mathbf{f}_{i,\perp} \| \leq \mu_i f_{i,\parallel}$, $f_{i,\parallel} \geq 0$.  Here we have defined $f_{i,\parallel} = \mathbf{f}_i^T \mathbf{n}_i$ and $\mathbf{f}_{i,\perp} = \mathbf{f}_i - f_{i,\parallel}\mathbf{n}_i$.</li>
 </ul>
-<p>TODO: illustrate equilibrium testing, support polygon</p>
-<p>In order to solve for forces that meet these conditions, a convex constrained optimization problem can be solved.  However, the Coulomb friction constraint is nonlinear and requires solving a Second Order Cone Program (SOCP). A common approximation that is often employed is to approximate the SOCP as a <a href="Optimization.ipynb#Linear-and-quadratic-programming">Linear Program</a> (LP) which can be solved more quickly and reliably.  The <em>polygonal friction cone approximation</em> by linearizes the friction cone constraints so that the static equilibrium test can be formulated directly as an LP.  With the linearized friction cone constraints turned into the inequality $B_i \mathbf{f}_i \leq 0$, the LP constraints are:</p>
+<p>If it is known that the surface is horizontal, the solution to these equations gives the well-known <em>support polygon</em> solution.</p>
+<blockquote><p><strong>Support polygon</strong>: the convex hull of the contact points, projected onto the horizontal plane.</p>
+</blockquote>
+<p>The object will be in stable equilibrium if the projection of the center of mass onto the plane lies within the support polygon, and the object will not be in equilibrium otherwise.</p>
+<hr>
+<p><a href="#fig:Equilibrium"></a></p>
+<table>
+<thead><tr>
+<th>(a) Static equilibrium</th>
+<th>(b) Support polygon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="figures/modeling/stability.svg" alt="fig:EquilibriumTest"></td>
+<td><img src="figures/modeling/support_polygon.svg" alt="fig:SupportPolygon"></td>
+</tr>
+</tbody>
+</table>
+<div class="figcaption"><b>Figure 3</b>.  Static equilibrium is obtained when (valid) contact forces and torques are in balance with gravity.  For planar contact, the solution set is described by the support polygon.  The object is in equilibrium when its center of mass lies directly over (or under) the support polygon.
+    </div><hr>
+<p>In the more general case, we can solve a convex constrained optimization problem to determine whether there exist a set of forces that meet these conditions.  However, in 3D, the Coulomb friction constraint is nonlinear and requires solving a Second Order Cone Program (SOCP). A common approximation that is often employed is to approximate the SOCP as a <a href="Optimization.ipynb#Linear-and-quadratic-programming">Linear Program</a> (LP) which can be solved more quickly and reliably.  The <em>polyhedral friction cone approximation</em> linearizes the friction cone constraints so that the static equilibrium test can be formulated directly as an LP.</p>
+<hr>
+<p><a href="#fig:PolyhedralFrictionCone"></a></p>
+<table>
+<thead><tr>
+<th>(a) 2D friction cones are (unbounded) polyhedra</th>
+<th>(b) 3D friction cones can be approximated using a polyhedral approximation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="figures/modeling/friction_cones_2d.svg" alt="#fig:PolyhedralFrictionCone2D"></td>
+<td><img src="figures/modeling/friction_cones_3d.svg" alt="#fig:PolyhedralFrictionCone3D"></td>
+</tr>
+</tbody>
+</table>
+<div class="figcaption"><b>Figure 4</b>. 
+    Friction cones can be represented either by a collection of frictionless point contacts or a set of halfplane constraints $B \mathcal{f} \leq 0$.
+    </div><hr>
+<p>To construct such an approximation, first create two vectors $\mathbf{s}$ and $\mathbf{t}$ that are orthogonal to one another and to $\mathbf{n}$.  Moreover, ensure that $\mathbf{s},\mathbf{t},\mathbf{n}$ form the basis of a right-handed coordinate system, with $\mathbf{n}$ in the Z direction.  Now, the boundary of the friction cone is formed by rays in the directions $\mathbf{n}+\mu (\mathbf{s} \cos \theta + \mathbf{t} \sin \theta)$, with $\theta\in [0,2\pi)$.  We can simply sample some of these values of $\theta$ to create a sampling of edges $\mathbf{r}_j$, $j=1,...,k$ of the polygonalized cone (<a href="#fig:PolyhedralFrictionCone">Fig. 4.b</a>). By taking the cross-product between subsequent rays, we obtain the inward normal of a face of the cone, and then by negation we can establish each of the rows of a $k \times 3$ matrix $B$.</p>
+<p>With each linearized friction cone constraint expressed as an inequality $B_i \mathbf{f}_i \leq 0$ (inequality taken element-wise), the LP constraints are:</p>
 $$
 \begin{aligned}
 \begin{bmatrix}
@@ -13266,8 +13316,6 @@ I &amp; I &amp; \cdots &amp; I \\
 B_M \mathbf{f}_M &amp;\leq 0 
 \end{aligned}
 $$<p>By employing these constraints on the force variables, an LP solver can test for equilibrium within milliseconds for dozens of contact points.</p>
-<p>TODO: illustrate friction cone approximation</p>
-<p>The <em>support polygon</em> of an object in contact with a fixed horizontal plane is the convex hull of the projection of the contact region onto the plane.  The object will be stable if the center of mass projects to the inside of the support polygon.</p>
 
 </div>
 </div>
@@ -13296,6 +13344,24 @@ $$N = \begin{bmatrix}
     &amp;    &amp;      &amp; \mathbf{n}_M
 \end{bmatrix}
 $$<p>then the vector of contact point velocities in the normal directions is given by $N^T G^T \begin{bmatrix} \mathbf{v} \\ \mathbf{\omega} \end{bmatrix}$.  Succinctly, form closure states that $N^T G^T \mathbf{x} \geq 0 \implies \mathbf{x}=0$.  Like equilibrium, this can be tested using a LP.</p>
+<hr>
+<p><a href="#fig:FormClosure"></a></p>
+<table>
+<thead><tr>
+<th>(a) Two objects in form closure</th>
+<th>(b) Two objects not in form closure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="figures/modeling/form_closure.svg" alt="#fig:FormClosure"></td>
+<td><img src="figures/modeling/not_form_closure.svg" alt="#fig:FormClosure"></td>
+</tr>
+</tbody>
+</table>
+<div class="figcaption"><b>Figure 2</b>. 
+    Form closure of a set of point contacts indicates that the object is immobilized because any movement would induce interpenetration.
+    </div><hr>
 <p>Another related notion is that of <strong>force closure</strong>.  Force closure is destablished by a set of contacts if for <em>any</em> external wrench $\mathbf{w}_{ext}$, there exists a set of forces $\mathbf{f}_1,\ldots,\mathbf{f}_N$ that counteracts it.  Let $\mathbf{f}$ be the stacked vector of forces. Using a polygonal approximation to the friction cone, can express this condition as $G \mathbf{f} = \mathbf{w}_{ext}$, $B \mathbf{f} \leq 0$ with $B$ the block-diagonal matrix of friction cone constraints.  In other words, for all $\mathbf{f}$ satisfying $B \mathbf{f} \leq 0$, $G \mathbf{f}$ spans the entire 6D space.</p>
 <p>The constraint $B \mathbf{f} \leq 0$ is known as a cone constraint, because if any vector $\mathbf{f}$ satisfies it, then so does $c\mathbf{f}$ with $c \geq 0$.  A linear transform of a cone is also a cone, so the wrench space $W = \{ G \mathbf{f} \,|\, B \mathbf{f} \leq 0 \}$ is also a cone.  To see if $W$ is equal to $\mathbb{R}^6$, we can simply check whether it contains the origin in its interior.  There are a few ways to do this, but one simple method is to maximize $\mathbf{w}_{ext}$ along rays emanating from the origin, using a set of rays whose convex hull contains the origin in its interior -- for example, each of the 6 primary axes and their negatives. If all of the rays have a nonzero maximum, then the object is in force closure.</p>
 <p>It has been proven that form closure implies force closure, and that force closure with frictionless constraints implies form closure.  But for frictional contact, form closure is a stronger condition than force closure.</p>
@@ -13314,15 +13380,23 @@ $$<p>then the vector of contact point velocities in the normal directions is giv
 <li>Will the grasping process acquire the object at the intended relative pose?  (An off-center or misaligned grasp might disturb the object while the gripper's fingers are closing.)</li>
 <li>Will the gripper be clear of obstacles in the environment?</li>
 <li>Can the robot reach the grasping pose with a feasible configuration?</li>
+<li>Will the robot be able to carry out subsequent tasks with the grasp?</li>
 </ol>
 <p>A typical strategy is to generate a first round of grasp candidates primarily considering factors 1-3, which only involve the object's shape and contact physics.  For <em>prehensile grasps</em> in which the object is enveloped by the gripper and completely secure regardless of the object's orientation, grasp candidates can be computed for an object in its local frame during precomputation, and then reused when the object's orientation is observed.  (It is worth the expense to generate high-quality grasps for a database of objects if it is known that the robot will be manipulating one of these objects -- for example, in industrial settings.)  Next, to address factor 4, we may filter out grasps that would place the gripper into collision.  Finally, we can address factor 5 via sampling and inverse kinematics.</p>
-<p>TODO: figure showing types of gripper</p>
+<hr>
+<p><a href="#fig:Grippers"></a></p>
+<p>TODO</p>
+<div class="figcaption"><b>Figure 5</b>. 
+    TODO: Show types of gripper
+    </div><hr>
 <p><strong>Suction grippers</strong>. Suction grippers operate by a vacuum pump causing the object to be pressed against the vacuum seal by atmospheric pressure.  For these grippers, the grasp planning process primary requires identifying flat areas on the object that are fairly horizontal and roughly aligned to the object's center of mass.  The flatness criterion is needed to get a secure vacuum seal; on irregular surfaces the vaccuum effectiveness will be compromised.  The horizontal criterion is needed to avoid the object shearing sideways off of the vacuum seal.  Finally, the center of mass condition prevents unbalanced torques twisting the object off of the vacuum seal.  The relative importance of these factors depends on the mass and dimensions of the object, with lighter objects much easier to pick up and move in a prehensile fashion. (Note that for heavier objects, we ought to preserve a roughly horizonal orientation of the gripper, so we should modify transfer path planning constraints such that the orientation of the gripper is close to vertical. )</p>
-<p><strong>Parallel-jaw grippers</strong>. For parallel-jaw grippers, the <em>antipodal grasp</em> strategy tries to identify two locations on an object's surface that form opposing planes that can be grasped by the opposing jaws.  In other words, if we draw a line through the two points, then the line is aligned with the normals of the object's geometry at those points.  If the planes are not opposing, then the object has a higher likelihood of slipping out of the jaws during grasping or transfer.  We also require that the object is narrow enough to be grasped by the gripper's span, the points are not deeper than the opening of the gripper, and that there is sufficient clearance around the points so that the fingers can be successfuly placed there.  If the object is grasped at parallel planes, the grasp's resistance to translational force is equal to $2 \mu f_{grip}$, twice the product of the grip force $f_{grip}$ and the friction coefficient $\mu$ between the object and the fingers.  Another concern is the torque that is applied by gravity if the object is grasped off-center.   Let $d$ be the horizonal distance between the object's center of mass and the line through the points of contact. (By horizontal, we mean to project the center of mass and the two points onto a plane, and then take the distance in the plane.)  The torque applied by the force of gravity about the points of contact is $mgd$, where $m$ is the object's mass and $g$ is the gravitational constant $g \approx 9.81$m/s$^2$.  If this exceeds the frictional resistance to twisting imposed by the fingers, then the object will rotate.  Hence, it is advantageous to lift the object at points close to the center of mass, especially when the object is heavy ($m$ is large) or when the area of the contact patch at the points of contact are low (the frictional resistance to twisting is small).</p>
+<p><strong>Parallel-jaw grippers</strong>. For parallel-jaw grippers, the <em>antipodal grasp</em> strategy tries to identify two locations on an object's surface that form opposing planes that can be grasped by the opposing jaws (<a href="#fig:antipodal_grasps">Fig. 6</a>).  In other words, if we draw a line through the two points, then the line is aligned with the normals of the object's geometry at those points.  If the planes are not opposing, then the object has a higher likelihood of slipping out of the jaws during grasping or transfer.  We also require that the object is narrow enough to be grasped by the gripper's span, the points are not deeper than the opening of the gripper, and that there is sufficient clearance around the points so that the fingers can be successfuly placed there.</p>
+<p>If the object is grasped at parallel planes, the grasp's resistance to translational force is equal to $2 \mu f_{grip}$, twice the product of the grip force $f_{grip}$ and the friction coefficient $\mu$ between the object and the fingers.</p>
+<p>Another concern is the torque that is applied by gravity if the object is grasped off-center.   Let $d$ be the horizonal distance between the object's center of mass and the line through the points of contact. (By horizontal, we mean to project the center of mass and the two points onto a plane, and then take the distance in the plane.)  The torque applied by the force of gravity about the points of contact is $mgd$, where $m$ is the object's mass and $g$ is the gravitational constant $g \approx 9.81$m/s$^2$.  If this exceeds the frictional resistance to twisting imposed by the fingers, then the object will rotate.  Hence, it is advantageous to lift the object at points close to the center of mass, especially when the object is heavy ($m$ is large) or when the area of the contact patch at the points of contact are low (the frictional resistance to twisting is small).</p>
 <hr>
 <p><a name="fig:antipodal_grasps"></a></p>
 <p><img src="figures/planning/antipodal_grasp_planning.png" alt="fig:antipodal_grasp_planning"></p>
-<div class="figcaption"><b>Figure 2</b>. For parallel-jaw grippers, an antipodal grasp planner seeks locations on protruding areas of an object that are relatively flat, parallel, and opposed.  This point-cloud-based planner generates a number of candidates, shown as parallel green boxes indicating desired finger locations.
+<div class="figcaption"><b>Figure 6</b>. For parallel-jaw grippers, an antipodal grasp planner seeks locations on protruding areas of an object that are relatively flat, parallel, and opposed.  This point-cloud-based planner generates a number of candidates, shown as parallel green boxes indicating desired finger locations.
     </div><hr>
 <p>If an object is non-convex, then it is also advantageous to place the fingers at local minima of the object's width.  That is, if the fingers were to be perturbed slightly, then the gripper would need to open wider. This strategy means that local errors will actually increase the grip force rather than cause the grasp to break.</p>
 <p><strong>Learning-based grasp planning</strong>.  For more complex grippers (e.g., anthropomorphic hands) and objects (e.g., slightly deformable packaging), for noisy geometry data, and for novel objects observed for the first time at planning time, it can be difficult to establish analytical conditions that dictate the success of grasping. For these objects, learning-based grasp planning is often preferable.  These techniques use a database of <em>experience</em> consisting of successful grasps (and possibly unsuccessful ones) to help predict new grasps.  The database is constructed either by a human expert (learning from demonstration) or automatically using a crude grasp planner (self-supervised learning) on a set of objects. Each object is represented by a vector of object features $x_{obj} \in \mathbb{R}^n$, which could measure the shape, locaation, appearance, or mass characteristics of an object.  The grasp examples are grasps $G_1,\ldots,G_m$, each of which consist of a transform $T$ and a gripper finger configuration $q_f$ as usual, and are applied to objects with features $x_1,\ldots,x_m$.  (Grasps on the same object will share the same feature vector).  There are two high-level classes of learning strategies.  A <em>generative</em> strategy creates a function $G=f(x_{obj})$ that generates a grasp that is appropriate to use for an object whose features are $x_{obj}$.  Generative strategies can also be probabilistic, producing a  distribution $P(G|X_{obj})$ from which a grasp can be sampled.  The other possible strategy is <em>discriminative</em>, which learns a scoring function $f(G,x_{obj})$ that assesses the suitability of a grasp for the object.  Using discriminative models requires using a separate grasp oversampling step, and then the learned score will be used to downselect a better subset of candidates (e.g., by picking the top $k$ candidates).  More details on such strategies will be revisted in Chapter 24.</p>
@@ -13335,7 +13409,12 @@ $$<p>then the vector of contact point velocities in the normal directions is giv
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Planning-for-stability">Planning for stability<a class="anchor-link" href="#Planning-for-stability">&#182;</a></h4><p><strong>Placement planning</strong>. A dual to pick-and-place planning is place-and-pick planning, where the object should be placed down so that it can be acquired later.  This is useful to acquire a different grasp on the object, such as when a hammer is first picked up by its head to pull it out of a drawer, but then needs to be held by its handle. It also becomes important for multi-object manipulation, where some objects need to be put aside to reach objects behind them.  In the placement problem, we need a strategy for choosing where to place objects aside.  This is easier than grasp planning in the usual case in which we have an abundance of flat surfaces in the environment.  We must choose a surface of the environment and a pose of the object so that the object remains stable.  The only complexity here is the orientation of the object.</p>
 <p>A basic strategy is to maintain the object's original orientation in which it was placed.  This has the benefit that robot won't inadvertently tip objects that are meant to stay in a given orientation, such as a a glass of wine.</p>
-<p>TODO: figure showing planar stable placements</p>
+<hr>
+<p><a href="#fig:PlanarStable"></a></p>
+<p><img src="figures/modeling/stable_faces.png" alt="fig:PlanarStable"></p>
+<div class="figcaption"><b>Figure 7</b>. 
+    Planar-stable orientations for a hammer object. Each highlighted polygon would act as a support polygon for a stable orientation.  The wide polygons would be far preferable to the thin ones, which would require the object to be precariously balanced.
+    </div><hr>
 <p>For more complex scenarios, however, the object will need to be reoriented, and a placement planner will need to consider the support polygon condition.  For a geometry with a known center of mass, there are a set of <em>planar-stable</em> orientations such that the object will not topple.  If we were to take the 3D convex hull of the geometry, any face of the hull is a candidate for a planar-stable face -- if the object rests on a plane, it makes face-to-face contact with one of these faces.  To verify stability, we can examine whether the projection of the convex hull along the face's normal lies within the face. If so, then any orientation of the object that aligns the (outward) normal with the negative gravity direction is planar-stable.</p>
 <p>Once a supporting surface and a planar-stable face has been selected, the object could be placed in any position with the face against the surface, which gives two translational degrees of freedom along the surface, and and an orientation degree of freedom about the vertical axis (yaw).  For any given $(x,y,\theta)$ we can easily check for collisions with other environment obstacles.  Moreover, we should also check whether the projection of the object's center of mass lies within the supporting surface.</p>
 <p><strong>Finger gaiting and footstep planning</strong>.  TODO</p>
@@ -13350,7 +13429,7 @@ $$<p>then the vector of contact point velocities in the normal directions is giv
 <blockquote><p>In a <em>transit mode</em>, the robot is moving but the object is not.</p>
 <p>In a <em>transfer mode</em>, the object is grasped and moves as though it were attached to the robot's gripper.</p>
 </blockquote>
-<p><a href="#fig:pick_and_place">Fig. 1</a> illustrates this process. In each mode, the robot has the same number of degrees of freedom, but the movement of the object differs.  Furthermore, the collision constraints (and hence the shape of the free space) change depending on the state of the object.  During the transit mode, the robot should avoid collisions with the object, but this depends on where the object is currently placed.  During transfer mode, the robot no longer needs to care about collisions between the gripper and object, but self-collisions between other links and the object are still a possibility. Furthermore, the object might collide with other obstacles in the environment.  Complicating matters, these constraints change depending on the way in which the robot grasps the object!  How can we model this situation?</p>
+<p><a href="#fig:pick_and_place">Fig. 8</a> illustrates this process. In each mode, the robot has the same number of degrees of freedom, but the movement of the object differs.  Furthermore, the collision constraints (and hence the shape of the free space) change depending on the state of the object.  During the transit mode, the robot should avoid collisions with the object, but this depends on where the object is currently placed.  During transfer mode, the robot no longer needs to care about collisions between the gripper and object, but self-collisions between other links and the object are still a possibility. Furthermore, the object might collide with other obstacles in the environment.  Complicating matters, these constraints change depending on the way in which the robot grasps the object!  How can we model this situation?</p>
 <hr>
 <p><a name="fig:pick_and_place"></a></p>
 <table>
@@ -13372,7 +13451,7 @@ $$<p>then the vector of contact point velocities in the normal directions is giv
 </tr>
 </tbody>
 </table>
-<div class="figcaption"><b>Figure 1</b>. 
+<div class="figcaption"><b>Figure 8</b>. 
     The main steps of the pick-and-place process executed on a UR5 robot with a vacuum gripper.
     </div><hr>
 <p>The key step is to define a <em>mode space</em> $\Sigma$ in which each mode $\sigma \in \Sigma$ specifies not only whether the mode is a transit or transfer mode, but also where the object lies.  For example, $\sigma = (transit,A)$ specifies that the robot is in transit, and the object lies at a pose $A$.  If the object is grasped, then the mode would transition to a mode $\sigma^\prime = (transfer,G)$, where $G$ specifies the choice of <em>grasp</em>, e.g., from top down or from the side. If we then want to move the object to pose $B$ with a single pick-and-place action, then we require a sequence of modes $\sigma \rightarrow \sigma^\prime \rightarrow \sigma^{\prime\prime}$ with $\sigma^{\prime\prime} = (transit,B)$ the terminal mode.  In this straightforward sequence, the robot needs to choose $G$ so that there exist configuration-space motions that make these mode-to-mode transitions.</p>
@@ -13452,7 +13531,7 @@ $$<p>then the vector of contact point velocities in the normal directions is giv
 </tr>
 </tbody>
 </table>
-<div class="figcaption"><b>Figure 2</b>. 
+<div class="figcaption"><b>Figure 9</b>. 
     A 2D translating gripper needs to meet its jaws to the yellow object's protrusion at the indicated points.  The blue circle indicates the gripper reference point. Because the gripper's jaws fit tightly about the protrusion, this induces a relatively deep narrow passage in the C-obstacle.  If rotation were allowed, the passage would be narrow in the rotation dimension as well.
     </div><hr>
 <p>If you were to apply sampling-based planning directly, you would find that it would have a hard time finding a path.  The problem becomes worse in 3D, since the narrow passage is actually narrow in at least 3 dimensions out of a 6D space.  To address this challenge, a common strategy is to apply a custom <em>pre-grasp</em> motion that starts at a suitable configuration $q_{pregrasp}$ that is close to acquiring the grasp, and the motion does the actual hard work of navigating the narrow passage to actually make contact.  For example, we might define the pre-grasp condition as having the gripper close to the object, with the finger opening aligned with the object and pointed toward the desired contact points. Then, the pre-grasp motion would open the gripper, move forward in Cartesian space, and then close the gripper until contact is made, arriving at the grasped configuration $q_{grasp}$.</p>
@@ -13474,7 +13553,7 @@ $$<p>then the vector of contact point velocities in the normal directions is giv
 </tr>
 </tbody>
 </table>
-<div class="figcaption"><b>Figure 3</b>. 
+<div class="figcaption"><b>Figure 10</b>. 
     Pre-grasp and post-grasp motions make motion planning easier during picking.
     </div><hr>
 <p>After grasping, it is also advantageous to have a <em>post-grasp</em> motion to lift the object from the surface.  Although the robot is not exactly in a deep narrow passage in the transfer free space, it is actually at a 3D "corner" of a 6D space, which could be thought of as a shallow narrow passage.  By lifting a centimeter or two directly vertically off of the surface, it makes planning the transit motion somewhat faster.  Similarly, we can perform a <em>pre-placement</em> motion that lowers the object straight downward a centimeter or two.  Finally, after placing the object, the <em>post-placement</em> motion runs the pre-grasp motion in reverse to bring the robot to a configuration that can more easily perform future transit motions.  If the object to be placed into a tight space like packing a box, then it is helpful to make the pre-placement and post-placement motions longer to clear the end effector away from obstacles before calling a sampling-based planner, as illustrated below.</p>
@@ -13495,7 +13574,7 @@ $$<p>then the vector of contact point velocities in the normal directions is giv
 </tr>
 </tbody>
 </table>
-<div class="figcaption"><b>Figure 4</b>. 
+<div class="figcaption"><b>Figure 11</b>. 
     Pre-placement and post-placement motions make motion planning easier during placing.
     </div><hr>
 <p>In order to employ a such a strategy in <a href="#alg:SimplePickAndPlace">Simple Pick-and-Place</a>, we will replace Step 5 with the following steps:</p>
@@ -13526,7 +13605,12 @@ $$<p>then the vector of contact point velocities in the normal directions is giv
 <li>For each generated grasp $G_i$, $i=1,2,\ldots$, do steps 2-7 of the original algorithm.  Continue generating grasps until a feasible path is found.</li>
 </ol>
 <p>Second, is it complete assuming that 1) the mode sequence is fixed, 2) the candidate grasps are fixed and at least one grasp yields a complete plan, and 3) the C-space planners in steps 4-6 are complete?  <em>The answer is no</em>, due to what is known as the <em>infeasible query problem</em>.  Specifically, if the transition configuration $q^\prime$ is chosen badly (that is, it lies in a separate connected component of $\mathcal{F}_\sigma$) then there will be no way to reach it. A similar problem could occur with the choice of $q^{\prime\prime}$.  One way to get around this situation is by repeating the algorithm multiple times.  If the C-space planners are complete and random sampling is used to generate the transition configurations, steps 4-6 of the original algorithm will fail in finite time, but for each run of the algorithm there will be some nonzero chance of sampling transition configurations that yield feasible queries. By repeating the algorithm multiple times, a probabilistically complete algorithm can be obtained.</p>
-<p>TODO: illustrate potential causes of failures</p>
+<hr>
+<p><a href="#fig:MultiModalPlanningFailures"></a></p>
+<p>TODO</p>
+<div class="figcaption"><b>Figure 12</b>. 
+    TODO: illustrate potential causes of failures
+    </div><hr>
 <p>Third, the infeasible query issue is further compounded if we use only probabilistically-complete C-space planners. Because there is no firm guideline about how long to run the planner, we run the risk of setting the time limit too short to be able to solve a query, but if it is too long then we risk wasting time on infeasible queries.</p>
 <p>The general issue in each of these three settings is that the basic planner <strong>becomes committed to a choice</strong> that may not yield a feasible solution in future steps.  We have dealt with it above by adding more for loops so that earlier choices can be revisited, but as the number of sequential choices grows, this becomes progressively less convenient to implement and less efficient.  Fortunately, there's a general-purpose approach to deal with this situation that can yield probabilistic completeness.  The strategy is inspired by <strong>least-commitment planning</strong> algorithms that solve constraint satisfaction problems (CSPs).  We keep a working set of <em>partial plans</em> that contain components of a complete plan. Let a partial plan be denoted $P$, with $P[c]$ the solution to some component $c$ if the component has been solved, or $nil$ if no solution has been found.  The strategy operates like this:</p>
 <hr>
@@ -13554,7 +13638,12 @@ $$<p>then the vector of contact point velocities in the normal directions is giv
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Generalization-to-locomotion-and-other-manipulation-tasks">Generalization to locomotion and other manipulation tasks<a class="anchor-link" href="#Generalization-to-locomotion-and-other-manipulation-tasks">&#182;</a></h3><p>In pick-and-place we have set the stage for most of the key ingredients of generalized locomotion and manipulation planning.  However, we will need new machinery to handle A) larger mode spaces, B) a mode sequence that is not as obvious, C) motion planning on manifolds, subject to closed-chain constraints, and D) better methods to leverage motion feasibility for the contact choice problem.</p>
 <p><strong>Example 1: legged locomotion with point feet.</strong> Suppose we have a $k$-limbed robot with point feet that must traverse a rough terrain.  At any time, any subset of its $k$ limbs may be in contact with the terrain.  Hence, a mode $\sigma$ in this case specifies which of the limbs are in contact, and at what points on the terrain -- this is known as a <em>stance</em>.  We can represent a stance as a vector of length $k$, $\sigma=(\mathbf{c}_1,\ldots,\mathbf{c}_k)$, where each $\mathbf{c}_i = nil$ if the $i$'th limb is not in contact, or $\mathbf{c}_i = (x_i,y_i,z_i)$ if the $i$'th limb is in contact with the terrain at $(x_i,y_i,z_i)$.  A locomotion planner will then needs to explore the space of stances and transitions between stances. Specifically, let $\mathbf{f}_i(q)$ be the position of the $i$'th foot, in world coordinates.  The stance $\sigma=(c_1,\ldots,c_k)$ imposes the constraints $\mathbf{f}_i(q) = \mathbf{c}_i$ if $\mathbf{c}_i \neq nil$, in addition to the standard collision and joint limit constraints.  Moreover, we may wish to impose a support polygon constraint, that the center of mass lies over the convex hull of the contacts: $\mathbf{cm}_{xy}(q) \in CH((x_1,y_1),\ldots,(x_k,y_k))$. (Note that in highly irregular terrain, the convex hull test is not a true test of equilibrium.)</p>
-<p>TODO: illustrate problem</p>
+<hr>
+<p><a href="#fig:LeggedLocomotion"></a></p>
+<p>TODO</p>
+<div class="figcaption"><b>Figure 13</b>. 
+    TODO: illustrate legged locomotion problem
+    </div><hr>
 <p><strong>Example 2: Bimanual manipulation of multiple objects.</strong> As another example, suppose that we have a bimanual robot -- a robot with two end effectors -- and a rearrangement problem with $m$ objects. The robot can hold an object in either gripper, both grippers, or hand off an object from one hand to another.  The space of possible modes include transit for both arms, transit for one arm and transfer for the other, or transfer for both arms.  In the (transit,transit) case, the objects have fixed poses $T_1,\ldots,T_m$.  In (transfer,transit) or (transit,transfer), one object is fixed to an end effector with a grasp $G$ and the others have fixed poses.  In (transfer,transfer), two objects are fixed to the end effectors with grasps $G_{l}$ and $G_{r}$, while the other objects have fixed poses.</p>
 <p>We model this case with the joint configuration space $\mathcal{C}_{joint} = \mathcal{C}_{R} \times SE(3)^m$, and represent a mode as a tuple $(i_{l},i_{r},G_{l},G_{r},T_1,\ldots,T_m)$.  The indices of the objects grasped in the left and right hands are stored in $i_{l}$ and $i_{r}$, respectively, with $nil$ indicating no object grasped.  The grasp variables $G_{l}$ and $G_{r}$ respectively designate the grasp transforms $T_O^{g_l},T_O^{g_r}$ and finger poses $q_{f_l}$, $q_{f_r}$of the objects grasped in the left and right hands. The poses $T_i$ designate object $i$'s pose in world coordinates if $i$ is not grasped, otherwise it is ignored. Letting $*$ designate an ignored quantity, allowable mode transitions are:</p>
 <ul>
@@ -13570,7 +13659,12 @@ $$<p>then the vector of contact point velocities in the normal directions is giv
 <li>(transfer,transfer) with  $\sigma = (i_l,i_r,G_l,G_r,T_1,\ldots,T_m)$ and $i_l \neq i_r$ requires that all objects except for $i_l$ and $i_r$ are fixed at $T_1,\ldots,T_m$.  Objects $i_l$ and $i_r$ have poses $T_{i_l} = T_{g_l}(q_R)\cdot T_O^{g_l}$ and $T_{i_r} = T_{g_r}(q_R)\cdot T_O^{g_r}$, respectively, and they do not collide with the environment or any fixed objects. The left and right hand's fingers are fixed at $q_{f_l}$ and $q_{f_r}$, respectively.</li>
 <li>(transfer,transfer) with  $\sigma = (i_l,i_r,G_l,G_r,T_1,\ldots,T_m)$ and $i_l = i_r$ has a single object grasped by both hands.  The grasp constraint $T_{i_l} = T_{g_l}(q_R)\cdot T_O^{g_l} = T_{g_r}(q_R)\cdot T_O^{g_r}$ imposes a fixed relative transform between both hands.</li>
 </ul>
-<p>TODO: illustrate problem</p>
+<hr>
+<p><a href="#fig:BimanualProblem"></a></p>
+<p>TODO</p>
+<div class="figcaption"><b>Figure 14</b>. 
+    TODO: illustrate bimanual manipulation problem
+    </div><hr>
 <p><strong>Mode sequence search.</strong> In both of these example problems, our multi-modal planner must deal with two issues. First, the motion plans for the legged robot and during dual-armed manipulation require maintaining closed-chain constraints during motion. We will look into this in more detail in the next section; suffice to say, it requires a modification to C-space planning subroutines but conceptually the multi-modal planning problem is unchanged.  Second, the sequence of modes needed to reach the goal is not nearly as obvious as in pick-and-place planning. This issue is more pertinent to the high-level structure of the planner, so let's examine this issue here.</p>
 <p>A sequence of modes $\sigma_0 \rightarrow \sigma_1 \rightarrow \cdots \rightarrow \sigma_N$ that solves the problem has both unknown length and typically unknown transition pattern.  (In some simpler problems like bipedal locomotion and gaited quadrupedal locomotion the transition pattern is regular, but let us address the most general case.)  Hence, the multi-modal planner must explore many possibilities for the mode sequence.</p>
 <p>We describe a planner, the <em>probabilistic tree of roadmaps</em> that instantiates <a href="#alg:LeastCommitmentPlanning">Least-Commitment Planning</a> to this setting. Starting at $\sigma_0$, the planner explores a <em>tree of modes</em> connected by feasible transition configurations.  It then grows the tree using an RRT-like strategy.  Once a mode sequence that leads to a goal is found, it then begins to plan paths along each mode's free space.  The hypothesis behind this strategy is that the transitions are bottlenecks, and finding a feasible mode sequence leading to the goal is more informative to the success of the planner than C-space motion planning queries.</p>
@@ -13605,6 +13699,12 @@ $$<p>then the vector of contact point velocities in the normal directions is giv
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Planning-on-closed-chain-submanifolds">Planning on closed-chain submanifolds<a class="anchor-link" href="#Planning-on-closed-chain-submanifolds">&#182;</a></h3><p>A final issue to resolve is the problem of planning with closed-chain (IK) constraints, such as those that are imposed in legged locomotion or dual-arm manipulation.  These constraints limit the free space to a lower dimensional, nonlinear <em>submanifold</em> of the standard configuration space.  As a result, standard grid-based or sampling-based planners are unable to find any feasible configurations (unless extremely lucky).  Moreover, straight line paths will leave the free space, so standard edge collision checking will not work.</p>
 <p>Here we describe how to modify a roadmap-style planner to address these free spaces.  TODO</p>
+<hr>
+<p><a href="#fig:ClosedChainSubmanifold"></a></p>
+<p>TODO</p>
+<div class="figcaption"><b>Figure 15</b>. 
+    TODO: illustrate planning on manifolds
+    </div><hr>
 
 </div>
 </div>
