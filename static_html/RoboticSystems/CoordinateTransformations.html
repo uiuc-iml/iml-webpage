@@ -13089,7 +13089,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -13773,8 +13773,10 @@ represented by the coordinates of $O$, $X$, and $Y$ in some privileged
 (directional) coordinates $\mathbf{x} = (x_{1},x_{2})$ and
 $\mathbf{y} = (y_{1},y_{2})$ relative to $W$, then the world coordinates of
 any point $P$ such that $\mathbf{p}$ is its coordinates in the frame $F$ can
-be calculated by the rigid transform
-$$\mathbf{p}_W = \begin{bmatrix}x_{1} &amp; y_{1} \\ x_{2} &amp; y_{2} \end{bmatrix} \mathbf{p} + \mathbf{t}.$$ Hence,
+be calculated by the rigid transform</p>
+$$
+  \mathbf{p}_W = \begin{bmatrix}x_{1} &amp; y_{1} \\ x_{2} &amp; y_{2} \end{bmatrix} \mathbf{p} + \mathbf{t}.
+$$<p>Hence,
 by storing $R = \begin{bmatrix}x_{1} &amp; y_{1} \\ x_{2} &amp; y_{2} \end{bmatrix}$ and $\mathbf{t}$ we can
 perform this calculation for any point in $F$. (We remark that the matrix
 is a rotation because $X$ and $Y$ are both orthogonal and $Y$ is
@@ -13790,13 +13792,13 @@ represented with respect to the world frame by a rotation matrix $R_A$
 and translation $\mathbf{t}_A$, and $B$ is represented by $R_B$ and
 $\mathbf{t}_B$. Then given the coordinates $\mathbf{p}^A$ of some point $P$
 relative to $A$, we can determine $P$'s coordinates relative to
-$\mathbf{p}^B$ in two steps. First, we calculate its world coordinates:
-$$\mathbf{p}^W = R_A \mathbf{p}^A + \mathbf{t}_A$$ And then we perform the inverse of
+$\mathbf{p}^B$ in two steps. First, we calculate its world coordinates:</p>
+$$\mathbf{p}^W = T_A(\mathbf{p}^A) = R_A \mathbf{p}^A + \mathbf{t}_A$$<p>And then we perform the inverse of
 $B$ coordinates to world coordinate to obtain its coordinates with
-respect to $B$: $$\mathbf{p}^B = R_B^T (\mathbf{p}^W - \mathbf{t}_B).$$</p>
-<p>This transform can be calculated for all points by the composition of
+respect to $B$:</p>
+$$\mathbf{p}^B = T_B^{-1}(\mathbf{p}^W) = R_B^T (\mathbf{p}^W - \mathbf{t}_B).$$<p>This transform can be calculated for all points by the composition of
 the transform from $A \rightarrow W$ and then $W \rightarrow B$:
-$$\mathbf{p}^B = R_B^T R_A \mathbf{p}^A + R_B^T(\mathbf{t}_A - \mathbf{t}_B).$$</p>
+$$\mathbf{p}^B = T_B^{-1}(T_A(\mathbf{p}^A)) = R_B^T R_A \mathbf{p}^A + R_B^T(\mathbf{t}_A - \mathbf{t}_B).$$</p>
 
 </div>
 </div>
@@ -13807,14 +13809,16 @@ $$\mathbf{p}^B = R_B^T R_A \mathbf{p}^A + R_B^T(\mathbf{t}_A - \mathbf{t}_B).$$<
 <h3 id="Homogeneous-coordinate-representations">Homogeneous coordinate representations<a class="anchor-link" href="#Homogeneous-coordinate-representations">&#182;</a></h3><p>Homogeneous coordinates gives a convenient representation of rigid
 transforms as linear transforms on an expanded space. Moreover, it
 compactly represents the distinction between positional and directional
-quantities. The idea is to augment every point with a 3rd <em>homogeneous
+quantities. The idea is to augment every point with an additional <em>homogeneous
 coordinate</em>, which is 1 if it is positional and 0 if it is directional.
-This operation is denoted with the operator $\hat{\cdot}$:
+This operation is denoted with the hat operator $\hat{\cdot}$.</p>
+<p>For 2D points and directions, we have
 $$\hat{\mathbf{p}} = \begin{bmatrix} p_x \\ p_y \\ 1 \end{bmatrix}$$
-$$\hat{\mathbf{v}} = \begin{bmatrix} v_x \\ v_y \\ 0 \end{bmatrix}$$ Then, a 2D rigid
+$$\hat{\mathbf{v}} = \begin{bmatrix} v_x \\ v_y \\ 0 \end{bmatrix}$$
+Then, a 2D rigid
 transformation of both positions and directions is represented uniformly
 by a $3\times 3$ matrix multiplication:
-$${T(\hat {\mathbf{x}})} = \begin{bmatrix}
+$$\hat{T}(\hat {\mathbf{x}}) = \begin{bmatrix}
 \cos \theta &amp; -\sin \theta &amp; t_x \\
 \sin \theta &amp; \cos \theta &amp; t_y \\
 0 &amp; 0 &amp; 1 
@@ -13822,6 +13826,18 @@ $${T(\hat {\mathbf{x}})} = \begin{bmatrix}
 where the original transformation
 $T(\mathbf{x}) = R(\theta) \mathbf{x} + \mathbf{t}$ is a rotation about angle $\theta$
 followed by a translation of vector $\mathbf{t} = (t_x,t_y)$.</p>
+<p>In 3D, the hat operator adds a 4th coordinate:
+For 2D points and directions, we have
+$$\hat{\mathbf{p}} = \begin{bmatrix} p_x \\ p_y \\ p_z \\ 1 \end{bmatrix}$$
+$$\hat{\mathbf{v}} = \begin{bmatrix} v_x \\ v_y \\ v_z \\ 0 \end{bmatrix}$$
+and a 3D transform is represented 
+by a $4\times 4$ matrix multiplication:
+$$\hat{T}(\hat {\mathbf{x}}) = \begin{bmatrix}
+  &amp;   &amp;   &amp;  t_x \\
+  &amp; R &amp;   &amp;  t_y \\
+  &amp;   &amp;   &amp;  t_z \\
+0 &amp; 0 &amp; 0 &amp; 1 
+\end{bmatrix} \hat{\mathbf{x}}$$</p>
 <p>Note that when applied to homogeneous positions, the rigid transform is
 applied to the first two coordinates of the vector while the homogeneous
 coordinate remains 1 (since the dot product of a position representation
@@ -13830,6 +13846,8 @@ directions, only the rotation is applied to the first two coordinates of
 the vector, since the third 0 coordinate nullifies the effect of the
 third column. The homoeneous coordinate remains 0, since the dot product
 of a position representation with the last row of the matrix is 0.</p>
+<p>The nice thing about this representation is that transform application is a matrix-vector multiply, transform composition is a matrix-matrix multiply, and transform inversion is a matrix inversion. This makes it much easier to write out complex transformations. For example, consider the problem of the coordinate transform from frame $A$ to frame $B$ that we described above.  Rather than writing out the operator expression $T_B^{-1}(T_A(\mathbf{p}^A))$, using homogeneous coordinates this becomes a series of matrix-matrix and matrix-vector multiplies:</p>
+$$\hat{p}^B = \hat{T}_B^{-1} \cdot \hat{T}_A \cdot \hat{p}^A$$<p>.</p>
 
 </div>
 </div>
@@ -13840,7 +13858,7 @@ of a position representation with the last row of the matrix is 0.</p>
 <h2 id="Working-with-coordinate-representations-of-positions-and-directional-quantities">Working with coordinate representations of positions and directional quantities<a class="anchor-link" href="#Working-with-coordinate-representations-of-positions-and-directional-quantities">&#182;</a></h2><p>In small 2D examples we can often treat coordinates casually, with our
 minds quickly filling in the gaps of meaning. However, once we introduce
 rotations, or move to 3D and beyond, this type of casual thinking runs
-the risk of making the Robot walk through a wall! It is
+the risk of making the robot walk through a wall! It is
 unlikely that your linear algebra software package (e.g., Matlab, or
 Numpy in Python) will help you guard against performing invalid
 operations, since you will be working with vector or matrix datatypes.
@@ -14254,14 +14272,22 @@ reference frame.</p>
 <li><p><code>frame</code>: the name of its reference frame.</p>
 </li>
 </ul>
-<p>Do the same for a <code>Direction</code> data structure. Now, implement methods
-<code>Point.to(frame)</code> and <code>Direction.to(frame)</code> that compute a new <code>Point</code>
-and <code>Direction</code>, respectively, whose reference frames are now the
+<p>Do the same for a <code>Directional</code> data structure. Now, implement methods
+<code>Point.to(frame)</code> and <code>Directional.to(frame)</code> that compute a new <code>Point</code>
+and <code>Directional</code>, respectively, whose reference frames are now the
 given frame, and whose coordinates are expressed correctly relative
 to the new frame.</p>
 </li>
+<li><p>Extend the coordinate management system of exercise 12 to implement
+geometric operations, enforcing that each of the items needs to be
+of the same reference frame.  Ensure that <code>Point - Point = Directional</code>,
+<code>Point + Directional = Directional</code>, <code>Directional +/- Directional = Directional</code>,
+and <code>Directional * scalar = Directional</code>.</p>
+<p><a href="https://www.tutorialsteacher.com/python/magic-methods-in-python">This tutorial</a> for
+operator overriding in Python will come in handy here.</p>
+</li>
 <li><p>Extend the coordinate management system of exercise 12 to also include
-<strong>units</strong> that should be specified to the <code>Point</code>, <code>Direction</code>, and <code>Frame</code>
+<strong>units</strong> that should be specified to the <code>Point</code>, <code>Directional</code>, and <code>Frame</code>
 structure upon construction. Implement support for <code>'m'</code>, <code>'mm'</code>, <code>'cm'</code> and <code>'km'</code>
 arguments indicating meters, millimeters, centimeters, and kilometers.</p>
 </li>
@@ -14293,12 +14319,12 @@ arguments indicating meters, millimeters, centimeters, and kilometers.</p>
         <span class="c1">#TODO: what here?</span>
         <span class="k">return</span> <span class="n">Point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span><span class="n">newframe</span><span class="p">)</span>
 
-<span class="k">class</span> <span class="nc">Direction</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">Directional</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">coords</span><span class="p">,</span><span class="n">frame</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">coords</span> <span class="o">=</span> <span class="n">coords</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span>
     <span class="k">def</span> <span class="nf">to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">newframe</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns a Direction expressing the same physical direction in space, but represented in the new frame&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Returns a Directional expressing the same physical direction in space, but represented in the new frame&quot;&quot;&quot;</span>
         <span class="c1">#what here?</span>
         <span class="k">return</span> <span class="n">Point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span><span class="n">newframe</span><span class="p">)</span>
 </pre></div>
