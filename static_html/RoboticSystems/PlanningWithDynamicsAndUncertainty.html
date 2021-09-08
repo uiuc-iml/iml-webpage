@@ -13178,6 +13178,13 @@ div.figcaption {
 <li>Terminal condition $x(t) \in X_G$</li>
 </ul>
 <p>Issues with timed trajectory representations will be discussed in more detail in <a href="WhatAreDynamicsAndControl.ipynb#Trajectories-with-timing">Chapter 13</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Directional-constraints-in-planning">Directional constraints in planning<a class="anchor-link" href="#Directional-constraints-in-planning">&#182;</a></h3><p>Examples of common directional constraints are:</p>
 <ul>
 <li>Moving forward in time</li>
@@ -13185,8 +13192,19 @@ div.figcaption {
 <li>Making monotone progress toward a goal</li>
 </ul>
 <p>Directional constraints can be handled straightforwardly using roadmap methods, since some straight-line paths in free space will still be feasible.  Rather than having an undirected graph representing bidirectional movement along each edge $(q_1,q_2)$, we will maintain a directed graph.  The motion $y(s)$ from $q_1$ to $q_2$ can be checked to see whether there exists a control $u \in U$ satisfying $y^\prime(s) = f(y(s),u)$ at all points $s\in [0,1]$.  If so, the directed edge is included in the roadmap.  If desired, the reverse edge can also be checked for the same property.</p>
-<p>TODO: illustration</p>
+<hr>
+<p><a name="fig:DirectionalRoadmap"></a></p>
+<p><img src="figures/planning/directional_roadmap.svg" alt="fig:DirectionalRoadmap"></p>
+<div class="figcaption"><b>Figure 1</b>. Directional constraints can be handled using roadmap methods by checking roadmap edges for feasibility either after or during construction.  In the first case, steep upward and downward movements are allowed, but no path connects the start (green) and goal (right) with feasible (dark) edges.  Infeasible edges are drawn in light gray. In the second case, only rightward progress is allowed, and the feasible (dark) edges form a directed graph.  The blue path connects the start and goal.
+</div><hr>
 <p>This approach works quite well with probabilistic roadmap and other sampling-based methods, because for each sampled pair of configurations, there is some nonzero likelihood that the straight line between the two satisfies the differential constraint.  Roughly speaking, this probability is the volumetric ratio of the set of valid directions vs the set of all directions.  (More specifically, we require a lower bound on this ratio holds across the configuration space.) Hence, probabilistic completeness can still be guaranteed.  With nonholonomic or second-order constraints, this likelihood is zero, and therefore sampling has no chance of success.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Path-planning-with-curvature-constraints">Path planning with curvature constraints<a class="anchor-link" href="#Path-planning-with-curvature-constraints">&#182;</a></h3><p>For car-like ground vehicles and aerial vehicles, turning in
 place is not an option. The limited turning radius of the vehicle means
 that at maximum steering angle, the path follows a circular arc. No path
@@ -13216,13 +13234,14 @@ curvature constraint. Each maneuver may move more than one unit along
 each axis. Usually, only a few values of $\theta$ (4 or 8) are allowed
 to take advantage of rotational symmetries in the $(x,y)$ grid.</p>
 <hr>
+<p><a name="fig:Lattice4"></a></p>
 <p><img src="figures/planning/lattice4.svg" alt="fig:Lattice4"></p>
-<div class="figcaption"><a name="fig:Lattice4">Figure 9</a>.
+<div class="figcaption"><b>Figure 2</b>.
 A state lattice for a curvature constrained vehicle, with 4 possible
 orientation values. Shown are the reachable states after one, two, and
 three primitives.
     </div><hr>
-<p><a href="#fig:Lattice4">Fig. 9</a> illustrates this concept. From an initial
+<p><a href="#fig:Lattice4">Fig. 2</a> illustrates this concept. From an initial
 state pointing upward, five primitive maneuvers are allowed. These are
 chosen so that curvature constraints are respected and no more than 1
 grid cell is moved in any direction. After executing one maneuver, the
@@ -13246,17 +13265,32 @@ discretized orientations, but care must be taken to define primitive
 sets that transfer properly between integer cell coordinates for
 non-axis aligned orientation values.  See the figure below for an illustration.</p>
 <hr>
+<p><a name="fig:Lattice8"></a></p>
 <p><img src="figures/planning/lattice8.svg" alt="fig:Lattice8"></p>
-<div class="figcaption"><a name="fig:Lattice8">Figure 10</a>.
+<div class="figcaption"><b>Figure 3</b>.
     A state lattice for a curvature constrained vehicle, with 8 possible
 orientation values. Shown are the axis-aligned primitive set (left) and
 the non-axis aligned set
 (right).
     </div><hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Local-planning-with-a-steering-function">Local planning with a steering function<a class="anchor-link" href="#Local-planning-with-a-steering-function">&#182;</a></h3><p>Let us suppose that we can devise a function $\phi(x_1,x_2)$ that, for many inputs, produces a dynamically-feasible path of states $x:[0,1] \rightarrow X$ and controls $u :[0,1] \rightarrow U$ connecting $x(0)=x_1$ and $x(1)=x_2$.  It is allowed to fail for some inputs that cannot be connected.  This type of function is known as a <em>steering function</em>, and is very useful in kinodynamic planning.  For example, in a Dubins car problem, a steering function could use the <a href="OptimalControl.ipynb#Bang-bang-control">Reeds-Shepp curves</a> to produce a dynamically-feasible path between any two states.</p>
 <p>A natural approach, particularly in roadmap methods, is then to replace the straight-line connection primitive with the steering function.  The steered path can then be checked for collision, assessed for costs, etc.  A path connecting a series of milestones is then interpreted as using the steering function to interpolate between subsequent milestones.</p>
 <p>Although this approach performs well in practice, it requires a rather deep study to prove whether replacing straight-line connections with a particular steering function maintains completeness and optimality of a given planner.  A straight-line can be divided anywhere and the sum of lengths of the two sub-segments is exactly the same, but this property does not hold with steering functions.  For example, in the Dubins car case, the Reeds-Shepp paths produce "parallel parking" maneuvers for the car to move sideways, and over a distance a series of such maneuvers may be less effective than simply turning, moving forward, and turning back.</p>
-<h3 id="Forward-planning-with-a-simulation-function">Forward planning with a simulation function<a class="anchor-link" href="#Forward-planning-with-a-simulation-function">&#182;</a></h3><p>Another general approach is to define a <em>simulation function</em> (or a next-state function) and perform forward planning where paths are generated via simulation.  A simulation function takes the form
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Kinodynamic-sampling-based-planning">Kinodynamic sampling-based planning<a class="anchor-link" href="#Kinodynamic-sampling-based-planning">&#182;</a></h3><p>Another general approach is to define a <em>simulation function</em> (or a next-state function) and perform forward planning where paths are generated via simulation.  A simulation function takes the form
 $$x_{next} = h(x,u)$$
 and is usually generated by applying <a href="WhatAreDynamicsAndControl.ipynb#ODE-integration">integration methods</a> to the differential constraint, for some duration of time.</p>
 <p>In this way, sampling-based methods can be applied to the control space to expand possible future trajectories.  Tree-growing techniques are preferred for this mode of operation, and  in fact the <a href="MotionPlanningHigherDimensions.ipynb#Rapidly-Exploring-Random-Trees-(RRTs">RRT</a>) algorithm was originally developed for this purpose.</p>
@@ -13266,8 +13300,6 @@ and is usually generated by applying <a href="WhatAreDynamicsAndControl.ipynb#OD
 <strong>Algorithm Kinodynamic-RRT</strong></p>
 <ol>
 <li>$T \gets \{ x_0 \}$.</li>
-</ol>
-<ul>
 <li><strong>for</strong> $i=1,...,N$ <strong>do</strong></li>
 <li>&nbsp;&nbsp;&nbsp;$x_{rand} \gets Sample()$</li>
 <li>&nbsp;&nbsp;&nbsp;$x_{near} \gets Nearest(T,x_{rand})$</li>
@@ -13278,9 +13310,9 @@ and is usually generated by applying <a href="WhatAreDynamicsAndControl.ipynb#OD
 <li>&nbsp;&nbsp;&nbsp;<strong>if</strong> $x_{e} \in G$  <strong>then</strong></li>
 <li>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<strong>return</strong> the path in $T$ from $x_0$ to $x_{e}$</li>
 <li><strong>return</strong> "no path"</li>
-</ul>
+</ol>
 <hr>
-<p>TODO: illustration</p>
+<p>TODO: illustration (Figure 4)</p>
 <p>Again, the RRT Voronoi bias we described in the earlier RRT-Connect discussion is applied here.  Lines 3-5 select a node of the tree $x_{near}$ and an expansion control $u_e$ to help extend the tree in the direction of $x_{rand}$.  If the path is collision free, it is added to the tree.  Lines 9-10 test whether the state $x_e$ resulting from an extension lies within a <em>goal region</em> $G$.  If so, then the path leading to $x_e$ is returned.  If a path is returned, it is guaranteed to be kinematically and dynamically feasible.</p>
 <p>In order to apply RRT successfully, several aspects of this algorithm deserve deeper study.</p>
 <ul>
@@ -13288,9 +13320,48 @@ and is usually generated by applying <a href="WhatAreDynamicsAndControl.ipynb#OD
 <li><strong>Choose-Control</strong>. The way in which controls are chosen has a strong effect on the speed and completeness of planning.  By analogy to RRT-Connect, it makes sense to try to find a control that moves from $x_{near}$ toward $x_{rand}$, so one approach is to find the control that gets as close as possible: $u_{e} = \arg \min_{u\in U} d(x_{rand},$Simulate$(x_{near},u))$.  This optimization can be approximated by random sampling a few candidate controls and finding the one that gets the closest.  What is interesting is that although this approach tends to make rapid progress across free space, it does tend to get stuck with failure to progress.  Some authors have proven that in order for kinodynamic RRT to be probabilistically complete, it must sample controls at random.</li>
 <li><strong>Inability to connect to a precise goal state</strong>. Note that we had to resort to arriving at a <em>goal region</em> rather than connecting to a goal state.  This is because the chance of arriving by random chance at any single state is 0, so the goal region must have some positive volume in the state space to have any chance of success. If a steering function were available, you could replace Line 9 with a test to see if $x_{e}$ could connect to the goal.  Or, once RRT finds a state $x_e$ that is "close enough" according to some threshold, it could then formulate a <a href="OptimalControl.ipynb#Trajectory-Optimization">trajectory optimization problem</a> with fixed endpoints, and try to solve for a connecting path.</li>
 </ul>
-<h2 id="Handling-moving-obstacles-and-time">Handling moving obstacles and time<a class="anchor-link" href="#Handling-moving-obstacles-and-time">&#182;</a></h2><p>TODO:</p>
-<p>Configuration-Time space</p>
-<p>Obstacle models:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Handling-moving-obstacles-and-time">Handling moving obstacles and time<a class="anchor-link" href="#Handling-moving-obstacles-and-time">&#182;</a></h2><p>A common problem in mobile robotics and autonomous vehicles is to plan in the presence of moving obstacles, such as pedestrians and other vehicles.  This motion means that the C-obstacle according to each obstacle changes over time. It is also important to realize that the C-obstacle at some time in the future will not be known exactly, and instead the robot must predict the object's trajectory based on its past movement.  For example, the robot can extrapolate the object's current velocity, or in the case of driving, its progress within its lane.  For advanced autonomous vehicles, the prediction process can be quite complex, involving large neural network models trained with millions of miles of driving data.  For the purposes of planning, we will assume some predicted trajectory and discuss how to handle the uncertainty in the prediction in the planner.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="CT-obstacles">CT-obstacles<a class="anchor-link" href="#CT-obstacles">&#182;</a></h3><p>Let us assume for the moment that the robot can perform omnidirectional movement and is simply velocity-bounded.  To model this situation, we augment the configuration space with an additional time dimension, producing a CT-space (Configuration-Time space).  That is, we plan in a state space $x=(q,t)$.  By converting moving obstacles to CT obstacles and planning in the CT space, we can use standard techniques for kinodynamic planning.</p>
+<p>Given a moving obstacle $O$ with configuration $q_O$, let $O(q_O(t))$, denote the region occupied by the obstacle in the workspace at future time $t$.  If $q_O(t)$ were known exactly, then the C-obstacle according to the obstacle is $CO(t) = \{q \in \mathcal{C} \,|\, R(q) \cap O(q_O(t)) \neq \emptyset \}$.  The CT-obstacle is the union of all C-obstacles over future times in the CT space, namely:</p>
+$$
+CTO(t) = \{(q,t)\,|\, q \in \mathcal{C}, t \geq t_{init}, \text{ and } R(q) \cap O(q_O(t)) \neq \emptyset \}.
+$$<p>As an example, let us assume that the robot and object are planar disks with radii $r_R$ and $r_O$, and the object is moving at constant velocity $v$.  Taking time as a third (Z) dimension, we see that the CT-obstacle is a slanted cylinder obtained by extruding a circle of radius $r_R + r_O$ along the axis $(v_x,v_y,1)$.</p>
+<hr>
+<p><a name="fig:CTObstacles"></a></p>
+<p><img src="figures/planning/ct_obstacles.svg" alt="fig:CTObstacles"></p>
+<div class="figcaption"><b>Figure 5</b>. For a disk robot and obstacle, the CT-obstacle extrudes a disk through the time dimension.  If the obstacle is stationary (top), the CT-obstacle is a cylinder.  For a constant-velocity obstacle (middle),  the CT-obstacle is a slanted cylinder.  If the obstacle moves along an arbitrary predicted curve (bottom),  the CT-obstacle is an extrusion about the curve.
+</div><hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Planning-methods">Planning methods<a class="anchor-link" href="#Planning-methods">&#182;</a></h3><p>TODO: CT roadmap method</p>
+<p>TODO: T interval method (Figure 6)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Uncertain-motion-models">Uncertain motion models<a class="anchor-link" href="#Uncertain-motion-models">&#182;</a></h3><p>Obstacle models:</p>
 <ul>
 <li>constant velocity</li>
 <li>velocity bounded</li>
@@ -24339,8 +24410,8 @@ z
 <h3 id="Markov-Decision-Processes-(MDPs)">Markov Decision Processes (MDPs)<a class="anchor-link" href="#Markov-Decision-Processes-(MDPs)">&#182;</a></h3><p>A second problem with the standard DWA approach is that the navigation function is constructed under the erroneous assumption that the robot can move precisely and instantaneously in any direction.  When the robot is at a grid point $(x,y)$, it has some orientation $\theta$ that can't be entirely predicted at the time of constructing the navigation function.</p>
 <p>A Markov Decision Process (MDP) is a principled method for representing decision-making problems under probabilistic movement uncertainty.  Using MDPs, we can calculate safer navigation functions that give suitable trade-offs between optimality and collision risk.  MDPs are also general-purpose, so they have been useful in modeling uncertainty in obstacle motion, wind gusts for UAVs, traffic delays, human behavior, as well as many other applications outside of robotics.</p>
 <h4 id="Simple-example">Simple example<a class="anchor-link" href="#Simple-example">&#182;</a></h4><p>In a discrete state space, an MDP can be thought of as a probabilistic extension of a discrete search problem, where after each action, the system doesn't just arrive at a single state, but could arrive with some probability at multiple states.  First, an MDP requires defining a state space $S$ and an <em>action space</em> $A$.</p>
-<p>Let us start with a very simple example to illustrate the basic principles.  Let there be three states Alive, Heaven, and Hell. The robot starts at Alive, wants to arrive at Heaven, and does not want to arrive at Hell.  There are two actions, Mild and Wild, and after choosing an action it will arrive at another state, or possibly the same state.  If it chooses Mild, then there is a 90% chance of staying at Alive, and a 10% chance of arriving at Heaven.  If it chooses Wild, there is a 60% chance of arriving at Heaven, and 40% chance of arriving at Hell.  Once arriving at Heaven and Hell, the robot is done, but if it chooses Mild, there is some chance that it will stay Alive.  How, then, should the robot choose its actions?</p>
-<p>TODO: illustration</p>
+<p>Let us start with a very simple example to illustrate the basic principles of MDPs (while also exploring some moral philosophy while we're at it!)  Let there be three states Alive, Heaven, and Hell. The robot starts at Alive, wants to arrive at Heaven, and does not want to arrive at Hell.  There are two actions, Mild and Wild, corresponding to how conservatively the robot chooses to live its life.  After choosing an action it will arrive at another state, or possibly the same state, according to the following rules.  If it chooses Mild, then there is a 90% chance of staying at Alive, and a 10% chance of arriving at Heaven.  If it chooses Wild, there is a 60% chance of arriving at Heaven, and 40% chance of arriving at Hell.  Once arriving at Heaven and Hell, the robot is done, but if it chooses Mild, there is some chance that it will stay Alive.  How, then, should the robot choose its actions?</p>
+<p>TODO: illustration (Figure 7)</p>
 <p>To answer this question, there is a final missing ingredient in this formulation, which is the idea of a <em>reward function</em>.  The reward function $R$ allows us to assign a numerical score for a sequence of states and actions.  Let's suppose that arriving in Heaven has reward 100, Hell has reward -100, and staying Alive has reward of -1.  Then, the  expected (average) reward of choosing Wild while alive is 60-40% average of the rewards of arriving at Heaven and Hell, which is to say, $P(Heaven | Alive,Wild)\cdot R(Heaven) + P(Hell | Alive,Wild) \cdot R(Hell) = 0.6 \cdot 100 + 0.4 \cdot (-100) = 20$. Since after this, the robot is dead, we can't hope to get any more reward thereafter.  Let's call this expected value $Q(Alive,Wild)$.</p>
 <p>Now, to assess the quality of the Mild action, it's a bit trickier, because there is a possibility for the state to stay the same (this is called a self-loop).  Over just the next step, the expected reward is $P(Heaven | Alive,Mild)\cdot R(Heaven) + P(Alive | Alive,Mild)\cdot R(Alive) = 0.1\cdot 100 + 0.9\cdot(-1) = 10-0.9 = 9.1$.  At the moment, this doesn't look any better than Wild.  But if the robot stays alive, it can choose additional actions and collect additional reward.  This sum of rewards is called a <em>return</em>.  Note, however, that the robot is able to change the action that it chooses from Mild to Wild, or stay the same.  The robot should consider the <em>best</em> possible action, that is, the one with the best expected return.  Specifically, the best possible expected return $V(Alive)$ at Alive is the one that maximises expected return amongst the two choices:</p>
 $$V(Alive) = \max (Q(Alive,Mild), Q(Alive,Wild))$$<p>where we haven't set solved for $Q(Alive,Mild)$.  We can set up a recursive equation that depends on $V(Alive)$:
@@ -24351,7 +24422,7 @@ $$Q(Alive,Mild) = 9.1 + 0.9 Q(Alive,Mild).$$
 Rearranging, we get $0.1 \cdot Q(Alive,Mild) = 9.1$, and dividing both sides by 0.1, we obtain $Q(Alive,Mild) = 91$. Ah, much better!  Since Mild is the better option, $V(Alive)$ is actually equal to $Q(Alive,Mild)$, and Mild is the optimal choice.</p>
 <p>Now what would happen if robot received a reward of -10 for staying alive (say, it felt miserable cleaning up after humans)?  Then the calculus changes.  Repeating the above calculations, the value of 9.1 becomes only 1, and then $Q(Alive,Mild)$ becomes the maximum of 19 (choosing Wild thereafter) and 10 (choosing Mild thereafter).  This shows that Wild is the better choice, and $V(Alive)$ is equal to $Q(Alive,Wild)$ (which remains 20).  In general, the MDP decision model can obtain a very rich set of behaviors that balances uncertainty and action-dependent rewards. It is no wonder that MDPs are used throughout economics and behavioral sciences!  (Despite the seeming usefulness of MDPs in modeling metaphysical decisions about the afterlife in this example, they still haven't made much headway into the study of theology... how curious!)</p>
 <h4 id="Discrete-MDP-definition">Discrete MDP definition<a class="anchor-link" href="#Discrete-MDP-definition">&#182;</a></h4><p>Let's now consider a more complex problem to introduce the formal notation for MDPs.  Suppose we have a robot moving on a grid $G=(V,E)$, and every time it tries to move from one grid cell to an adjacent cell, it has some probability (say, 10%) of spinning its wheels and staying in place.  We can model this as the state space $S = V$, and an action space of up, down left, and right (denoted $A = \{ n, s, w, e \}$ like the compass directions).  When the robot is at a grid point $s=(i,j)$ and choses an action $a \in A$, there is some grid point $(i+\delta_{i,a},j+\delta_{j,a})$ offset by 1 on some axis that it would arrive at with 90% probability.  The robot would stay at the same grid point $(i,j)$ with 10% probability.  Letting $s^\prime$ denote the actual state that the robot arrives at, the MDP model states that the probability that $s^\prime = (i+\delta_{i,a},j+\delta_{j,a})$ is 0.9, and the probability that $s^\prime = s$ is 0.1.</p>
-<p>TODO: illustration</p>
+<p>TODO: illustration (Figure 8)</p>
 <p>Formally, this is captured in a <em>transition function</em> $T(s,a,s^\prime)$ that gives the probability of arriving at $s^\prime$ given that action $a$ is chosen in state $s$.  In the above example, $T(s,a,s^\prime=s) = 0.1$, $T((i,j),a,s^\prime=(i+\delta_{i,a},j+\delta_{j,a})) = 0.9$, and $T(s,a,s^\prime) = 0$ for all other $s^\prime$.  In general, the transition function gives a conditional probability distribution over $s^\prime$, with $s$ and $a$ considered given.  In other words, $T(s,a,s^\prime) \equiv P(s^\prime \,|\, s,a)$ where the right hand side is the conditional probability.  According to the rules of probability, it must satisfy the given properties</p>
 <ul>
 <li>For all $s \in S$, $a \in A$, and $s^\prime \in S$, $T(s,a,s^\prime) \geq 0$</li>
@@ -33518,6 +33589,13 @@ these approaches are relatively complex and typically beyond the scope of an
 introductory robotics course. Instead, here we will focus on practical ways of handling
 these issues either by modifying the costs and constraints of existing
 planners, or by modifying how they are invoked during the robot's sense-plan-act loop.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Optimistic-replanning-under-missing-data">Optimistic replanning under missing data<a class="anchor-link" href="#Optimistic-replanning-under-missing-data">&#182;</a></h3><p>To handle missing data, one straightforward and effective approach is to
 ensure that the robot senses around it as it moves, and then replans
 when the previous plan becomes invalidated by a newly-sensed obstacle.
@@ -33533,7 +33611,7 @@ approach would simply replan at regular intervals. This would work best
 with a fast planner, so that new obstacles can be reacted to quickly, as
 well as an optimizing planner, to ensure that the paths do not vary too
 wildly as more sensor data is incorporated.</p>
-<p>TODO: illustration</p>
+<p>TODO: illustration (Figure 9)</p>
 <p>One question that must be addressed is whether the local map is properly
 updated to handle obstacles. For example, if a human were to walk
 through a building backwards it would be very likely to bump into
@@ -33542,6 +33620,13 @@ always oriented in its direction of motion, then as it approaches an
 unobserved part of the world, then yes, the new sensor data will fill in
 the map. This is also an effective strategy to handle slowly moving
 obstacles.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Sensor-noise-and-probabilistic-collision-detection">Sensor noise and probabilistic collision detection<a class="anchor-link" href="#Sensor-noise-and-probabilistic-collision-detection">&#182;</a></h3><p>To handle noisy observations, <em>collision margins</em> are a simple and often effective approach.
 The idea is simply is to fatten the obstacles (or the robot geometry)
 used by the planner by some margin of error $\epsilon$. Hence, path
@@ -33567,6 +33652,13 @@ Of course, the collision status of each edge is not independent, but this is a f
 <p>To assess the log collision probability, we can use a probabilistic model of the error of measuring each obstacle. If $O$ is the true workspace obstacle, and our measurement provides us with an estimate $\hat{O}$, we could model the probability $P(O\subseteq \hat{O}_\delta)$ that $O$ lies within a version of $\hat{O}$ dilated by distance $\delta$.  For example, if the sensor noise is roughly a zero-mean Gaussian distribution with standard deviation $\sigma$, we could model $P(O\subseteq \hat{O}_\delta) = \Phi(\delta/\sigma)$ where $\Phi$ is the c.d.f. of the unit Gaussian distribution.  As the dilation $\delta$ grows large, this probability approaches 1, and as the dilation shrinks, the probability approaches 0.  (Note that this is an extremely simplified model of how sensor noise affects the shape of obstacles, but for most robotics applications is produces reasonable results.)</p>
 <p>Then, the probability that $\overline{ab} \in \mathcal{F}$ is related to the workspace clearance of the robot as it traverses $\overline{ab}$. If the clearance from $\hat{O}$ is $\epsilon$, then the probability that $\overline{ab} \in \mathcal{F}$ is simply modeled as $\Phi(\delta/\sigma)$.  The edge cost would then be set to $-\log \Phi(\delta/\sigma)$.  (Note that this can be approximated extremely well by the cheaper function $0.115\max\left(0,-\frac{\delta}{\sigma}+2\right)^{2.5}$.)</p>
 <p>The problem with this approach is that it may take extremely long paths, so instead the cost is usually set to some weighted sum of movement cost and log probability of feasibility, e.g. $c(a,b) = w\|a-b\| - \log P(\overline{ab}\subset \mathcal{F})$. A minimum-cost path will therefore trade off between efficiency of execution and likelihood of collision.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Active-sensing">Active sensing<a class="anchor-link" href="#Active-sensing">&#182;</a></h3><p><em>Active sensing</em> problems require the robot to choose its actions deliberately to gather information
 in order to complete its task.  For example, for inspection problems, or building a map of an unknown
 environment, the objective itself is to gather data. To use a utensil in an unknown kitchen, the robot
@@ -33601,6 +33693,13 @@ More sophisticated searches can consider multiple information-gathering actions,
 <h4 id="Mixed-information-gathering-and-task-achievement">Mixed information gathering and task achievement<a class="anchor-link" href="#Mixed-information-gathering-and-task-achievement">&#182;</a></h4><p>In a more complex task, a robot may need to trade off between acquiring information needed to complete the task and accomplishing the task itself.  To find a professor's office in a new building, a student would either find a directory or a receptionist, find the office number, possibly ask for directions, and then seek the office.  A robot in pure information-gain mode would start by mapping out the entire building!  In this case, the robot should be able to determine 1) is there enough information to complete the task, 2) if the task can only be achieved partially or probabilistically, should I continue gathering information or attempt to complete some of the task?</p>
 <p>Deciding what to do in the first case can be addressed by a simple heuristic; if there is no chance to complete the task with the current information, perform information gathering.  As soon as enough information is available to complete the task, do it.  This heuristic performs adequately in some cases, but it does not <em>direct its information gathering toward accomplishing the task</em>.  If you lost a contact lens, would it make sense to start mapping out the walls?</p>
 <p>The strategy of <em>task-driven</em> information gain requires defining a new score that takes the likelihood of task achievement into account rather than the mere quantity of information gathered. For most problem settings this likelihood cannot be evaluated analytically, since it would, in essense, involve solving a planning problem for every possible world (see <a href="#Information-space-and-many-worlds-interpretation">the section below</a>). Instead, task-relevance</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Information-space-and-many-worlds-interpretation">Information space and many-worlds interpretation<a class="anchor-link" href="#Information-space-and-many-worlds-interpretation">&#182;</a></h3><p>More sophisticated techniques for handling uncertainty will reason
 in an <em>information space</em> to predict how future measurements could lead 
 future changes in the robot's knowledge about the world.  For example, they would

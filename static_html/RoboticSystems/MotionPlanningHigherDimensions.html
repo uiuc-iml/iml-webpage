@@ -13412,8 +13412,9 @@ edges to the roadmap.
 </li>
 </ol>
 <hr>
+<p><a name="fig:PRM"></a></p>
 <p><img src="figures/planning/prm.svg" alt="fig:PRM"></p>
-<div class="figcaption"><a name="fig:PRM">Figure 1</a>.
+<div class="figcaption"><b>Figure 1</b>.
 Illustrating the main steps of the PRM algorithm.
 </div><hr>
 <p>It can be shown that the method is <em>probabilistically complete</em>, in that
@@ -13519,8 +13520,9 @@ to implement an <em>incremental</em> variant of PRM with very little additional
 cost. (This is in fact the typical variant used for PRM planning
 queries.)</p>
 <hr>
+<p><a name="fig:IncrementalPRM"></a></p>
 <p><img src="figures/planning/incremental_prm.svg" alt="fig:IncrementalPRM"></p>
-<div class="figcaption"><a name="fig:IncrementalPRM">Figure 2</a>. An incremental version of PRM adds more samples to the roadmap while maintaining the roadmap's connected components. It terminates once the
+<div class="figcaption"><b>Figure 2</b>. An incremental version of PRM adds more samples to the roadmap while maintaining the roadmap's connected components. It terminates once the
 start and goal are in the same component.</div><hr>
 <p><a href="#alg:IncrementalPRM">Algorithm Incremental-PRM</a> gives an implementation of
 Incremental-PRM using a special data structure to determine each of the
@@ -13593,8 +13595,27 @@ the probability of success rises fairly sharply before tapering off. The
 slope of this tapering off depends on the visibility characteristics of
 the problem, which we shall discuss below.</p>
 <hr>
-<p><img src="figures/planning/prm_performance.png" alt="fig:PRMPerformance"></p>
-<div class="figcaption"><a name="fig:PRMPerformance">Figure 3</a>. TODO: Show empirical PRM performance.</div><hr>
+<p><a name="fig:PRMPerformance"></a></p>
+<table>
+<thead><tr>
+<th>(a) PRM, w=0.01</th>
+<th>(b) PRM, w=0.005</th>
+<th>(c) PRM, w=0.0025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="figures/planning/prm_0.01_histogram.png" alt="fig:PRMPerformance_a"></td>
+<td><img src="figures/planning/prm_0.005_histogram.png" alt="fig:PRMPerformance_b"></td>
+<td><img src="figures/planning/prm_0.0025_histogram.png" alt="fig:PRMPerformance_c"></td>
+</tr>
+</tbody>
+</table>
+<div class="figcaption"><b>Figure 3</b>.
+ Histograms of PRM failure rate as more time is spent planning, taken over 100 runs on
+ the same narrow passage problem. As the narrow passage width w shrinks, the likelihood of failure for a
+ given time duration increases.
+</div><hr>
 <p>The average time needed for incremental PRM to solve a given problem
 depends on a number of factors. Firstly, efficient collision queries are
 essential, since thousands or millions of queries will be made during a
@@ -13629,8 +13650,9 @@ A key factor in the theoretical analysis (and empirical performance) of a PRM ar
 <p>It is typically useful to think of visibility as respecting a given connection radius, i.e., the constant $R$ in an $R$-neighborhood connection strategy. 
 We can also similarly define the visibility set of a set of points as the union of the visibility sets of each point: $\mathcal{V}(X) = \{ q' \in \mathcal{F}\,|\,q' \in \mathcal{V}(q) \text{ for some }q\in X \}$.</p>
 <hr>
+<p><a name="fig:Visibility"></a></p>
 <p><img src="figures/planning/visibility.svg" alt="fig:Visibility"></p>
-<div class="figcaption"><a name="fig:Visibility">Figure 4</a>. Some visibility sets of various points and spaces.  A PRM will require more samples to connect to points with small visibility sets.  Moreover, $\epsilon$-goodness is determined by the point in the free space with the smallest visibility set.  A convex space is $(\epsilon=1)$-good, while spaces with cusps and features of lower dimension are not $\epsilon$-good for any $\epsilon > 0$. </div><hr>
+<div class="figcaption"><b>Figure 4</b>. Some visibility sets of various points and spaces.  A PRM will require more samples to connect to points with small visibility sets.  Moreover, $\epsilon$-goodness is determined by the point in the free space with the smallest visibility set.  A convex space is $(\epsilon=1)$-good, while spaces with cusps and features of lower dimension are not $\epsilon$-good for any $\epsilon > 0$. </div><hr>
 <p>Intuitively, the milestones in a PRM $(V,E)$ with $n$ milestones are likely to connect to a new milestone if the visibility set of $V$ is large.  Formally, if a new milestone $q$ is sampled uniformly at random from $\mathcal{F}$, then the probability that it can be connected to $V$ is exactly $\mu(V)/\mu(\mathcal{F})$.  Since visibility is symmetric, the probability that $q$ cannot be connected to any of the milestones in $V$ is equal to the probability that $q$ cannot be connected to any of $n$ random configurations.  Since the milestones are drawn independently at random, this probability is $(1-\mu(\mathcal{V}(q))/\mu(\mathcal{F}))^{n}$.  Hence, obtain the result:</p>
 <blockquote><p>The probability that a configuration $q$ can be connected to a PRM with $n$ milestones is $Pr(q\text{ connected}) = 1 - (1-\mu(\mathcal{V}(q))/\mu(\mathcal{F}))^{n}$, assuming that $q$ and each of the milestones is drawn at random from $\mathcal{F}$.</p>
 </blockquote>
@@ -13640,8 +13662,9 @@ We can also similarly define the visibility set of a set of points as the union 
 <p>Since the visibility bound $\epsilon$ holds across the space, we can see that the probability that any $q$ is in the visibility set of $V$ is at least $1 - (1-\epsilon)^{n}$.  Keep in mind that we have not mentioned dimensionality $d$ in this discussion and only volumetric ratios, so the performance here has no direct relation to $d$.  However, note that with a fixed connection radius $R$, the volume of any visible set cannot be greater than $O(R^d)$ (the volume of an $R$-ball), and hence there is an implicit exponential dependence of performance on dimension.  This also shows that to improve a PRM's visibility set in spaces of higher dimension, it is necessary to set the connection radius $R$ relatively large.</p>
 <p>Is $\epsilon$-goodness all that we need to analyze PRM performance? No! Notice that we have only addressed the problem of whether a point can be connected to a single milestone in the PRM, but not whether it can reach all  other reachable milestones with a feasible path.  Specifically, we need to examine whether milestones in the same connected component of $\mathcal{F}$ are also in the same connected component of $(V,E)$.  For this, we need a concept called <strong>expansiveness</strong>.  Intuitively, a space $\mathcal{F}$ has high expansiveness if for any partition of $\mathcal{F}$ into two sets $A$ and $B$, a significant portion of $A$ can see a significant portion of $B$.  This means that the likelihood that one or more edges of the PRM cross any boundary in $\mathcal{F}$ increases as more milestones are added.</p>
 <hr>
+<p><a name="fig:Expansiveness"></a></p>
 <p><img src="figures/planning/expansiveness.svg" alt="fig:Expansiveness"></p>
-<div class="figcaption"><a name="fig:Expansiveness">Figure 5</a>. (a) Even if a space is $\epsilon$-good, a PRM may have a difficult time connecting two regions.  (b) A $\beta$-lookout of a set $X$ is the subset of $X$ that can see a $\beta$ fraction of its complement.  (c)  A narrow passage causes certain $\beta$-lookouts to have small volume, reducing the expansiveness of the space.  (d) A convex set is maximally expansive ($\beta=1$). </div><hr>
+<div class="figcaption"><b>Figure 5</b>. (a) Even if a space is $\epsilon$-good, a PRM may have a difficult time connecting two regions.  (b) A $\beta$-lookout of a set $X$ is the subset of $X$ that can see a $\beta$ fraction of its complement.  (c)  A narrow passage causes certain $\beta$-lookouts to have small volume, reducing the expansiveness of the space.  (d) A convex set is maximally expansive ($\beta=1$). </div><hr>
 <p>More formally, we describe a simplified version of the argument in Hsu et al 97. Let us define the $\beta$<em>-lookout</em> of a subset $X\subset \mathcal{F}$ as the subset of configurations in $X$ that can see an $\beta$-fraction of the complement of $X$.  Mathematically, this is defined as follows:</p>
 <blockquote><p>The $\mathbf{\beta}$<strong>-lookout</strong> of $X$ is the set $\beta\text{-lookout}(X) = \{ q \in X\,|\,\mu(\mathcal{V}(q)\cap \bar{X}) \geq \alpha \mu(\bar{X}) \}$, where $\bar{X} = \mathcal{F} \setminus X$ is the complement of $X$.</p>
 </blockquote>
@@ -13747,8 +13770,9 @@ PRM. However, RRT performance is generally more sensitive to the choice
 of a distance metric, and is generally better at exploring than
 refining.</p>
 <hr>
+<p><a name="fig:RRTBugtrap"></a></p>
 <p><img src="figures/planning/bugtrap.svg" alt="fig:RRTBugtrap"></p>
-<div class="figcaption"><a name="fig:RRTBugtrap">Figure 6</a>
+<div class="figcaption"><b>Figure 6</b>
 To escape the mouth of a bugtrap, an RRT needs to sample a very
 carefully chosen sequence of milestones within the general area that it
 has already explored. But due to the Voronoi bias, it frequently
@@ -13916,7 +13940,28 @@ $Pr(\lim_{n\rightarrow \infty} c(n) - c^\star) \neq 0)=0$.</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="PRM*-and-RRT*">PRM* and RRT*<a class="anchor-link" href="#PRM*-and-RRT*">&#182;</a></h4><p>PRM has been shown to be asymptotically-optimal using the $R$-neighborhood connection strategy, but not the $k$-nearest neighbors strategy.  Using the $R$ neighborhood strategy, however, in the limit of large $n$ eventually tries to connect $O(n^2)$ milestones.  It has been proven that using a <em>dynamically choice</em> of $R$ and $k$ can lead to an asymptotically optimal PRM planner, specifically the values of $R^\star(n) \propto (\frac{\log n}{n})^{1/d}$ and $k^\star(n) \propto \log n$.  Note that $R^\star$ shrinks towards zero and $k^\star$ grows, so that in both cases, each new milestone is expected to be connected to $O(\log n)$ milestones, which grows asymptotically.  Hence, the number of edges in the roadmap is expected to be $O(n \log n)$.  (Note that there is a constant factor in these expressions that depends on the volume of free space and distance measure, and must be set sufficiently large or else asymptotic optimality no longer holds.)</p>
-<p>TODO: add figures on PRM and the shrinking radius / growing k.</p>
+<hr>
+<p><a name="fig:PRMStar"></a></p>
+<table>
+<thead><tr>
+<th>(a) PRM, $k=5$ neighbors</th>
+<th>(b) PRM, $R=0.1$ connections</th>
+<th>(c) PRM*</th>
+<th>(d) RRT*</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="figures/planning/prm_knn.gif" alt="fig:PRMStar_a"></td>
+<td><img src="figures/planning/prm_neighborhood.gif" alt="fig:PRMStar_b"></td>
+<td><img src="figures/planning/prmstar.gif" alt="fig:PRMStar_c"></td>
+<td><img src="figures/planning/rrtstar.gif" alt="fig:PRMStar_d"></td>
+</tr>
+</tbody>
+</table>
+<div class="figcaption"><b>Figure 7</b>. 
+    Convergence of various PRM and RRT variants.  The fixed-$k$ strategy is not asymptotically optimal.
+    </div><hr>
 <p>RRT has been shown not to be asymptotically-optimal in any case, since the history-dependence of its tree growth strategy from the nearest configuration in the tree prevents it from taking advantage of shorter paths that may arise. The RRT* algorithm introduces a new technique called "rewiring" that, upon expanding the tree, changes the tree structure if it is possible to improve path lengths by passing through a different nearby milestone.  Let us assume a unidirectional RRT.  The main differences introduced to RRT are:</p>
 <ol>
 <li>Optimal costs $c(q)$ through $T$ are stored at each node $q$, and updated during Extend-Tree and Rewire.</li>
@@ -13961,11 +14006,11 @@ $Pr(\lim_{n\rightarrow \infty} c(n) - c^\star) \neq 0)=0$.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Convergence-rate">Convergence rate<a class="anchor-link" href="#Convergence-rate">&#182;</a></h4><p>Due to their proven asymptotic optimality and relative ease of implementation, PRM* and RRT* have gained wide acceptance, and have spawned many variants.  However, we should ask how quickly does the path converge to optimal?</p>
+<h4 id="Convergence-rate">Convergence rate<a class="anchor-link" href="#Convergence-rate">&#182;</a></h4><p>Due to their proven asymptotic optimality and relative ease of implementation, PRM* and RRT* have gained wide acceptance, and have spawned many variants. But how quickly do these planners converge to optimal?</p>
 <p>First of all, PRM* and RRT* run slower than their normal counterparts to find the first feasible path, because they do more work per iteration.  One way of mitigating this in RRT* is to disable the rewiring step until a first feasible path is found, in which case the algorithm begins identically to RRT.</p>
-<p>Secondly, PRM* and RRT* perform $N$ configuration feasibility checks and $O(n \log n)$ edge visibility checks.  The number of configuration checks is the same as in PRM and RRT, but PRM performs $kn$ edge checks and RRT performs $n$. So for the same number of samples, we pay a logarithmic price for asymptotic optimality.</p>
+<p>Secondly, PRM* and RRT* perform $n$ configuration feasibility checks and $O(n \log n)$ edge visibility checks.  The number of configuration checks is the same as in PRM and RRT, but PRM performs $kn$ edge checks and RRT performs $n$. So we pay a logarithmic factor of computation speed to gain asymptotic optimality.</p>
 <p>Third, the number of milestones needed to obtain a desired decrease in the suboptimality of the best path is exponential in the dimensionality.  Examine two cases: either a) the planner does not yet have a path in the homotopy class of the optimal path, and hence must explore the space further globally to make progress, and b) the planner has a path fairly close to the optimal path and can just perform local sampling to improve the current best path.  In case a), it can be shown that for any planner that only performs binary collision queries, the expected number of samples needed to obtain a solution in the optimal homotopy class is $\Omega(\delta^{-d})$ (that is, at least a constant times $\delta^{-d}$) where $\delta$ is the clearance of a path in the optimal homotopy class.  The counterexample is shown below: the optimal path passes through the tiny block, and its visibility set volume is $O(\delta^{d})$, and at least two samples need to be placed there.</p>
-<p>Now, we can also show that for a sampling based planner to locally reduce the cost of the current best path, it must place samples in a region with volume $O((c(n)-c^\star)^{d-1})$.</p>
+<p>To address case b), we can also show that for a sampling based planner to locally reduce the cost of the current best path, it must place samples in a region with volume $O((c(n)-c^\star)^{d-1})$.</p>
 <p>TODO: expand on this and show figures</p>
 
 </div>
@@ -13977,11 +14022,12 @@ $Pr(\lim_{n\rightarrow \infty} c(n) - c^\star) \neq 0)=0$.</p>
 <h3 id="Shortcutting">Shortcutting<a class="anchor-link" href="#Shortcutting">&#182;</a></h3><p>As noted above, PRM and RRT are only concerned with finding a feasible
 path, and often produce jerky, unnatural paths. Shortcutting is a very
 useful postprocessing heuristic, illustrated in
-<a href="#fig:Shortcutting">Figure 7</a>, in which portions of a path are
+<a href="#fig:Shortcutting">Figure 9</a>, in which portions of a path are
 repeatedly replaced with shorter, feasible segments.</p>
 <hr>
+<p><a name="fig:Shortcutting"></a></p>
 <p><img src="figures/planning/shortcutting.svg" alt="fig:Shortcutting"></p>
-<div class="figcaption"><a name="fig:Shortcutting">Figure 7.</a>
+<div class="figcaption"><b>Figure 9.</b>
    A shortcutting heuristic can quickly smooth out the jerkiest parts of
 paths that are generated by a sampling-based planner.
     </div><hr>
@@ -14022,8 +14068,9 @@ outperform RRT* (or PRM*)!</p>
 <li>Return Visible-Recurse$(a,m,\epsilon)$ $\wedge$  Visible-Recurse$(m,b,\epsilon)$.</li>
 </ol>
 <hr>
-<p>This approach is illustrated in <a href="#fig:dynamic-cc">Figure 8.a</a>.</p>
+<p>This approach is illustrated in <a href="#fig:dynamic-cc">Figure 10.a</a>.</p>
 <hr>
+<p><a name="fig:dynamic-cc"></a></p>
 <table>
 <thead><tr>
 <th>(a) Approximate dynamic CC with recursion</th>
@@ -14037,10 +14084,10 @@ outperform RRT* (or PRM*)!</p>
 </tr>
 </tbody>
 </table>
-<div class="figcaption"><a name="fig:dynamic-cc">Figure 8.</a>
+<div class="figcaption"><b>Figure 10.</b>
    Approximate and exact dynamic collision checking methods.
     </div><hr>
-<p>Although this approximate technique is by far the most widely used in practice, <em>exact</em> dynamic collision checking methods are also available.  These methods are based on similar recursions, but use additional information about the clearance of a configuration.  Recall that the clearance $c(q)$ of a configuration is the distance in C-space to the nearest C-obstacle.  If we can show that $d(a,b) \leq c(a)+c(b)$, then we can be certain that $\overline{ab}$ is collision free (<a href="#fig:dynamic-cc">Figure 8.b</a>).  This is because the balls centered at $a$ and $b$ with radii $c(a)$ and $c(b)$, overlap, are in free space, and contain $\overline{ab}$ in their union.  (In most cases, however, we do not have access to an exact clearance function, but this reasoning still works when $c(q)$ is any lower bound on clearance.)  This gives the following exact algorithm:</p>
+<p>Although this approximate technique is by far the most widely used in practice, <em>exact</em> dynamic collision checking methods are also available.  These methods are based on similar recursions, but use additional information about the clearance of a configuration.  Recall that the clearance $c(q)$ of a configuration is the distance in C-space to the nearest C-obstacle.  If we can show that $d(a,b) \leq c(a)+c(b)$, then we can be certain that $\overline{ab}$ is collision free (<a href="#fig:dynamic-cc">Figure 10.b</a>).  This is because the balls centered at $a$ and $b$ with radii $c(a)$ and $c(b)$, overlap, are in free space, and contain $\overline{ab}$ in their union.  (In most cases, however, we do not have access to an exact clearance function, but this reasoning still works when $c(q)$ is any lower bound on clearance.)  This gives the following exact algorithm:</p>
 <hr>
 <p><a name="alg:Visible-Exact1"></a>
 <strong>Algorithm Visible-Exact1</strong>($a,b$)</p>
@@ -14096,7 +14143,26 @@ outperform RRT* (or PRM*)!</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="k-d-trees">k-d trees<a class="anchor-link" href="#k-d-trees">&#182;</a></h4><p>A <em>$k$-d tree</em> data structure is a spatial hierarchy that recursively divides a Cartesian space $\mathbb{R}^k$ into regions by splitting each region by a hyperplane.  <em>The $k$ here refers to the number of dimensions in the space, not the $k$ in the kNN query.  In the following, let us revert back to our original notation where dimensionality is denoted $d$.</em>  Each hyperplane is aligned to one of the $d$ primary axes.  An illustration of a k-d tree is shown below.</p>
-<p>TODO: k-d tree illustration.</p>
+<hr>
+<p><a name="fig:KDTrees"></a></p>
+<table>
+<thead><tr>
+<th>(a) k-d tree holding 14 2-D points</th>
+<th>(b) First leaf reached in NN query</th>
+<th>(c) Second leaf reached in NN query </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="figures/planning/kdtree.svg" alt="fig:KDTrees_a"></td>
+<td><img src="figures/planning/kdtree_query1.svg" alt="fig:KDTrees_b"></td>
+<td><img src="figures/planning/kdtree_query2.svg" alt="fig:KDTrees_c"> </td>
+</tr>
+</tbody>
+</table>
+<div class="figcaption"><b>Figure 11</b>.
+(a) $k$-d trees recursively divide a space into rectilinear regions.  Each leaf of the tree contains a set of points contained in that region.  (b) For a nearest-neighbor query (blue point), the leaf containing the point is reached first, and the closest point in the leaf is found (blue circle). This forms an upper bound on the nearest neighbor's distance, and any leaves further than this distance will be pruned.  (c) Only one more leaf is visited before the nearest neighbor is found.
+</div><hr>
 <p>More formally, the binary tree $T_{kd}$ is composed of nodes $N$.  Each leaf node contains a list of contained points <code>pts</code>, and each non-leaf node contains a split dimension <code>dim</code> and split value <code>value</code>.  Non-leaf nodes have exactly two children $C^-$, and $C^+$, and all points $q \in \mathbb{R}^d$ such that $q_{dim} &lt; value$ belong to the <em>negative</em> child $C^-$, while points such that $q_{dim} \geq value$ belong to the <em>positive</em> child $C^+$.</p>
 <p>We will describe how to query for the closest point (NN), with the kNN and near queries implemented similarly. We traverse the tree in a branch-and-bound manner similar to the <a href="Geometry.ipynb#Bounding-volume-hierarchies">bounding volume hierarchy</a> approach.  Let's assume the Euclidean distance is used.  We maintain a closest point $p_{close}$, initialized by picking a point from $P$ at random.  We proceed examining nodes $N$ recursively starting from $N=root(T_{kd})$. Psuedocode is below:</p>
 <hr>
@@ -14316,6 +14382,7 @@ the boundary of an obstacle. To avoid huge jumps (or little movement at
 all) in the path it makes sense to dynamically set the mass to be
 proportional to the magnitude of the force. In this way, consistent rate
 of progress is ensured as the path evolves.</p>
+<p>TODO: Figure 13</p>
 <p>This method works well when the robot simply needs to move slightly away
 from a straight line path to avoid obstacles, provided that obstacles
 are relatively convex and spatially distant. Its main advantages are 1)
@@ -14342,6 +14409,7 @@ $\theta$ dictates the shape of some path, and any piecewise linear path
 with $k$ segments corresponds to some value of $\theta$. To make this
 dependence clear, we shall refer to the path defined by some value
 $\theta$ as $y_\theta$.</p>
+<p>TODO: Figure 14</p>
 <p>If the dimension of C-space is $d$, then $N = d(k-1)$. Hence the
 trajectory optimization problem can be quite high dimensional (hundreds
 or thousands of dimensions) even for C-spaces with a moderate number of
