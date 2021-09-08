@@ -12947,8 +12947,13 @@ ul.typeahead-list  > li > a.pull-right {
 /*# sourceMappingURL=style.min.css.map */
     </style>
 <style type="text/css">
-    .highlight .hll { background-color: #ffffcc }
-.highlight  { background: #f8f8f8; }
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
 .highlight .c { color: #408080; font-style: italic } /* Comment */
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
@@ -13017,45 +13022,6 @@ ul.typeahead-list  > li > a.pull-right {
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
-<style type="text/css">
-    
-/* Temporary definitions which will become obsolete with Notebook release 5.0 */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-bold { font-weight: bold; }
-
-    </style>
 
 
 <style type="text/css">
@@ -13089,7 +13055,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -14081,8 +14047,8 @@ in Klamp't, the following code prints the end effector position of the
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Code for doing basic forward kinematics with Klamp&#39;t</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span><span class="n">division</span>
-<span class="kn">from</span> <span class="nn">klampt</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span><span class="n">division</span>
+<span class="kn">from</span> <span class="nn">klampt</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="n">world</span> <span class="o">=</span> <span class="n">WorldModel</span><span class="p">()</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">readFile</span><span class="p">(</span><span class="s2">&quot;data/planar2R.urdf&quot;</span><span class="p">)</span>
@@ -14162,7 +14128,7 @@ World position of the end_effector frame [0.7071067811865478, 1.7071067811865475
    </head>
    <body style=&quot;margin:0px;height:100%;overflow:hidden;&quot;>
      <script>
-  
+
 (function(l,ya){&quot;object&quot;===typeof exports&&&quot;undefined&quot;!==typeof module?ya(exports):&quot;function&quot;===typeof define&&define.amd?define([&quot;exports&quot;],ya):ya(l.THREE={})})(this,function(l){function ya(){}function z(a,b){this.x=a||0;this.y=b||0}function I(){this.elements=[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1];0<arguments.length&&console.error(&quot;THREE.Matrix4: the constructor no longer reads arguments. use .set() instead.&quot;)}function fa(a,b,c,d){this._x=a||0;this._y=b||0;this._z=c||0;this._w=void 0!==d?d:1}function p(a,
 b,c){this.x=a||0;this.y=b||0;this.z=c||0}function ra(){this.elements=[1,0,0,0,1,0,0,0,1];0<arguments.length&&console.error(&quot;THREE.Matrix3: the constructor no longer reads arguments. use .set() instead.&quot;)}function T(a,b,c,d,e,f,g,h,k,m){Object.defineProperty(this,&quot;id&quot;,{value:Ef++});this.uuid=H.generateUUID();this.name=&quot;&quot;;this.image=void 0!==a?a:T.DEFAULT_IMAGE;this.mipmaps=[];this.mapping=void 0!==b?b:T.DEFAULT_MAPPING;this.wrapS=void 0!==c?c:1001;this.wrapT=void 0!==d?d:1001;this.magFilter=void 0!==
 e?e:1006;this.minFilter=void 0!==f?f:1008;this.anisotropy=void 0!==k?k:1;this.format=void 0!==g?g:1023;this.type=void 0!==h?h:1009;this.offset=new z(0,0);this.repeat=new z(1,1);this.center=new z(0,0);this.rotation=0;this.matrixAutoUpdate=!0;this.matrix=new ra;this.generateMipmaps=!0;this.premultiplyAlpha=!1;this.flipY=!0;this.unpackAlignment=4;this.encoding=void 0!==m?m:3E3;this.version=0;this.onUpdate=null}function V(a,b,c,d){this.x=a||0;this.y=b||0;this.z=c||0;this.w=void 0!==d?d:1}function fb(a,
@@ -15498,7 +15464,7 @@ THREE.TrackballControls = function ( object, domElement ) {
 
   };
 
-  
+
   function mousedown( event ) {
     if ( _this.enabled === false ) return;
 
@@ -15857,12 +15823,12 @@ function KlamptFrontend(dom_sceneArea) {
         if(object != null)
         { 
           //console.log(&quot;  we found \&quot;&quot; + sceneObjects[i].name + &quot;\&quot; in the Three.js scene&quot;);
-                         
+
           object.matrixAutoUpdate=false;
           object.matrixWorldNeedsUpdate=true;
-        
+
           var m=sceneObjects[i].matrix;
-     
+
           object.matrix.set(m[0],m[4],m[8],m[12],m[1],m[5],m[9],m[13],m[2],m[6],m[10],m[14],m[3],m[7],m[11],m[15]);
         } 
         else {
@@ -15977,9 +15943,9 @@ function KlamptFrontend(dom_sceneArea) {
         var object_name=request.object;
         var rgba=request.rgba;
         var recursive=request.recursive;
-                                                   
+
         //console.log(&quot;set_color requested. object: &quot; + object_name + &quot; rgba: &quot; + rgba); 
-        
+
         var obj = getObject(object_name);
         if(obj == null) {
           console.log(&quot;KLAMPT.rpc: Invalid object name &quot;+object_name+&quot; specified in set_color&quot;);
@@ -15989,7 +15955,7 @@ function KlamptFrontend(dom_sceneArea) {
            //if(!is_undefined_or_null(typeof object.material))
            //{
             //  console.log(&quot;first checking if we've working this this material before&quot;);
-                                                              
+
               if (recursive == true)
               {
                 if(is_undefined_or_null(obj.material)) {
@@ -16021,7 +15987,7 @@ function KlamptFrontend(dom_sceneArea) {
                     obj.userData.customSingleMaterialSetup=true;
                  }
               }
-              
+
 
               obj.material.color.setRGB(rgba[0],rgba[1],rgba[2]);
               if(rgba[3]!=1.0)
@@ -16048,9 +16014,9 @@ function KlamptFrontend(dom_sceneArea) {
      {
         var object_name=request.object;
         var visible=request.value;
-                                                   
+
         //console.log(&quot;set_visible requested. object: &quot; + object_name + &quot; visible: &quot; + visible); 
-        
+
         var object = getObject(object_name);
         if(object == null) {
           console.log(&quot;KLAMPT.rpc: Invalid object name &quot;+object_name+&quot; specified in set_visible&quot;);
@@ -16063,7 +16029,7 @@ function KlamptFrontend(dom_sceneArea) {
      {
         var object_name=request.object;
         var prefix=request.prefix_name;
-                                                   
+
         //console.log(&quot;add_ghost requested. object: &quot; + object_name + &quot; prefix: &quot; + prefix); 
         var old_ghost = getObject(prefix+object_name);
         if(old_ghost == null) { 
@@ -16101,7 +16067,7 @@ function KlamptFrontend(dom_sceneArea) {
           if(object.matrix) {
             object.matrixAutoUpdate=false;
             object.matrixWorldNeedsUpdate=true;
-          
+
             var m=request.matrix;
             //console.log(m);
             object.matrix.set(m[0],m[1],m[2],m[3],m[4],m[5],m[6],m[7],m[8],m[9],m[10],m[11],m[12],m[13],m[14],m[15]);
@@ -16126,7 +16092,7 @@ function KlamptFrontend(dom_sceneArea) {
           //text2.style.backgroundColor = &quot;blue&quot;;
           if(request.text!=null)
              text2.innerHTML = request.text;
-             
+
           text2.style.top = request.y + '%';
           text2.style.left = request.x + '%';
           this.sceneArea.appendChild(text2);
@@ -16154,11 +16120,11 @@ function KlamptFrontend(dom_sceneArea) {
           var sphere = new THREE.Mesh( geometry, material );
           sphere.userData.customSharedMaterialSetup=true;
           sphere.castShadow = true;
-          
+
           sphere.scale.x=request.r;
           sphere.scale.y=request.r;
           sphere.scale.z=request.r;
-          
+
           sphere.position.set(request.x,request.y,request.z);
           addObject(request.name,sphere);
         }
@@ -16179,12 +16145,12 @@ function KlamptFrontend(dom_sceneArea) {
         var line = getObject(request.name);
         if(line == null) {
           var geometry = new THREE.Geometry();
-          
+
           for(var i=0;i<request.verts.length;i+=3) {
             geometry.vertices.push(new THREE.Vector3(request.verts[i],request.verts[i+1],request.verts[i+2]));
           }
           geometry.dynamic  = true;
-             
+
           var material = new THREE.LineBasicMaterial( {color: 0xAA0000} );
           if(!is_undefined_or_null(request.width)) {
             material.linewidth = request.width;
@@ -16517,7 +16483,7 @@ function KlamptFrontend(dom_sceneArea) {
        //console.log(&quot;Call to load tranforms &quot; + (t1 - t0) + &quot; milliseconds.&quot;);
     }
 
-    
+
     var rpc =dataJ.RPC;
     if(rpc) {
       var t1 = performance.now();
@@ -16651,7 +16617,7 @@ function KlamptFrontend(dom_sceneArea) {
     this.render();
   }
   this.reset_scene();
-  
+
   return this;
 } //end KlamptFrontend constructor
 
@@ -16898,7 +16864,7 @@ var KLAMPT = { KlamptFrontend: KlamptFrontend };
   <a href=&quot;http://klampt.org&quot;><img src=&quot;http://motion.cs.illinois.edu/klampt/powered_by_klampt_transparent.png&quot; class=&quot;logo&quot;></a>
   <div id=&quot;canvas&quot; style=&quot;position:absolute; top:0; left:0; display:block; width:100%; height:100%; margin:0px; padding:0px;&quot;></div>
 </div>
-            
+
 <script>
 
 function draw_path(c2,path,w,h) {
@@ -17017,7 +16983,7 @@ baseObj[funcName] = function(callback, context) {
 })(&quot;docReady&quot;, window);
 
    window.docReady(function() {
-     
+
       if(klampt_frontend == null) {
         init();
       }

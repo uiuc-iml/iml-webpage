@@ -12970,8 +12970,13 @@ ul.typeahead-list  > li > a.pull-right {
 /*# sourceMappingURL=style.min.css.map */
     </style>
 <style type="text/css">
-    .highlight .hll { background-color: #ffffcc }
-.highlight  { background: #f8f8f8; }
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
 .highlight .c { color: #408080; font-style: italic } /* Comment */
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
@@ -13040,45 +13045,6 @@ ul.typeahead-list  > li > a.pull-right {
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
-<style type="text/css">
-    
-/* Temporary definitions which will become obsolete with Notebook release 5.0 */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-bold { font-weight: bold; }
-
-    </style>
 
 
 <style type="text/css">
@@ -13112,7 +13078,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -14344,7 +14310,7 @@ A cube is represented by an indexed triangle mesh, given by 8 vertices and 12 tr
    </head>
    <body style=&quot;margin:0px;height:100%;overflow:hidden;&quot;>
      <script>
-  
+
 (function(l,ya){&quot;object&quot;===typeof exports&&&quot;undefined&quot;!==typeof module?ya(exports):&quot;function&quot;===typeof define&&define.amd?define([&quot;exports&quot;],ya):ya(l.THREE={})})(this,function(l){function ya(){}function z(a,b){this.x=a||0;this.y=b||0}function I(){this.elements=[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1];0<arguments.length&&console.error(&quot;THREE.Matrix4: the constructor no longer reads arguments. use .set() instead.&quot;)}function fa(a,b,c,d){this._x=a||0;this._y=b||0;this._z=c||0;this._w=void 0!==d?d:1}function p(a,
 b,c){this.x=a||0;this.y=b||0;this.z=c||0}function ra(){this.elements=[1,0,0,0,1,0,0,0,1];0<arguments.length&&console.error(&quot;THREE.Matrix3: the constructor no longer reads arguments. use .set() instead.&quot;)}function T(a,b,c,d,e,f,g,h,k,m){Object.defineProperty(this,&quot;id&quot;,{value:Ef++});this.uuid=H.generateUUID();this.name=&quot;&quot;;this.image=void 0!==a?a:T.DEFAULT_IMAGE;this.mipmaps=[];this.mapping=void 0!==b?b:T.DEFAULT_MAPPING;this.wrapS=void 0!==c?c:1001;this.wrapT=void 0!==d?d:1001;this.magFilter=void 0!==
 e?e:1006;this.minFilter=void 0!==f?f:1008;this.anisotropy=void 0!==k?k:1;this.format=void 0!==g?g:1023;this.type=void 0!==h?h:1009;this.offset=new z(0,0);this.repeat=new z(1,1);this.center=new z(0,0);this.rotation=0;this.matrixAutoUpdate=!0;this.matrix=new ra;this.generateMipmaps=!0;this.premultiplyAlpha=!1;this.flipY=!0;this.unpackAlignment=4;this.encoding=void 0!==m?m:3E3;this.version=0;this.onUpdate=null}function V(a,b,c,d){this.x=a||0;this.y=b||0;this.z=c||0;this.w=void 0!==d?d:1}function fb(a,
@@ -15680,7 +15646,7 @@ THREE.TrackballControls = function ( object, domElement ) {
 
   };
 
-  
+
   function mousedown( event ) {
     if ( _this.enabled === false ) return;
 
@@ -16039,12 +16005,12 @@ function KlamptFrontend(dom_sceneArea) {
         if(object != null)
         { 
           //console.log(&quot;  we found \&quot;&quot; + sceneObjects[i].name + &quot;\&quot; in the Three.js scene&quot;);
-                         
+
           object.matrixAutoUpdate=false;
           object.matrixWorldNeedsUpdate=true;
-        
+
           var m=sceneObjects[i].matrix;
-     
+
           object.matrix.set(m[0],m[4],m[8],m[12],m[1],m[5],m[9],m[13],m[2],m[6],m[10],m[14],m[3],m[7],m[11],m[15]);
         } 
         else {
@@ -16159,9 +16125,9 @@ function KlamptFrontend(dom_sceneArea) {
         var object_name=request.object;
         var rgba=request.rgba;
         var recursive=request.recursive;
-                                                   
+
         //console.log(&quot;set_color requested. object: &quot; + object_name + &quot; rgba: &quot; + rgba); 
-        
+
         var obj = getObject(object_name);
         if(obj == null) {
           console.log(&quot;KLAMPT.rpc: Invalid object name &quot;+object_name+&quot; specified in set_color&quot;);
@@ -16171,7 +16137,7 @@ function KlamptFrontend(dom_sceneArea) {
            //if(!is_undefined_or_null(typeof object.material))
            //{
             //  console.log(&quot;first checking if we've working this this material before&quot;);
-                                                              
+
               if (recursive == true)
               {
                 if(is_undefined_or_null(obj.material)) {
@@ -16203,7 +16169,7 @@ function KlamptFrontend(dom_sceneArea) {
                     obj.userData.customSingleMaterialSetup=true;
                  }
               }
-              
+
 
               obj.material.color.setRGB(rgba[0],rgba[1],rgba[2]);
               if(rgba[3]!=1.0)
@@ -16230,9 +16196,9 @@ function KlamptFrontend(dom_sceneArea) {
      {
         var object_name=request.object;
         var visible=request.value;
-                                                   
+
         //console.log(&quot;set_visible requested. object: &quot; + object_name + &quot; visible: &quot; + visible); 
-        
+
         var object = getObject(object_name);
         if(object == null) {
           console.log(&quot;KLAMPT.rpc: Invalid object name &quot;+object_name+&quot; specified in set_visible&quot;);
@@ -16245,7 +16211,7 @@ function KlamptFrontend(dom_sceneArea) {
      {
         var object_name=request.object;
         var prefix=request.prefix_name;
-                                                   
+
         //console.log(&quot;add_ghost requested. object: &quot; + object_name + &quot; prefix: &quot; + prefix); 
         var old_ghost = getObject(prefix+object_name);
         if(old_ghost == null) { 
@@ -16283,7 +16249,7 @@ function KlamptFrontend(dom_sceneArea) {
           if(object.matrix) {
             object.matrixAutoUpdate=false;
             object.matrixWorldNeedsUpdate=true;
-          
+
             var m=request.matrix;
             //console.log(m);
             object.matrix.set(m[0],m[1],m[2],m[3],m[4],m[5],m[6],m[7],m[8],m[9],m[10],m[11],m[12],m[13],m[14],m[15]);
@@ -16308,7 +16274,7 @@ function KlamptFrontend(dom_sceneArea) {
           //text2.style.backgroundColor = &quot;blue&quot;;
           if(request.text!=null)
              text2.innerHTML = request.text;
-             
+
           text2.style.top = request.y + '%';
           text2.style.left = request.x + '%';
           this.sceneArea.appendChild(text2);
@@ -16336,11 +16302,11 @@ function KlamptFrontend(dom_sceneArea) {
           var sphere = new THREE.Mesh( geometry, material );
           sphere.userData.customSharedMaterialSetup=true;
           sphere.castShadow = true;
-          
+
           sphere.scale.x=request.r;
           sphere.scale.y=request.r;
           sphere.scale.z=request.r;
-          
+
           sphere.position.set(request.x,request.y,request.z);
           addObject(request.name,sphere);
         }
@@ -16361,12 +16327,12 @@ function KlamptFrontend(dom_sceneArea) {
         var line = getObject(request.name);
         if(line == null) {
           var geometry = new THREE.Geometry();
-          
+
           for(var i=0;i<request.verts.length;i+=3) {
             geometry.vertices.push(new THREE.Vector3(request.verts[i],request.verts[i+1],request.verts[i+2]));
           }
           geometry.dynamic  = true;
-             
+
           var material = new THREE.LineBasicMaterial( {color: 0xAA0000} );
           if(!is_undefined_or_null(request.width)) {
             material.linewidth = request.width;
@@ -16699,7 +16665,7 @@ function KlamptFrontend(dom_sceneArea) {
        //console.log(&quot;Call to load tranforms &quot; + (t1 - t0) + &quot; milliseconds.&quot;);
     }
 
-    
+
     var rpc =dataJ.RPC;
     if(rpc) {
       var t1 = performance.now();
@@ -16833,7 +16799,7 @@ function KlamptFrontend(dom_sceneArea) {
     this.render();
   }
   this.reset_scene();
-  
+
   return this;
 } //end KlamptFrontend constructor
 
@@ -17080,7 +17046,7 @@ var KLAMPT = { KlamptFrontend: KlamptFrontend };
   <a href=&quot;http://klampt.org&quot;><img src=&quot;http://motion.cs.illinois.edu/klampt/powered_by_klampt_transparent.png&quot; class=&quot;logo&quot;></a>
   <div id=&quot;canvas&quot; style=&quot;position:absolute; top:0; left:0; display:block; width:100%; height:100%; margin:0px; padding:0px;&quot;></div>
 </div>
-            
+
 <script>
 
 function draw_path(c2,path,w,h) {
@@ -17199,7 +17165,7 @@ baseObj[funcName] = function(callback, context) {
 })(&quot;docReady&quot;, window);
 
    window.docReady(function() {
-     
+
       if(klampt_frontend == null) {
         init();
       }
@@ -18400,7 +18366,7 @@ would arise when due to the nature of point cloud data?</p>
  
 
 <script type="application/vnd.jupyter.widget-state+json">
-{"state": {"1407944fe9da4b84a5d6642ce0b59c9b": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "db107ef6f90845d496b7f8541ca4d879": {"state": {"_camera": {}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_c455cf0b21bd40498df72baa2e7dc4d2", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "9bbe4462091b41abab0c9c27dbde7ad0": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "927c95fdb4274e1390cd09aacac62f3b": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "35d3fe62703e4ae4b5ee822873d4f9ca": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "b6d041b43a7d4a628fa15c70336ef361": {"state": {"_camera": {}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_54f8eda2d0414632a70e23e2cc743f5a", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "0f9ae4ccc6f145d0a2e10160f1a203d4": {"state": {"_camera": {}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_9bbe4462091b41abab0c9c27dbde7ad0", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "04ef640601f64982a43b0f878eb683ad": {"state": {"_camera": {"up": {"x": 0, "y": 0, "z": 1}, "r": 1, "target": {"x": 3, "y": 0, "z": 0}, "position": {"x": -2, "y": 0, "z": 0}}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_a774af56e4804920af61e3af9dfc223a", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "aaf2dc13a65445e7a5f3306c45c01a4e": {"state": {"_camera": {}, "rpc": {}, "width": 800, "transforms": {}, "height": 600, "scene": {}, "layout": "IPY_MODEL_b26b7e02f869487dbf4e10860112e56a", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "dc66441cacad4842b687f4c58ae40340": {"state": {"_camera": {}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_8ba315ba60564fa4bc0258e6d1eb44f3", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "d07ce36c5c344bca9950b8875aa6bde5": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "9649e2fdc595493088468ce02b13cc98": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "62d500c4450f445eb5a1d7ab3a1f66a0": {"state": {"_camera": {}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_9649e2fdc595493088468ce02b13cc98", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "50fe5219488a4da8be264918ffc8e4f8": {"state": {"_camera": {}, "rpc": {}, "width": 800, "transforms": {}, "height": 600, "scene": {}, "layout": "IPY_MODEL_125343a7c90f487e9e4ff9e2fabfc228", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "091f52e77e824ad3868ac7fade38f048": {"state": {"_camera": {}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_927c95fdb4274e1390cd09aacac62f3b", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "12b85abbbd4b4eae9a59a7a4a93ac36d": {"state": {"_camera": {"up": {"x": 0, "y": 0, "z": 1}, "r": 1, "target": {"x": 3, "y": 0, "z": 0}, "position": {"x": 0, "y": 0, "z": 0}}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_c6a724947a034cd7a099c46984f89321", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "98907808b663441693ae326551361518": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "dd5f103e95be4a128aa6c9e1d19af836": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "55bd61fa101b47f7a34b515e5e7e4338": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "2f45f9d29425480ead090dfd07edf478": {"state": {"_camera": {}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_0764bc16b4b6461c9f958206970fa996", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "8df2409c5ba94c3887a48bf54564d084": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "7e80910941e24196a72b9c319f4a9cfc": {"state": {"_camera": {}, "rpc": {}, "width": 800, "transforms": {}, "height": 600, "scene": {}, "layout": "IPY_MODEL_8b6f715068254b1dba053125bca36444", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "55c3237434954e7f8e92b29f82d4cdf5": {"state": {"_camera": {}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_0c74d871f4a947ceb926ad18eba93e16", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "a67589d31ac54397901168acce90baa8": {"state": {"_camera": {"up": {"x": 0, "y": 1, "z": 0}, "r": 1, "target": {"x": 3, "y": 0, "z": 0}, "position": {"x": 0, "y": 0, "z": 0}}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_d07ce36c5c344bca9950b8875aa6bde5", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "772af292784647bca1ad0d2529666da2": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "fbfcd9cf5cb149609cdcf060c238a5c7": {"state": {"_camera": {}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_98907808b663441693ae326551361518", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "a774af56e4804920af61e3af9dfc223a": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "87b49d3790094567892a72162273c45e": {"state": {"_camera": {"up": {"x": 0, "y": 0, "z": 1}, "r": 1, "target": {"x": 3, "y": 0, "z": 0}, "position": {"x": -2, "y": 0, "z": 0}}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_35d3fe62703e4ae4b5ee822873d4f9ca", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "8b71fb99839f45d2b0fff84ea276aab3": {"state": {"_camera": {}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_5565b92f391a4af0a625a1d8817c2332", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "5384118629904b65abe56fd4ef94d03f": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "cb24fa68da29472e84a996423e19f820": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "c6a724947a034cd7a099c46984f89321": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "108d796838a74c7598845e55264256f6": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "54f8eda2d0414632a70e23e2cc743f5a": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "a93603802c3446a1bf3f1cfe6bad22ec": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "25525feb2e5a427c97ea702c1b7f7a68": {"state": {"_camera": {}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_1407944fe9da4b84a5d6642ce0b59c9b", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "b26b7e02f869487dbf4e10860112e56a": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "fafea56d7efe4acabf907842497b2bb5": {"state": {"_camera": {"up": {"x": 0, "y": 0, "z": 1}, "r": 1, "target": {"x": 3, "y": 0, "z": 0}, "position": {"x": -2, "y": 0, "z": 0}}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_772af292784647bca1ad0d2529666da2", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "a36919730b5740cd852e9524969cbf93": {"state": {"_camera": {}, "rpc": {}, "width": 800, "transforms": {}, "height": 600, "scene": {}, "layout": "IPY_MODEL_d5b295b310ea490197d86928b7f80c3b", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "d5b295b310ea490197d86928b7f80c3b": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "125343a7c90f487e9e4ff9e2fabfc228": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "9bbc34c892dd4b7886750e5a339a4678": {"state": {"_camera": {}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_55bd61fa101b47f7a34b515e5e7e4338", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "5565b92f391a4af0a625a1d8817c2332": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "06c023027ed946dea721a55ed0e72366": {"state": {"_camera": {}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_a93603802c3446a1bf3f1cfe6bad22ec", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "9559a5338ae7404ab3b5ccf651b3eceb": {"state": {"_camera": {}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_62efb0c3fd0a41a89c3292f54d8c487b", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "0d7e12628fd9487da2185ea328a12641": {"state": {"_camera": {}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_5384118629904b65abe56fd4ef94d03f", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "0c74d871f4a947ceb926ad18eba93e16": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "604f577efe4448448c4d1fbad213138d": {"state": {"_camera": {}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_8df2409c5ba94c3887a48bf54564d084", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "62efb0c3fd0a41a89c3292f54d8c487b": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "c455cf0b21bd40498df72baa2e7dc4d2": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "8867716d132a42ceb12bbb1bed4b9d60": {"state": {"_camera": {}, "rpc": {}, "width": 800, "transforms": {}, "height": 600, "scene": {}, "layout": "IPY_MODEL_651d8c941cd84a669199e9e8c36d9c13", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "9297ba36a3d84951a17fbf2795e6fe40": {"state": {"_camera": {}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_108d796838a74c7598845e55264256f6", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "651d8c941cd84a669199e9e8c36d9c13": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "e267d4a1bdb44557bf5d827ef4c2cb64": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "da212924b1ee4881859d80b194f32111": {"state": {"_camera": {}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_dd5f103e95be4a128aa6c9e1d19af836", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "8ba315ba60564fa4bc0258e6d1eb44f3": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "8b6f715068254b1dba053125bca36444": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "0764bc16b4b6461c9f958206970fa996": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "4aa3112e799a4a72aaca3234dd96020f": {"state": {}, "model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0"}, "e027b4b2fd524ab2935808685b7a74e7": {"state": {"_camera": {"up": {"x": 0, "y": 0, "z": 1}, "r": 1, "target": {"x": 3, "y": 0, "z": 0}, "position": {"x": -2, "y": 0, "z": 0}}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_e267d4a1bdb44557bf5d827ef4c2cb64", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "f06b4b98eb5e4f179b431600d2fa303a": {"state": {"_camera": {}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_cb24fa68da29472e84a996423e19f820", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}, "b582a1e48e7b42aba08ada6ff9cf1fdf": {"state": {"_camera": {}, "rpc": {}, "width": 500, "transforms": {}, "height": 500, "scene": {}, "layout": "IPY_MODEL_4aa3112e799a4a72aaca3234dd96020f", "drawn": 0, "events": []}, "model_name": "KlamptModel", "model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1"}}, "version_major": 2, "version_minor": 0}
+{"state": {"04ef640601f64982a43b0f878eb683ad": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {"position": {"x": -2, "y": 0, "z": 0}, "r": 1, "target": {"x": 3, "y": 0, "z": 0}, "up": {"x": 0, "y": 0, "z": 1}}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_a774af56e4804920af61e3af9dfc223a", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "06c023027ed946dea721a55ed0e72366": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_a93603802c3446a1bf3f1cfe6bad22ec", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "0764bc16b4b6461c9f958206970fa996": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "091f52e77e824ad3868ac7fade38f048": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_927c95fdb4274e1390cd09aacac62f3b", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "0c74d871f4a947ceb926ad18eba93e16": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "0d7e12628fd9487da2185ea328a12641": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_5384118629904b65abe56fd4ef94d03f", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "0f9ae4ccc6f145d0a2e10160f1a203d4": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_9bbe4462091b41abab0c9c27dbde7ad0", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "108d796838a74c7598845e55264256f6": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "125343a7c90f487e9e4ff9e2fabfc228": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "12b85abbbd4b4eae9a59a7a4a93ac36d": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {"position": {"x": 0, "y": 0, "z": 0}, "r": 1, "target": {"x": 3, "y": 0, "z": 0}, "up": {"x": 0, "y": 0, "z": 1}}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_c6a724947a034cd7a099c46984f89321", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "1407944fe9da4b84a5d6642ce0b59c9b": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "25525feb2e5a427c97ea702c1b7f7a68": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_1407944fe9da4b84a5d6642ce0b59c9b", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "2f45f9d29425480ead090dfd07edf478": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_0764bc16b4b6461c9f958206970fa996", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "35d3fe62703e4ae4b5ee822873d4f9ca": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "4aa3112e799a4a72aaca3234dd96020f": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "50fe5219488a4da8be264918ffc8e4f8": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 600, "layout": "IPY_MODEL_125343a7c90f487e9e4ff9e2fabfc228", "rpc": {}, "scene": {}, "transforms": {}, "width": 800}}, "5384118629904b65abe56fd4ef94d03f": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "54f8eda2d0414632a70e23e2cc743f5a": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "5565b92f391a4af0a625a1d8817c2332": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "55bd61fa101b47f7a34b515e5e7e4338": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "55c3237434954e7f8e92b29f82d4cdf5": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_0c74d871f4a947ceb926ad18eba93e16", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "604f577efe4448448c4d1fbad213138d": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_8df2409c5ba94c3887a48bf54564d084", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "62d500c4450f445eb5a1d7ab3a1f66a0": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_9649e2fdc595493088468ce02b13cc98", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "62efb0c3fd0a41a89c3292f54d8c487b": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "651d8c941cd84a669199e9e8c36d9c13": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "772af292784647bca1ad0d2529666da2": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "7e80910941e24196a72b9c319f4a9cfc": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 600, "layout": "IPY_MODEL_8b6f715068254b1dba053125bca36444", "rpc": {}, "scene": {}, "transforms": {}, "width": 800}}, "87b49d3790094567892a72162273c45e": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {"position": {"x": -2, "y": 0, "z": 0}, "r": 1, "target": {"x": 3, "y": 0, "z": 0}, "up": {"x": 0, "y": 0, "z": 1}}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_35d3fe62703e4ae4b5ee822873d4f9ca", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "8867716d132a42ceb12bbb1bed4b9d60": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 600, "layout": "IPY_MODEL_651d8c941cd84a669199e9e8c36d9c13", "rpc": {}, "scene": {}, "transforms": {}, "width": 800}}, "8b6f715068254b1dba053125bca36444": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "8b71fb99839f45d2b0fff84ea276aab3": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_5565b92f391a4af0a625a1d8817c2332", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "8ba315ba60564fa4bc0258e6d1eb44f3": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "8df2409c5ba94c3887a48bf54564d084": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "927c95fdb4274e1390cd09aacac62f3b": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "9297ba36a3d84951a17fbf2795e6fe40": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_108d796838a74c7598845e55264256f6", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "9559a5338ae7404ab3b5ccf651b3eceb": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_62efb0c3fd0a41a89c3292f54d8c487b", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "9649e2fdc595493088468ce02b13cc98": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "98907808b663441693ae326551361518": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "9bbc34c892dd4b7886750e5a339a4678": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_55bd61fa101b47f7a34b515e5e7e4338", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "9bbe4462091b41abab0c9c27dbde7ad0": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "a36919730b5740cd852e9524969cbf93": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 600, "layout": "IPY_MODEL_d5b295b310ea490197d86928b7f80c3b", "rpc": {}, "scene": {}, "transforms": {}, "width": 800}}, "a67589d31ac54397901168acce90baa8": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {"position": {"x": 0, "y": 0, "z": 0}, "r": 1, "target": {"x": 3, "y": 0, "z": 0}, "up": {"x": 0, "y": 1, "z": 0}}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_d07ce36c5c344bca9950b8875aa6bde5", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "a774af56e4804920af61e3af9dfc223a": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "a93603802c3446a1bf3f1cfe6bad22ec": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "aaf2dc13a65445e7a5f3306c45c01a4e": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 600, "layout": "IPY_MODEL_b26b7e02f869487dbf4e10860112e56a", "rpc": {}, "scene": {}, "transforms": {}, "width": 800}}, "b26b7e02f869487dbf4e10860112e56a": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "b582a1e48e7b42aba08ada6ff9cf1fdf": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_4aa3112e799a4a72aaca3234dd96020f", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "b6d041b43a7d4a628fa15c70336ef361": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_54f8eda2d0414632a70e23e2cc743f5a", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "c455cf0b21bd40498df72baa2e7dc4d2": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "c6a724947a034cd7a099c46984f89321": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "cb24fa68da29472e84a996423e19f820": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "d07ce36c5c344bca9950b8875aa6bde5": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "d5b295b310ea490197d86928b7f80c3b": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "da212924b1ee4881859d80b194f32111": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_dd5f103e95be4a128aa6c9e1d19af836", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "db107ef6f90845d496b7f8541ca4d879": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_c455cf0b21bd40498df72baa2e7dc4d2", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "dc66441cacad4842b687f4c58ae40340": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_8ba315ba60564fa4bc0258e6d1eb44f3", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "dd5f103e95be4a128aa6c9e1d19af836": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "e027b4b2fd524ab2935808685b7a74e7": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {"position": {"x": -2, "y": 0, "z": 0}, "r": 1, "target": {"x": 3, "y": 0, "z": 0}, "up": {"x": 0, "y": 0, "z": 1}}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_e267d4a1bdb44557bf5d827ef4c2cb64", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "e267d4a1bdb44557bf5d827ef4c2cb64": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "f06b4b98eb5e4f179b431600d2fa303a": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_cb24fa68da29472e84a996423e19f820", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "fafea56d7efe4acabf907842497b2bb5": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {"position": {"x": -2, "y": 0, "z": 0}, "r": 1, "target": {"x": 3, "y": 0, "z": 0}, "up": {"x": 0, "y": 0, "z": 1}}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_772af292784647bca1ad0d2529666da2", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}, "fbfcd9cf5cb149609cdcf060c238a5c7": {"model_module": "klampt-jupyter-widget", "model_module_version": "0.1.1", "model_name": "KlamptModel", "state": {"_camera": {}, "drawn": 0, "events": [], "height": 500, "layout": "IPY_MODEL_98907808b663441693ae326551361518", "rpc": {}, "scene": {}, "transforms": {}, "width": 500}}}, "version_major": 2, "version_minor": 0}
 </script>
 
 
