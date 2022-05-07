@@ -1,15 +1,30 @@
 
-<h2>Real-time kinodynamic planning and dynamic optimization</h2>
-<h3>Yajia Zhang, Jingru Luo, Kris Hauser</h3>
+<h2>Real-time kinodynamic planning and optimization</h2>
+<h3>Weidong (Bill) Sun, Gao Tang, Yajia Zhang, Jingru Luo, Kris Hauser</h3>
 
 <h4>Summary</h4>
 <p class="summary">
-Planning costs cannot be ignored in dynamic, real-time systems.  Powerful planners are unresponsive to unexpected changes, but weak planners sacrifice completeness and optimality.  Moreover, improper integration can jeopardize robot performance and safety.  To address these issues, this research theme investigates faster planners and better system integration architectures.  New fast optimization techniques let robots execute motions more quickly while strictly respecting dynamic constraints; moreover, the added computational costs are worth the savings in execution time. New time-stepping architectures are proven to be asymptotically complete in a deterministic environment with changing goals, and experiments suggest improved safety in unpredictably dynamic environments compared to other state-of-the-art techniques.  These algorithms have been applied to assisted teleoperation of a 6DOF robot arm, navigation amongst unpredictable moving obstacles, and humanoid robot locomotion. 
+This research theme investigates optimizing motion planners and architectures for dynamic real-time systems.  We have developed new fast optimization techniques let robots execute motions more quickly while strictly respecting dynamic constraints; moreover, the added computational costs are worth the savings in execution time. New time-stepping architectures are proven to be asymptotically complete in a deterministic environment with changing goals, and experiments suggest improved safety in unpredictably dynamic environments compared to other state-of-the-art techniques.  These algorithms have been applied to agile drone flight, assisted teleoperation of a 6DOF robot arm, navigation amongst unpredictable moving obstacles, and humanoid robot locomotion. 
 </p>
 
 <div class="pubs">
 <ul class="publications">
-  <li>K. Hauser and Y. Zhou. <i>Asymptotically Optimal Planning by Feasible Kinodynamic Planning in State-Cost Space.</i> IEEE Transactions of Robotics, 32(6): 1431-1443, 2016.   <span class="nw"><a href ="http://motion.cs.illinois.edu/papers/TRO2016-AsymptoticStateCost.pdf"><img class="pdf" src="images/pdf_icon_tiny.gif" alt="pdf"></a> <a href ="http://ieeexplore.ieee.org/document/7588078/"><img class="pdf" src="images/link_icon_tiny.gif" alt="link"></a></span>  Also in    arXiv:1505.04098 [cs.RO], 2015. <span class="nw"><a href="http://arxiv.org/pdf/1505.04098v1"><img class="pdf" src="images/pdf_icon_tiny.gif" alt="pdf"></a><a href="http://arxiv.org/abs/1505.04098"><img class="link" src="images/link_icon_tiny.gif" alt="link"></a><a href="statecost.html"><img class="link" src="images/link_icon_tiny.gif" alt="link"></a></span></li>
+	<li>W. Sun, G. Tang, and K. Hauser. <i>Fast UAV Trajectory Optimization using Bilevel Optimization with Analytical Gradients</i>. IEEE Transactions on Robotics,  37(6):2010-2024, Dec, 2021. doi:10.1109/TRO.2021.3076454. <span class="nw">
+		<a href="http://motion.cs.illinois.edu/papers/TRO2021-Sun-DroneBilevel.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a>
+		<a href="https://ieeexplore.ieee.org/document/9457044"><img class="link"  src="../images/link_icon_tiny.gif" alt="link"></a>
+	</span></li>
+	<li>Y. Ding, M. Zhang, C. Li, H.-W. Park, and K. Hauser. Hybrid Sampling/Optimization-based Planning for Agile Jumping Robots on Challenging Terrains. IEEE International Conference on Robotics and Automation (ICRA), May 2021. <span class="nw">
+		<a href="http://motion.cs.illinois.edu/papers/ICRA2021_Ding_AgileJumping.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a>
+		<a href="https://www.youtube.com/watch?v=4T0opebCdp0"><img class="mov" src="../images/mov_icon_tiny.gif"></a>
+	</span></li>
+	<li>W. Sun, G. Tang, and K. Hauser. <i>Fast UAV Trajectory Optimization using Bilevel Optimization with Analytical Gradients</i>. 2020 American Control Conference (ACC), July 2020. <span class="nw"><a href="http://motion.cs.illinois.edu/papers/ACC2020-Sun-DroneBilevel.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a> </span></li>
+	<li>G. Tang, W. Sun, and K. Hauser. <i>Enhancing Bilevel Optimization for UAV Time-Optimal Trajectory using a Duality Gap Approach</i>. IEEE International Conference on Robotics and Automation (ICRA), June 2020 	<span class="nw"><a href="http://motion.cs.illinois.edu/papers/ICRA2020-Tang-DroneBilevel.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a> <a href="https://youtu.be/4IBZRqrnrrs"><img class="mov" src="../images/mov_icon_tiny.gif"> Summary video</a> <a href="https://youtu.be/qN2zXl7lxiU"><img class="mov" src="../images/mov_icon_tiny.gif"> ICRA 10-minute talk video</a></span></li>
+	
+	<li>G. Tang, W. Sun, and K. Hauser. <i>Time-Optimal Trajectory Generation for Dynamic Vehicles: A Bilevel Optimization Approach</i>. IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), October, 2019. <span class="nw"><a href="http://motion.cs.illinois.edu/papers/IROS2019-Tang-BilevelTrajectoryGeneration.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a></span></li>
+
+	<li>W. Sun, G. Tang, and K. Hauser. <i>Fast UAV Trajectory Optimization using Bilevel Optimization with Analytical Gradients</i>. ArXiv, 2018.  <span class="nw"><a href="https://arxiv.org/abs/1811.10753"><img class="link" src="../images/link_icon_tiny.gif" alt="link"></a></span></li>
+	
+  <li>K. Hauser and Y. Zhou. <i>Asymptotically Optimal Planning by Feasible Kinodynamic Planning in State-Cost Space.</i> IEEE Transactions of Robotics, 32(6): 1431-1443, 2016.   <span class="nw"><a href ="http://motion.cs.illinois.edu/papers/TRO2016-AsymptoticStateCost.pdf"><img class="pdf" src="../images/pdf_icon_tiny.gif" alt="pdf"></a> <a href ="http://ieeexplore.ieee.org/document/7588078/"><img class="pdf" src="../images/link_icon_tiny.gif" alt="link"></a></span>  Also in    arXiv:1505.04098 [cs.RO], 2015. <span class="nw"><a href="http://arxiv.org/pdf/1505.04098v1"><img class="pdf" src="../images/pdf_icon_tiny.gif" alt="pdf"></a><a href="http://arxiv.org/abs/1505.04098"><img class="link" src="../images/link_icon_tiny.gif" alt="link"></a><a href="statecost.html"><img class="link" src="../images/link_icon_tiny.gif" alt="link"></a></span></li>
 
 
 	<li>J. Luo and K. Hauser.  <i>Robust Trajectory Optimization Under Frictional Contact with Iterative Learning.</i>  Robotics: Science and Systems (RSS), July 2015. <span class="nw"><a href="../papers/RSS2015-Luo-RobustTrajectoryOptimization.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a> </span></li>
