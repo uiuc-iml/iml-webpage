@@ -15,6 +15,7 @@
 ./process-subdir mintos/index
 ./process-subdir nursing/index nursing/doffing
 ./process-subdir packing/index
+./process-subdir efficientlearning/index
 ./process-subdir pvtp/index
 ./process-subdir realtime/index
 ./process-subdir redundancyresolution/index
