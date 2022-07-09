@@ -13291,7 +13291,7 @@ the following <em>Riccati equation</em> :
 $$A^TP + PA -  PBR^{-1}B^TP + Q = 0.$$ Numerical methods are available
 for solving the Riccati equation for $P$. This method is known as the
 Linear Quadratic Regulator (LQR) approach.</p>
-<p>As we showed in the <a href="Control.ipynb#Stability-in-Linear-Time-Invariant-Systems">section on LTI stability</a>,
+<p>As we showed in the <a href="Control.html#Stability-in-Linear-Time-Invariant-Systems">section on LTI stability</a>,
 traditional pole placement methods can be
 used to derive a stable controller for LTI systems. However, the
 significance of the LQR controller compared to traditional pole
@@ -13397,7 +13397,7 @@ by making the control more extreme.</p>
 controls satisfying condition (1), then the optimal control problem
 becomes one of simply finding <em>switching times</em> between optimal
 controls.</p>
-<p>Taking the <a href="WhatAreDynamicsAndControl.ipynb#Dubins-car">Dubins car model</a> as an example, 
+<p>Taking the <a href="WhatAreDynamicsAndControl.html#Dubins-car">Dubins car model</a> as an example, 
 we have the state variable
 $(x,y,\theta)\in SO(2)$ and control variable $(v,\phi)$ denoting
 velocity and steering angle: $$\begin{split}
@@ -13701,13 +13701,13 @@ equations:</p>
 it by optimizing
 ($\ref{eq:DiscreteHJBStationary}$) on each $x$ in the grid. This
 is also known as recursive dynamic programming and is a continuous-space variant of the
-value iteration algorithm discussed in <a href="PlanningWithDynamicsAndUncertainty.ipynb#Value-iteration">Chapter 11</a>.</p>
+value iteration algorithm discussed in <a href="PlanningWithDynamicsAndUncertainty.html#Value-iteration">Chapter 11</a>.</p>
 </li>
 <li><p>Policy iteration assigns guesses for the policy $u(x)$, and
 iteratively alternates between a) solving for the $V(x)$ induced by
 those controls, and b) improving the assigned controls using the
 induced $V(x)$.  This is a continuous-space  variant of the
-policy iteration algorithm discussed in <a href="PlanningWithDynamicsAndUncertainty.ipynb#Policy-iteration">Chapter 11</a>.</p>
+policy iteration algorithm discussed in <a href="PlanningWithDynamicsAndUncertainty.html#Policy-iteration">Chapter 11</a>.</p>
 </li>
 <li><p>Linear programming uses a set of sample points $x_1,\ldots,x_N$ on a
 state space grid and points $u_1,\ldots,u_M$ on a control space
@@ -13718,7 +13718,7 @@ constraints of the form
 <li><p>The Fast Marching Method can be thought of as a one-pass value iteration, which is
 applicable to problems with known terminal sets and positive costs.  The principle is similar to
 the "brush fire" method for calculating navigation functions as discussed in
-<a href="PlanningWithDynamicsAndUncertainty.ipynb#Navigation-functions-and-the-Dynamic-Window-Approach">Chapter 11</a>. 
+<a href="PlanningWithDynamicsAndUncertainty.html#Navigation-functions-and-the-Dynamic-Window-Approach">Chapter 11</a>. 
 Observe that once a value is defined for the goal states, their value no
 longer needs to be updated; they are called <em>closed</em>.  We can try to
 determine all states for which the value is below some threshold $v$, and these
@@ -13779,10 +13779,10 @@ states are visited.</p>
 
 
 
-<div id="fe95547f-78a7-4f92-9574-2645b1d7ec3f"></div>
+<div id="685b0855-9c18-46df-825c-c10f0b293a19"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#fe95547f-78a7-4f92-9574-2645b1d7ec3f');
+var element = $('#685b0855-9c18-46df-825c-c10f0b293a19');
 /* Put everything inside the global mpl namespace */
 window.mpl = {};
 
@@ -14580,10 +14580,10 @@ if (IPython.notebook.kernel != null) {
 
  
  
-<div id="c985aa4f-1067-4880-845f-6ea5bf88ea80"></div>
+<div id="9a73ef9b-3883-41b4-8377-c80642a8150e"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#c985aa4f-1067-4880-845f-6ea5bf88ea80');
+var element = $('#9a73ef9b-3883-41b4-8377-c80642a8150e');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "039a247b6ee94dcb911549ec0b8301ca", "version_major": 2, "version_minor": 0}
@@ -14632,10 +14632,10 @@ var element = $('#c985aa4f-1067-4880-845f-6ea5bf88ea80');
 
 
 
-<div id="c68d4876-af51-4f3d-b1fd-5bc1d7a3fcb9"></div>
+<div id="056562a1-cb35-4cec-8be0-512a8e5f85b0"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#c68d4876-af51-4f3d-b1fd-5bc1d7a3fcb9');
+var element = $('#056562a1-cb35-4cec-8be0-512a8e5f85b0');
 /* Put everything inside the global mpl namespace */
 window.mpl = {};
 
@@ -15433,10 +15433,10 @@ if (IPython.notebook.kernel != null) {
 
  
  
-<div id="e1b44df9-f3cd-49a5-9b0c-180a02705ffe"></div>
+<div id="46f48e34-e256-4a50-92df-6ac1fc09edd2"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#e1b44df9-f3cd-49a5-9b0c-180a02705ffe');
+var element = $('#46f48e34-e256-4a50-92df-6ac1fc09edd2');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "85b0057128b14a3c9e6e157b97ee0754", "version_major": 2, "version_minor": 0}
