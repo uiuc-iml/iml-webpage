@@ -6,7 +6,7 @@
 <img src="lamb1.gif" width="125" height="150" /> 
 <img src="lamb2.gif" width="125" height="150" /> 
 <img src="Auscultation.gif" width="200" height="150" /> 
-<img src="grasp_0_cropped.gif" width="180" height="150" /> 
+<img src="scooping.gif" width="180" height="150" /> 
 <img src="TO.gif" width="500" height="150" /> 
 
 <h4>Summary</h4>
@@ -15,7 +15,9 @@
 
 <p>We demonstrate on 3 challenging real-world robotics tasks the data-efficiency of gray-box learning compared to black-box learning, including dynamics learning of locomotion granular media, visuo-tactile model learning of deformable objects, and automated heart and lung auscultation. In addition, based on the learned dynamics model on granular terrains, we propose a trajectory optimization framework using bi-level optimization to plan robot locomotion trajectories on sandy terrains, which is a very challenging task. </p>
 
-<p>We are currently investigating the problem of meta-learning surrogate scoring functions for the few-shot regrasping problem. By training on a variety of related objects offline, we aim to enable the robot to quickly adapt to a novel object when facing failed attempts. </p>
+<p> We also demonstrate a novel meta-learning technique
+    that enables a robot to use vision and very little online experience to achieve high-quality
+    scooping actions on out-of-distribution granular terrains. </p>
 
 
 <body>
@@ -26,13 +28,15 @@
                 <td style="padding:0px;vertical-align:middle">
                     <!-- <td style="padding:0px;width:40%;vertical-align:left"> -->
                 <div class="one">
-                    <img src="grasp.gif" width=300px />
+                    <img src="CoDeGa.ong" width=400px />
                 </div>
                 </td>
                 <td style="min-width:300px;padding:20px;vertical-align:left">
-                <h4>Meta-learning few-shot regrasping</h4>
-                <p>This project is ongoing. In this project, we are currently investigating the problem of meta-learning surrogate scoring functions for the few-shot regrasping problem. This is a challenging task because in addition to the visual variations of real-world objects, they often present characteristics that are not directly observable, such as center of mass. Another challenge is the goal to successfully regrasping a novel object with feedback from a few failed attempts. We are currently looking into meta-learning to address these challenges.</p>
-                </td>
+                <h4>Meta-learning few-shot scooping</h4>
+                <p>Autonomous lander missions on extraterrestrial bodies will need to sample granular material while coping with domain shift, no matter how well a sampling strategy is tuned on Earth. This paper proposes an adaptive scooping strategy that uses deep Gaussian process method trained with meta-learning to learn on-line from very limited experience on the target terrains. It introduces a novel meta-training approach, Deep Meta-Learning with Controlled Deployment Gaps (CoDeGa), that explicitly trains the deep kernel to predict scooping volume robustly under large domain shifts. Employed in a Bayesian Optimization sequential decision-making framework, the proposed method allows the robot to use vision and very little on-line experience to achieve high-quality scooping actions on out-of-distribution terrains, significantly outperforming non-adaptive methods proposed in the excavation literature as well as other state-of-the-art meta-learning methods. Moreover, a dataset of 6,700 executed scoops collected on a diverse set of materials, terrain topography, and compositions is made available for future research in granular material manipulation and meta-learning.</p>
+                
+                <a href="https://arxiv.org/abs/2303.02893"><img class="link"  src="../images/link_icon_tiny.gif" alt="link"></a>
+            </td>
             </td>
           </tr>
     
@@ -181,6 +185,11 @@
 
 <div class="pubs">
 <ul class="publications">
+    <li>Y. Zhu*, Pranay Thangeda*, M. Ornik and K. Hauser. <i>Few-shot Adaptation for Manipulating Granular Materials Under Domain Shift
+    </i>. Robotics: Science and Systems (RSS) 2023.
+        <span class="nw">
+            <a href="https://arxiv.org/abs/2303.02893"><img class="link"  src="../images/link_icon_tiny.gif" alt="link"></a>
+    </span></li>
 	<li>Y. Zhu, A. Smith, and K. Hauser. <i>Automated Heart and Lung Auscultation in Robotic Physical Examinations</i>. IEEE Robotics and Automation Letters, 2022.
         <span class="nw">
             <a href="../papers/RAL2022-Zhu-Ascultation-preprint.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a>
