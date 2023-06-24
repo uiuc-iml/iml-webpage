@@ -18926,7 +18926,7 @@ The converse --- creating a timed, dynamically-feasible trajectory from
 a path --- can in some cases be quite challenging or even impossible. The reason is that the speed at which a robot should execute a path requires foresight into future twists and turns, like a race car driver slowing down ahead of a hairpin turn.</p>
 <p>If a piecewise linear path were to be executed at a constant rate, then the timed trajectory would instantaneously change velocity at each milestone.  But infinite forces are needed to execute instantaneous changes of velocity, so sending such trajectories to motors would lead to overshooting corners.  We will examine
 better methods for industrial robots to start and stop smoothly at milestones
-when we discuss <a href="RobotControl.ipynb#Motion-queues-(motion-generation">motion generation</a>).  The basic idea is to speed up and slow down gradually, while choosing the point in time when the robot slows so that the robot ends exactly at the next milestone.</p>
+when we discuss <a href="RobotControl.html#Motion-queues-(motion-generation">motion generation</a>).  The basic idea is to speed up and slow down gradually, while choosing the point in time when the robot slows so that the robot ends exactly at the next milestone.</p>
 <p>The more general case is known as a <em>time-scaling</em> problem. Mathematically, we describe such a problem as being given a geometric path $p(s)$ as input, and we wish to find a timed path $x(t)$ such that:</p>
 <ul>
 <li>The trajectory follows the path: for all $t$, there exists an $s$ such that $x(t) = p(s)$</li>
