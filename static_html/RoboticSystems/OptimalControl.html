@@ -13637,7 +13637,7 @@ In short, methods are able to achieve superlinear convergence rates like Newton'
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Code for iLQR applied to a pendulum swing-up problem↔</span>
@@ -14008,7 +14008,7 @@ In the below implementation, the log barrier function is used. Note that since a
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Code for barrier functions + inequality constraint formulations of obstacle avoidance↔</span>
@@ -14042,7 +14042,7 @@ In the below implementation, the log barrier function is used. Note that since a
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Code for barrier functions + inequality constraint formulations of obstacle avoidance    ↔</span>
@@ -14297,10 +14297,10 @@ states are visited.</p>
 
 
 
-<div id="e2bab6d8-8c50-464c-8739-523229137555"></div>
+<div id="4bc7d00f-4582-4eb1-8a94-351b58d09e72"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#e2bab6d8-8c50-464c-8739-523229137555');
+var element = $('#4bc7d00f-4582-4eb1-8a94-351b58d09e72');
 /* Put everything inside the global mpl namespace */
 /* global mpl */
 window.mpl = {};
@@ -15303,13 +15303,13 @@ if (IPython.notebook.kernel !== null) {
 
  
  
-<div id="62e0dc74-6888-44c8-9261-ad9f143f059a"></div>
+<div id="5e97e894-209f-418c-aabe-e0f72d3172bd"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#62e0dc74-6888-44c8-9261-ad9f143f059a');
+var element = $('#5e97e894-209f-418c-aabe-e0f72d3172bd');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "6f67a3b742664f5f95513ae5efa63484", "version_minor": 0, "version_major": 2}
+{"version_minor": 0, "model_id": "6f67a3b742664f5f95513ae5efa63484", "version_major": 2}
 </script>
 </div>
 
@@ -15355,10 +15355,10 @@ var element = $('#62e0dc74-6888-44c8-9261-ad9f143f059a');
 
 
 
-<div id="e1bba697-8a53-4a8f-bcb5-c0f42f7249c2"></div>
+<div id="9c0ce273-6080-49b3-8ad2-8d4a799a2375"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#e1bba697-8a53-4a8f-bcb5-c0f42f7249c2');
+var element = $('#9c0ce273-6080-49b3-8ad2-8d4a799a2375');
 /* Put everything inside the global mpl namespace */
 /* global mpl */
 window.mpl = {};
@@ -16361,13 +16361,13 @@ if (IPython.notebook.kernel !== null) {
 
  
  
-<div id="594d2d98-570e-4a7b-80fc-cf0d8210192d"></div>
+<div id="d6eb22d6-70b2-49b6-aa33-7c85f5cf16fa"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#594d2d98-570e-4a7b-80fc-cf0d8210192d');
+var element = $('#d6eb22d6-70b2-49b6-aa33-7c85f5cf16fa');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "3627e00ec11748d5bb4315510e15d127", "version_minor": 0, "version_major": 2}
+{"version_minor": 0, "model_id": "3627e00ec11748d5bb4315510e15d127", "version_major": 2}
 </script>
 </div>
 
@@ -16402,7 +16402,11 @@ $x(0) = x_c$.</p>
 <li><p>Repeat from step 1.</p>
 </li>
 </ol>
-<p>TODO: illustration (Figure 8)</p>
+<hr>
+<p><a name="fig:MPC"></a></p>
+<p><img src="figures/control/mpc1.svg" alt="fig:Geometries"></p>
+<div class="figcaption"><b>Figure 8</b>.
+The basic principle of model predictive control on a discrete time system.  Left: MPC optimizes a trajectory $x_0,\ldots,x_T$ across some horizon $T$ starting at the current state.  Right: The first control $u_0$ is executed, and the next state $x_1^\prime$ is read from sensors. MPC computes a new trajectory $x_1^\prime,\ldots,x_{T+1}^\prime$ and repeats.</div><hr>
 <p>Overall, as employed in practice MPC is a moderately complex procedure, and from a theoretical perspective it is difficult to analyze and prove stability / convergence properties. However, with careful tuning, MPC
 can be an extremely high performing and practical nonlinear optimal control
 technique. There are several design decisions of note when implementing such a MPC controller:</p>
@@ -16443,8 +16447,7 @@ to resort to fall-back methods (described below) that would cause performance to
 <li>Compute a finite-horizon optimal trajectory $x,u$ with initial state
  $x(0) = x_c$ and starting from initial guess $x_0(t) = \tilde{x}(\min(t + \Delta t,T))$, $u_0(t) = \tilde{u}(\min(t + \Delta t,T))$.</li>
 </ol>
-<p>TODO: illustration (Figure 9)</p>
-<p>This can make optimization very fast compared to, say, optimizing from all zeros.  A potential drawback of this method is that it can get stuck in local minima and fail to make progress. Another approach is to add "diversity" into the initialization procedure, e.g., via random restarts, so that there is a better chance of escaping local minima.  Step 3 then becomes:</p>
+<p>This can make optimization very fast compared to, say, optimizing from a naive initial guess.  A potential drawback of this method is that it can get stuck in local minima and fail to make progress. Another approach is to add "diversity" into the initialization procedure, e.g., via random restarts, so that there is a better chance of escaping local minima.  Step 3 then becomes:</p>
 <ol>
 <li><p>Compute a finite-horizon optimal trajectory $x,u$ with initial state
  $x(0) = x_c$ and starting from initial guess $x_0(t) = \tilde{x}(\min(t + \Delta t,T))$, $u_0(t) = \tilde{u}(\min(t + \Delta t,T))$.</p>
@@ -16455,7 +16458,140 @@ $x(0) = x_c$ and starting from a "diverse" initial guess (e.g., a random one).</
 </ul>
 </li>
 </ol>
-<p>This can be repeated for several diverse guesses, at the expense of additional computation.  The ultimate impact of these optimizations can be minimized by optimizing in parallel on multi-core CPUs.</p>
+<p>This can be repeated for several diverse guesses, at the expense of additional computation.</p>
+<p>As an example, the code below runs MPC on the double integrator problem with a changing goal position.  Simply reusing the prior trajectory causes the optimizer to get stuck going clockwise around the obstacle even when a shorter path to the goal exists.  When diversity is added in the form of initializing with a random trajectory and a braking trajectory, the MPC system is able to take the shortcut and follow the goal.</p>
+<p>Although this example runs three separate optimizations per iteration, the ultimate timing impact can be mitigated by optimizing in parallel on multi-core CPUs.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[63]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Code for barrier functions + inequality constraint formulations of obstacle avoidance↔</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h3 id="MPC,-reusing-last-trajectory">MPC, reusing last trajectory<a class="anchor-link" href="#MPC,-reusing-last-trajectory">&#182;</a></h3>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="OptimalControl_files/OptimalControl_30_1.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Now try with diversity from random controls↔</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Cost initializing from last: 5.072804713496107, random: 67.71686567649103, braking: 5.862723018836099
+Numerical error: instability is being introduced at timestep 2
+X: [0.02225413 0.42759568 0.20004691 2.51975425] U: [ 0.91296896 -4.48303222]
+Qxx [[-7.97066246e+231  1.92210004e+232 -5.25664670e+231  1.28677257e+232]
+ [ 1.92210004e+232 -4.63508344e+232  1.26762372e+232 -3.10301135e+232]
+ [-5.25664670e+231  1.26762372e+232 -3.46675507e+231  8.48625672e+231]
+ [ 1.28677257e+232 -3.10301135e+232  8.48625672e+231 -2.07734759e+232]]
+Quu [[-7.89632466e+228  1.93430918e+229]
+ [ 1.93430918e+229 -4.73834622e+229]]
+K [[ 2.50876341e+232 -6.04980361e+232  1.65452784e+232 -4.05011247e+232]
+ [-6.14554785e+232  1.48197942e+233 -4.05298480e+232  9.92128627e+232]]
+Qxu.dot(K) [[-inf  inf -inf  inf]
+ [ inf -inf  inf -inf]
+ [-inf  inf -inf  inf]
+ [ inf -inf  inf -inf]]
+Cost initializing from last: 5.6928008301077675, random: 117.16028993888862, braking: 5.862723018836099
+Cost initializing from last: 6.625122194435059, random: 44.35058644754729, braking: 4.612532284717382
+Cost initializing from last: 3.9283920113267463, random: 65.61358427077754, braking: 3.045672444416331
+Cost initializing from last: 1.9636794664918542, random: 60.36345936238778, braking: 2.0579109829191684
+Cost initializing from last: 1.2703899434677632, random: inf, braking: 1.3612139843663327
+Cost initializing from last: 0.7499534452690747, random: 9.946548869109588, braking: 0.8359681612285681
+Cost initializing from last: 0.3396310057536125, random: 147.20125749900026, braking: 0.42462535645224475
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h3 id="MPC,-with-diversity">MPC, with diversity<a class="anchor-link" href="#MPC,-with-diversity">&#182;</a></h3>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="OptimalControl_files/OptimalControl_31_2.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Convergence-and-terminal-conditions">Convergence and terminal conditions<a class="anchor-link" href="#Convergence-and-terminal-conditions">&#182;</a></h3><p>Suppose that our original optimal control problem is an infinite horizon one, with objective $J_\infty(x,u) = \int_0^\infty L(x(t),u(t)) dt$.  MPC converts it to a finite horizon problem, $J_T(x,u) = \int_0^T L(x(t),u(t)) dt + \Phi(x(T))$ where we have a choice of terminal cost $\Phi$. We should ask the questions, if the original infinite horizon problem has a stable point $x_0$, will it also be a stable point for MPC?  Will MPC converge to $x_0$ from some starting state $x_c$?  To make the following analysis hold, we assume that MPC indeed computes the finite-horizon optimal trajectory perfectly and that the true dynamics matches the model used by the optimizer.</p>
 <p>In general this is a difficult question to answer, but we can state a few things. Let's assume that $L(x,u)\geq 0$ for all $x,u$, and that $L(x_0,u)=0$ for some $u$ satisfying $f(x_0,u)=0$ (indicating that indeed $x_0$ is a stationary point at which cost no longer accumulates).  Then:</p>
 <ul>
