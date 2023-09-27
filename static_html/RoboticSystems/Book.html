@@ -13118,15 +13118,15 @@ MathJax.Hub.Config({ TeX: { equationNumbers: {
 <li><a href="3DRotations.html">Chapter 4. 3D rotations</a></li>
 <li><a href="Kinematics.html">Chapter 5. Robot kinematics</a></li>
 <li><a href="InverseKinematics.html">Chapter 6. Inverse kinematics</a></li>
-<li><a href="Geometry.html">Chapter 7. Representing geometry</a> <strong>text complete, figures 85% complete</strong></li>
+<li><a href="Geometry.html">Chapter 7. Representing geometry</a> <strong>text complete, figures 95% complete</strong></li>
 </ul>
 </li>
 <li><p>Section III. Motion Planning</p>
 <ul>
 <li><a href="WhatIsMotionPlanning.html">Chapter 8. What is motion planning?</a></li>
 <li><a href="GeometricMotionPlanning.html">Chapter 9. Motion planning in simple geometric spaces</a> </li>
-<li><a href="MotionPlanningHigherDimensions.html">Chapter 10. Motion planning in higher dimensions</a> <strong>text complete, figures 85% complete</strong></li>
-<li><a href="PlanningWithDynamicsAndUncertainty.html">Chapter 11. Planning with dynamics and uncertainty</a> <strong>text 95% complete, figures 70% complete</strong></li>
+<li><a href="MotionPlanningHigherDimensions.html">Chapter 10. Motion planning in higher dimensions</a> <strong>text complete, figures 95% complete</strong></li>
+<li><a href="PlanningWithDynamicsAndUncertainty.html">Chapter 11. Planning with dynamics and uncertainty</a> <strong>text 95% complete, figures 60% complete</strong></li>
 <li><a href="AdvancedTopicsInPlanning.html">Chapter 12. Advanced topics in planning</a> <strong>15% complete</strong></li>
 </ul>
 </li>
@@ -13254,11 +13254,11 @@ MathJax.Hub.Config({ TeX: { equationNumbers: {
 <p><em>Colab installation</em>:</p>
 <p>No installation needed.</p>
 <p>To run interactive quizzes and code, you will need to insert and run a code cell containing the following code:</p>
-<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">cd</span><span class="w"> </span><span class="o">~</span><span class="w"></span>
-<span class="o">!</span><span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="o">--</span><span class="n">depth</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nl">https</span><span class="p">:</span><span class="c1">//github.com/krishauser/RoboticSystemsBook</span>
-<span class="o">%</span><span class="n">cd</span><span class="w"> </span><span class="n">RoboticSystemsBook</span><span class="w"></span>
-<span class="k">import</span><span class="w"> </span><span class="n">rsbook_code</span><span class="w"></span>
-<span class="o">!</span><span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">klampt</span><span class="w"></span>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">cd</span> <span class="o">~</span>
+<span class="o">!</span><span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">depth</span> <span class="mi">1</span> <span class="nl">https</span><span class="p">:</span><span class="c1">//github.com/krishauser/RoboticSystemsBook</span>
+<span class="o">%</span><span class="n">cd</span> <span class="n">RoboticSystemsBook</span>
+<span class="k">import</span> <span class="n">rsbook_code</span>
+<span class="o">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">klampt</span>
 </pre></div>
 <p>which will import the code examples for this book and install Klampt.</p>
 
@@ -13299,7 +13299,7 @@ MathJax.Hub.Config({ TeX: { equationNumbers: {
 <p>To install Klampt-jupyter-extension, run</p>
 <div class="highlight"><pre><span></span>git clone https://github.com/krishauser/Klampt-jupyter-extension.git
 <span class="nb">cd</span> Klampt-jupyter-extension
-make install-user
+python -m pip install .
 <span class="nb">cd</span> ..
 </pre></div>
 <p>Next, to enable the best reading experience, we will install the <code>jupyter_contrib_nbextensions</code> package and enable the "(some) LaTeX environments for Jupyter", "Table of Contents", and "Codefolding" Jupyter Notebook plugins.  To do so, run</p>
