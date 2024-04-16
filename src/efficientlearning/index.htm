@@ -11,13 +11,11 @@
 
 <h4>Summary</h4>
 
-<p>Recent breakthroughs in deep learning has made it a popular approach in various fields of engineering and science, including robotics. While deep learning has demonstrated impressive results, it is extremely data-hungary and transfers poorly to new tasks once trained. However, data in robotics tasks are often times scarce and very expensive. In this project, we investigate data-efficient learning for robotics (decision-making) tasks by 1) taking advantage of knowledge of physics and performing "gray-box" learning and 2) using prior experience on similar tasks.</p>
+<p>Recent breakthroughs have made deep learning a popular approach in various fields of engineering and science, including robotics, but it is data-hungry and transfers poorly to new tasks once trained. Hence, compared to other fields like vision and NLP, learning has not yet made as much of an impact in robotics, where data is often scarce and expensive to collect. This project investigates data-efficient learning methods that 1) taking advantage of knowledge of physics and performing "gray-box" learning and 2) using prior experience on similar tasks.</p>
 
-<p>We demonstrate on 3 challenging real-world robotics tasks the data-efficiency of gray-box learning compared to black-box learning, including dynamics learning of locomotion granular media, visuo-tactile model learning of deformable objects, and automated heart and lung auscultation. In addition, based on the learned dynamics model on granular terrains, we propose a trajectory optimization framework using bi-level optimization to plan robot locomotion trajectories on sandy terrains, which is a very challenging task. </p>
+<p>We demonstrate our approach on 3 robotics tasks that  gray-box learning has substantially improved data-efficiency compared to black-box learning. Our approaches are applied to locomotion granular media, visuo-tactile model learning of deformable objects, and automated heart and lung auscultation.  Beyond the problem of learning models, we also address decision-making problems that use such models for dynamics, reward, and/or constraint prediction.  </p>
 
-<p> We also demonstrate a novel meta-learning technique
-    that enables a robot to use vision and very little online experience to achieve high-quality
-    scooping actions on out-of-distribution granular terrains. </p>
+<p> Highlights of this work include the introduction of a novel bilevel trajectory optimization techniques for legged robots to traverse sandy terrain, where the sand-foot interaction behavior is learned with a few hundred touches.  We also demonstrate a novel deep Gaussian Process meta-learning technique based on maximizing the deployment gap during meta-training, which enables a robot to use vision and just a few online manipulation attempts to achieve high-quality scooping actions on out-of-distribution granular terrains. </p>
 
 
 <body>
