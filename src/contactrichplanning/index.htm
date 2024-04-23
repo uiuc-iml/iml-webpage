@@ -1,0 +1,162 @@
+<h2>Optimization for Contact-rich Robotic Manipulation with High-fidelity Geometry</h2>
+
+<h3>Mengchao Zhang and Kris Hauser</h3>
+
+<h4>Summary</h4>
+
+<p>Humans leverage diverse strategies such as in-hand manipulation, whole-body manipulation, and environmental contact to manipulate a variety of objects in our daily lives. 
+   In contrast, even though the robotics field has long attempted to imitate these behaviors, the interactions of the majority of robots with their surroundings are primarily restricted to their end-effectors, 
+   and the motions are mostly pick and place, which are not as dexterous or energy-efficient as those performed by humans.</p>
+
+<p>In bridging the gap between human-like contact interactions and current robotic capabilities, we make foundational contributions through introducing a novel computational model that employs a semi-infinite/infinite programming approach to effectively address the intricate nature of pervasive contact scenarios. 
+   The proposed model demonstrates applicability in various contexts, including object's 6D pose estimation within cluttered environments, contact-rich stable grasp pose optimization, and contact-rich manipulation trajectory optimization involving complex-shaped objects. 
+   In each of these scenarios, we address the problem that contact is an infinite phenomena involving continuous regions of interaction, which requires a discrete approximation to solve. 
+   Contrary to previous methods which need to discretize contacting surfaces a priori into a finite set of contact points, the proposed method operates directly on the continuous underlying geometry, and it dynamically identifies a finite set of constraints essential for problem resolution. 
+   As a result, the subsequent solving process is rendered feasible and tractable.</p>
+
+<p>Additionally, to enable robust execution of planned trajectories, we introduce an innovative technique that combine the strengths of model-based planning and reinforcement learning. 
+   The innovative method, Planned-Contact Informed Policy, takes features extracted from the planned trajectory as input for the control policy, enabling it to anticipate changes in contact modes and adjust its actions accordingly. 
+   Consequently, control policies trained in this manner is capable of stabilizing the execution of similar trajectories planned for the same task type.</p>   
+
+<p>All the contributions presented here constitute fundamental building blocks towards automated robotic manipulation.</p>
+
+<body>
+    <table style="max-width:1200px;border:0px;border-spacing:0px;border-collapse:separate;"><tbody>
+    <!-- <table style="width:100%;max-width:1200px;border:0px;border-spacing:0px;border-collapse:separate;"><tbody> -->
+
+          <tr style="padding:0px">
+            <td style="padding:0px">  
+                <td style="padding:0px;vertical-align:middle">
+                    <!-- <td style="padding:0px;width:40%;vertical-align:left"> -->
+                <div class="one">
+                    <img src="STOCS.gif" width=400px />
+                </div>
+                </td>
+                <td style="min-width:300px;padding:20px;vertical-align:left">
+                <h4>Simultaneous Trajectory Optimization and Contact Selection for Contact-rich Manipulation with High-fidelity Geometry</h4>
+                <p>Contact-implicit trajectory optimization (CITO) is an effective method to plan complex trajectories for various contact-rich systems including manipulation and locomotion. 
+                   CITO formulates contact as complementarity constraints and requires solving a mathematical program with complementarity constraints (MPCC). 
+                   However, MPCC's solve time increases steeply with the number of variables and complementarity constraints, which limits CITO's applicability to problems with low geometric complexity. 
+                   Simultaneous trajectory optimization and contact selection (STOCS), as an extension of CITO, innovatively incorporates the identification of salient contact points and contact times inside trajectory optimization. 
+                   This integration effectively reduces the number of variables and constraints in the resulting MPCC, rendering the computation of manipulation trajectories for objects with complex, non-convex geometries computationally tractable. 
+                   Notwithstanding, the application of STOCS was initially confined to 2D contexts with relatively simple geometries due to the long solve time. 
+                   Through re-implementing the software to incorporate auto differentiation support to accelerate MPCCs' solving and introducing a novel contact points and contact times selection method, Time-active Maximum Violation Oracle, this study firstly broadens the applicability of STOCS in 2D and enables its use with more complex objects and environments. 
+                   Furthermore, we extend STOCS from 2D to 3D and demonstrate contact-rich manipulation trajectory planning with high-fidelity geometric representations for the first time.</p>
+            </td>
+            </td>
+          </tr>
+
+          <tr style="padding:0px">
+            <td style="padding:0px">  
+                <td style="padding:0px;vertical-align:middle">
+                    <!-- <td style="padding:0px;width:40%;vertical-align:left"> -->
+                <div class="one">
+                    <img src="MMMP.gif" width=400px />
+                </div>
+                </td>
+                <td style="min-width:300px;padding:20px;vertical-align:left">
+                <h4>Simultaneous Trajectory Optimization and Contact Selection for Multi-Modal Manipulation Planning</h4>
+                <p>Complex dexterous manipulations require switching between prehensile and non-prehensile grasps, and sliding and pivoting the object against the environment. 
+                   This paper presents a manipulation planner that is able to reason about diverse changes of contacts to discover such plans. 
+                   It implements  a hybrid approach that performs contact-implicit trajectory optimization for pivoting and sliding manipulation primitives and sampling-based planning to change between manipulation primitives and target object poses. 
+                   The optimization method, simultaneous trajectory optimization and contact selection (STOCS), introduces an infinite programming framework to dynamically select from contact points and support forces between the object and environment during a manipulation primitive. 
+                   To sequence manipulation primitives, a sampling-based tree-growing planner uses STOCS to construct a manipulation tree.
+                   We show that by using a powerful trajectory optimizer, the proposed planner can discover multi-modal manipulation trajectories involving grasping, sliding, and pivoting within a few dozen samples. The resulting trajectories are verified to enable a 6 DoF manipulator to manipulate physical objects successfully.</p>
+                
+                <a href="https://motion.cs.illinois.edu/papers/RSS2023-Zhang-TrajectoryOptimizationContact.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a>
+                <a href="https://www.youtube.com/watch?v=7vWRVRuWons"><img class="mov" src="../images/mov_icon_tiny.gif"> Video</a>
+            </td>
+            </td>
+          </tr>
+
+          <tr style="padding:0px">
+            <td style="padding:0px">  
+                <td style="padding:0px;vertical-align:middle">
+                    <!-- <td style="padding:0px;width:40%;vertical-align:left"> -->
+                <div class="one">
+                    <img src="NPICP.png" width=400px />
+                </div>
+                </td>
+                <td style="min-width:300px;padding:20px;vertical-align:left">
+                <h4>Non-Penetration Iterative Closest Points for Single-View Multi-Object 6D Pose Estimation</h4>
+                <p>This paper presents a novel iterative closest points (ICP) variant, non-penetration iterative closest points (NPICP), which prevents interpenetration in 6DOF pose optimization and/or joint optimization of multiple object poses.  
+                   This capability is particularly advantageous in cluttered scenarios, where there are many interactions between objects that constrain the space of valid poses. 
+                   We use a semi-infinite programming approach to handle non-penetration constraints between complex, non-convex 3D geometries. 
+                   NPICP is applied to a common use case for ICP as a post-processing method to improve the pose estimation accuracy of a rough guess. 
+                   The results show that NPICP outperforms ICP, assists in outlier detection, and also outperforms the best result on the IC-BIN dataset in the Benchmark for 6D Object Pose Estimation.</p>
+                
+                <a href="https://motion.cs.illinois.edu/papers/ICRA2022_Zhang_NonPenetrationICP.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a>
+                <a href="https://drive.google.com/file/d/1vs-2OB_mfeX8jA4_UDF6A_S5FNAKjGq1/view?usp=sharing"><img class="mov" src="../images/mov_icon_tiny.gif"> Video</a>
+            </td>
+            </td>
+          </tr>
+
+          <tr style="padding:0px">
+            <td style="padding:0px">  
+                <td style="padding:0px;vertical-align:middle">
+                    <!-- <td style="padding:0px;width:40%;vertical-align:left"> -->
+                <div class="one">
+                    <img src="IPCC.png" width=400px />
+                </div>
+                </td>
+                <td style="min-width:300px;padding:20px;vertical-align:left">
+                <h4>Infinite-programming with Complementarity Constraints for Pose Optimization with Pervasive Contac</h4>
+                <p>This paper presents a novel computational model to address the problem that contact is an infinite phenomena involving continuous regions of interaction. 
+                    The problem is cast as an infinite program with complementarity constraints (IPCC). Rather than pre-discretize contacting surfaces into a finite number of contact points,  
+                    we use infinite programming (IP) techniques that operate on the underlying continuous geometry, but dynamically determine a finite number of constraints that are most relevant to solving the problem. 
+                    Then we solve the series of problems whose solutions converge toward one that contains a true optimum of the original IPCC.
+                    We apply the model to a grasping pose optimization problem for a gripper and a humanoid robot, and our model enables the robots to find a feasible pose to hold (non-)convex objects while ensuring force and torque balance.</p>
+                
+                <a href="https://motion.cs.illinois.edu/papers/ICRA2021_Zhang_SIPCC.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a>
+                <a href="https://github.com/zmccmzty/SIPCC_ICRA2021"><img class="sw"  src="../images/sw_icon_tiny.gif" alt="software"></a>
+            </td>
+            </td>
+          </tr>
+
+    </table>
+  </body>
+  
+
+
+<div class="pubs">
+<ul class="publications">
+	<li>M. Zhang. <i>Optimization for Contact-rich Robotic Manipulation with High-fidelity Geometry</i>. Ph.D. Thesis, University of Illinois, Urbana-Champaign, 2024.
+	<span class="nw">
+	</span></li>
+
+	<li>M. Zhang, D. Jha, A. Raghunathan, and K. Hauser. <i>Simultaneous Trajectory Optimization and Contact Selection for Contact-rich Manipulation with High-fidelity Geometry</i>. In preparation.
+        <span class="nw">
+        </span></li>
+
+	<li>M. Zhang, D. Jha, A. Raghunathan, and K. Hauser. <i>Simultaneous Trajectory Optimization and Contact Selection for Multi-Modal Manipulation Planning</i>. Robotics: Science and Systems (RSS) 2023.
+        <span class="nw">
+            <a href="https://motion.cs.illinois.edu/papers/RSS2023-Zhang-TrajectoryOptimizationContact.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a>
+            <a href="https://www.youtube.com/watch?v=7vWRVRuWons"><img class="mov" src="../images/mov_icon_tiny.gif"> Video</a>
+        </span></li>
+
+    <li>M. Zhang, D. Jha, A. Raghunathan, and K. Hauser. <i>STOCS: Simultaneous Trajectory Optimization and Contact Selection for Contact-Rich Manipulation</i>. Embracing Contacts-Workshop at ICRA 2023.
+        <span class="nw">
+            <a href="https://openreview.net/pdf?id=MJ6TINinro"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a>
+        </span></li>
+
+    <li>M. Zhang, K. Hauser. <i>Non-Penetration Iterative Closest Points for Single-View Multi-Object 6D Pose Estimation</i>. IEEE International Conference on Robotics and Automation (ICRA) 2022. 
+        <span class="nw">
+            <a href="https://motion.cs.illinois.edu/papers/ICRA2022_Zhang_NonPenetrationICP.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a>
+            <a href="https://drive.google.com/file/d/1vs-2OB_mfeX8jA4_UDF6A_S5FNAKjGq1/view?usp=sharing"><img class="mov" src="../images/mov_icon_tiny.gif"> Video</a>
+        </span></li>
+
+    <li>M. Zhang, K. Hauser. <i>Semi-infinite programming with complementarity constraints for pose optimization with pervasive contact</i>. IEEE International Conference on Robotics and Automation (ICRA) 2021. 
+        <span class="nw">
+            <a href="https://motion.cs.illinois.edu/papers/ICRA2021_Zhang_SIPCC.pdf"><img class="pdf"  src="../images/pdf_icon_tiny.gif" alt="pdf"></a>
+            <a href="https://github.com/zmccmzty/SIPCC_ICRA2021"><img class="sw"  src="../images/sw_icon_tiny.gif" alt="software"></a>
+        </span></li>
+</ul>
+</div>
+
+
+<div class="sponsors">
+    <div>
+    <div class="sponsor">
+    <img src="../images/logos/nsf1.gif">
+    NSF NRI Grant #1911087<br>    
+</div>
