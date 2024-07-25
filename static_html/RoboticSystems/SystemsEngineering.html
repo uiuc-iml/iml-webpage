@@ -7,8 +7,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
+
+
 <style type="text/css">
-/*!
+    /*!
 *
 * Twitter Bootstrap
 *
@@ -13116,7 +13118,7 @@ $( document ).ready(function(){
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Once you graduate from university and start in the robotics workforce, you will be exposed to a massively different world than you've encountered in your classes, educational competitions like FIRST robotics, team projects in student organizations, and even research projects at well-reknowned labs. You may be thinking, "Well, I've worked on team class projects, so I know pretty much how this will go.  Some people pull their weight, some slack off, but, in the end, everything will go ok for our final report.  The workforce will be pretty much like that."  (How adorable!  Little do you know...)</p>
+<p>Once you graduate from university and start in the robotics workforce, you will be exposed to a massively different world than you've encountered in your classes, educational competitions like FIRST robotics, team projects in student organizations, and even research projects at well-reknowned labs. You may be thinking, "Well, I've worked on team class projects, so I know pretty much how this will go.  Some people pull their weight, some slack off, but, in the end, everything will go ok for our final report.  The workforce will be pretty much like that."  (Oh, how I wish to be so young and naive again!)</p>
 <p>Don't underestimate it: the scale of the engineering effort (and its impact) in the enterprise setting will be larger than anything else you have experienced at university, the impact of the "soft skills" like teamwork and communication will be much higher, and the quality standards for your technical contributions will be higher too.  It is not uncommon to feel some culture shock during this transition.  Hopefully you will have had some summer internships doing real R&amp;D to help you prepare for this experience.  Or, you may be lucky enough to participate in one of the few university labs that engages in system engineering at a reasonable scale -- and by "reasonable" I mean 10+ simultaneous developers on one project.  Even if you're a student with a 4.0 GPA, if you can't adapt to the complexities of systems engineering, you might end up a perpetual junior engineer bumbling your way around an organization with no hope for career advancement.</p>
 <p>Real-world robotics engineering requires working on large and diverse teams over long periods of time.  A good engineer is grounded in 1) the theory governing component algorithms, 2) system integration and development practices, and 3) effective communication skills to document, justify, and advocate for their work.  Teams of engineers also need managers, and a good manager is grounded in 4) logical and organized thought about the system at appropriate abstraction levels, 5) project management skills to plan, assign, and track development progress, and 6) people skills to motivate the engineering team and convey the vision and progress to upper-level management.  Both classes of employees should also bring a sense of personal investment in the project so that they stay enthusiastic as setbacks are encountered, the project scope changes, and personnel changes occur.  Although a lot of these aspects cannot be taught outside of self-help books, we will be able to provide some degree of training in items 2), 3), 4), and 5) in this book.</p>
 <p>This chapter provides a brief overview of theory, processes, project management, and organizational practices of typical robotic systems engineering projects.  We can only scratch the surface of this material, as there have been many wonderful books written about systems engineering, software engineering, organizational strategy, and organizational psychology.  People can be quite opinionated and passionate about these topics, and we lack hard data exploring which methods are more successful than others, so it's best not to delve too deep into any one philosophy.  Nevertheless, this high-level summary should be help the aspiring robotics engineer (and engineering manager) predict the terminology, best practices, and pain points they are expected to encounter in their future career.</p>
@@ -13361,10 +13363,22 @@ $( document ).ready(function(){
 <h4 id="Scheduling">Scheduling<a class="anchor-link" href="#Scheduling">&#182;</a></h4><p>Another important part of project planning is <em>scheduling</em>.  For small projects you can provide estimates based on your prior experience, but as projects grow in complexity and duration, you will need some tools to help understand how people, time, and equipment are allocated to the tasks that make up your activities.  One key tool for planning your project schedule is a <em>Gantt chart</em>.  These are fairly straightforward charts with a timeline, broken into periods (e.g., days, weeks, months, quarters), on the X axis and tasks on the Y axis.  Task dependencies are indicated with an arrow from the completion of one task to the start of another.  This might sound obvious, but it is essential that any task that depends on the completion of another starts later in the timeline!</p>
 <p>TODO: Gantt chart example.</p>
 <p>Another important part of scheduling is assigning tasks to time periods.  In doing so, you ought to estimate how long each task will take assuming a given level of staffing, including the optimistic (best-case), realistic (average case), and pessimistic (worst-case) duration.  The optimism of your scheduling should be chosen to correspond with your project sponsor's tolerance of time and budget overruns.  Each task with a dependency should be scheduled after the end of the dependent tasks.  The time spacing between the end of one task and the beginning of another, if any, is a <em>margin of error</em> that your project may tolerate.</p>
-<p>A natural question is how long might the entire project may take?  To figure this out, we need to determine the <em>critical path</em> through the schedule.  The critical path is defined as the sequence of dependent tasks that have the longest total duration.  Specifically, the critical path can be determined by setting up the tasks as a weighted directed acyclic graph (DAG) and finding the longest (weighted) path.  (Although an algorithm can be used to solve the problem, it is usually easy enough to find the critical path by manual inspection).  Any tasks on the critical path must be completed on schedule in order for the project to be completed on time, whereas non-critical tasks are often allowed some margin of error.</p>
+<p>A natural question is how long might the entire project may take?  To figure this out, we need to determine the <em>critical path</em> through the schedule.</p>
+<blockquote><p><strong>Critical path</strong>: the sequence of dependent tasks in a plan whose total duration is the longest.</p>
+</blockquote>
+<p>The critical path can be determined by setting up the tasks as a weighted directed acyclic graph (DAG) and finding the longest (weighted) path.  (Although an algorithm can be used to solve the problem, it is usually easy enough to find the critical path by manual inspection).  Any tasks on the critical path must be completed on schedule in order for the project to be completed on time, whereas non-critical tasks are often allowed some margin of error.</p>
 <p>Note that as stated in a traditional form, critical path analysis does not take into account resource limits (except for time).  Limited resources can significantly affect the schedule of a project.  Imagine that everything must be done by one person: there's only so much time in the day, so you cannot execute multiple tasks in parallel unless your effort on each task is less than 100%.  To come up with a resource-limited schedule, you will need to ensure that throughout the timeline, each simultaneous task does not exceed the level of your available capacity.</p>
 <h4 id="Budgeting-and-personnel">Budgeting and personnel<a class="anchor-link" href="#Budgeting-and-personnel">&#182;</a></h4><p>TODO: Budgeting and personnel: &lt; 10% to hardware</p>
 <p>TODO: Personnel assignment %FTE</p>
+<h4 id="Handling-risk">Handling risk<a class="anchor-link" href="#Handling-risk">&#182;</a></h4><p>Every plan has some risks associated with it: the likelihood that everything goes perfectly according to plan is quite low!  You may be building some untested technology, the implementation of a component might be harder than it looks, end-user testing may reveal that you haven't planned to implement a necessary feature, personnel might quit, IT infrastructure can crash, your whole country may suffer from geopolitical destabilization... We can't eliminate all sources of risk during project management, but we can mitigate their impact.</p>
+<p>The first step to risk management is to anticipate parts of the plan that are especially risky.  Steps that involve complex implementation, untested technology, end-user evaluation, and regulator certification typically require some degree of scrutiny.  Once sources of risk have been identified, a project manager should consider creative solutions to <em>de-risk</em> the plan.</p>
+<p>De-risking is industry jargon for reducing the likelihood or the impact of risk on a plan.  There are a few ways to de-risk a plan:</p>
+<ul>
+<li>Create a <em>contingency plan</em> which takes effect if the risky condition is met.  For example, if algorithm A isn't performing well by date D, begin implementation of backup algorithm B.</li>
+<li>Implement a <em>parallel</em> backup plan to be conducted in conjunction with the main plain, and switch over if the risky condition is met.  The main team will implement algorithm A, the backup team will implement B, and you will decide which one to use at date D.</li>
+<li><em>Iterative development</em> that makes progress toward project goals using multiple design-prototype-evaluate cycles.  After each evaluation, lessons learned should be incorporated into the next prototype.</li>
+<li>Because the likelihood of risk is also hard to estimate in advance, it may be helpful to develop <em>risk evaluation</em> steps into the plan which will help better estimate the likelihood and severity of risks.  <a href="#Unit-testing">Unit testing</a>, early <a href="#System-testing">system testing</a>, and <a href="#Headroom">headroom analysis</a> are various strategies to help evaluate risk during the development process.</li>
+</ul>
 <h4 id="Design-documents-and-project-tracking">Design documents and project tracking<a class="anchor-link" href="#Design-documents-and-project-tracking">&#182;</a></h4><p>Assuming you have followed these guidelines and won approval, congratulations! Your project now needs to start. The first task is for you to get your team aligned on the specific technical steps that need to be executed to complete a project goal.  The first place to start is usually a <em>requirements document</em>, which declares technical objectives in terms of specific, measurable aspects of the deliverable.  You will then (or simultaneously) write a <em>design document</em> that outlines the steps and timeframe for achieving those objectives.</p>
 <p>TODO: Project tracking with Gantt chart, revisions to projecgt schedule, Kanban boards, Github projects, etc.</p>
 
@@ -13375,6 +13389,9 @@ $( document ).ready(function(){
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Horizontal-vs-vertical-development">Horizontal vs vertical development<a class="anchor-link" href="#Horizontal-vs-vertical-development">&#182;</a></h3><p>When developing a product there will often be teams that focus on specific components, as well as teams that integrate multiple components to fulfill specific system functions.  These are, respectively, known as <strong>horizontals</strong> and <strong>verticals</strong>.  This terminology follows the notion of a "tech stack" with high-level, slow components on top and low-level, fast components on the bottom (see the connection to <a href="AnatomyOfARobot.html">hierarchical architectures</a>?)</p>
+<blockquote><p><strong>Horizontal development</strong>: development that focuses on a technical component.</p>
+<p><strong>Vertical development</strong>: development that focuses on integrating technical components into an overall system function or behavior.</p>
+</blockquote>
 <p>TODO: figure showing horizontal / vertical matrix</p>
 <p>Engineers on a horizontal team will focus on refining a component's performance.  For example, an object detection team would be a horizontal one and would focus on improving detection accuracy.  They will also work with members of intersecting vertical teams to ensure that their component works to implement the vertical function.  These will typically be subject-matter specialists with intimate knowledge of the mechanical, electrical, algorithmic, and/or computational aspects of that component.  Their performance metrics will typically involve <a href="#unit-and-system-testing">unit testing</a>.</p>
 <p>Engineers on a vertical team will focus on expanding the range of functions of the system, or its operational domain.  For example, in an autonomous driving company a lane changing team would be focused on producing high quality driving behavior when the vehicle needs to perform a lane change.  They will often have specialists in multiple relevant horizontal teams who will work with those horizontal teams to ensure that the system function can be implemented.  For example, lane changing may require specialized agent trajectory prediction and motion planning functions, so working closely with those teams should be a high priority for this vertical.  In contrast, an object detection horizontal team may not need to be closely involved, since lane changing does not typically require any different object detection capabilities compared to normal driving.  A vertical team's performance metrics will typically involve <a href="#unit-and-system-testing">system testing</a>.</p>
@@ -13386,7 +13403,10 @@ $( document ).ready(function(){
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Taking-technologies-to-market">Taking technologies to market<a class="anchor-link" href="#Taking-technologies-to-market">&#182;</a></h3><p>A concept that has gained popularity through its development at NASA and then later adopted by the U.S. Department of Defense, the EU, and the Industrial Standards Organization (ISO) is the notion of <a href="https://en.wikipedia.org/wiki/Technology_readiness_level">Technology Readiness Levels</a> (TRLs).  This is a rating scale from 1-9 designating the maturity level of a piece of technology, ranging from the basic theoretical principles observed (TRL 1) to fully proven deployments in the operational environment (TRL 9).  Usually, university research operates at TRLs 1-4, at which point a technology is validated in a lab environment.  The transition from TRL 4-6 is often accomplished in industry or applied research labs.  The last stages of maturing a technology from TRL 7-9 involves product development and refinement, and is almost always accomplished in industry or government labs.</p>
+<h3 id="Taking-technologies-to-market">Taking technologies to market<a class="anchor-link" href="#Taking-technologies-to-market">&#182;</a></h3><p>A concept that has gained popularity through its development at NASA and then later adopted by the U.S. Department of Defense, the EU, and the Industrial Standards Organization (ISO) is the notion of <a href="https://en.wikipedia.org/wiki/Technology_readiness_level">Technology Readiness Levels</a> (TRLs).</p>
+<blockquote><p><strong>Technical readiness level (TRL)</strong>: a rating scale from 1-9 designating the maturity level of a piece of technology, ranging from the basic theoretical principles observed (TRL 1) to fully proven deployments in the operational environment (TRL 9).</p>
+</blockquote>
+<p>Usually, university research operates at TRLs 1-4, at which point a technology is validated in a lab environment.  The transition from TRL 4-6 is often accomplished in industry or applied research labs.  The last stages of maturing a technology from TRL 7-9 involves product development and refinement, and is almost always accomplished in industry or government labs.</p>
 <p>Intermediate stages of development, roughly TRL 4-7, are known as the technological <em>Valley of Death</em>.  The reason for this is that many promising technologies are mature enough to be demonstrated in the lab, but the amount of investment required to turn them into a reliable product (known as <em>technology translation</em>) is often underestimated.  For example, costs for safety certification of medical devices can run into the tens or hundreds of millions of dollars.  This phase is also accompanied by a shift in personnel from the original inventors of the early-stage technology to a development team, and this shift may come at a loss of momentum, enthusiasm, technical expertise, or project management expertise.  It may be unwise to ask a professor to start a company!</p>
 <p>Another serious risk for any translational endeavor is improper <em>product-market fit</em>, since we technology developers are always enthusiastic about our technology, which leads us to have "blinders on" that prevent us from predicting whether the market (i.e., consumers) will appreciate our product.  Robotics is especially susceptible to this kind of failure.  The remedy to this tendency is to perform early <em>market analysis</em> by speaking to potential consumers, whether this would be factory owners who might purchase an intelligent automation device, or the general public who might buy a home robot.  The results may be eye-opening or even damning to your idea.  You may get the best results by switching development priorities, e.g., you find that a new factory robot needs to identify items in clear plastic bags.   Or, you may realize that your dream is doomed, e.g., you find that the number of acceptable dishes dropped a home robot is less than 1 per month, but your best lab tests place your algorithm at 5 drops per hour.  Convincing your market that their needs are irrelevant is the definition of foolishness.  You might be able to convince an investor to give you money for your idea, in the long run, your customers will decide whether your business succeeds or not!</p>
 
@@ -13459,28 +13479,30 @@ A system metric that is used by management to measure team or project progress i
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Metrics">Metrics<a class="anchor-link" href="#Metrics">&#182;</a></h3><h4 id="Hardware-metrics">Hardware metrics<a class="anchor-link" href="#Hardware-metrics">&#182;</a></h4><p>Actuators / robot arms</p>
+<h3 id="Metrics">Metrics<a class="anchor-link" href="#Metrics">&#182;</a></h3><p>There are many performance metrics used in robotic systems, and here we describe some of the most common ones in use.</p>
+<h4 id="Hardware-metrics">Hardware metrics<a class="anchor-link" href="#Hardware-metrics">&#182;</a></h4><p>Actuators / robot arms</p>
 <ul>
 <li>Peak torque: the maximum torque that can be momentarily executed</li>
 <li>Stall torque / continuous torque: the torque can be continuously exerted for extended periods of time, i.e., without overheating.</li>
 <li>Repeatability: the amount of Cartesian error between repeated movements to the same target location. Measured when robot is at rest.</li>
 <li>Accuracy: the amount of Cartesian error between the actual robot location and the target location predicted by the robot's kinematic model. Measured when robot is at rest.</li>
-<li>Reach: the maximum distance between a pivot point and the robot's standard end effector point (e.g., wrist).</li>
-<li>Workspace volume</li>
+<li>Reach: the maximum possible distance between a pivot point and the robot's standard end effector point (e.g., wrist).</li>
+<li>Workspace volume: the volume of space that can be reached by the robot's standard end effector point (e.g., wrist).</li>
 <li>Load: the maximum load that can be continuously supported anywhere within the robot's workspace. </li>
-<li>Energy consumption</li>
-<li>Ingress protection (IP) rating</li>
-<li>Backdrivability</li>
+<li>Power consumption: the rate at which energy is consumed by the device, usually expressed in watts (W).</li>
+<li>Amperage: the maximum electrical current drawn by the device, usually expressed in amperes (A).</li>
+<li>Ingress protection (IP) rating: the degree to which the exterior housing of a device prevents entry of particles or fluids into its internal structure.</li>
+<li>Backdrivability: the extent to which a joint can be moved by external forces.</li>
 </ul>
 <p>Sensors</p>
 <ul>
-<li>Resolution</li>
-<li>Field of view</li>
+<li>Resolution: the number of elements (e.g., laser readings or pixels) reported across a sensor's field of coverage.</li>
+<li>Field of view: the horizontal and vertical angle range covered by a vision sensor.</li>
 <li>Frames per second (FPS)</li>
 <li>Depth range: depth sensors will have a working range in which depth values can be reported.</li>
 <li>Noise level / signal-to-noise ratio</li>
 <li>Drift: for IMUs, how quickly errors are expected to accumulate over time</li>
-<li>Data transfer rate</li>
+<li>Data transfer rate: the bandwidth of the communication channel used to transfer data from the device to the host computer.</li>
 </ul>
 <h4 id="Perception-metrics">Perception metrics<a class="anchor-link" href="#Perception-metrics">&#182;</a></h4><p>State estimation / SLAM</p>
 <ul>
@@ -13493,15 +13515,17 @@ A system metric that is used by management to measure team or project progress i
 <p>Object detection</p>
 <ul>
 <li>True Positive / False Positive / True Negative / False Negative rates</li>
-<li>Precision: equal to TP / (TP + FP)</li>
-<li>Recall: equal to TP / (TP + FN)</li>
-<li>Intersection over Union (IoU): computed over detected bounding box compared to ground truth bounding box.</li>
+<li>Precision: equal to TP / (TP + FP).</li>
+<li>Recall: equal to TP / (TP + FN).</li>
+<li>Intersection over Union (IoU) / Jaccard Index: for a ground truth bounding box $A$ and the predicted bounding box $B$, the value $\frac{|A \cap B|}{|A \cup B|}$.  Perfect detection gives IoU = 1, no overlap gives IoU 0. </li>
 <li>Computation time</li>
 </ul>
 <p>Segmentation</p>
 <ul>
-<li>IoU.  Also mIoU</li>
-<li>Dice score</li>
+<li>Pixel accuracy: the fraction of pixels properly classified as the correct class.</li>
+<li>Intersection over Union (IoU) / Jaccard Index: for a ground truth segment $A$ and the predicted segment $B$, the value $\frac{|A \cap B|}{|A \cup B|}$.  Perfect segmentation gives IoU = 1, no overlap gives IoU 0.  Also, mean IoU (mIoU) is a common metric for multi-class segmentation, in which average IoU is computed for each class, and then the average is computed across classes.  This approach gives more weight to accuracy on rare classes.</li>
+<li>Dice score / F1 coefficient: the value $\frac{2 |A \cap B|}{|A| + |B|}$.  Exhibits similar behavior to IoU. </li>
+<li>Chamfer distance: for a ground truth segment $A$ and the predicted segment $B$, the average distance from each point in $A$ to its closest point in $B$, plus the average distance from each point in $B$ to its closest point in $A$.  Compared to IoU, has a stronger penalty for predicting pixels that are far away from the true segment.  Perfect segmentation has chamfer distance 0, and the larger the chamfer distance, the farther away the segment from ground truth. </li>
 <li>Computation time</li>
 </ul>
 <p>Tracking</p>
@@ -13509,8 +13533,8 @@ A system metric that is used by management to measure team or project progress i
 <h4 id="Planning-metrics">Planning metrics<a class="anchor-link" href="#Planning-metrics">&#182;</a></h4><p>Computation time is a common metric for all planners.</p>
 <p>Kinematic path planning</p>
 <ul>
-<li>Path length</li>
-<li>Failure rate</li>
+<li>Path length: the sum of segment lengths in a planned piecewise linear path, which is equivalent to the integral of the norm of the derivative of the path.</li>
+<li>Failure rate: the fraction of test queries fail to produce a valid path. It is usually assumed that each test query has a valid solution.</li>
 <li>Clearance from obstacles: the minimum workspace distance to obstacles amongst all configurations $q$ in the path $y$: $\min_{q\in y} \min_{O \in \mathcal{O}} d(R(q),O)$.</li>
 <li><em>Note</em>: for randomized algorithms, you may compute path length / failure rate / clearance either for a given time limit or until success (if test cases are known to be feasible).</li>
 <li><em>Note</em>: for randomized algorithms, it is important to perform multiple runs on the same environment and start and goal configuration to calculate mean / variance of time / path length / clearance between runs.</li>
@@ -13522,12 +13546,13 @@ A system metric that is used by management to measure team or project progress i
 </ul>
 <p>Trajectory optimization</p>
 <ul>
-<li>Iteration count</li>
+<li>Iteration count: the number of outer iterations of an iterative optimizer.</li>
+<li>Evaluation count: the number of evaluations of the objective function / constraint functions and their derivatives.</li>
 <li>Infeasibility rate: when an optimizer terminates with an infeasible solutions.</li>
 <li>Local minima rate: when the optimizer converges to a suboptimal solution.</li>
-<li>Objective value: either in aggregate or for each component of the objective function.</li>
-<li>Constraint margins</li>
-<li>Sensitivity to initial guess</li>
+<li>Objective value: the minimum objective function value attained by the optimizer.  If the objective function is a weighted sum of multiple components, it is useful to report the values of each component.</li>
+<li>Constraint margins: the analytical distance to infeasibility for each inequality constraint, i.e., $max(g(x),0)$ for the constraint $g(x) \geq 0$.</li>
+<li>Sensitivity to initial guess: an evaluation of how much metrics are likely to change depending on the initial guess, e.g., determined by random restarts.</li>
 </ul>
 <p>Model predictive control (in addition to control metrics)</p>
 <ul>
@@ -13540,8 +13565,8 @@ A system metric that is used by management to measure team or project progress i
 </ul>
 <p>Multi-agent path planning</p>
 <ul>
-<li>Makespan: max path length of each agent</li>
-<li>Total path length: sum of path lengths for each agent</li>
+<li>Makespan: max path length of each agent.</li>
+<li>Total path length: sum of path lengths for each agent.</li>
 </ul>
 <p>Informative path planning / active sensing</p>
 <p>Imitation learning</p>
@@ -13675,11 +13700,11 @@ A system metric that is used by management to measure team or project progress i
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Glossary">Glossary<a class="anchor-link" href="#Glossary">&#182;</a></h3><h4 id="General">General<a class="anchor-link" href="#General">&#182;</a></h4><ul>
-<li><a href="#metrics">Metric</a>: any quantifiable measure of performance of any thing. Can be continuous, discrete, or binary (e.g., success achieved / not). The subject can be a tech component, a product, a team, or an individual.</li>
+<li><a href="#Metrics">Metric</a>: any quantifiable measure of performance of any thing. Can be continuous, discrete, or binary (e.g., success achieved / not). The subject can be a tech component, a product, a team, or an individual.</li>
 <li><a href="#kpi">KPI</a> (key performance indicator): a quantifiable measure of a team’s performance, i.e., a human metric. Used by management.</li>
 <li>OKR (objectives and key results): used by Google. Similar to KPI, but prioritizes broad goals rather than quantifiable metrics.</li>
-<li><a href="#headroom">Headroom</a>: hypothetical upper limit of a technical component’s performance under ideal circumstances and with an ideal implementation. <em>Headroom analysis</em> simulates those conditions, and can help decide how much to invest in a particular method or implementation.</li>
-<li>Development velocity / developer velocity: how “productive” a developer can be over a given timeframe.</li>
+<li><a href="#Headroom">Headroom</a>: hypothetical upper limit of a technical component’s performance under ideal circumstances and with an ideal implementation. <em>Headroom analysis</em> simulates those conditions, and can help decide how much to invest in a particular method or implementation.</li>
+<li><a href="#A-developers-responsibilities">Development velocity / developer velocity</a>: how "productive" a developer can be over a given timeframe.</li>
 <li>[X]ops (e.g., devops, secops, MLops): teams whose goals are aligned to aid in X velocity, e.g., by providing tools, frameworks, guides, etc.</li>
 <li>Critical path: the sequence of dependent activities in a project plan defining the minimum possible time to complete a project</li>
 <li>Waterfall: an organizational philosophy that breaks a project into sequential stages with clearly defined development objectives that must be met before proceeding to the next.</li>
@@ -13687,14 +13712,13 @@ A system metric that is used by management to measure team or project progress i
 </ul>
 <h4 id="Engineering-management">Engineering management<a class="anchor-link" href="#Engineering-management">&#182;</a></h4><ul>
 <li>Stakeholder: anyone who has an interest in a project, both internal and external to the organization.</li>
-<li>Technical readiness level (TRL): originating in NASA, a scale from 1-9 defining the maturity of a technology in development.</li>
-<li>Valley of Death: the transition from lab demonstration to an actual product that often acts as the "killer" of promising technologies.</li>
-<li>Tribal knowledge: information that resides only within human brains on the team rather than in formal documentation, reports, or reference materials.</li>
+<li><a href="#Taking-technologies-to-market">Technical readiness level (TRL)</a>: originating in NASA, a scale from 1-9 defining the maturity of a technology in development.</li>
+<li><a href="#Taking-technologies-to-market">Valley of Death</a>: the transition from lab demonstration to a product prototype that often acts as the "killer" of promising technologies.</li>
+<li><a href="#System-diagrams-and-system-specifications">Tribal knowledge</a>: information that resides only within human brains on the team rather than in formal documentation, reports, or reference materials.</li>
+<li><a href="#Handling-risk">De-risk</a>: to take actions to reduce the risks associated with a plan, e.g., to find possible vendors of a component in case the development team fails to meet its development goals, or to develop a fallback implementation that would deliver partial functionality in case an ambitious approach fails.</li>
 <li>Technical debt / tech debt: suboptimal style, structure, or functionality that is introduced when developers take shortcuts in an attempt to make deadlines. Tech debt usually appears as sloppy, badly organized, or non-extensible code, and the debt must be "repaid" later by undoing those introductions.</li>
-<li>De-risk: to take actions to reduce the risks associated with a plan, e.g., to find possible vendors of a component in case the development team fails to meet its development goals, or to develop a fallback implementation that would deliver partial functionality in case an ambitious approach fails.</li>
-<li>NIH (not invented here) syndrome: a tendency in organizations to avoid using products, software, or knowledge that was derived from outside the organization. Can have legitimate reasons (e.g., licensing restrictions, compatibility) but can also waste time.</li>
-<li>SMART goal: a set of principles for writing good milestones and deliverables during project planning. Stands for Specific, Measurable, Achievable, Realistic, and Time-bound.</li>
-<li>% FTE (full-time equivalent): The percentage of effort that one developer devotes to a particular task.</li>
+<li><a href="#Project-planning">SMART goal</a>: a set of principles for writing good milestones and deliverables during project planning. Stands for Specific, Measurable, Achievable, Realistic, and Time-bound.</li>
+<li><a href="#Budgeting-and-personnel">% FTE (full-time equivalent)</a>: The percentage of effort that one developer devotes to a particular task.</li>
 </ul>
 <h4 id="Engineering-management-pitfalls">Engineering management pitfalls<a class="anchor-link" href="#Engineering-management-pitfalls">&#182;</a></h4><ul>
 <li>Peter principle: people in a hierarchy rise to the level of incompetence</li>
@@ -13703,20 +13727,21 @@ A system metric that is used by management to measure team or project progress i
 <li>Hofstadter's Law: "It always takes longer than you expect, even when you take into account Hofstadter's Law." Also see optimism bias, planning fallacy</li>
 <li>90-90 rule: "The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time."</li>
 <li>Student syndrome: planned procrastination, because an impending deadline induces the proper amount of urgency.</li>
+<li>NIH (not invented here) syndrome: a tendency in organizations to avoid using products, software, or knowledge that was derived from outside the organization. Can have legitimate reasons (e.g., licensing restrictions, compatibility) but can also waste time.</li>
 </ul>
 <h4 id="Software-engineering">Software engineering<a class="anchor-link" href="#Software-engineering">&#182;</a></h4><ul>
-<li><a href="#abstraction">Abstraction</a>: </li>
+<li><a href="#Abstraction">Abstraction</a>: </li>
 <li><a href="#mental-model">Mental model</a>: A person's understanding of the function and inner workings of an abstraction (whether such asn understanding correct or incorrect).</li>
 <li>Toolchain: a sequence of programs designed to accomplish a complex development function</li>
-<li>Regression testing: verifying that new changes to software do not break old functionality, e.g., by introducing new bugs or changing behavior.</li>
+<li><a href="#Unit-testing">Unit testing</a>: testing a component of a product to ensure it behaves as expected and/or to gather metrics.</li>
+<li><a href="#System-testing">System testing / Integration testing</a>: testing a whole product to ensure it behaves as expected and/or to gather metrics.</li>
+<li><a href="#Unit-testing">Regression testing</a>: verifying that new changes to software do not break old functionality, e.g., by introducing new bugs or changing behavior.</li>
 <li>Continual integration: a methodology and toolchains for automatically verifying that a complex software product functions (e.g., compiles, regression tests pass) as desired. Such toolchains are run upon each push.</li>
-<li>Unit testing: testing a component of a product to ensure it behaves as expected and/or to gather metrics.</li>
-<li>Integration testing: testing a whole product to ensure it behaves as expected and/or to gather metrics.</li>
 <li>Full-stack developer: a developer whose expertise bridges multiple components rather than specializing in a single component.</li>
 </ul>
 <h4 id="Software-engineering-pitfalls">Software engineering pitfalls<a class="anchor-link" href="#Software-engineering-pitfalls">&#182;</a></h4><ul>
 <li>Software / code rot: code losing performance or functionality over long periods of time due to the environment changing around it, e.g., system or library upgrades</li>
-<li>Leaky abstraction:</li>
+<li><a href="#Abstraction">Leaky abstraction</a>: A (claimed) abstraction of a component that does not fully describe the component's true behavior, such as side-effects.</li>
 </ul>
 
 </div>

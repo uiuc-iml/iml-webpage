@@ -13085,72 +13085,6 @@ MathJax.Hub.Config({ TeX: { equationNumbers: {
     } } 
 });
 </script>
-
-<script type="text/x-mathjax-config">
-// make sure that equations numbers are enabled
-MathJax.Hub.Config({ TeX: { equationNumbers: {
-    autoNumber: "all", // All AMS equations are numbered
-    useLabelIds: true, // labels as ids
-    // format the equation number - uses an offset eqNumInitial (default 0)
-    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
-    } } 
-});
-</script>
-
-<script type="text/x-mathjax-config">
-// make sure that equations numbers are enabled
-MathJax.Hub.Config({ TeX: { equationNumbers: {
-    autoNumber: "all", // All AMS equations are numbered
-    useLabelIds: true, // labels as ids
-    // format the equation number - uses an offset eqNumInitial (default 0)
-    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
-    } } 
-});
-</script>
-
-<script type="text/x-mathjax-config">
-// make sure that equations numbers are enabled
-MathJax.Hub.Config({ TeX: { equationNumbers: {
-    autoNumber: "all", // All AMS equations are numbered
-    useLabelIds: true, // labels as ids
-    // format the equation number - uses an offset eqNumInitial (default 0)
-    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
-    } } 
-});
-</script>
-
-<script type="text/x-mathjax-config">
-// make sure that equations numbers are enabled
-MathJax.Hub.Config({ TeX: { equationNumbers: {
-    autoNumber: "all", // All AMS equations are numbered
-    useLabelIds: true, // labels as ids
-    // format the equation number - uses an offset eqNumInitial (default 0)
-    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
-    } } 
-});
-</script>
-
-<script type="text/x-mathjax-config">
-// make sure that equations numbers are enabled
-MathJax.Hub.Config({ TeX: { equationNumbers: {
-    autoNumber: "all", // All AMS equations are numbered
-    useLabelIds: true, // labels as ids
-    // format the equation number - uses an offset eqNumInitial (default 0)
-    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
-    } } 
-});
-</script>
-
-<script type="text/x-mathjax-config">
-// make sure that equations numbers are enabled
-MathJax.Hub.Config({ TeX: { equationNumbers: {
-    autoNumber: "all", // All AMS equations are numbered
-    useLabelIds: true, // labels as ids
-    // format the equation number - uses an offset eqNumInitial (default 0)
-    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
-    } } 
-});
-</script>
 <!-- End of mathjax configuration --></head>
 
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
@@ -13207,7 +13141,8 @@ $( document ).ready(function(){
 <p>For most work in robotics we deal with soft real-time systems, unless you are working on very low-level motor controllers and sensor drivers.  That is, completing a computation late is better than never providing the result at all, but being late could have negative consequences such as the robot losing responsiveness or freezing up.  So, our examples will be focused on this case.  If you are indeed working on hard real-time systems, you will want to consult more information about real-time operating systems (RTOS) and compiled languages like C or C++.</p>
 <h3 id="Programming-with-time">Programming with time<a class="anchor-link" href="#Programming-with-time">&#182;</a></h3><p>Many microprocessors like Arduinos are uniprocessors, in which there is nothing running on the device except for your code. Hence, your code will be run every cycle in a loop.  This gives you tight control over timing.</p>
 <p>All other computers you are likely to run into are multiprocessors, which allow running multiple processes at once, including the terminal, the operating system (OS) services, the OS graphical user interface (GUI), hardware drivers, etc.  Unlike uniprocessors, your code does not have complete control over its execution. Instead, the OS handles all aspects of timing the execution of your code, and your code only makes requests to sleep or delay computations and make system calls.  The manner in which the OS chooses to execute program code is known as <em>scheduling</em>.   The scheduler has a certain scheduling precision (approximately 1ms on Linux, variable on Windows), handles contention between multiple processes for CPU and other resources, and orders processes according to their priority levels.  As a result, your code may not be able to have tight control over its timing.</p>
-<p>(A bit of definition: technically, a <em>process</em> is an instantiated <em>program</em>, and the OS can run multiple processes corresponding to the same program. Complicating things further, a process can run multiple concurrent <em>threads</em>, and a process can spawn multiple <em>sub-processes</em>.  For now let's assume that we are generating a single process of a single program that runs a single thread and no sub-processes. )</p>
+<p><a id="processes"></a>
+(A bit of definition: technically, a <em>process</em> is an instantiated <em>program</em>, and the OS can run multiple processes corresponding to the same program. Complicating things further, a process can run multiple concurrent <em>threads</em>, and a process can spawn multiple <em>sub-processes</em>.  For now let's assume that we are generating a single process of a single program that runs a single thread and no sub-processes. )</p>
 <p><a id="execution-loop"></a>
 Let's try to write a simple program that performs a repetitive task at 20Hz.  Let's encapsulate the task in a single function called <code>do_work</code>.  Now, you will need to write an <em>execution loop</em> that repeatedly calls the task.  To get this code to run, your first attempt might be something like this.</p>
 
@@ -13903,7 +13838,8 @@ In the <em>callback</em> paradigm, the framework allows you to <em>bind</em> an 
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
 </pre></div>
 <p>Unfortunately, many event-driven frameworks do not provide such functionality, and instead ask you to implement your entire program within the <code>run_event_loop</code> executor function.  In this case, embedding polling into the event loop is a better option.</p>
-<p>To mix blocking calls or accomplish very complex integrations between polling and event-based loops, you may need to resort to <em>multithreading</em>.  Multithreading uses the OS to interweave the computations between a single program's execution loops.  In this way, you can implement separate loops, and integrate their interactions in your handlers.  The tricky thing with multithreading is to ensure that reads and writes do not case <em>race conditions</em>, which are unexpected behavior due to the thread scheduler interleaving code between multiple threads in interesting ways.  A full discussion of multithreading is beyond the scope of this book, but suffice to say that this is usually handled by <em>locking</em> critical sections.  If you are using the separation of calcuation and communication paradigm that we described above, this can be handled globally using a shared lock and wrapping handlers in the lock, as follows:</p>
+<p><a id="threading"></a>
+To mix blocking calls or accomplish very complex integrations between polling and event-based loops, you may need to resort to <em>multithreading</em>.  Multithreading uses the OS to interweave the computations between multiple execution loops in a single program.  In this way, you can implement separate loops, and integrate their interactions in your handlers.  Threads share memory and can access the same variables in your program, so inter-thread communication is a simple matter of changing variable values.  However, the tricky thing with multithreading is to ensure that reads and writes do not case <em>race conditions</em>, which are unexpected behavior due to the thread scheduler interleaving code between multiple threads in interesting ways.  A full discussion of multithreading is beyond the scope of this book, but suffice to say that this is usually handled by <em>locking</em> critical sections.  If you are using the separation of calcuation and communication paradigm that we described above, this can be handled globally using a shared lock and wrapping handlers in the lock, as follows:</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">from</span> <span class="nn">myprogram</span> <span class="kn">import</span> <span class="n">MyProgram</span>
 
@@ -15092,15 +15028,15 @@ Note that queue size limit strategy silently discards messages, and because your
 <h2 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h2><h3 id="Key-takeaways">Key takeaways<a class="anchor-link" href="#Key-takeaways">&#182;</a></h3><p>TODO</p>
 <h3 id="Glossary">Glossary<a class="anchor-link" href="#Glossary">&#182;</a></h3><p>Real-time programming</p>
 <ul>
-<li><a href="#execution-loop">Execution loop</a>: the main loop of a real-time program that repeatedly performs some work until a termination criterion is met.</li>
-<li><a href="#blocking-requests">Blocking</a>: when a function call stops the execution of our application's code until an interaction (with another process or device) completes.</li>
-<li><a href="#polling-loops">Polling loop</a>: an execution loop that avoids blocking by repeatedly checking whether events (such as the arrival of a message from another process) are present before executing corresponding program logic.  Event checks are performed at a fixed rate. </li>
-<li><a href="#event-loops">Event loop</a>: an execution loop that responds to events via callbacks.  Callbacks implement the program logic, and are triggered by the event system, which frequently takes control over the execution loop.</li>
-<li>Callback</li>
-<li>State machine</li>
-<li>Thread</li>
-<li>Process</li>
-<li>Launcher</li>
+<li><a href="#execution-loop">Execution loop</a>: The main loop of a real-time program that repeatedly performs some work until a termination criterion is met.</li>
+<li><a href="#Blocking-requests">Blocking</a>: When a function call stops the execution of our application's code until an interaction (with another process or device) completes.</li>
+<li><a href="#Polling-loops">Polling loop</a>: An execution loop that avoids blocking by repeatedly checking whether events (such as the arrival of a message from another process) are present before executing corresponding program logic.  Event checks are performed at a fixed rate. </li>
+<li><a href="#Event-loops">Event loop</a>: An execution loop that responds to events via callbacks.  Callbacks implement the program logic, and are triggered by the event system, which frequently takes control over the execution loop.</li>
+<li><a href="#Event-loops">Callback</a>: A function that is called by an event system when an event happens.  Callbacks are defined by the application to implement the program logic.</li>
+<li><a href="#State-machines">State machine</a>: A common paradigm for programming real-time systems that change functionality at discrete points in time in response to events.  Each state implements a functionality, and events correspond to transitions between states.</li>
+<li><a href="#processes">Process</a>: Code that is run by an OS scheduler and is provided its own memory space.</li>
+<li><a href="#threading">Thread</a>: A code execution unit in which the OS scheduler executes instructions in sequence.  A process can have one or more threads.</li>
+<li><a href="#Launching-concurrent-processes">Launcher</a>: A single entry point to running multiple concurrent programs.  Usually a launch script or a settings file provided to a launch program (e.g., <code>roslaunch</code>).</li>
 </ul>
 <p>Communication</p>
 <ul>

@@ -13085,72 +13085,6 @@ MathJax.Hub.Config({ TeX: { equationNumbers: {
     } } 
 });
 </script>
-
-<script type="text/x-mathjax-config">
-// make sure that equations numbers are enabled
-MathJax.Hub.Config({ TeX: { equationNumbers: {
-    autoNumber: "all", // All AMS equations are numbered
-    useLabelIds: true, // labels as ids
-    // format the equation number - uses an offset eqNumInitial (default 0)
-    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
-    } } 
-});
-</script>
-
-<script type="text/x-mathjax-config">
-// make sure that equations numbers are enabled
-MathJax.Hub.Config({ TeX: { equationNumbers: {
-    autoNumber: "all", // All AMS equations are numbered
-    useLabelIds: true, // labels as ids
-    // format the equation number - uses an offset eqNumInitial (default 0)
-    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
-    } } 
-});
-</script>
-
-<script type="text/x-mathjax-config">
-// make sure that equations numbers are enabled
-MathJax.Hub.Config({ TeX: { equationNumbers: {
-    autoNumber: "all", // All AMS equations are numbered
-    useLabelIds: true, // labels as ids
-    // format the equation number - uses an offset eqNumInitial (default 0)
-    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
-    } } 
-});
-</script>
-
-<script type="text/x-mathjax-config">
-// make sure that equations numbers are enabled
-MathJax.Hub.Config({ TeX: { equationNumbers: {
-    autoNumber: "all", // All AMS equations are numbered
-    useLabelIds: true, // labels as ids
-    // format the equation number - uses an offset eqNumInitial (default 0)
-    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
-    } } 
-});
-</script>
-
-<script type="text/x-mathjax-config">
-// make sure that equations numbers are enabled
-MathJax.Hub.Config({ TeX: { equationNumbers: {
-    autoNumber: "all", // All AMS equations are numbered
-    useLabelIds: true, // labels as ids
-    // format the equation number - uses an offset eqNumInitial (default 0)
-    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
-    } } 
-});
-</script>
-
-<script type="text/x-mathjax-config">
-// make sure that equations numbers are enabled
-MathJax.Hub.Config({ TeX: { equationNumbers: {
-    autoNumber: "all", // All AMS equations are numbered
-    useLabelIds: true, // labels as ids
-    // format the equation number - uses an offset eqNumInitial (default 0)
-    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
-    } } 
-});
-</script>
 <!-- End of mathjax configuration --></head>
 
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
@@ -14241,13 +14175,13 @@ software can reduce the risk of error.</p>
 <li><a href="#Directional-quantities">Displacement</a>: A vector representing the difference between points.</li>
 <li><a href="#Directional-quantities">Direction</a>: A unit vector that represnts a normalized difference between points or normalized velocity. </li>
 <li><a href="#Vectors-and-coordinates">Coordinates</a>: A collection of numbers representing a point, direction, or displacement quantity relative to some coordinate frame.  </li>
-<li><a href="#2D-coordinate-frames">Coordinate frame</a>: a collection of an origin point and orthogonal axis vectors (e.g., X, Y, and Z) that may be used to represent points, directions, and displacements as coordinates.</li>
+<li><a href="#2D-coordinate-frames">Coordinate frame</a>: A collection of an origin point and orthogonal axis vectors (e.g., X, Y, and Z) that may be used to represent points, directions, and displacements as coordinates.</li>
 <li><a href="#interpolation">Linear interpolation</a>: An equation $y(u)$ of constant velocity between points $\mathbf{p}$ to $\mathbf{q}$, reaching $\mathbf{p}$ at $u=0$ and $\mathbf{q}$ at $u=1$.  The equation is given by $y(u) = (1-u)\mathbf{p} + u\mathbf{q}$ or equivalently $y(u) = \mathbf{p} + u(\mathbf{q}-\mathbf{p})$.</li>
 <li><a href="#plane-equation">Plane equation</a>: An equation that is held at any point on an infinite plane. The equation is $\mathbf{x} \cdot \mathbf{n} = c $ where $\mathbf{x}$ is any point on the plane, $\mathbf{n}$ is the plane normal, and $c$ is an offset scalar. </li>
-<li><a href="#Rotations-in-2D">Rotation</a>: an orientation-preserving, orthogonal, linear transform.  Rotations preserve distances between points, that is, $\|Rx-Ry\|=\|x-y\|$ for all $x$ and $y$.  </li>
+<li><a href="#Rotations-in-2D">Rotation</a>: An orientation-preserving, orthogonal, linear transform.  Rotations preserve distances between points, that is, $\|Rx-Ry\|=\|x-y\|$ for all $x$ and $y$.  </li>
 <li><a href="#Representation-of-coordinate-frames-and-coordinate-transforms">Rotation matrix</a>: a 2x2 or 3x3 matrix that represents a rotation.  A rotation matrix is orthogonal and has determinant +1. </li>
-<li><a href="#so2">SO(2)</a>: the mathematical notation for the space of 2D rotations, called the special orthogonal group.</li>
-<li><a href="#so3">SO(3)</a>: the mathematical notation for the space of 3D rotations, called the special orthogonal group.</li>
+<li><a href="#so2">SO(2)</a>: The mathematical notation for the space of 2D rotations, called the special orthogonal group.</li>
+<li><a href="#so3">SO(3)</a>: The mathematical notation for the space of 3D rotations, called the special orthogonal group.</li>
 <li><a href="#Rigid-transformations">Rigid transform</a>: An affine transform that combines a rotation and a translation.  Like rotations, rigid transform preserves distances between points.</li>
 <li><a href="#Homogeneous-coordinate-representations">Homogeneous coordinates</a>: A way to represent rigid transforms as linear transforms (matrices).  A 3x3 (in 2D) or 4x4 (in 3D) matrix that contains the rotation part in the upper left, and the translation part in the upper right.  Points are then represented with an additional 1 in the (d+1)'th coordinate, and directional quantities are represented with a 0 in this coordinate.</li>
 </ul>
