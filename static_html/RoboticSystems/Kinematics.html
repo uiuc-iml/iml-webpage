@@ -13085,6 +13085,72 @@ MathJax.Hub.Config({ TeX: { equationNumbers: {
     } } 
 });
 </script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
 <!-- End of mathjax configuration --></head>
 
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
@@ -13185,7 +13251,8 @@ together; since mathematically the two links could be considered as one,
 this is primarily for representational convenience. Is is customary to
 refer to one of the attached links as the <em>parent</em> and the other the
 <em>child</em>.</p>
-<p>Second, mechanisms can be described by their <em>topology</em>, which describes
+<p><a id="topology"></a>
+Second, mechanisms can be described by their <em>topology</em>, which describes
 how links and joints interconnect:</p>
 <ul>
 <li><p>Serial: the links and joints form a single ordered chain, with the
@@ -13408,7 +13475,8 @@ $$\mathbf{x}^{1,ref} = R(q_{1}) \mathbf{x}^{1} = \begin{bmatrix} {\cos q_1} &amp
 <p>Next, we can convert coordinates in $l_1$'s
 reference frame to the world via multiplication by $T_{1,ref}$ to obtain
 the final value of $X$'s world coordinates, $\mathbf{x}^W$:
-$$\mathbf{x}^W = T_{1,ref} R(q_1) \mathbf{x}^1.$$ We can now define
+$$\mathbf{x}^W = T_{1,ref} R(q_1) \mathbf{x}^1.$$
+We can now define
 $T_1(q_1) \equiv T_{1,ref} R(q_1)$ as the frame of link 1.</p>
 <p>Let us proceed to link 2, which moves in space as a function of both
 $q_1$ and $q_2$. Imagine $X$ now be a point attached to link 2, and let
@@ -13448,8 +13516,11 @@ This can be simplified further by assuming the <em>reference parent
 transforms</em> are given by the relative transforms
 $T_{i,ref}^{i-1,ref} \equiv (T_{i-1,ref})^{-1} T_{i,ref}$. Then, the
 simplified equation is:
-$$T_{i}(q) = T_{i-1}(q) T_{i,ref}^{i-1,ref} R(q_i).
-\label{eq:RecursiveForwardKinematics}$$ Reading this equation from right
+\begin{equation}
+T_{i}(q) = T_{i-1}(q) T_{i,ref}^{i-1,ref} R(q_i).
+\label{eq:RecursiveForwardKinematics}
+\end{equation}
+Reading this equation from right
 to left, the three steps described above become clear: 1) rotate about
 the joint, 2) convert to the coordinates of the parent link, 3)
 transform by the parent's transform.</p>
@@ -13542,12 +13613,18 @@ the child of exactly one joint, and hence has only one parent. The
 parent of link $i$ is denoted $p[i]$, with the base link attached by a
 joint to the world, denoted by $p[i] = W$.</p>
 <p>The modification to
-($\ref{eq:RecursiveForwardKinematics}$) is simple. Rather than using
+$\eqref{eq:RecursiveForwardKinematics}$ is simple. Rather than using
 the prior index in the recursive formula, we use the parent index:
-$$T_{i}(q) = T_{p[i]}(q) T_{i,ref}^{p[i],ref} R(q_i)
-\label{eq:RecursiveForwardKinematicsBranched}$$ if $p[i] \neq W$ and
-$$T_{i}(q) = T_{i,ref} R(q_i)
-\label{eq:RecursiveForwardKinematicsBase}$$ otherwise.</p>
+\begin{equation}
+T_{i}(q) = T_{p[i]}(q) T_{i,ref}^{p[i],ref} R(q_i)
+\label{eq:RecursiveForwardKinematicsBranched}
+\end{equation}
+if $p[i] \neq W$ and
+\begin{equation}
+T_{i}(q) = T_{i,ref} R(q_i)
+\label{eq:RecursiveForwardKinematicsBase}
+\end{equation}
+otherwise.</p>
 
 </div>
 </div>
@@ -13601,7 +13678,7 @@ s_1 &amp; c_1 &amp; s_1(L_1 + q_2) \\
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To represent this compactly, we slightly modify
-($\ref{eq:RecursiveForwardKinematicsBranched}$). Let us define for
+$\eqref{eq:RecursiveForwardKinematicsBranched}$. Let us define for
 $i=1,\ldots,n$, the following kinematic parameters:</p>
 <ul>
 <li><p>The parent index $p[i]$.</p>
@@ -13616,8 +13693,11 @@ $i=1,\ldots,n$, the following kinematic parameters:</p>
 </li>
 </ul>
 <p>Then, the forward kinematics are defined by:
-$$T_{i}(q) = T_{p[i]}(q) T_{i,ref}^{p[i],ref} L_{z_i,\mathbf{a}_i}(q_i)
-\label{eq:RecursiveForwardKinematicsGeneralized}$$ where $T_{W}(q)$ is
+\begin{equation}
+T_{i}(q) = T_{p[i]}(q) T_{i,ref}^{p[i],ref} L_{z_i, \mathbf{a}_i} (q_i)
+\label{eq:RecursiveForwardKinematicsGeneralized}
+\end{equation}
+where $T_{W}(q)$ is
 the identity and $L_{z_i,\mathbf{a}_i}(q_i)$ is the local joint transform
 $$L_{z,\mathbf{a}}(q) = 
 \begin{bmatrix}
@@ -13626,7 +13706,7 @@ $$L_{z,\mathbf{a}}(q) =
 0 &amp; 0 &amp; 1
 \end{bmatrix}.$$</p>
 <h3 id="3D-forward-kinematics">3D forward kinematics<a class="anchor-link" href="#3D-forward-kinematics">&#182;</a></h3><p>In 3D, forward kinematics is essentially identical to
-($\ref{eq:RecursiveForwardKinematicsGeneralized}$), except that
+$\eqref{eq:RecursiveForwardKinematicsGeneralized}$, except that
 homogeneous coordinate matrices are $4\times 4$, and both prismatic and
 revolute joints must be defined according an axis
 $\mathbf{a}_i = (a_{i,x},a_{i,y},a_{i,z})$. As before, this axis is specified
@@ -17009,8 +17089,7 @@ baseObj[funcName] = function(callback, context) {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h2><p>Key takeaways:</p>
-<ul>
+<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h2><h3 id="Key-takeaways">Key takeaways<a class="anchor-link" href="#Key-takeaways">&#182;</a></h3><ul>
 <li><p>The kinematics of a robot relate the joint angles of a robot to the
 coordinate frames of its links.</p>
 </li>
@@ -17034,6 +17113,25 @@ or branched robot with a single-pass algorithm.</p>
 <li><p>Software for calculating forward kinematics should be available in
 any major robotics package.</p>
 </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Glossary">Glossary<a class="anchor-link" href="#Glossary">&#182;</a></h3><ul>
+<li><a href="#Configurations-and-configuration-space">Configuration</a>: A minimal mathematical representation of the geometric layout of a robot. It usually represents all of the joint angles and possibly the degrees of freedom of a virutal linkage.</li>
+<li><a href="#Degrees-of-freedom">Degree of freedom</a>: A single parameter in a configuration. </li>
+<li><a href="#Floating-bases-and-virtual-linkages">Virtual linkage</a>: For robots that are not rigidly attached to the environment, 3 (in 2D) or 6 (in 3D) virtual degrees of freedom are added to the robot's configuration.</li>
+<li><a href="#Configurations-and-configuration-space">Configuration space</a>: The set of all theoretically possible configurations of a robot, ignoring collision constraints.</li>
+<li><a href="#Configuration-space-and-workspace">Workspace</a>: The 2D or 3D physical space in which a robot exists. </li>
+<li><a href="#topology">Serial robot</a>: A robot structure in which each link except the last has exactly one child. </li>
+<li><a href="#topology">Branched robot</a>: A robot structure in which some links have multiple children. </li>
+<li><a href="#topology">Parallel robot</a>: A robot structure in which there is one or more cycles of connected joints. </li>
+<li><a href="#Forward-kinematics">Forward kinematics</a>: The process of computing coordinate frames for robot links given a robot configuration as input.  A basic subroutine used throughout robotics.</li>
+<li><a href="#Robot-kinematic-definition-files">URDF file</a>: a popular XML-based format for robot kinematic definitions.  </li>
 </ul>
 
 </div>

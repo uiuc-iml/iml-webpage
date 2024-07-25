@@ -13085,6 +13085,72 @@ MathJax.Hub.Config({ TeX: { equationNumbers: {
     } } 
 });
 </script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
 <!-- End of mathjax configuration --></head>
 
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
@@ -24961,7 +25027,9 @@ is the critical quantity here.  If $H$ is rank deficient, there exists one or mo
 <p>We can make this more precise by a statistical argument.  If we considered the selection of the dataset $D$ as an "experiment", and by running more experiments we could draw an increasing number of datasets $D_1,D_2,D_3,\ldots$.  For each of these datasets, we could run parameter estimation to obtain estimates $\hat{\theta}_1,\hat{\theta}_2,\hat{\theta}_3,\ldots$, which would not in generally be the same: because of noise in the drawn dataset, each of these estimates will be somewhat different.  We can study how far $\hat{\theta}_1,\hat{\theta}_2,\hat{\theta}_3,\ldots$ deviate from the true value $\theta$.  In particular, the covariance matrix
 $$Var(\theta) = \lim_{N\rightarrow \infty} 1/N \sum_{i=1}^N (\theta_i - \theta) (\theta_i - \theta)^T$$
 tells us how wildly the estimates deviate from the true value.  In particular, the square root of the diagonal of $Var(\theta)$ is called the <em>standard error</em> , and tells us how far $\hat{\theta}$ deviates from $\theta$ on average.</p>
-<p>Via a derivation beyond the scope of this course, if we knew that the probability of drawing a particular $y$ for a given $x$ is proportional to $exp(-0.5 e(y,f(x,\theta))$, it can be shown that the inverse of the Hessian matrix gives an approximation of the covariance matrix:
+<p>We remark that error functions $E$ may often be interpreted as a negative log-likelihood of the observation probability: $E(\theta) = - \log P(D;\theta)$.  For example, if $e$ is a squared error function it corresponds to the assumption that the probability of drawing a particular $y$ for a given $x$ is proportional to $exp(-0.5 e(y,f(x,\theta))$. 
+In such cases, the optimum $\theta^\star$ is the maximum-likelihood estimate, and the hessian $H$ is an estimate of the Fisher Information Matrix (FIM).<br>
+The theory relating the FIM to estimator error is quite deep, and has attracted much attention in statistics and information theory.  We will simply state that it can be shown, via a derivation beyond the scope of this book, that the inverse of the Hessian matrix gives an approximation of the covariance matrix:
 $$Var(\theta) \approx H^{-1}. $$
 In other words, the "sharper" the error function at the optimum, the less variability we should expect to see in the parameter estimates.</p>
 <p>In general, the variance decreases proportionally to the inverse of $|D|$, which means the standard error decreases proportionally to the inverse square root of $|D|$.  Hence, to increase accuracy by a factor of 2, the size of the dataset must be increased by a factor of 4; to increase accuracy by a factor of 10, the size of the dataset must be increased by a factor of 100.</p>
@@ -26303,10 +26371,10 @@ Then, $\overline{R}_N$ is an estimate of the average rotation.</p>
 
  
  
-<div id="6adee2cc-f5c8-441a-bb6a-b9a1e4953883"></div>
+<div id="309bc660-b7b4-4eff-949a-23a1020c1f3d"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#6adee2cc-f5c8-441a-bb6a-b9a1e4953883');
+var element = $('#309bc660-b7b4-4eff-949a-23a1020c1f3d');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "f7acc4d8a4e14bc0a0be0a4f6009d493", "version_major": 2, "version_minor": 0}
@@ -26325,10 +26393,10 @@ var element = $('#6adee2cc-f5c8-441a-bb6a-b9a1e4953883');
 
  
  
-<div id="67d48df9-ad44-41a1-be4b-5ab59f57bc62"></div>
+<div id="62548621-662b-4b05-be48-98196bc85fbd"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#67d48df9-ad44-41a1-be4b-5ab59f57bc62');
+var element = $('#62548621-662b-4b05-be48-98196bc85fbd');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "d6bf8b6720934d6b9786c13a899b3669", "version_major": 2, "version_minor": 0}

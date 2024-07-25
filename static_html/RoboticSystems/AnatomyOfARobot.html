@@ -13085,6 +13085,72 @@ MathJax.Hub.Config({ TeX: { equationNumbers: {
     } } 
 });
 </script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
 <!-- End of mathjax configuration --></head>
 
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
@@ -13190,7 +13256,7 @@ state-of-the-art can be exhausting!</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Links-and-Joints">Links and Joints<a class="anchor-link" href="#Links-and-Joints">&#182;</a></h2><p>Like the bones of an animal, a robot's links offer structural support
+<h2 id="Links-and-joints">Links and joints<a class="anchor-link" href="#Links-and-joints">&#182;</a></h2><p>Like the bones of an animal, a robot's links offer structural support
 and protection of internal parts. Most often, some sort of metal is used
 to provide strong structural support, although some robots use other
 materials like wood, plastic, or composites. Surfaces that are meant to
@@ -13276,7 +13342,7 @@ models should be used to analyze and predict their behavior.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Actuators-and-Transmissions">Actuators and Transmissions<a class="anchor-link" href="#Actuators-and-Transmissions">&#182;</a></h2><p>An actuator is a mechanism that generates a force / torque given electrical signals; a transmission is a mechanism that applies an actuator's forces / torques to the robot's links.  Most commonly on industrial robots, actuators are electric motors while the transmissions are some sort of gearing system (e.g., gearbox).  On mobile robots, the transmissions from actuators to the ground are actually the wheels (or tracks).  It is also common to think of (and purchase) the actuator and transmission as a unit, such as with servomotors.</p>
+<h2 id="Actuators-and-transmissions">Actuators and transmissions<a class="anchor-link" href="#Actuators-and-transmissions">&#182;</a></h2><p>An actuator is a mechanism that generates a force / torque given electrical signals; a transmission is a mechanism that applies an actuator's forces / torques to the robot's links.  Most commonly on industrial robots, actuators are electric motors while the transmissions are some sort of gearing system (e.g., gearbox).  On mobile robots, the transmissions from actuators to the ground are actually the wheels (or tracks).  It is also common to think of (and purchase) the actuator and transmission as a unit, such as with servomotors.</p>
 <p>Common actuator types include:</p>
 <ul>
 <li><p><em>Electric motors</em>: stepper motors, brushed / brushless DC motors, AC motors.</p>
@@ -13333,7 +13399,7 @@ models should be used to analyze and predict their behavior.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Cognitive-Architectures">Cognitive Architectures<a class="anchor-link" href="#Cognitive-Architectures">&#182;</a></h2><p>The title of this section is a bit misleading: robots don't perform
+<h2 id="Cognitive-architectures">Cognitive architectures<a class="anchor-link" href="#Cognitive-architectures">&#182;</a></h2><p>The title of this section is a bit misleading: robots don't perform
 "cognition" as humans and animals do. However, they do indeed need to
 process sensor information and make decisions about how to act. This
 processing is accomplished via one or more computers, rather than
@@ -13362,7 +13428,8 @@ output commands to the body's actuators (act). This perspective is also
 known as the <em>sense-plan-act</em> framework, and is illustrated in <a href="#fig:SensePlanAct">Fig. 1</a>.</p>
 <hr>
 <p><img src="figures/introduction/sense_plan_act.png" alt="fig:SensePlanAct"></p>
-<div class="figcaption"><a name="fig:SensePlanAct">Figure 1</a>. The sense-plan-act framework structures how the robot's "mind" processes information from its sensors (Sense), calculates an action (Plan), and then performs the action using its body (Act).</div><hr>
+<div class="figcaption"><a name="fig:SensePlanAct">Figure 1</a>. The sense-plan-act framework structures how the robot's "mind" processes information from its sensors (Sense), calculates an action (Plan), and then performs the action using its body (Act).  In turn, the body interacts with the environment by applying physical forces and receiving data from sensing devices.
+</div><hr>
 <p>Imagining one's brain severed
 from one's body at the spinal cord, the sense-plan-act framework views
 the brain's role as processing the input and output that pass through
@@ -13378,7 +13445,8 @@ issues with measuring performance in later chapters on system
 engineering; for now we shall assume there is some existing quantifiable
 performance metric, like tracking a curve as closely as possible, or
 having a low risk of colliding with pedestrians, etc.</p>
-<p>First, we will consider a <em>simple reflexive</em> architecture, in which the
+<p><a id="reflexive"></a>
+First, we will consider a <em>simple reflexive</em> architecture, in which the
 inputs are converted to outputs via a set of fixed operations (<em>rules</em>).
 Examples of this architecture include servomotors, automatic doors, some
 factory automation components, and other simple electromechanical
@@ -13388,7 +13456,8 @@ methods in Section V. Often, simple reflexive machines are
 not even thought of as "robots" because they operate only on the data
 that is immediately provided to them, and do not derive any richer
 understanding.</p>
-<p>In the <em>model-based</em> reflexive architecture, the robot estimates the
+<p><a id="model-based-reflexive"></a>
+In the <em>model-based</em> reflexive architecture, the robot estimates the
 current <em>state</em> of its environment using history. State represents an
 understanding of the robot's body and world, which may include
 information outside of what is currently observed. To implement such an
@@ -13403,7 +13472,8 @@ rules. Examples of this architecture include automatic stabilization for
 quadcopters, aircraft autopilots, and driver assistance systems in
 modern automobiles (e.g., automatic braking and lane keeping). We will
 cover dynamic models in detail in Section IV and state estimation in Section VI.</p>
-<p>The next level of architecture complexity adds prediction and
+<p><a id="deliberative"></a>
+The next level of architecture complexity adds prediction and
 deliberation into the fold. A <em>deliberative</em> architecture uses a
 <em>predictive model</em> to estimate how its future actions alter the
 environment as well as a <em>performance metric</em> to choose which course of
@@ -13417,7 +13487,8 @@ the predictive model is accurate, 2) the planner discovers a
 high-quality sequence of actions quickly, and 3) the metric encoded by
 the robot is truly a good measure of performance (as judged by human
 observers). Section III covers planning in detail.</p>
-<p>Finally, a <em>learning</em> architecture incorporates sensor data over time to
+<p><a id="learning"></a>
+Finally, a <em>learning</em> architecture incorporates sensor data over time to
 automatically adapt components of its predictive models, state estimators,
 and/or planners.  The amount of learning can be relatively small, such as
 auto-calibration of a robot's sensors to correct for sensor drift, or large,
@@ -13441,8 +13512,12 @@ reinforcement learning techniques to be used in such architectures.</p>
 </li>
 </ul>
 <p>In a complex intelligent robot, such as an autonomous vehicle, these components are individually quite sophisticated.  To optimize the behavior of each component requires deep knowledge, skills, and effort on the part of its engineering team.</p>
-<p>Although these components are described as though they would be separate stages of a pipeline, they actually interact at multiple levels based on the timing requirements of behavioral decisions.  The planning component is usually broken down so that mission-level decisions are made at the highest layer, which are then broken into subtasks that should be achieved on the order of seconds to minutes, which are then finally broken down into continuous reference motions at sub-second granularity.  In some sense, the control component is the lowest level of the planning hierarchy.</p>
-<p>The perception component may also be hierarchical as well. Some sensor signals, like joint encoder values, are processed minimally to be used by the controller.  Others, like vision data, are processed with computationally expensive, relatively slow operations like map-building and object recognition so that mission planning can make significant decisions about the robot's behavior.</p>
+<p>Although these components are described as though they would be separate stages of a pipeline, they actually interact at multiple levels based on the timing requirements of behavioral decisions.  The planning component is usually broken down so that mission-level decisions are made at the highest layer, which are then broken into subtasks that should be achieved on the order of seconds to minutes, which are then finally broken down into continuous reference motions at sub-second granularity.  In a sense, the control component is the lowest level of the planning hierarchy.</p>
+<p>The perception component may also be hierarchical as well. Some sensor signals, like joint encoder values, are processed minimally to be used by the controller.  Others, like vision data, are processed with computationally expensive, relatively slow operations like map-building and object recognition so that mission planning can make significant decisions about the robot's behavior.  A very common architecture is shown below:</p>
+<hr>
+<p><img src="figures/introduction/hierarchical_architecture.png" alt="fig:HierarchicalArchitecture"></p>
+<div class="figcaption"><a name="fig:HierarchicalArchitecture">Figure 2</a>. A hierarchical architecture is broken into perception vs decision-making components, which are vertically divided between slow (e.g., mapping, object recognition, planning, trajectory optimization) and fast (e.g., state estimation, tracking control) components.  Common inputs (sensors and input devices) and outputs (actuators and displays) also operate at different rates.
+</div><hr>
 
 </div>
 </div>
@@ -13451,7 +13526,66 @@ reinforcement learning techniques to be used in such architectures.</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="The-end-to-end-approach">The end-to-end approach<a class="anchor-link" href="#The-end-to-end-approach">&#182;</a></h3><p>In contrast to the perception-planning-control pipeline, the philosophy of <em>end-to-end</em> behavior attempts to compress the entire Plan component into a single monolithic function.  Because robot behavior is usually too complex to tune by hand, this philosophy is usually approached via the perspective of <em>end-to-end learning</em>, where the robot itself adjusts the behavior of the Plan component to achieve better outcomes.  Recently, this is becoming more a plausible approach given the success of deep neural networks in computer vision and related machine learning fields.</p>
-<p>However, there is still a long way to go before end-to-end robots are practical, and in fact there are <em>no commercially-significant robots in the world today that are developed using the end-to-end approach</em>.  Why might this be the case?  One may be that human scientists and engineers have developed exceptionally precise models for robot behavior that can't be matched using model-free approaches.  Another reason may be that the development process for the classical pipeline does a better job of exploiting the ingenuity of human engineering teams by imposing clear roles, responsibilities, and performance metrics for each component.  Indeed, it is very hard to determine why a system built entirely on machine learning made a mistake, which makes debugging and development much more difficult.  A final reason could be that the machine learning community simply does not yet have the right model for robotic cognition, and some breakthrough awaits just around the corner!  (Personally speaking, I enjoy the robot engineering process, and hope for the sake of myself, my colleagues, and my students that this latter scenario does not occur any time soon.)</p>
+<p>However, there is still a long way to go before end-to-end robots are practical, and in fact there are <em>no commercially-significant robots in the world today that are developed using an end-to-end approach</em>.  Why might this be the case?  One may be that human scientists and engineers have developed exceptionally precise models for robot behavior that can't be matched using model-free approaches.  Another reason may be that the development process for the classical pipeline does a better job of exploiting the ingenuity of human engineering teams by imposing clear roles, responsibilities, and performance metrics for each component.  Indeed, it is very hard to determine why a system built entirely on machine learning made a mistake, which makes debugging and development much more difficult.  A final reason could be that the machine learning community simply does not yet have the right model for robotic cognition, and some breakthrough awaits just around the corner!  (Personally speaking, I enjoy the robot engineering process, and hope for the sake of myself, my colleagues, and my students that this latter scenario does not occur any time soon.)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h2><h3 id="Key-takeaways">Key takeaways<a class="anchor-link" href="#Key-takeaways">&#182;</a></h3><ul>
+<li>A robot's body is defined by links, joints, sensors, and actuators.  Links are typically rigid (but not always, in the case of soft robots).</li>
+<li>Proprioceptive, inertial, visual, and tactile sensors are the most common sensors on modern robots.</li>
+<li>The sense-plan-act framework connects the robot's cognition, encapsulated as the intermediate plan step, with its sensors and actuators which interact with the external world.</li>
+<li>In the classical cognitive architecture, the "plan" step is further broken down into perception (building representations of the state of the robot and the external world), planning (using those representations to make decisions about what to do next), and control (converting decisions into actions).</li>
+<li>Hierarchical architectures break down the perception and decision-making stages into slow, medium, and fast levels which interact at different rates.  Here, planning and control are grouped together into the single decision-making stage: planning is just thought of as the slow / medium levels, while control is the fastest level.</li>
+<li>In the end-to-end cognitive architecture, the "plan" step is a complex neural network trained from data, usually reinforcement learning or imitation learning.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Glossary">Glossary<a class="anchor-link" href="#Glossary">&#182;</a></h3><ul>
+<li><a href="#Links-and-joints">Link</a>: A rigid component of a robot, usually connected to other links by joints.</li>
+<li><a href="#Links-and-joints">Joint</a>: An articulation point between two links.</li>
+<li><a href="#Sensors">Sensor</a>: A device that measures a quantity in the physical world and reports it in electrical form. </li>
+<li><a href="#Actuators-and-transmissions">Actuator</a>: A source of controllable force.</li>
+<li><a href="#Cognitive-architectures">Cognitive architecture</a>: The form and function of information processing elements (software) that run on a robot's computing hardware to process sensor input and generate actuator output.</li>
+</ul>
+<p>Sensing</p>
+<ul>
+<li><a href="#Sensors">Proprioception</a>: Sensing that measures the position of a link relative to another.</li>
+<li><a href="#Sensors">Inertial sensing</a>: Sensing that measures the position of a link relative to a fixed (world) frame.</li>
+<li><a href="#Sensors">Tactile sensor</a>: Sensing that measure forces applied to links.</li>
+<li><a href="#Sensors">Vision sensor</a>: Sensing that measures light (electromagnetic radiation), whether in the visible spectrum or not. </li>
+</ul>
+<p>Actuation</p>
+<ul>
+<li><a href="#Actuators-and-transmissions">Transmission</a>: A device that connects an actuator to forces on one or more links.</li>
+<li><a href="#Actuators-and-transmissions">Gear reduction</a>: The force multiplier from input to output.  The force multiplier is accompanied by a proportional reduction in velocity.</li>
+<li><a href="#Actuators-and-transmissions">Backlash</a>: A "dead-band" about which force is not productively generated when the motion of direction is switched.  Usually caused by spacing between gear teeth.</li>
+<li><a href="#Actuators-and-transmissions">Backdrivability</a>: The degree to which an actuator and its corresponding joint can be moved via the application of external forces.  </li>
+</ul>
+<p>Cognition</p>
+<ul>
+<li><a href="#Sense-plan-act-framework">Sense-plan-act framework</a>: A classical framework by which cognitive architectures are modeled.  The cognitive (computational) aspects of the robot lie within the "plan" block, while the other blocks represent input and output from the physical environment.</li>
+<li><a href="#reflexive">Reflexive agent</a>: An agent that operates according to fixed rules that process sensor inputs into actuator outputs.  A <a href="#model-based-reflexive">model-based reflexive agent</a> performs some degree of perception to process sensor inputs into estimated physical quantities.</li>
+<li>Model-based agent</li>
+<li><a href="##Perception,-planning,-and-control;-hierarchical-architectures">Perception-planning-control architecture</a>: A classical division of responsibilities in the "plan" block of the sense-plan-act framework.  Perception processes the sensing input into a world representation, planning makes decisions, and control converts those decisions into actuator outputs.</li>
+<li><a href="#Perception,-planning,-and-control;-hierarchical-architectures">Hierarchical architecture</a>: A division of the perception-planning-control pipeline into parallel slow and fast tracks depending on the computational complexity of components.  Control is typically treated as "fast planning".</li>
+<li><a href="#The-end-to-end-approach">End-to-end learning</a>: A more recent framework that eliminates the perception-planning-control framework in favor of a mapping from sensor input to actuator output, learned either through reinforcement learning or imitation learning.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 
 </div>
 </div>

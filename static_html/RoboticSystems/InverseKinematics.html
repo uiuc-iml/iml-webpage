@@ -13085,6 +13085,72 @@ MathJax.Hub.Config({ TeX: { equationNumbers: {
     } } 
 });
 </script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
 <!-- End of mathjax configuration --></head>
 
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
@@ -13100,7 +13166,7 @@ MathJax.Hub.Config({ TeX: { equationNumbers: {
 <script>
 $( document ).ready(function(){
 
-            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {"height": "calc(100% - 180px)", "left": "10px", "top": "150px", "width": "278.516px"}, "toc_section_display": true, "toc_window_display": true};
+            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": true, "sideBar": true, "skip_h1_title": true, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {"height": "calc(100% - 180px)", "left": "10px", "top": "150px", "width": "278.517px"}, "toc_section_display": true, "toc_window_display": true};
 
             // fire the main function with these parameters
             require(['nbextensions/toc2/toc2'], function (toc2) {
@@ -13146,7 +13212,8 @@ methods to solve inverse kinematics will be presented.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="General-discussion">General discussion<a class="anchor-link" href="#General-discussion">&#182;</a></h2><p>If we express the coordinates of some point $X$ attached to the robot as
+<h2 id="General-discussion">General discussion<a class="anchor-link" href="#General-discussion">&#182;</a></h2><p><a id="constraint-equation"></a>
+If we express the coordinates of some point $X$ attached to the robot as
 a vector $\mathbf{x}$, forward kinematics allows us to compute a map
 $\mathbf{x}(\mathbf{q}) \equiv f(\mathbf{q})$ where $\mathbf{q}$ is the robot's
 configuration. Note that this map is vector-valued. The goal of IK is to
@@ -13192,7 +13259,7 @@ possesses more degrees of freedom than the dimension of the workspace.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title Code for generating the figures below↔</span>
@@ -13268,7 +13335,10 @@ without tipping it. If we define a local direction $\mathbf{d}_N$ as an "up"
 direction perpendicular to the gripper opening direction, and $\mathbf{z}$
 being the up direction in world coordinates, then we can specify a
 directional task constraint:
-$$\mathbf{d}(\mathbf{q}) - \mathbf{z} = R_N (\mathbf{q}) \mathbf{d}_N - \mathbf{z} = 0$$ where
+$$
+  \mathbf{d}(\mathbf{q}) - \mathbf{z} = R_N (\mathbf{q}) \mathbf{d}_N - \mathbf{z} = 0
+$$
+where
 $\mathbf{d}(\mathbf{q})$ is the direction of the desired "up" vector attached to
 the gripper, but expressed in world coordinates.</p>
 <p>In general, the task space may consist of any number of position and
@@ -13428,11 +13498,13 @@ distance away along the $x$ axis. The end effector is located $L_2$
 distance away from the second joint along the $x$ axis.</p>
 <p>With this definition, the forward kinematics equations in the previous
 chapter show that the world coordinates of the end effector at
-configuration $\mathbf{q} = (q_1,q_2)$ are given by: $$\begin{split}
+configuration $\mathbf{q} = (q_1,q_2)$ are given by:
+$$\begin{split}
 \mathbf{x}(\mathbf{q}) &amp;= R(q_1)\left(R(q_2) \begin{bmatrix} L_2 \\ 0 \end{bmatrix} + \begin{bmatrix} L_1 \\ 0 \end{bmatrix} \right) \\
  &amp; = R(q_1) \begin{bmatrix}L_1 + c_2 L_2 \\ s_2 L_2 \end{bmatrix} = \begin{bmatrix} c_1(L_1 + c_2 L_2) - s_1 s_2 L_2 \\ s_1(L_1 + c_2 L_2) + c_1 s_2 L_2 \end{bmatrix}
-\end{split}$$ where $c_i = \cos q_i$ and $s_i = \sin q_i$, for
-$i = 1,2$.</p>
+\end{split}
+$$
+where $c_i = \cos q_i$ and $s_i = \sin q_i$, for $i = 1,2$.</p>
 <p>Suppose we wish to move this $\mathbf{x}$ to the target point $\mathbf{x}_D$.
 Thinking geometrically, we observe that the only joint controlling the
 norm $\| \mathbf{x}(\mathbf{q}) \|$ (i.e., the distance from the end effector to
@@ -13440,9 +13512,14 @@ the origin) is $q_2$. See
 <a href="#fig:2RIKb">Fig. 2</a>(a) for an illustration. As a result,
 $\| \mathbf{x}(q_1,q_2) \| = \| \mathbf{x}(0,q_2) \|$ which results in the
 simplified calculation:
-$$\| \mathbf{x}(q_1,q_2) \| = \sqrt{(L_1 + c_2 L_2)^2 + (s_2 L_2)^2}.$$ Since
+$$
+  \| \mathbf{x}(q_1,q_2) \| = \sqrt{(L_1 + c_2 L_2)^2 + (s_2 L_2)^2}.
+$$
+Since
 this norm must match the norm of $\mathbf{x}_D$, we require:
-$$\| \mathbf{x}_D \|^2 = (L_1 + c_2 L_2)^2 + (s_2 L_2)^2 = L_1^2 + 2 c_2 L_1 L_2 + c_2^2 L_2^2 + s_2^2 L_2^2 = L_1^2 + 2 c_2 L_1 L_2 + L_2^2$$
+$$
+  \| \mathbf{x}_D \|^2 = (L_1 + c_2 L_2)^2 + (s_2 L_2)^2 = L_1^2 + 2 c_2 L_1 L_2 + c_2^2 L_2^2 + s_2^2 L_2^2 = L_1^2 + 2 c_2 L_1 L_2 + L_2^2
+$$
 where in the last equality we've used the fact that $c_i^2 + s_i^2 = 1$.
 Now, the only unknown quantity in this equation is $c_2$. Solving for
 $c_2$, we obtain:
@@ -13461,13 +13538,18 @@ solutions must be considered.</p>
 <p>Examining the case in which no solution exists, if the r.h.s. were
 greater than 1, then $\| \mathbf{x}_D \|^2 - L_1^2 - L_2^2 &gt; 2 L_1 L_2$, or
 in other words:
-$$\| \mathbf{x}_D \|^2 &gt; L_1^2 + 2 L_1 L_2 + L_2^2 = (L_1 + L_2)^2$$ which
+$$
+  \| \mathbf{x}_D \|^2 &gt; L_1^2 + 2 L_1 L_2 + L_2^2 = (L_1 + L_2)^2
+$$
+which
 indicates that the desired point exceeds the reachable range of the
 manipulator.</p>
 <p>If on the other hand, the r.h.s. were less than -1, then
 $\| \mathbf{x}_D \|^2 - L_1^2 - L_2^2 &lt; - 2 L_1 L_2$, in other words
-$$\| \mathbf{x}_D \|^2 &lt; L_1^2 - 2 L_1 L_2 + L_2^2 = (L_1 - L_2)^2.$$ For
-this to be possible, we must have the link lengths unequal, and the
+$$
+  \| \mathbf{x}_D \|^2 &lt; L_1^2 - 2 L_1 L_2 + L_2^2 = (L_1 - L_2)^2.
+$$
+For this to be possible, we must have the link lengths unequal, and the
 target point is within a circle of radius $|L_1 - L_2|$ centered at the
 origin.</p>
 <p>If we have determined that there exists one or more solutions for the
@@ -13597,8 +13679,10 @@ calculate the possible values of $q_2$ and $q_3$. However, we should
 accommodate the fact that joints 2 and 3 rotate about the $y$ axis, and
 positive rotations about the $y$ axis causes a negative movement in $z$.
 Namely, we should compute all values of
-$$(q_2,q_3) \in 2RIK(L_2,L_3,(\sqrt{x_D^2 + y_D^2},-z_D+L_1)).$$ This
-contributes up to 2 solutions. For each of those solutions, the value
+$$
+  (q_2,q_3) \in 2RIK(L_2,L_3,(\sqrt{x_D^2 + y_D^2},-z_D+L_1)).
+$$
+This contributes up to 2 solutions. For each of those solutions, the value
 $q_1 = atan2(y_D,x_D)$ orients the first joint in the proper direction.
 <a href="#fig:3RIK">Fig. 3</a> illustrates these solutions.</p>
 <p>However, there is a small catch: we could have also modified $q_1$ by a
@@ -13723,7 +13807,8 @@ r_{11} &amp; r_{12} &amp; r_{13} \\
 r_{21} &amp; r_{22} &amp; r_{23} \\
 r_{31} &amp; r_{32} &amp; r_{33} 
 \end{array}
-\right].$$ The simplest entry to solve is $r_{33} = c_5$, so
+\right].$$
+The simplest entry to solve is $r_{33} = c_5$, so
 $q_5 = \pm \cos^{-1}(r_{33})$. If $r_{33}$ is 1, then $q_5 = 0$ is a
 singularity and there are an infinite number of solutions for $q_4$ and
 $q_6$ that satisfy $q_4 + q_6 = atan2(r_{21},r_{11})$. Otherwise, we can
@@ -13785,7 +13870,10 @@ rotation of the third link, $R_3(q_1,q_2,q_3)$. The remaining job for
 $q_4$, $q_5$, and $q_6$ is to rotate the rest of the way to $R_D$. Since
 all of the reference frames are oriented with the world frame, we need
 to satisfy
-$$R_6(\mathbf{q}) = R_3(q_1,q_2,q_3) R_x(q_4) R_y(q_5) R_x(q_6) = R_D.$$ By
+$$
+  R_6(\mathbf{q}) = R_3(q_1,q_2,q_3) R_x(q_4) R_y(q_5) R_x(q_6) = R_D.
+$$
+By
 premultiplying by $R_3(q_1,q_2,q_3)$, we obtain an XYX Euler angle
 conversion problem from the relative rotation matrix
 $R_3^{-1}(q_1,q_2,q_3)R_D$. This conversion is similar to the solution
@@ -13804,7 +13892,8 @@ total of 8 solutions for $\mathbf{q}$ (except at singularities).</p>
 <h2 id="Finding-all-solutions-for-redundant-and-parallel-robots">Finding all solutions for redundant and parallel robots<a class="anchor-link" href="#Finding-all-solutions-for-redundant-and-parallel-robots">&#182;</a></h2><p>In the case of redundant robots, we may wish to determine some
 representation of the entire IK solution set. This operation is also
 useful for determining the configuration space of parallel robots.</p>
-<p>The set of solutions is known as the <em>self-motion manifold</em>, and
+<p><a id="self-motion-manifold"></a>
+The set of solutions is known as the <em>self-motion manifold</em>, and
 instantaneous motions that preserve the task coordinate are known as
 <em>null-space motions</em>. A <em>manifold</em> is defined as a set that is locally
 homeomorphic to a disk in Cartesian space. We have already seen the
@@ -13843,7 +13932,7 @@ in the plane $(q_1,q_2)$, the solution set is an ovoid-like 1D curve in
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title Code for generating the distance to constraint figure↔</span>
@@ -13880,7 +13969,10 @@ in the plane $(q_1,q_2)$, the solution set is an ovoid-like 1D curve in
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To characterize this set, we could choose $q_1$ as the independent DOF
 and then solve for $q_2$ analytically. Doing so, we find:
-$$q_2 = \pm \cos^{-1}((x_D - c_1 L_1) / L_2) - q_1.$$ The top of the
+$$
+  q_2 = \pm \cos^{-1}((x_D - c_1 L_1) / L_2) - q_1.
+$$
+The top of the
 manifold is given by the positive cosine term, while the bottom is the
 negative cosine term. Since the domain of $\cos^{-1}$ is $[-1,1]$,
 solutions only exist for the range of $q_1$ such that
@@ -13892,7 +13984,7 @@ $(x_D - L_2)/L_1 \leq c_1 \leq (x_D + L_2) /L_1$.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title Code for generating the solution figure as a function of q1↔</span>
@@ -13928,12 +14020,15 @@ $(x_D - L_2)/L_1 \leq c_1 \leq (x_D + L_2) /L_1$.</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We note that the independent DOF could have also been chosen to be
-$q_2$. In this case, we must find a solution $q_1$ to:
-$$s_1 (- s_2 L_2) + c_1 (L_1 + c_2 L_2) - x_D = 0$$ assuming the
-parenthesized terms are fixed. This type of equation
-$$a \sin \theta + b \cos \theta + c = 0$$ has the general solution:
-$$\theta = \pm \cos^{-1} \frac{c}{\sqrt{a^2+b^2}} + atan2(a,b).$$ Hence,
-replacing this in the above equation, we get the solution for $q_1$:
+$q_2$. In this case, we must find a solution $q_1$ to
+$$
+  s_1 (- s_2 L_2) + c_1 (L_1 + c_2 L_2) - x_D = 0
+$$
+assuming the parenthesized terms are fixed. This type of equation
+$$a \sin \theta + b \cos \theta + c = 0$$
+has the general solution:
+$$\theta = \pm \cos^{-1} \frac{c}{\sqrt{a^2+b^2}} + atan2(a,b).$$
+Hence, replacing this in the above equation, we get the solution for $q_1$:
 $$q_1 = \pm \cos^{-1}\frac{-x_D}{\sqrt{L_1^2 + L_2^2 + 2 c_2 L_1 L_2}} + atan2(- s_2 L_2, L_1 + c_2 L_2).$$
 The inverse cosine only has a solution when
 $x_D^2 \leq L_1^2 + L_2^2 + 2 c_2 L_1 L_2$, or in other words,
@@ -13983,10 +14078,17 @@ derivative, but keeping $y$ constant:
 $$\frac{\partial f}{\partial x}(x,y) = \lim_{\Delta x \rightarrow 0} \frac{f(x+\Delta x,y) - f(x,y)}{\Delta x}.$$</p>
 <p>This can also be thought of as defining an auxiliary function, keeping
 $y$ constant, and taking the derivative of that:
-$$\frac{\partial f}{\partial x}(x,y) = \frac{d}{dx} g_y(x)$$ where
-$g_y(x)$ is defined as: $$g_y(x) \equiv f(x,y)$$</p>
+$$
+  \frac{\partial f}{\partial x}(x,y) = \frac{d}{dx} g_y(x)
+$$
+where $g_y(x)$ is defined as:
+$$
+  g_y(x) \equiv f(x,y)
+$$</p>
 <p>Similarly we can take the partial derivative with respect to $y$:
-$$\frac{\partial f}{\partial y}(x,y) = \lim_{\Delta y \rightarrow 0} \frac{f(x,y+\Delta y) - f(x,y)}{\Delta y} = \frac{d}{dy}h_x(y)$$
+$$
+  \frac{\partial f}{\partial y}(x,y) = \lim_{\Delta y \rightarrow 0} \frac{f(x,y+\Delta y) - f(x,y)}{\Delta y} = \frac{d}{dy}h_x(y)
+$$
 where $h_x(y) \equiv f(x,y)$.</p>
 <p>In general, the partial derivative of a multi-argument function with
 respect to some argument is calculated by <em>treating the remaining
@@ -14110,9 +14212,14 @@ $q_2$ is held constant, then the end effector would have instantaneous
 velocity: $$\dot{q}_1 \frac{\partial \mathbf{x}}{\partial q_1}(\mathbf{q}).$$
 Likewise, if $q_2$ were to rotate at velocity $\dot{q}_2$, and $q_1$
 were to be held constant, then the velocity would be:
-$$\dot{q}_2 \frac{\partial \mathbf{x}}{\partial q_2}(\mathbf{q}).$$ If both were
+$$
+  \dot{q}_2 \frac{\partial \mathbf{x}}{\partial q_2}(\mathbf{q}).
+$$
+If both were
 to rotate simultaneously, then the velocity would be
-$$\dot{\mathbf{x}}(\mathbf{q}) = \dot{q}_1 \frac{\partial \mathbf{x}}{\partial q_1}(\mathbf{q}) + \dot{q}_2 \frac{\partial \mathbf{x}}{\partial q_2}(\mathbf{q}) = J(\mathbf{q})\dot{\mathbf{q}}.$$
+$$
+  \dot{\mathbf{x}}(\mathbf{q}) = \dot{q}_1 \frac{\partial \mathbf{x}}{\partial q_1}(\mathbf{q}) + \dot{q}_2 \frac{\partial \mathbf{x}}{\partial q_2}(\mathbf{q}) = J(\mathbf{q})\dot{\mathbf{q}}.
+$$
 <a href="#fig:Jacobian2R">Fig. 6</a> illustrates this concept.</p>
 
 </div>
@@ -14141,7 +14248,7 @@ the $n$'th link, and $\mathbf{x}_n$ are its local coordinates.</p>
 this case, the $j$'th column of the Jacobian is zero.</p>
 <p>Otherwise, the $j$'th column of the Jacobian is given by:
 $$\frac{\partial f}{\partial q_j}(\mathbf{q}) = T_{p[j]}(\mathbf{q}) T_{j\rightarrow p[j]}^{ref} \frac{d L_{z_j,\mathbf{a}_j}}{d q_j}(q_j) T_{n\rightarrow j}(\mathbf{q}) \mathbf{x}_n$$
-Where $T_{n\rightarrow j}(\mathbf{q}) = T_j^{-1}(\mathbf{q}) T_n(\mathbf{q})$ is the
+where $T_{n\rightarrow j}(\mathbf{q}) = T_j^{-1}(\mathbf{q}) T_n(\mathbf{q})$ is the
 transform from local coordinates on link $n$ to local coordinates on
 link $j$, at configuration $\mathbf{q}$. Note that
 $T_{n\rightarrow j}(\mathbf{q})$ only depends on the joint angles of $j$'s
@@ -14167,15 +14274,17 @@ $$\frac{d}{dq} R(q) = R(q)
 0 &amp; -1 &amp; 0 \\
 1 &amp; 0 &amp; 0 \\
 0 &amp; 0 &amp; 0 
-\end{array}\right]$$ and hence we obtain the compact expression for the
-Jacobian $$\frac{\partial f}{\partial q_j}(\mathbf{q}) = T_j(\mathbf{q})
+\end{array}\right]
+$$
+and hence we obtain the compact expression for the Jacobian
+$$\frac{\partial f}{\partial q_j}(\mathbf{q}) = T_j(\mathbf{q})
 \left[\begin{array}{ccc}
 0 &amp; -1 &amp; 0 \\
 1 &amp; 0 &amp; 0 \\
 0 &amp; 0 &amp; 0 
 \end{array}\right]
-T_{n\rightarrow j}(\mathbf{q}) \mathbf{x}_n.$$ This shows that the Jacobian column
-corresponding to a revolute joint is perpendicular to the vector from
+T_{n\rightarrow j}(\mathbf{q}) \mathbf{x}_n.$$
+This shows that the Jacobian column corresponding to a revolute joint is perpendicular to the vector from
 the joint to the end effector (rotated $90^\circ$ CCW).
 <a href="#fig:Jacobian3R">Fig. 6</a> illustrates this principle.</p>
 <hr>
@@ -14220,36 +14329,48 @@ column is simply the world direction of the joint axis $\mathbf{a}_j$.</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="3D-robots">3D robots<a class="anchor-link" href="#3D-robots">&#182;</a></h3><p>For 3D revolute joints, the local transform is given by an axis-angle
-rotation: $$L_{z,\mathbf{a}}(q) \equiv R_{aa}(\mathbf{a},q)$$ The velocity of a
-point $X$ being rotated along with the rotation frame at unit velocity
+rotation:
+$$
+  L_{z,\mathbf{a}}(q) \equiv R_{aa}(\mathbf{a},q)
+$$
+The velocity of a point $X$ being rotated along with the rotation frame at unit velocity
 $\dot{q}$ is given by its cross product with the rotation axis:
-$$\frac{d}{dt} \mathbf{x} = \mathbf{a} \times \mathbf{x}.$$ Here $\mathbf{x}$ is the
-post-rotation coordinates of the point. Since multiplication with a
+$$
+  \frac{d}{dt} \mathbf{x} = \mathbf{a} \times \mathbf{x}.
+$$
+Here $\mathbf{x}$ is the post-rotation coordinates of the point. Since multiplication with a
 rotation matrix $R_{aa}(\mathbf{a},q)$ converts pre-rotation coordinates to
 post-rotation coordinates, the angular velocity of a point given with
 pre-rotation coordinates $\mathbf{x}_L$ is given by
-$$\frac{d}{dt} \mathbf{x} = \mathbf{a} \times R_{aa}(\mathbf{a},q) \mathbf{x}_L.$$ Since the
-cross product axis and the rotation axis are the same, Rodrigues'
+$$
+  \frac{d}{dt} \mathbf{x} = \mathbf{a} \times R_{aa}(\mathbf{a},q) \mathbf{x}_L.
+$$
+Since the cross product axis and the rotation axis are the same, Rodrigues'
 formula can be used to switch the order of the cross product:
-$$\mathbf{a} \times (R_{aa}(\mathbf{a},q) \mathbf{x}_L) =  R_{aa}(\mathbf{a},q) (\mathbf{a} \times \mathbf{x}_L).$$
+$$
+  \mathbf{a} \times (R_{aa}(\mathbf{a},q) \mathbf{x}_L) =  R_{aa}(\mathbf{a},q) (\mathbf{a} \times \mathbf{x}_L).
+$$
 Finally, using the skew-symmetric product notation $\hat{\cdot}$ used in
 Chapter 2 we obtain
-$$\frac{d}{dt} R_{aa}(\mathbf{a},q) \mathbf{x}_L = R_{aa}(\mathbf{a},q) \hat{\mathbf{a}} \mathbf{x}_L$$
+$$
+  \frac{d}{dt} R_{aa}(\mathbf{a},q) \mathbf{x}_L = R_{aa}(\mathbf{a},q) \hat{\mathbf{a}} \mathbf{x}_L
+$$
 and since this holds for all $\mathbf{x}_L$, we see that
-$$\frac{d}{dt} R_{aa}(\mathbf{a},q) = R_{aa}(\mathbf{a},q) \hat{\mathbf{a}}.$$
+$$
+  \frac{d}{dt} R_{aa}(\mathbf{a},q) = R_{aa}(\mathbf{a},q) \hat{\mathbf{a}}.
+$$
 Replacing this in the Jacobian expression and converting to homogeneous
 coordinates, we obtain the simplified expression:</p>
-<p><a name="eq:JacobianRevolute3D"></a>
-$$\frac{\partial f}{\partial q_j}(\mathbf{q}) = T_j(\mathbf{q})
+\begin{equation}
+\frac{\partial f}{\partial q_j}(\mathbf{q}) = T_j(\mathbf{q})
 \left[\begin{array}{c|c}
 \hat{\mathbf{a}} &amp; 0  \\
 \hline
 0 &amp; 0  
 \end{array}\right]
 T_{n\rightarrow j}(\mathbf{q}) \mathbf{x}_n.
-\tag{X}
-$$</p>
-<p>Another way to interpret this is that
+\label{eq:JacobianRevolute3D}
+\end{equation}<p>Another way to interpret this is that
 the $j$'th column of the Jacobian is the cross-product between the axis
 of joint $j$ and the vector pointing from joint $j$ to the end effector
 (both given in world coordinates). To see this, note that the axis in
@@ -14262,7 +14383,7 @@ vector could also be expressed as
 $R_j T_{n\rightarrow j} \mathbf{x}_n + \mathbf{t}_j - \mathbf{t}_j = R_j T_{n\rightarrow j} \mathbf{x}_n$.</p>
 <p>Hence, by the distributive property of the cross-product,
 $$R_j\mathbf{a} \times R_j T_{n\rightarrow j} \mathbf{x}_n = R_j (\mathbf{a} \times T_{n\rightarrow j} \mathbf{x}_n) = R_j \hat{\mathbf{a}} T_{n \rightarrow j} \mathbf{x}_n$$
-which is equivalent to (<a href="#eq:JacobianRevolute3D">X</a>).</p>
+which is equivalent to $\eqref{eq:JacobianRevolute3D}$.</p>
 <p>For prismatic joints, a derivation similar to the planar case gives the
 simplified expression:
 $$\frac{\partial f}{\partial q_j}(\mathbf{q}) = T_j(\mathbf{q}) \begin{bmatrix}\mathbf{a}_j \\ \hline 0 \end{bmatrix}.$$
@@ -14290,15 +14411,15 @@ revolute joint is 1.</p>
 <p>In 3D, an angular velocity vector is a vector $\boldsymbol{\omega}$ such that for
 any point $\mathbf{x}$ expressed in world coordinates but attached to link
 $n$, its instantaneous velocity will be:
-$$\boldsymbol{\omega}\times (\mathbf{x} - \mathbf{t}_n) + \dot{\mathbf{t}}_n$$ where $\mathbf{t}_n$
-is the origin of link $n$. Hence, the angular velocity at the end
+$$\boldsymbol{\omega}\times (\mathbf{x} - \mathbf{t}_n) + \dot{\mathbf{t}}_n$$
+where $\mathbf{t}_n$ is the origin of link $n$. Hence, the angular velocity at the end
 effector is simply the angular velocity of link $n$. The angular
 velocity of each revolute joint are summed to obtain the angular
 velocity of the end effector:
 $$\boldsymbol{\omega} = \sum_{j\text{ is revolute}} J_{\theta,j}(\mathbf{q})\dot{q}_j$$
 Hence the $j$'th column of the Jacobian is:
-$$J_{\theta,j}(\mathbf{q}) = T_j(\mathbf{q}) \begin{bmatrix}\mathbf{a}_j \\ \hline 0 \end{bmatrix}$$ where
-the multiplication orients the local axis to the world coordinate frame.</p>
+$$J_{\theta,j}(\mathbf{q}) = T_j(\mathbf{q}) \begin{bmatrix}\mathbf{a}_j \\ \hline 0 \end{bmatrix}$$
+where the multiplication orients the local axis to the world coordinate frame.</p>
 <p>It is important to note that $\boldsymbol{\omega}$ is usually not the derivative
 of a given rotation representation, like Euler angles. Instead, it is
 that an additional transformation is typically necessary to obtain the
@@ -14354,12 +14475,19 @@ $\Delta \mathbf{x}$ shrinks toward 0.</p>
 <h4 id="Use-in-error-propagation">Use in error propagation<a class="anchor-link" href="#Use-in-error-propagation">&#182;</a></h4><p>Another important use of the Jacobian is in error propagation. Suppose
 that at a robot has configuration $\mathbf{q}$ but with a joint space error
 $\boldsymbol{\epsilon}$. Then the task-space error
-$$f(\mathbf{q}+\boldsymbol{\epsilon}) - f(\mathbf{q})$$ is approximated by the Taylor
+$$
+  f(\mathbf{q}+\boldsymbol{\epsilon}) - f(\mathbf{q})
+$$
+is approximated by the Taylor
 expansion
-$$f(\mathbf{q}+\boldsymbol{\epsilon}) - f(\mathbf{q}) \approx J(\mathbf{q}) \boldsymbol{\epsilon}$$ if
-$\epsilon$ is small. In terms of absolute magnitude, the task space
+$$
+  f(\mathbf{q}+\boldsymbol{\epsilon}) - f(\mathbf{q}) \approx J(\mathbf{q}) \boldsymbol{\epsilon}
+$$
+if $\epsilon$ is small. In terms of absolute magnitude, the task space
 error is $\| J(\mathbf{q}) \boldsymbol{\epsilon}\|$. We can also bound the error:
-$$\| J(\mathbf{q}) \boldsymbol{\epsilon}\| \leq \sum_{i=1}^n |\epsilon_{i}| \|J_i(\mathbf{q})\|$$
+$$
+  \| J(\mathbf{q}) \boldsymbol{\epsilon}\| \leq \sum_{i=1}^n |\epsilon_{i}| \|J_i(\mathbf{q})\|
+$$
 where $J_i$ is the $i$'th column of the Jacobian. As a result if joint
 $i$ had an error, the norm of $J_i$ approximates the corresponding error
 in task space.</p>
@@ -14457,7 +14585,7 @@ $\theta_j^\prime - \theta_j$.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title Code for generating the CCD figure↔</span>
@@ -14516,7 +14644,7 @@ procedure is used for the final steps.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title Code for generating the 4R CCD figure↔</span>
@@ -14566,15 +14694,22 @@ multi-dimensional analogue of Newton's method in 1D.</p>
 curve at an iterate $x_i$ as a line through $(x_i,f(x_i))$ using Taylor
 expansion, and solves for the intersection of the line and the $x$ axis.
 The iteration in Newton's method sets
-$$x_{i+1} = x_i - f(x_i) / f^\prime(x_i).$$ If the line is locally a
+$$
+  x_{i+1} = x_i - f(x_i) / f^\prime(x_i).
+$$
+If the line is locally a
 good fit to $f$, then the next iteration gets very close to the root. In
 this case we say that the method <em>converges</em>. In fact, it can be proven
 to obtain a quadratic order of convergence for most "well-behaved"
 functions.</p>
 <p>In the multidimensional case, we seek the next iterate
 $\mathbf{q}_{i+1} = \mathbf{q}_i + \Delta \mathbf{q}_i$ to solve the following Taylor
-expansion: $$\label{eq:NewtonRaphson}
-0 = f(\mathbf{q}_i) + J(\mathbf{q}_i) \Delta \mathbf{q}_i.$$ In the nonredundant case
+expansion:
+\begin{equation}
+  0 = f(\mathbf{q}_i) + J(\mathbf{q}_i) \Delta \mathbf{q}_i.
+  \label{eq:NewtonRaphson}
+\end{equation}
+In the nonredundant case
 where $n = m$, the Jacobian is square and this system of linear
 equations can be solved via matrix inversion as long as $J(\mathbf{q}_i)$ is
 invertible. The matrix is invertible as long as the robot is not at a
@@ -14584,7 +14719,7 @@ Here there is a linear subspace of values of $\Delta \mathbf{q}_i$ that
 satisfy this equation. Luckily there is generalization of the matrix
 inverse known as the <em>pseudoinverse</em> that allows for solving for a
 unique value of $\Delta \mathbf{q}_i$ that not only
-solves ($\ref{eq:NewtonRaphson}$) but also minimizes the amount of deviation
+solves $\eqref{eq:NewtonRaphson}$ but also minimizes the amount of deviation
 from the previous iterate. See
 <a href="LinearAlgebra.html#Matrix-pseudoinverse">Appendix A.1</a> for more information. The pseudoinverse
 solution $\Delta \mathbf{q}_i = -J(\mathbf{q}_i)^+ f(\mathbf{q}_i)$ is the solution
@@ -14596,7 +14731,7 @@ that minimizes the joint space deviation $\| \Delta \mathbf{q}_i \|$.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title Code for the Newton-Raphson example ↔</span>
@@ -14638,8 +14773,10 @@ weight matrix. In the context of IK, $W$ is usually a diagonal matrix
 that weights the relative movement of each joint, with higher weights
 penalizing larger movements.</p>
 <h4 id="Step-direction-and-size,-divergence">Step direction and size, divergence<a class="anchor-link" href="#Step-direction-and-size,-divergence">&#182;</a></h4><p>In total, the Newton-Raphson method chooses the step direction as
-follows: $$\label{eq:NewtonRaphsonStep}
-\Delta \mathbf{q}_i = - J^+(\mathbf{q}_i) f(\mathbf{q}_i)$$</p>
+follows:
+$$\label{eq:NewtonRaphsonStep}
+\Delta \mathbf{q}_i = - J^+(\mathbf{q}_i) f(\mathbf{q}_i)
+$$</p>
 <p>Unfortunately, Newton's method does not always converge if the initial
 guess is too far from a root. The sequence of iterates may oscillate or
 even diverge toward infinity. The step size may also become huge as the
@@ -14652,7 +14789,7 @@ dividing by zero.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title Code for the large step size Newton-Raphson example↔</span>
@@ -14687,10 +14824,14 @@ dividing by zero.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>There are multiple ways of keeping the step size small. One
-straightforward method is known as a line search , in which the entire
+<p><a id="line-search"></a>
+There are multiple ways of keeping the step size small. One
+straightforward method is known as a <em>line search</em>, in which the entire
 step $\Delta \mathbf{q}_i$ is not taken, but rather a scaled step
-$$\mathbf{q}_{i+1} = \mathbf{q}_i + \alpha_i \Delta \mathbf{q}_i$$ is taken, with
+$$
+  \mathbf{q}_{i+1} = \mathbf{q}_i + \alpha_i \Delta \mathbf{q}_i
+$$
+is taken, with
 $\alpha_i &gt; 0$ a parameter chosen at each step. The step size is usually
 taken to obtain a sufficient decrease in the error function value. One
 simple way of doing this is to start with some value of $\alpha_i$, and
@@ -14699,15 +14840,18 @@ number $&lt; 1$. This repeats until a suitable step size is found. A
 decrease will be eventually found as $\alpha_i$, unless the problem is
 at a local minimum, or a numerical error has occurred.</p>
 <p>Another method is to penalize steps that are too large in the
-pseudoinverse itself, which is known as a <em>damped pseudoinverse</em> method
-. In this method, the step size is allowed to deviate from solving the
+pseudoinverse itself, which is known as a <em>damped pseudoinverse</em> method. In this method, the step size is allowed to deviate from solving the
 root finding problem by instead minimizing the regularized least squares
 function:
-$$\min_{\Delta \mathbf{q}} \| f(\mathbf{q}) + J(\mathbf{q})\Delta \mathbf{q} \|^2 + \gamma^2 \| \Delta \mathbf{q} \|^2.$$
+$$
+  \min_{\Delta \mathbf{q}} \| f(\mathbf{q}) + J(\mathbf{q})\Delta \mathbf{q} \|^2 + \gamma^2 \| \Delta \mathbf{q} \|^2.
+$$
 The $\gamma$ term affects how much the step length is penalized compared
 to the error term. It can be shown that the result is simply
-$$J^+_\gamma = V (\Sigma + \gamma I)^{-1} U^T$$ where $U \Sigma V^T$ is
-the SVD of $J(\mathbf{q})$.</p>
+$$
+  J^+_\gamma = V (\Sigma + \gamma I)^{-1} U^T
+$$
+where $U \Sigma V^T$ is the SVD of $J(\mathbf{q})$.</p>
 <p>As the figure below shows, the damped pseudoinverse regulates the step size more strongly as $\gamma$ increases.  However, this comes at a cost of a slower convergence rate.  Adding a line search is extremely helpful, as the initial step size is not too large and the error is guaranteed not to increase on each step.</p>
 
 </div>
@@ -14715,7 +14859,7 @@ the SVD of $J(\mathbf{q})$.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#@title Code for the damped pseudoinverse + line search figures↔</span>
@@ -15027,6 +15171,7 @@ velocities to exceed their limits.</p>
 oscillations (or large jumps near singularities).</p>
 </li>
 </ol>
+<p>Making naive Cartesian tracking more robust is a topic studied deeply in motion planning and robot control engineering, and is beyond the scope of an introductory text.</p>
 
 </div>
 </div>
@@ -15034,8 +15179,7 @@ oscillations (or large jumps near singularities).</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h2><p>Key takeaways:</p>
-<ul>
+<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h2><h3 id="Key-takeaways">Key takeaways<a class="anchor-link" href="#Key-takeaways">&#182;</a></h3><ul>
 <li><p>Inverse kinematics (IK) attempts to find a configuration (or
 configurations) for an end effector to reach a Cartesian target.</p>
 </li>
@@ -15066,6 +15210,31 @@ restarts or good initial guesses are needed to improve reliability.</p>
 their mechanism. Many robotics software packages provide numerical
 IK solvers for general mechanisms.</p>
 </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Glossary">Glossary<a class="anchor-link" href="#Glossary">&#182;</a></h3><ul>
+<li><a href="#General-discussion">Inverse kinematics (IK)</a>: The process of calculating one or more solutions to the inverse of a kinematics problem.  Specifically, attempts to find a configuration such that Cartesian position / orientations on robot links match corresponding positions/orientations in the world (or on other links of the robot).</li>
+<li><a href="#Task-space">Task space</a>: The specification of a class of inverse kinematics objectives, constraining one or more target Cartesian positions and/or orientations of elements on the robot.  The set of possible Cartesian positions and/or orientations that may be specified as targets is the task space.</li>
+<li><a href="#constraint-equation">Constraint equation</a>: The vector-valued equation that should be met at a configuration that solves a given IK problem.</li>
+<li><a href="#Counting-solutions">Multiplicity of solutions</a>: Depending on the number of DOF of the robot and the values of the IK query, an IK query can have zero, a finite number, or an infinite number of solutions.  When a finite number of solutions exist, they are often composed of combinations of joint value pairs (e.g., shoulder-left/shoulder-right, elbow-up/elbow-down, and wrist-left/wrist-right).</li>
+<li><a href="#Singularities">Singularity / singular configuration</a>: A robot is at a singularity when the number of IK solutions for the given task space is unstable, i.e., the multiplicity of solutions may change if the configuration were perturbed by an infinitesimal value.  A singularity can be identified by a drop in the rank of the task Jacobian matrix.</li>
+<li><a href="#Redundant-robots">Redundancy</a>: A robot has redundancy when it has more DOF than the task space. A redundant robot can move its configuration while leaving the task coordinates unchanged. </li>
+<li><a href="#self-motion-manifold">Self-motion manifold</a>: The set of all configurations for a redundant robot that leave the task space coordinates unchanged. </li>
+<li><a href="#Jacobian-definition">Jacobian matrix</a>: The matrix of partial derivatives of a robot's task space variables with respect to its configuration variables.  Multiplication by this matrix relates joint-space velocities to task-space velocities.</li>
+<li><a href="#Analytical-vs-numerical-ik">Analytical IK</a>: Any IK approach that solves the constraint equation via mathematical manipulations.  </li>
+<li><a href="#Analytical-vs-numerical-ik">Numerical IK</a>: Any IK approach that solves the constraint equation by iteratively moving a guessed configuration to minimize the constraint error.</li>
+<li><a href="#Cyclic-coordinate-descent">Cyclic coordinate descent</a></li>
+<li><a href="#Root-finding-methods">Newton-Raphson method / Jacobian pseudoinverse method</a>: A numerical method based on driving the task-space error vector to zero via root-finding.  Uses the Jacobian pseudoinverse to solve the Taylor expansion of the constraint equation, and achieves superlinear convergence speeds.</li>
+<li><a href="#line-search">Line search</a>: A technique employed in many numerical IK techniques that prevents divergence and oscillation by shrinking the step direction computed at each iteration.</li>
+<li><a href="#Minimization-methods">Minimization methods</a>: Numerical methods that attempt to reduce the magnitude of the error function. If a solution does not exit, these methods are able to find the (locally) closest solution.</li>
+<li><a href="#Random-restarts">Random restarts</a>: A common method for avoiding local minima in numerical IK solvers that simply attempts IK solution from random initial guesses.</li>
+<li><a href="#IK-and-Cartesian-motion">Cartesian path following</a>: The process of generating a joint-space path that smoothly follows a given Cartesian path. A naive implementation of repeated numerical IK solving is adequate for many cases, but more elaborate methods are needed to achieve high reliability near singularities.  </li>
 </ul>
 
 </div>
@@ -15135,7 +15304,7 @@ as you approach the limit?</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Code for the interactive example (run me!)↔</span>
@@ -15159,13 +15328,13 @@ as you approach the limit?</p>
 
  
  
-<div id="856ee9ab-130a-4e7b-a69b-84a1673becd8"></div>
+<div id="6e3750fd-d12f-4064-9f81-fc9a34ded5b7"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#856ee9ab-130a-4e7b-a69b-84a1673becd8');
+var element = $('#6e3750fd-d12f-4064-9f81-fc9a34ded5b7');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "08b79ffa8d1e4dfa99e431de34eb9af1", "version_major": 2, "version_minor": 0}
+{"model_id": "0a500ed624164e668dc652e774f90784", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -15181,13 +15350,13 @@ var element = $('#856ee9ab-130a-4e7b-a69b-84a1673becd8');
 
  
  
-<div id="5ea62788-e06e-46f3-8f93-ab2b0cbd4fa4"></div>
+<div id="136b09df-5a19-43eb-9bcf-17adae5b8a77"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#5ea62788-e06e-46f3-8f93-ab2b0cbd4fa4');
+var element = $('#136b09df-5a19-43eb-9bcf-17adae5b8a77');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "c1c827d1569f497981940a657cfe5088", "version_major": 2, "version_minor": 0}
+{"model_id": "1cfb6cfcf38343478a3ca94687589a0d", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 

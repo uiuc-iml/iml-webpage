@@ -13085,6 +13085,72 @@ MathJax.Hub.Config({ TeX: { equationNumbers: {
     } } 
 });
 </script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
 <!-- End of mathjax configuration --></head>
 
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
@@ -13521,11 +13587,13 @@ Similarly, the Minkowski difference $\ominus$ is defined as
 $$A \ominus B \equiv \{ x - y \,|\, x\in A \text{ and }y\in B\}.$$</p>
 <p>If the reference frame of the robot is a shape $R_0$, then the volume
 occupied after translation $q$ is the set
-$$R(q) = \{ x \,|\, x-q \in R_0 \}$$ If $P$ is a workspace
+$$R(q) = \{ x \,|\, x-q \in R_0 \}.$$
+If $P$ is a workspace
 obstacle, the the condition that $R(q) \cap O \neq \emptyset$ requires
 that there exists some $x \in \mathbb{R}^2$ such that $x \in R(q)$ and
 $x \in O$. This is equivalent to the condition that:
-$$q \in O \ominus R_0.$$ To see this, observe that if
+$$q \in O \ominus R_0.$$
+To see this, observe that if
 $q \in O \ominus R_0$, then there exists $x \in O$ and $y \in R_0$ such
 that $q = x - y$. In other words, $y = x-q \in R_0$ implies that
 $x \in R(q)$. As a result, constructing the C-obstacle is equivalent to
@@ -15993,7 +16061,7 @@ searched to connect any two points in SE(2).</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h2><ul>
+<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h2><h3 id="Key-takeaways">Key takeaways<a class="anchor-link" href="#Key-takeaways">&#182;</a></h3><ul>
 <li>Geometric motion planning methods can achieve completeness or resolution completeness in low-dimensional configuration spaces.</li>
 <li>The major classes of geometric planners are bug methods, grid search, visibility graph methods, and cell decomposition.</li>
 <li>Bug algorithms only use local information about obstacles and a small amount of memory to make decisions on-line.  They are sufficiently simple that their completeness and suboptimality can be analyzed using geometric reasoning.</li>
@@ -16001,6 +16069,23 @@ searched to connect any two points in SE(2).</p>
 <li>Visibility graph methods build a network of free paths between obstacle vertices. They are complete and optimal in 2D configuration spaces, but take at least $O(n^2)$ time and $O(n^2)$ space to build.</li>
 <li>Cell decomposition methods build a representation of the free space volume as a collection of simple geometric shapes. They can be complete, optimal, and constructed efficiently ($O(n \log n)$ for the trapezoidal decomposition).</li>
 <li>Translating robots with geometry can be converted into point robot problems by constructing C-obstacles. This can be done using the Minkowski difference operation.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Glossary">Glossary<a class="anchor-link" href="#Glossary">&#182;</a></h3><ul>
+<li>Planar path planning</li>
+<li>Bug algorithms</li>
+<li>Grid search</li>
+<li>Visibility graph</li>
+<li>Cell decomposition</li>
+<li>Trapezoidal decomposition</li>
+<li>C-obstacle</li>
+<li>Minkowski difference</li>
 </ul>
 
 </div>

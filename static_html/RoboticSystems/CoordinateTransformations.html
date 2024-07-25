@@ -13085,6 +13085,72 @@ MathJax.Hub.Config({ TeX: { equationNumbers: {
     } } 
 });
 </script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
 <!-- End of mathjax configuration --></head>
 
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
@@ -13301,7 +13367,8 @@ are affected by the choice of coordinate axes.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Geometric-operations">Geometric operations<a class="anchor-link" href="#Geometric-operations">&#182;</a></h3><p>The coordinates of a point $\mathbf{p}$ after translation by a displacement
+<h3 id="Geometric-operations">Geometric operations<a class="anchor-link" href="#Geometric-operations">&#182;</a></h3><p><a id="interpolation"></a>
+The coordinates of a point $\mathbf{p}$ after translation by a displacement
 $\mathbf{d}$ can be computed by vector addition $\mathbf{p} + \mathbf{d}$.
 Interpolation and extrapolation between points $\mathbf{p}$, $\mathbf{q}$ is
 specified by the equation</p>
@@ -13327,13 +13394,14 @@ the equation $\mathbf{x} \cdot \mathbf{p}^\perp = 0$. Similarly, the line throug
 points $P$ and $Q$ can be expressed as the equation</p>
 $$
     \mathbf{x} \cdot (\mathbf{p} - \mathbf{q})^\perp = \mathbf{p} \cdot (\mathbf{p} - \mathbf{q})^\perp
-$$<p>Another expression of lines is the following:</p>
+$$<p>Another expression of 2D lines is the following:</p>
 $$
     \mathbf{x} \cdot \mathbf{n} = c
 $$<p>Where $\mathbf{n}$ is orthogonal to the direction of the line and
 $c = \mathbf{p} \cdot \mathbf{n}$ for any point $\mathbf{p}$ on the line.
 (<a href="#fig:LineEquation">Fig. 4.b.</a>)</p>
-<p>This definition is known as the <em>plane equation</em>, which generalizes
+<p><a id="plane-equation"></a>
+This definition is known as the <em>plane equation</em>, which generalizes
 lines in 2D to planes in 3D and hyperplanes in higher dimensions. Each
 of these is object of $n-1$ dimensions in an $n$-dimensional space,
 which we call a generalized plane. A unique representation for a
@@ -13482,7 +13550,8 @@ $$</p>
 $2\pi$.</p>
 </li>
 </ol>
-<p>The space of rotations is known as the <em>special orthogonal group</em>
+<p><a id="so2"></a>
+The space of rotations is known as the <em>special orthogonal group</em>
 $SO(2)$. The reason why it is called the special orthogonal group is
 that it is the set of all orthogonal $2\times 2$ matrices with positive
 determinant, while there do exist other orthogonal matrices with
@@ -13507,7 +13576,10 @@ parameterizing them is not as simple as in 2D. In <a href="3DRotations.html">the
 rotation representations will discussed in further detail, but for now
 let us describe some of their properties.</p>
 <p>A rotation in 3D can be represented by a matrix equation
-$$\mathbf{p}^\prime = R \mathbf{p}$$ with $R$ a $3\times 3$ rotation matrix.</p>
+$$
+    \mathbf{p}^\prime = R \mathbf{p}
+$$
+with $R$ a $3\times 3$ rotation matrix.</p>
 <hr>
 <p><img src="figures/modeling/rotation3d.svg" alt="fig:Coordinates3D2"></p>
 <div class="figcaption"><a name="fig:Coordinates3D2">Figure 6</a>. After a rotation, the coordinates of the transformed point
@@ -13529,7 +13601,8 @@ or $R R^T = R^T R = I$.</p>
 <li><p>Vector norms are invariant under rotation.</p>
 </li>
 </ol>
-<p>The space of 3D rotations is known as the <em>special orthogonal group</em>
+<p><a id="so3"></a>
+The space of 3D rotations is known as the <em>special orthogonal group</em>
 $SO(3)$.</p>
 <p>Another interpretation of rotation matrices is to interpret each of the
 3 columns as the coordinates of each of the coordinate axes after
@@ -13656,7 +13729,10 @@ arbitrary point. Letting the <em>center of rotation</em> be denoted $\mathbf{c}$
 rotation about $\mathbf{c}$ can be constructed by translating a point so that
 $\mathbf{c}$ is the origin, then rotating about the origin by some matrix
 $R$, and then translating back to the original origin. This form is:
-$$T(\mathbf{x}) = R(\mathbf{x} - \mathbf{c}) + \mathbf{c}.$$ The parenthetical term is the
+$$
+  T(\mathbf{x}) = R(\mathbf{x} - \mathbf{c}) + \mathbf{c}.
+$$
+The parenthetical term is the
 translation to $\mathbf{c}$ as the origin, the multiplication by $R$ is the
 rotation about the new origin, and the addition of $\mathbf{c}$ is the
 translation back to the original origin. These two representations are
@@ -13697,9 +13773,12 @@ Translations are inverted by translating in the negative direction.
 Linear transforms $A\mathbf{x}$ are invertible only if the matrix is
 invertible, with the inverse transformation $A^{-1}\mathbf{x}$.</p>
 <p>Rigid transformations are also invertible, and their inverse is also a
-rigid transformation: $$\label{eq:RigidTransformInverse}
-T_{(R,\mathbf{t})} ^{-1} = T_{(R^{T},-R^{T} \mathbf{t})}$$ where
-$T_{(R,\mathbf{t})}(\mathbf{x}) = R \mathbf{x} + \mathbf{t}$. Proof of this equation will be
+rigid transformation:
+\begin{equation}
+  T_{(R,\mathbf{t})} ^{-1} = T_{(R^{T},-R^{T} \mathbf{t})}
+  \label{eq:RigidTransformInverse}
+\end{equation}
+where $T_{(R,\mathbf{t})}(\mathbf{x}) = R \mathbf{x} + \mathbf{t}$. Proof of this equation will be
 left as an exercise.</p>
 
 </div>
@@ -13813,8 +13892,7 @@ the vector, since the third 0 coordinate nullifies the effect of the
 third column. The homoeneous coordinate remains 0, since the dot product
 of a position representation with the last row of the matrix is 0.</p>
 <p>The nice thing about this representation is that transform application is a matrix-vector multiply, transform composition is a matrix-matrix multiply, and transform inversion is a matrix inversion. This makes it much easier to write out complex transformations. For example, consider the problem of the coordinate transform from frame $A$ to frame $B$ that we described above.  Rather than writing out the operator expression $T_B^{-1}(T_A(\mathbf{p}^A))$, using homogeneous coordinates this becomes a series of matrix-matrix and matrix-vector multiplies:</p>
-$$\hat{p}^B = \hat{T}_B^{-1} \cdot \hat{T}_A \cdot \hat{p}^A$$<p>.</p>
-
+$$\hat{p}^B = \hat{T}_B^{-1} \cdot \hat{T}_A \cdot \hat{p}^A.$$
 </div>
 </div>
 </div>
@@ -14130,8 +14208,7 @@ include the <code>tf</code> module in ROS
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h2><p>Key takeaways:</p>
-<ul>
+<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h2><h3 id="Key-takeaways">Key takeaways<a class="anchor-link" href="#Key-takeaways">&#182;</a></h3><ul>
 <li><p>Coordinates are numerical representations of geometric concepts,
 like points, directions, frames of reference, and movement.</p>
 </li>
@@ -14151,6 +14228,28 @@ coordinate is either 0 or 1.</p>
 clear assumptions, clear notation and/or using coordinate management
 software can reduce the risk of error.</p>
 </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Glossary">Glossary<a class="anchor-link" href="#Glossary">&#182;</a></h3><ul>
+<li><a href="#Vectors-and-coordinates">Point</a>: A vector representing a location in space.</li>
+<li><a href="#Directional-quantities">Displacement</a>: A vector representing the difference between points.</li>
+<li><a href="#Directional-quantities">Direction</a>: A unit vector that represnts a normalized difference between points or normalized velocity. </li>
+<li><a href="#Vectors-and-coordinates">Coordinates</a>: A collection of numbers representing a point, direction, or displacement quantity relative to some coordinate frame.  </li>
+<li><a href="#2D-coordinate-frames">Coordinate frame</a>: a collection of an origin point and orthogonal axis vectors (e.g., X, Y, and Z) that may be used to represent points, directions, and displacements as coordinates.</li>
+<li><a href="#interpolation">Linear interpolation</a>: An equation $y(u)$ of constant velocity between points $\mathbf{p}$ to $\mathbf{q}$, reaching $\mathbf{p}$ at $u=0$ and $\mathbf{q}$ at $u=1$.  The equation is given by $y(u) = (1-u)\mathbf{p} + u\mathbf{q}$ or equivalently $y(u) = \mathbf{p} + u(\mathbf{q}-\mathbf{p})$.</li>
+<li><a href="#plane-equation">Plane equation</a>: An equation that is held at any point on an infinite plane. The equation is $\mathbf{x} \cdot \mathbf{n} = c $ where $\mathbf{x}$ is any point on the plane, $\mathbf{n}$ is the plane normal, and $c$ is an offset scalar. </li>
+<li><a href="#Rotations-in-2D">Rotation</a>: an orientation-preserving, orthogonal, linear transform.  Rotations preserve distances between points, that is, $\|Rx-Ry\|=\|x-y\|$ for all $x$ and $y$.  </li>
+<li><a href="#Representation-of-coordinate-frames-and-coordinate-transforms">Rotation matrix</a>: a 2x2 or 3x3 matrix that represents a rotation.  A rotation matrix is orthogonal and has determinant +1. </li>
+<li><a href="#so2">SO(2)</a>: the mathematical notation for the space of 2D rotations, called the special orthogonal group.</li>
+<li><a href="#so3">SO(3)</a>: the mathematical notation for the space of 3D rotations, called the special orthogonal group.</li>
+<li><a href="#Rigid-transformations">Rigid transform</a>: An affine transform that combines a rotation and a translation.  Like rotations, rigid transform preserves distances between points.</li>
+<li><a href="#Homogeneous-coordinate-representations">Homogeneous coordinates</a>: A way to represent rigid transforms as linear transforms (matrices).  A 3x3 (in 2D) or 4x4 (in 3D) matrix that contains the rotation part in the upper left, and the translation part in the upper right.  Points are then represented with an additional 1 in the (d+1)'th coordinate, and directional quantities are represented with a 0 in this coordinate.</li>
 </ul>
 
 </div>

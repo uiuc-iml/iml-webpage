@@ -13085,6 +13085,72 @@ MathJax.Hub.Config({ TeX: { equationNumbers: {
     } } 
 });
 </script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
+
+<script type="text/x-mathjax-config">
+// make sure that equations numbers are enabled
+MathJax.Hub.Config({ TeX: { equationNumbers: {
+    autoNumber: "all", // All AMS equations are numbered
+    useLabelIds: true, // labels as ids
+    // format the equation number - uses an offset eqNumInitial (default 0)
+    formatNumber: function (n) {return String(Number(n)+Number(1)-1)} 
+    } } 
+});
+</script>
 <!-- End of mathjax configuration --></head>
 
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
@@ -13359,19 +13425,21 @@ $\theta(1) = \theta_g$, $\theta'(0) = 0$, and $\theta'(1)=0$, we have
 four linear constraints that must be satisfied: $a=0$, $a+b+c+d=1$,
 $b = 0$, and $b + 2c + 3d = 0$. The solution is $a=0$, $b=0$, $c=3$,
 $d=-2$, and hence
-$$\theta(u) = \theta_s + (\theta_g-\theta_s)(3u^2 - 2u^3)$$ is a smooth
-interpolator known as the Hermite curve.</p>
+$$\theta(u) = \theta_s + (\theta_g-\theta_s)(3u^2 - 2u^3)$$
+is a smooth interpolator known as the Hermite curve.</p>
 <p>The remaining question is how to set the time duration of the curve
 $t_f$ to maintain velocity and acceleration limits. We define
 $u = t/t_f$, giving the expression for velocity
 $$\dot{\theta}(t) = \frac{d}{dt} \theta(u(t)) = \theta^\prime(u(t)) u^\prime(t) =  (\theta_g-\theta_s)(6u - 6u^2) /t_f = 6(\theta_g-\theta_s)(t/t_f^2 - t^2/t_f^3)$$
 This is maximized at $t=t_f/2$, which gives the maximum velocity along
 the curve as a function of $t_f$
-$$v^\star(t_f) = \frac{3}{2}(\theta_g-\theta_s)/t_f.$$ The acceleration
-is $$\ddot{\theta}(t) = 6(\theta_g-\theta_s)(1/t_f^2 - 2t/t_f^3)$$ which
-has maximum absolute value at the endpoints. Hence, the maximum
+$$v^\star(t_f) = \frac{3}{2}(\theta_g-\theta_s)/t_f.$$
+The acceleration is
+$$\ddot{\theta}(t) = 6(\theta_g-\theta_s)(1/t_f^2 - 2t/t_f^3)$$
+which has maximum absolute value at the endpoints. Hence, the maximum
 acceleration along the curve is
-$$a^\star(t_f) = 6(\theta_g-\theta_s)/t_f^2.$$ It is then a simple
+$$a^\star(t_f) = 6(\theta_g-\theta_s)/t_f^2.$$
+It is then a simple
 matter to determine whether the curve is acceleration limited or
 velocity limited, and then to set $t_f$ appropriately.</p>
 <h3 id="Speed-and-velocity-control">Speed and velocity control<a class="anchor-link" href="#Speed-and-velocity-control">&#182;</a></h3><p>Speed control is a fairly common addition for Go-To commands, and simply
@@ -13529,18 +13597,23 @@ steady-state error.
 accounts for inertial and Coriolis effects during movement. Supposing we
 have a desired acceleration $\ddot{q}_D$. If we use inverse dynamics to
 calculate the necessary torque needed to guide the robot upon this
-acceleration: $$\tau_{ID}(\ddot{q}) = B(q) \ddot{q} + C(q,\dot q) + G(q)
-\label{eq:InverseDynamics}$$ then feeding this torque to the robot will
+acceleration:
+$$\tau_{ID}(\ddot{q}) = B(q) \ddot{q} + C(q,\dot q) + G(q)
+\label{eq:InverseDynamics}$$
+then feeding this torque to the robot will
 generate the desired acceleration, assuming no disturbances and modeling
 errors. There are generally two methods for compensating for error. The
 first method uses $\tau_{ID}$ as a feedforward control, combined with a
-PID feedback: $$\tau = \tau_{ID}(\ddot{q}_D) + \tau_{fb}.$$ The second
+PID feedback:
+$$\tau = \tau_{ID}(\ddot{q}_D) + \tau_{fb}.$$</p>
+<p>The second
 method, <em>computed torque control</em>, instead computes a desired
 acceleration as the sum of $\ddot{q}_D$ with a feedback acceleration:
-$$\ddot{q}_{fb} = - K_P(q-q_D) - K_I I(t) - K_D(\dot{q}-\dot{q}_D)$$ The
-resulting controller uses the torques computed for the feedforward +
+$$\ddot{q}_{fb} = - K_P(q-q_D) - K_I I(t) - K_D(\dot{q}-\dot{q}_D).$$</p>
+<p>The resulting controller uses the torques computed for the feedforward +
 feedback accelerations:
-$$\tau = \tau_{ID}(\ddot{q}_D + \ddot{q}_{fb}).$$ This approach is
+$$\tau = \tau_{ID}(\ddot{q}_D + \ddot{q}_{fb}).$$</p>
+<p>This approach is
 appealing because with acceleration being the control variable, the PID
 constants can be chosen easily so the joint space dynamics are
 convergent. The main drawback of computed torque control methods is the
@@ -13581,8 +13654,8 @@ space. To see this, observe that the dynamics of the task space error
 $e = x - x_D$ are given by $$\dot{e} = J \dot{q} = - J J^T K_P e.$$
 Hypothesizing the Lyapunov function $V(e) = \frac{1}{2} e^T K_P e$, we
 can calculate
-$$\dot{V}(e) = \frac{\partial V}{\partial e}(e)^T \dot{e}.$$ Under the
-observation that $\frac{\partial V}{\partial e}(e) = K_P e$, observe
+$$\dot{V}(e) = \frac{\partial V}{\partial e}(e)^T \dot{e}.$$
+Under the observation that $\frac{\partial V}{\partial e}(e) = K_P e$, observe
 that $\dot{V}(e) = -e^T K_P J J^T K_P e$. If $J$ and $K_P$ are
 nonsingular, then $K_P J J^T K_P$ is a symmetric positive definite
 matrix, and hence this is a negative definite function, i.e., negative
@@ -13594,14 +13667,15 @@ the operational coordinate as a sort of virtual rigid body under
 spring-damper dynamics. Suppose we wish to control the dynamics of the
 task space coordinate according to the trajectory $x_D(t)$. Then the
 desired acceleration is
-$$\ddot{x}_{cmd} = -K_P(x-x_D(t)) - K_D(\dot{x} - \dot{x}_D) + \ddot{x}_D(t).
-\label{eq:SpringDamperAcceleration}$$ Computing the time derivative of
+$$\ddot{x}_{cmd} = -K_P(x-x_D(t)) - K_D(\dot{x} - \dot{x}_D) + \ddot{x}_D(t). \label{eq:SpringDamperAcceleration}$$
+Computing the time derivative of
 the task space mapping twice, we obtain:
 $$\ddot{x} = \frac{d}{d t}(J(q)\dot{q}) = J(q)\ddot{q} + \dot{J}(q)\dot{q}$$
 Let us examine how the task space acceleration is affected by task space
 forces, $f_{cmd}$, such that the resulting torque is
 $\tau = J^T f_{cmd}$. For convenience of the expression, we drop the
-dependence of several terms on $q$: $$\begin{split}
+dependence of several terms on $q$:
+$$\begin{split}
 \ddot{x} &amp;= J(B^{-1}(\tau - C(q,\dot{q}) - G) + \dot{J}\dot{q} \\
 &amp;= JB^{-1} J^T f_{ext} - JB^{-1} C(q,\dot{q}) - JB^{-1} G  + \dot{J}\dot{q} 
 \end{split}$$ 
@@ -13609,7 +13683,7 @@ Recall from the <a href="RobotDynamics.html#Effective-inertia">discussion on eff
 that the matrix $\tilde{B} = (JB^{-1}J^T)^{-1}$ is the effective inertia of the task
 space coordinate. Multiplying both sides by $\tilde{B}$ and rearranging,
 we get
-$$\tilde{B}\ddot{x} + \tilde{B}(JB^{-1} C(q,\dot{q}) - \dot{J}\dot{q}) + \tilde{B}JB^{-1}G =  f_{ext}$$</p>
+$$\tilde{B}\ddot{x} + \tilde{B}(JB^{-1} C(q,\dot{q}) - \dot{J}\dot{q}) + \tilde{B}JB^{-1}G =  f_{ext}.$$</p>
 <p>If we let
 $\tilde{C}(q,\dot{q}) = \tilde{B}(JB^{-1} C(q,\dot{q}) - \dot{J}\dot{q})$
 and $\tilde{G} = \tilde{B}JB^{-1}G$, we have the task space dynamics
@@ -13670,8 +13744,8 @@ To extract the external forces from the sensed forces, the operation
 of a force sensor should be modeled in detail. Accelerations will be
 observed as force spikes in the sensed force signal, and changes in the
 end effector orientation will be observed as a bias in the force signal:
-$$f_{sensed} = f_{ext} + f_{gravity} + f_{inertial}
-\label{eq:ForceSensor}$$ The best way to estimate the external force is
+$$f_{sensed} = f_{ext} + f_{gravity} + f_{inertial}. \label{eq:ForceSensor}$$
+The best way to estimate the external force is
 to model the force of gravity and inertia on the sensor by estimating
 the sensor's orientation and acceleration and subtracting their sum from
 the sensed force. Orientation and acceleration must be estimated from
@@ -13688,8 +13762,9 @@ effector force, the gains should be on the order of 1.</p>
 <p>Impedance control implements a behavior where the robot's end effector
 as though it were a mass-spring-damper (MSD) system subjected to an
 external force (usually without gravity). The equations of an MSD are as
-follows: $$\ddot{x} = M^{-1} (f_{ext} - K (x_D-x) - D \dot{x}_D)
-\label{eq:MassSpringDamper}$$ with $M$ the mass matrix, $K$ the
+follows:
+$$\ddot{x} = M^{-1} (f_{ext} - K (x_D-x) - D \dot{x}_D) \label{eq:MassSpringDamper}$$
+with $M$ the mass matrix, $K$ the
 stiffness matrix, and $D$ the damping matrix. For example, a
 zero-gravity mode sets $K$ and $D$ to 0 and the robot's end effector
 behaves like a free-floating mass in response to applied forces. To
