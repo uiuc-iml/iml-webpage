@@ -110,14 +110,14 @@ function showHide(shID) {
 <ul>
   <li>Supports legged and fixed-based robots.</li>
   <li>Supports URDF robot file format.</li>
-  <li>Collision detection with meshes, point clouds, and voxel grids</li>
+  <li>Wide range of <a href="https://github.com/krishauser/Klampt/blob/master/Cpp/docs/Manual-Geometry.md">geometry support</a> with triangle meshes, point clouds, implicit surfaces, occupancy grids, heightmaps, and geometric primitives</li>
   <li>Forward and inverse kinematics, forward and inverse dynamics</li>
   <li>Contact mechanics computations: force closure, support polygons, stability of rigid bodies and actuated robots</li>
-  <li>Keyframe poser and path editor</li>
-  <li>Integration with PyTorch, Casadi, and Sympy</li>
+  <li>Integration with Numpy, JSON, ROS 1, Open3D, trimesh, PyTorch, Casadi, and Sympy</li>
 </ul>
 <div class="subheading">System Integration</div>
 <ul>
+  <li>Easy visualization with OpenGL, Jupyter notebooks, and Rerun.io</li>
   <li>Unified interface to simulated and physical robots.</li>
   <li>Smooth motion generation and Cartesian control plugins to add to your own robot's controllers.</li>
   <li>Extrinsic calibration tools.</li>
@@ -126,63 +126,41 @@ function showHide(shID) {
 </ul>
 <div class="subheading">Simulation</div>
 <ul>
-	<li>Robust rigid body simulation with triangle mesh / triangle mesh collisions.</li>
+	<li>Robust rigid body simulation with triangle mesh / triangle mesh collisions, mesh / point cloud collisions, and more.</li>
 	<li>Simulation of PID controlled, torque controlled, and velocity controlled motors.</li>
 	<li>Simulation of various sensors including RGB+D cameras, laser sensors, gyroscopes, force/torque sensors, and accelerometers. </li>
 	<li>ROS bindings are available for broadcasting simulation data and reading robot trajectory commands.</li>
 </ul>
 <div class="subheading">Planning</div>
 <ul>
-<li>Many sampling-based motion planners implemented.</li>
-<li>Motion planning on constrained manifolds.</li>
-<li>Fast trajectory optimization routines.</li>
-<li>Real-time motion planning routines.</li>
-<li>Planning models are fully decoupled from simulation models, which helps evaluate behavior under errors and uncertainty.</li>
+	<li>Many sampling-based motion planners implemented.</li>
+	<li>Motion planning on constrained manifolds.</li>
+	<li>Fast trajectory optimization routines.</li>
+	<li>Real-time motion planning routines.</li>
+	<li>Planning models are fully decoupled from simulation models, which helps evaluate behavior under errors and uncertainty.</li>
 </ul>
 
-<p><span class="subheading">Current version</span>: 0.9.2</p>
+<p><span class="subheading">Current version</span>: 0.10.0</p>
 <p><span class="subheading">Languages</span>: C++ and Python</p>
 <p><span class="subheading">Supported platforms</span>: *nix environments, Windows, and Mac OSX. </p>
 
 <div class="subheading">What's new?</div>
-<p>Version 0.9.0 is a major update, with some API-breaking changes:</p>
+<p>Version 0.10.0 is a major update, with some API-breaking changes:</p>
 <ul>
-  <li>Python API: type hints are available throughout the SWIG interface and in many native Python functions.</li>
-  <li>Python API: direct Numpy interface speeds up large data copies. Tests indicate ~6x speedup (45ms->7.5ms) for getting a simulated sensor image (SimRobotSensor.getMeasurements()), ~80x speedup (160ms->2ms) for converting images to point clouds (PointCloud.setDepthImage/setRGBDImages), and 20x speedup (200ms->10ms) for converting a Numpy array to a point cloud (tested on 640x480 images).</li>
-  <li>Python API: major updates to the Klampt control package, including the new klampt_control utility that lets you control your robots in real time. (API-breaking change)</li>
-  <li>Python API: standardization of robot semantic information under a RobotInfo class in klampt.model.robotinfo. Supported by klampt_control and klampt_sim. Future planners and system integration utilities will use this structure.</li>
-  <li>Python API: klampt_resource script added which allows transfer and conversions of resources from the command line. klampt_thumbnails has been removed since all thumbnail functionality has been moved into klampt_resource.</li>
-  <li>Python API: new system integration utilities, such as calibration (klampt.model.calibrate) and workspace calculation (klampt.model.workspace).</li>
-  <li>C++ API: Everything added to the Klampt namespace. (API-breaking change!)</li>
-  <li>C++ API: Main modeling classes renamed to align with Python API, e.g. Robot->RobotModel, RobotWorld->WorldModel, WorldSimulation->Simulator, etc. (API-breaking change!)</li>
-  <li>Some geometries support slicing and ROI (region of interest) calculations. Slicing takes a slice of a geometry with a plane, and ROI calculations determine a region of interest of the geometry. Meshes and point clouds are supported.</li>
-  <li>Other bug fixes and enhancements (see release notes in <a href="https://github.com/krishauser/klampt/">README</a>)</li>
-</ul>
-<p>Version 0.9.1:</p>
-<ul>
-  <li>Removed GLUI dependency in default build mode.</li>
-  <li>Updated GLEW to 2.1.0.</li>
-  <li>Builds for Linux Python 3.10+ are now working again. (Mac OS 11+ support is still TBD.)</li>
-  <li>IK solver now has a minimization mode and a prioritized solve mode.</li>
-  <li>Fixed bug in simulation of affine joints when the joint angle can go negative. Also, internal affine transmission coupling is simulated in a fashion that's sensitive to the driver's PID constants.</li>
-  <li>Minor performance improvements to IK; API for getting subset of Jacobian columns.</li>
-  <li>Python API: substantial performance improvements to camera image retrieval (camera_to_images).</li>
-  <li>Python API: new calls for getting subset of Jacobian columns.</li>
-  <li>Python API: Added types.convert generic utility function.</li>
-  <li>Python API: Fixed bugs with vis module picker. Also, appearances can now have a tint set to match the C++ API.</li>
-  <li>Python API: Bug fixes and type hints in coordinates module.</li>
-  <li>Python API: Bug fix with cost evaluation in EmbeddedCSpace working on the embedded vectors (e.g., causing problems with outputs from makePlan)</li>
-  <li>Python API: Removed klampt_path app and added functionality to klampt_resource app instead.</li>
-</ul>
-<p>Version 0.9.2:</p>
-<ul>
-	<li>Python API: pip packages now built with Numpy 2+.</li>
-	<li>Python API: Improved calibration routines in `klampt.model.calibrate`.</li>
-	<li>Python API: Added surface sampling and vertex normals to `klampt.model.geometry`.</li>
-	<li>Python API: Added visibility fraction determination to `klampt.model.sensing`.</li>
-	<li>Python API: Added conversions of meshes to/from the ``trimesh`` library in `klampt.io.trimesh_convert`.</li>
-	<li>Python API: Fixed bug in SO3/SE3 Hermite velocity interpolation.  Now using extrinsic angular velocity representation as tangent vectors.</li>
-	<li>Python API: Mouse wheel events can now be captured in visualization (Qt and GLUT backends).</li>
+  <li>New geometry types OccupancyGrid and Heightmap. The VolumeGrid data structure is deprecated but aliases to ImplicitSurface. Heightmap can represent orthographic heightmaps (e.g., elevation maps) as well as depth maps coming from RGB-D cameras. Many more proximity queries are implemented / accelerated.</li>
+  <li>Viewport data structure now accepts non-square pixels and non-centered focal points, making it compatible with calibrated camera intrinsics. API breaking change; to resize viewports and keep the FOV and relative center, use Viewport.resize(w,h).</li>
+  <li>C++ API: Breaking changes to KrisLibrary Geometry API, now reflected in KrisLibrary 0.2 and later. Older builds of Klampt will need to pull KrisLibrary branch 0.1.</li>
+  <li>C++ API: Renamed Merge to Union for all geometries. Added Merge function that merges a single geometry into the current geometry's representation.</li>
+  <li>Python API: many more setters / getters to make access more Pythonic, i.e., treating WorldModel.robots / RobotModel.sensors as Python tuples. <li>Python API: Upgraded to support PyQt6, deprecated PyQt4. Changed to using QOpenGLWidget for visualization, which may introduce visualization bugs as we work through the kinks. Klampt windows can now be run in concert with OpenCV visualizations, although only in single-threaded (vis.loop / vis.run) mode (see opencvtest.py). Also, when simulating sensors and showing them in matplotlib, vis.scene().window.makeCurrent() / doneCurrent() needs to be called (see sensor_matplotlib.py). For example, grabbing depth maps from the viewport is no longer supported. However, you can still get depth maps from SimRobotSensors.</li>
+  <li>Python API: Geometry3D data objects now use Numpy accessors. Also, they now support zero copying for setting and getting data, making large geometry updates much faster! You may also use PointCloud.getColors/setColors, TriangleMesh.triangleNormals/vertexNormals.</li>
+  <li>Python API: Renamed SimRobotSensor to SensorModel. SensorModel.name()/type() are changed to attributes SensorModel.name/type.</li>
+  <li>Python API: klampt.model.sensing API change. No longer need robot argument to functions. Rely on SensorModel to get sensor transforms.</li>
+  <li>Python API: Added Geometry3D merge function that can be used for SDF and heightmap fusion.</li>
+  <li>Python API: Added Rerun.io visualization frontend. Try vis.init('Rerun'). Unsupported functions: multi-window, coordinates module items, ContactPoints, Holds.</li>
+  <li>Python API: can control draw order of transparent objects with draw_order attribute.</li>
+  <li>Python API: Text and plots are drawn at a more sensible size (points rather than pixels) for high-resolution screens.</li>
+  <li>Klampt-examples: moved "boring" C++ tests to the Klampt-examples/Cpp/testing folder. Moved "boring" Python tests to the Klampt-examples/Python3/testing/pytest folder and made compatible with pytest. Broke test files that had multiple selectable tests into individual tests.</li>
+   <li>Various bug fixes.</li>
 </ul>
 
 <div class="separator"></div>
@@ -293,13 +271,15 @@ function showHide(shID) {
 <ol>
   <li>
 	<a class="Q" href="#" onclick="showHide('A_compare'); return false;">
-	How does Klamp't compare to other simulators / programming environments (like ROS, RAVE, Webots, etc)?
+	How does Klamp't compare to other robotics software packages (like ROS, Drake, MuJoCo, RAVE, Webots, etc)?
 	</a>
      <div class="A" id="A_compare">
-	<p>The short answer: Klamp't is an all-in-one toolbox that specializes in robots with contact.</p>
+	<p>The short answer: Klamp't is an all-in-one toolbox that handles all of the essentials with a convenient Pythonic interface.</p>
       <p>Unlike ROS, Klamp't is not an architecture for sensing and control on distributed hardware.  Klamp't provides tools for modeling, planning, and simulation of robots with contact that are intended primarily for research and rapid prototyping. Klamp't comes with ROS bindings for its simulator and for reading point clouds.  Klamp't is more cross-platform and lighter weight.</p>
+	  <p>Compared to Drake, Klampt is Python-first and makes it especially easy to work with sensor data and geometry, visualizations, and create your own robot controllers.  It lacks the powerful optimization functions of Drake and its simulation engine hasn't been maintained for a while.</p>
+	  <p>MuJoCo focuses on fast and approximate simulation, whereas Klampt offers many more modeling, planning, control, and visualization tools useful for working with real robots.</p>
       <p>OpenRAVE is a similar library developed at CMU concurrently with Klamp't, but with a stronger focus on manipulation problems.  OpenRAVE does not support legged robots.  Moreover, simulation in OpenRAVE is often conflated with modeling and planning, whereas in Klamp't they are fully decoupled. </p>
-      <p>Klamp't differs from other robot simulators (e.g., Gazebo, Webots, V-REP) because it has better collision handling that lets it handle complex contact phenomena between unstructured meshes and even point clouds.  Other simulators typically require a robot and its environment to be composed of simple geometric primitives or convex polyhedra, while Klamp't works well with polygon soup or point clouds directly from a CAD program or a depth scanner.  Other simulators typically have better visualizations and sensor simulation capabilities.  Klamp't ignores the bells and whistles and focuses on stable, robust contact.</p>
+      <p>Klamp't differs from other robot simulators (e.g., Gazebo, Webots, V-REP) because it has better collision handling that lets it handle complex contact phenomena between unstructured meshes and even point clouds.  Other simulators typically require a robot and its environment to be composed of simple geometric primitives or convex polyhedra, while Klamp't works well with polygon soup or point clouds directly from a CAD program or a depth scanner.  Klamp't visualization doesn't support shadows.</p>
 	</div>
   </li>
   <li>
@@ -307,22 +287,24 @@ function showHide(shID) {
 	I'm a robotics newbie, where should I start?
 	</a>
 	<div class="A" id="A_start">
-	<p>Most beginners should start learning the Python API and going through the examples in the manual.  Exercises from <a href="http://people.duke.edu/~kh269/teaching/b659/schedule.htm">an introductory graduate course on robotics</a> are provided in the Klampt-examples/Python/exercises folder. An open-source textbook, <a href="http://motion.cs.illinois.edu/RoboticSystems/">Robotic Systems</a> is being prepared, which will help you become more familiar with 3D transformations, configuration spaces, feedback control, and motion planning.</p>
+	<p>Most beginners should start learning the Python API and going through the examples in the manual.  Exercises from an introductory graduate course on robotics are provided in the Klampt-examples/Python/exercises folder. An open-source textbook, <a href="http://motion.cs.illinois.edu/RoboticSystems/">Robotic Systems</a>, will help you become more familiar with 3D transformations, configuration spaces, feedback control, and motion planning.</p>
 	</div>
   </li>
     <li>
-    <a class="Q" href="#" onclick="showHide('A_migrate0.9'); return false;">
-    I was using 0.8.x, how do I migrate my code to 0.9?
+    <a class="Q" href="#" onclick="showHide('A_migrate0.10'); return false;">
+    I was using 0.9.x, how do I migrate my code to 0.10?
     </a>
-     <div class="A" id="A_migrate0.9">
+     <div class="A" id="A_migrate0.10">
     <p>C++:.</p>
 	<ul>
-		<li>Everything is now in the Klampt namespace, and classes match the corresponding Python classes.  So, Robot -> Klampt::RobotModel, RobotWorld -> Klampt::WorldModel, WorldSimulation->Klampt::Simulator, etc. </li>
+		<li>Almost no changes, unless you are using the internals of the AnyGeometry3D / AnyCollisionGeometry3D classes.</li>
 	</ul>
     <p>Python:</p>
     <ul>
-      <li>Module-level constants and functions have been renamed to conform to PEP8.  You will receive a DeprecationWarning when you try to use the old names (e.g., klampt.io.loader.typeToExtension -> klampt.io.loader.type_to_extension).  We are still using lowerCamelCase for class members to conform to historical usage.</li>
-      <li>In the unlikely case that you were using the klampt.control package in 0.8.7, there are major changes that will require significant code rewrites.</li>
+	  <li>If you were manipulating the data classes in Geometry3D, you will now need to use their Numpy properties and accessor methods.</li>
+	  <li>If you were using depth screenshots, they have been removed due to deprecations in PyQt5 which were finally removed in PyQt6. You will need to set up a SensorModel camera (type "CameraSensor") instead.</li>
+	  <li>SimRobotSensor and VolumeGrid names will be deprecated in a future version. Start using SensorModel and ImplicitSurface or OccupancyGrid to indicate the voxel meanings.</li>
+      <li>Klampt 0.9 deprecated functions have been removed.</li>
     </ul>
     </div>
   </li>
@@ -332,7 +314,7 @@ function showHide(shID) {
 	</a>
 	<div class="A" id="A_import">
 	<p>Klamp't reads from the <a href="http://wiki.ros.org/urdf">URDF</a> file format. It also uses a proprietary, simple ASCII format for defining robots (.rob files) which is much less verbose. </p> 
-	<p>However, for simulation, Klamp't will need some special motor parameters (servoP, servoI, servoD, dryFriction, viscousFriction) that are not present in the URDF format.  We recommend that you 1) add the special klampt XML tag in the URDF, or 2 run the URDFtoRob program and then edit the generated parameters in the .rob file.  More details on this procedure can be found in the <a href="https://github.com/krishauser/Klampt/blob/master/Cpp/docs/Manual-FileTypes.md#urdf-files-urdf-with-klampt-specific-elements">Klampt manual</a> and the <a href="https://github.com/krishauser/Klampt/blob/master/Cpp/docs/Tutorials/Import-and-calibrate-urdf.md">robot import tutorial</a>.</p>
+	<p>For physics simulation, Klamp't will need some special motor parameters (servoP, servoI, servoD, dryFriction, viscousFriction) that are not present in the URDF format.  We recommend that you 1) add the special klampt XML tag in the URDF, or 2 run the URDFtoRob program and then edit the generated parameters in the .rob file.  More details on this procedure can be found in the <a href="https://github.com/krishauser/Klampt/blob/master/Cpp/docs/Manual-FileTypes.md#urdf-files-urdf-with-klampt-specific-elements">Klampt manual</a> and the <a href="https://github.com/krishauser/Klampt/blob/master/Cpp/docs/Tutorials/Import-and-calibrate-urdf.md">robot import tutorial</a>.</p>
 	<p> Some tips for successful URDF tagging and/or importing:</p>
 	<ul>
 		<li>URDF contains separate visualization / collision geometry per link while Klamp't only uses a single geometry.  To switch, toggle the useVisGeom setting in urdftorob.settings, or use_vis_geom attribute in the &lt;klampt&gt; URDF element.</li>
