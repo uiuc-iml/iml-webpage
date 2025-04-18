@@ -5,4 +5,4 @@ for line in f.readlines():
     line = line.strip()
     line = line.replace('"',"'")
     if len(line) > 0:
-        print 'document.write("'+line+'")'
+        print('document.write("'+line+'")')
