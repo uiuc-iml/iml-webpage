@@ -1,7 +1,7 @@
 #!/bin/bash
 for file in "$@"
 do
-  python src/pycgi.py src/frame.htm $file.htm public_html/$file.html
+  python3 src/pycgi.py src/frame.htm $file.htm public_html/$file.html
 done
 
 

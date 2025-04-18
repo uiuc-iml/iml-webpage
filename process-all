@@ -26,4 +26,4 @@
 ./process-subdir sketchmimicking/index
 ./process-subdir throwing/index
 ./process-subdir vehicles/index
-python src/to-js.py src/news.htm > public_html/news.js
+python3 src/to-js.py src/news.htm > public_html/news.js
