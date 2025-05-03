@@ -22,6 +22,7 @@
 ./process-subdir redundancyresolution/index
 ./process-subdir simulation/index
 ./process-subdir slikmc/index slikmc/contact slikmc/download slikmc/tutorial slikmc/publications
+./process-subdir stuff/index
 ./process-subdir taskandmotion/index
 ./process-subdir sketchmimicking/index
 ./process-subdir throwing/index
