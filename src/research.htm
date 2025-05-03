@@ -61,6 +61,19 @@ function showHide(shID) {
 </script>
 
 <div class="proj">
+<a class="project-link" href="stuff/index.html"> </a>
+<div class="projimg"><img class="proj" src="stuff/vsf_meta_learning_icon.gif" style="width: 70px; height: 35px;" /></div>
+<div class="projcontent">
+<p class="projtitle">Modeling and reasoning about "stuff"</p>
+<a class="abstract-show" href="#" onclick="showHide('stuff');return false;">Summary (click to show)</a>
+<div class="abstract more" id="stuff">Prevailing models in robotics reason about the world as a collection of rigid objects, but this is an inappropriate abstraction for manipulating cloth, ropes, piles of objects, plants, and natural terrain.  We are investigating novel representations of "stuff" that are built <i>de novo</i> from visual and tactile perception data, whose properties are learned continuously through interaction.  Volumetric Stiffness Fields, Graph Neural Networks, Neural Dynamics, and 3D metric-semantic maps are examples of models being investigated in this research.  Applications are being studied in agriculture, construction, and household object manipulation.</div>
+<div class="keywords">deformable objects, graph neural networks, tactile sensing, agricultural robotics, construction robotics</div>
+<div class="sponsors">NSF Foundational Robotics Research, USDA/NIFA AIFARMS AI Institute</div>
+</div>
+</div>
+
+
+<div class="proj">
 <a class="project-link" href="contactrichplanning/index.html"> </a>
 <div class="projimg"><img class="proj" src="contactrichplanning/STOCS.gif" style="width: 70px; height: 35px;" /></div>
 <div class="projcontent">
@@ -69,7 +82,7 @@ function showHide(shID) {
 <div class="abstract more" id="contactrichplanning">Humans leverage diverse strategies such as in-hand manipulation, whole-body manipulation, and environmental contact to manipulate a variety of objects in our daily lives. 
    In contrast, even though the robotics field has long attempted to imitate these behaviors, the interactions of the majority of robots with their surroundings are primarily restricted to their end-effectors, 
    and the motions are mostly pick and place, which are not as dexterous or energy-efficient as those performed by humans. In bridging the gap between human-like contact interactions and current robotic capabilities, we make foundational contributions through introducing a novel computational model that employs a semi-infinite/infinite programming approach to effectively address the intricate nature of pervasive contact scenarios.</div>
-<div class="keywords">contact-rich manipulation, semi-infinite/infinite programming</div>
+<div class="keywords">contact-rich manipulation, semi-infinite programming, infinite programming</div>
 <div class="sponsors">NSF National Robotics Initiative</div>
 </div>
 </div>
@@ -83,18 +96,6 @@ function showHide(shID) {
 <div class="abstract more" id="efficientlearning">Recent breakthroughs in deep learning has made it a popular approach in various fields of engineering and science, including robotics. While deep learning has demonstrated impressive results, it is extremely data-hungary and transfers poorly to new tasks once trained. However, data in robotics tasks are often times scarce and very expensive. In this project, we investigate data-efficient learning for robotics (decision-making) tasks by 1) taking advantage of knowledge of physics and performing "gray-box" learning and 2) using prior experience on similar tasks.</div>
 <div class="keywords">gray-box learning, deformable object, decision-making, meta-learning</div>
 <div class="sponsors">NSF National Robotics Initiative, NASA</div>
-</div>
-</div>
-
-<div class="proj">
-<a class="project-link" href="packing/index.html"> </a>
-<div class="projimg"><img class="proj" src="packing/packing.png" style="width: 70px; height: 70px;" /></div>
-<div class="projcontent">
-<p class="projtitle">Autonomous robot packing of complex-shaped objects</p>
-<a class="abstract-show" href="#" onclick="showHide('packing');return false;">Summary (click to show)</a>
-<div class="abstract more" id="packing">Automated packaging or packing, a process during which robots stow objects into small containers, e.g., shipping boxes, is an open research problem with significant potential impact on warehouse automation. Packing items densely improves the storage capacity, decreases the delivery cost, and saves packing materials. This project focuses on packing objects of arbitrary shapes, weights, and deformation into a single shipping box with a robot manipulator. We seek to advance the state-of-the-art in robot packing with regards to optimizing container size for a set of objects, planning object placements for stability and feasibility, and increasing robustness of packing execution with a robot manipulator.</div>
-<div class="keywords">packing, warehouse automation, optimal planning</div>
-<div class="sponsors">Amazon Research Award</div>
 </div>
 </div>
 
@@ -124,22 +125,6 @@ areas, which could reduce infection risk to healthcare workers by minimizing exp
 <div class="sponsors">NSF National Robotics Initiative, NSF CAREER, NSF RAPID</div>
 </div>
 </div>
-
-
-<div class="proj">
-<a class="project-link" href="cooperativemotion/index.html"> </a>
-<div class="projimg"><img class="proj" src="images/icons/teleop-icon-small.jpg"></div>
-<div class="projcontent">
-<p class="projtitle">Cooperative motion planning for human-operated robots</p>
-<a class="abstract-show" href="#" onclick="showHide('cooperativemotion');return false;">Summary (click to show)</a>
-<div class="abstract more" id="cooperativemotion">
-This project explores the hypothesis that advances in robot motion planning algorithms will lead to improved intuitiveness, safety, and task performance of human-centered robots such as intelligent vehicles, tele-surgery systems, search-and-rescue robots, and household robots. Existing planning techniques lead to awkward and unintuitive interaction with humans. To bridge this gap, we are  developing cooperative motion planning algorithms that reason about users' intended goals and then take control of a robot's low level motion to achieve those goals.
-</div>
-<div class="keywords">human-robot interaction, intent recognition, assisted teleoperation, real-time planning, integrated planning and perception</div>
-<div class="sponsors">NSF National Robotics Initiative, NSF CAREER, IU Faculty Research Support Program</div>
-</div>
-</div>
-
 
 
 <div class="proj">
@@ -177,6 +162,33 @@ Computation time is a major impediment to dynamic, autonomous, and safe robot be
 
 <div class="separator"></div>
 <h3>Inactive projects<h3>
+
+<div class="proj">
+<a class="project-link" href="packing/index.html"> </a>
+<div class="projimg"><img class="proj" src="packing/packing.png" style="width: 70px; height: 70px;" /></div>
+<div class="projcontent">
+<p class="projtitle">Autonomous robot packing of complex-shaped objects</p>
+<a class="abstract-show" href="#" onclick="showHide('packing');return false;">Summary (click to show)</a>
+<div class="abstract more" id="packing">Automated packaging or packing, a process during which robots stow objects into small containers, e.g., shipping boxes, is an open research problem with significant potential impact on warehouse automation. Packing items densely improves the storage capacity, decreases the delivery cost, and saves packing materials. This project focuses on packing objects of arbitrary shapes, weights, and deformation into a single shipping box with a robot manipulator. We seek to advance the state-of-the-art in robot packing with regards to optimizing container size for a set of objects, planning object placements for stability and feasibility, and increasing robustness of packing execution with a robot manipulator.</div>
+<div class="keywords">packing, warehouse automation, optimal planning</div>
+<div class="sponsors">Amazon Research Award</div>
+</div>
+</div>
+
+<div class="proj">
+<a class="project-link" href="cooperativemotion/index.html"> </a>
+<div class="projimg"><img class="proj" src="images/icons/teleop-icon-small.jpg"></div>
+<div class="projcontent">
+<p class="projtitle">Cooperative motion planning for human-operated robots</p>
+<a class="abstract-show" href="#" onclick="showHide('cooperativemotion');return false;">Summary (click to show)</a>
+<div class="abstract more" id="cooperativemotion">
+This project explores the hypothesis that advances in robot motion planning algorithms will lead to improved intuitiveness, safety, and task performance of human-centered robots such as intelligent vehicles, tele-surgery systems, search-and-rescue robots, and household robots. Existing planning techniques lead to awkward and unintuitive interaction with humans. To bridge this gap, we are  developing cooperative motion planning algorithms that reason about users' intended goals and then take control of a robot's low level motion to achieve those goals.
+</div>
+<div class="keywords">human-robot interaction, intent recognition, assisted teleoperation, real-time planning, integrated planning and perception</div>
+<div class="sponsors">NSF National Robotics Initiative, NSF CAREER, IU Faculty Research Support Program</div>
+</div>
+</div>
+
 
 <div class="proj">
 <a class="project-link" href="decisionsupport/index.html"></a>
