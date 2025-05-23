@@ -79,6 +79,38 @@ div.main
 	padding:0;
 }
 
+@media only screen and (max-width:768px) {
+	div.main1
+	{
+		display:block;
+		vertical-align:top;
+	}
+
+	div.main2
+	{
+		display:block;
+		vertical-align:top;
+	}
+}
+
+
+@media only screen and (min-width:768px) {
+	div.main1
+	{
+		position:relative;
+		display:table-cell;
+		vertical-align:top;
+		padding-right:2em;
+	}
+
+	div.main2
+	{
+		position:relative;
+		display:table-cell;
+		vertical-align:top;
+	}
+}
+
 div.banner
 {
 	width:100%;
