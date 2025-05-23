@@ -6,6 +6,7 @@
 ./process-subdir decisionsupport/index
 ./process-subdir drc/index
 ./process-subdir dynamics/index dynamics/statecost
+./process-subdir examinations/index
 ./process-subdir ikdb/index
 ./process-subdir iv2013/index
 ./process-subdir klampt/index

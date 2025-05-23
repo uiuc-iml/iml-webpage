@@ -83,7 +83,7 @@ function showHide(shID) {
 
 <div style="position:relative; display:table-cell; vertical-align:top;padding-right:2em;">
 <h3>About</h3>
-<p>The Intelligent Motion Lab is a "full stack" robotics lab that studies how planning, perception, and learning ought to be integrated to enable autonomous and semi-autonomous operation in challenging tasks.  The research conducted in the lab spans basic research on component algorithms up to application-driven projects on integrated robot systems.  Applications of this work have included intelligent vehicles, robot manipulation, legged locomotion, human-robot interaction, robot- and computer-assisted medicine.</p>
+<p>The Intelligent Motion Lab is a "full stack" robotics lab that studies strategies for integrating planning, perception, and learning to enable autonomous and semi-autonomous operation in challenging tasks.  The research conducted in the lab spans basic research on component algorithms up to application-driven projects on integrated robot systems.  A key tenet of our research philosophy is that the <i>fundamental ingredients of robotic intelligence are universal</i> across embodiments and tasks, although their <i>optimal instantiations may be specific</i>. Applications of our research have been wide ranging, including agriculture, construction, intelligent vehicles, robot manipulation, legged locomotion, human-robot interaction, robot- and computer-assisted medicine.</p>
 <p>IML is directed by Prof. <a href="https://kkhauser.web.illinois.edu">Kris Hauser</a> and is part of
 the University of Illinois <a href="https://grainger.illinois.edu/">Grainger College of Engineering</a>.</p>
 <div class="separator"></div>
@@ -108,16 +108,28 @@ the University of Illinois <a href="https://grainger.illinois.edu/">Grainger Col
 -->
 <!--
 <p>Automated Heart and Lung Auscultation</p>
-<a href="https://youtu.be/rEbIW6mDWiA"><img class="mov" src="../images/mov_icon_tiny.gif"> Supplemental video</a>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/COFgX5UKhUs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 -->
-<p>Robot-stabilized retinal imaging system</p>
+
+<p>EYESIGHT: a robot-stabilized retinal imaging system</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/rEbIW6mDWiA?si=LZhEdoX9LMNkNk6U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
 
 <div class="separator"></div>
 <h3>Selected Projects</h3>
+
+<div class="proj">
+<a class="project-link" href="stuff/index.html"> </a>
+<div class="projimg"><img class="proj" src="stuff/vsf_meta_learning_icon.gif" style="width: 70px; height: 35px;" /></div>
+<div class="projcontent">
+<p class="projtitle">Modeling and reasoning about "stuff"</p>
+<a class="abstract-show" href="#" onclick="showHide('stuff');return false;">Summary (click to show)</a>
+<div class="abstract more" id="stuff">Prevailing models in robotics reason about the world as a collection of rigid objects, but this is an inappropriate abstraction for manipulating cloth, ropes, piles of objects, plants, and natural terrain.  We are investigating novel representations of "stuff" that are built <i>de novo</i> from visual and tactile perception data, whose properties are learned continuously through interaction.  Volumetric Stiffness Fields, Graph Neural Networks, Neural Dynamics, and 3D metric-semantic maps are examples of models being investigated in this research.  Applications are being studied in agriculture, construction, and household object manipulation.</div>
+<div class="keywords">deformable objects, graph neural networks, tactile sensing, agricultural robotics, construction robotics</div>
+<div class="sponsors">NSF Foundational Robotics Research, USDA/NIFA AIFARMS AI Institute</div>
+</div>
+</div>
 
 
 <div class="proj">
@@ -135,34 +147,6 @@ areas, which could reduce infection risk to healthcare workers by minimizing exp
 </div>
 </div>
 
-<div class="proj">
-<a class="project-link" href="cooperativemotion/index.html"> </a>
-<div class="projimg"><img class="proj" src="images/icons/teleop-icon-small.jpg"></div>
-<div class="projcontent">
-<p class="projtitle">Cooperative motion planning for human-operated robots</p>
-<a class="abstract-show" href="#" onclick="showHide('cooperativemotion');return false;">Summary (click to show)</a>
-<div class="abstract more" id="cooperativemotion">
-This project explores the hypothesis that advances in robot motion planning algorithms will lead to improved intuitiveness, safety, and task performance of human-centered robots such as intelligent vehicles, tele-surgery systems, search-and-rescue robots, and household robots. Existing planning techniques lead to awkward and unintuitive interaction with humans. To bridge this gap, we are  developing cooperative motion planning algorithms that reason about users' intended goals and then take control of a robot's low level motion to achieve those goals.
-</div>
-<div class="sponsors">NSF NRI, NSF CAREER, IU Faculty Research Support Program</div>
-</div>
-</div>
-
-<div class="proj">
-<a class="project-link" href="packing/index.html"> </a>
-<div class="projimg"><img class="proj" src="packing/packing.png" style="width: 70px; height: 70px;" /></div>
-
-<div class="projcontent">
-<p class="projtitle">Autonomous robot packing of complex-shaped objects</p>
-<a class="abstract-show" href="#" onclick="showHide('packing');return false;">Summary (click to show)</a>
-
-<div class="abstract more" id="packing">Recently, one area that has attracted a lot of research attention is automated packaging or packing, a process during which robots stow objects into small confined spaces, such as shipping boxes. Packing items densely improves the storage capacity, decreases the delivery cost, and saves packing materials. This project focuses on packing objects of arbitrary shapes, weights, and deformation into a single shipping box with a robot manipulator. We seek to advance the state-of-the-art in robot packing with regards to optimizing container size for a set of objects, planning object placements for stability and feasibility, and increasing robustness of packing execution with a robot manipulator.</div>
-
-<div class="keywords">packing, warehouse automation, optimal planning</div>
-
-<div class="sponsors">Amazon Research Award</div>
-</div>
-</div>
 
 <div class="proj">
 <a class="project-link" href="knowledge/index.html"></a>
